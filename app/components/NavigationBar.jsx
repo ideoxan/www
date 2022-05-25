@@ -1,6 +1,6 @@
 
 import { useState } from 'react'
-import Icon from './Icon'
+import Icon from 'app/components/Icon'
 
 export default function NavigationBar() {
 
