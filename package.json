@@ -6,7 +6,9 @@
   "sideEffects": false,
   "scripts": {
     "build": "remix build",
-    "dev": "remix dev"
+    "build:css": "tailwindcss -m -i ./app/styles/tailwind.css -o app/styles/app.css  -c ./tailwind.config.cjs",
+    "dev": "remix dev",
+    "dev:css": "tailwindcss -w -i ./app/styles/tailwind.css -o app/styles/app.css  -c ./tailwind.config.cjs"
   },
   "dependencies": {
     "@remix-run/node": "^1.4.3",
