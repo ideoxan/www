@@ -2,8 +2,8 @@ import Icon from "app/components/Icon"
 
 export default function HomePageFeaturesItem({ icon, title, description }) {
     return (
-        <li class="flex flex-row">
-            <div class="flex flex-col bg-primary w-10 h-10 rounded-lg flex-shrink-0">
+        <li className="flex flex-row">
+            <div className="flex flex-col bg-primary w-10 h-10 rounded-lg flex-shrink-0">
                 <Icon
                     name={icon}
                     width={5}
@@ -13,9 +13,9 @@ export default function HomePageFeaturesItem({ icon, title, description }) {
                     className="m-auto"
                 />
             </div>
-            <div class="flex flex-col ml-4">
-                <h3 class="my-1 font-sans font-semibold text-lg text-gray-50">{title}</h3>
-                <p class="paragraph">{description}</p>
+            <div className="flex flex-col ml-4">
+                <h3 className="my-1 font-sans font-semibold text-lg text-gray-50">{title}</h3>
+                <p className="paragraph">{description}</p>
             </div>
         </li>
     )
