@@ -1,6 +1,7 @@
 import NavigationBar from "app/components/NavigationBar"
 import HeroSection from "app/components/Hero"
 import HomePageFeaturesSection from "app/components/HomePageFeaturesSection"
+import HomePageSolutionsCTA from "app/components/HomePageSolutionsCTA"
 
 export default function Index() {
     return (
@@ -8,6 +9,7 @@ export default function Index() {
             <NavigationBar />
             <HeroSection />
             <HomePageFeaturesSection />
+            <HomePageSolutionsCTA />
         </>
     )
 }
