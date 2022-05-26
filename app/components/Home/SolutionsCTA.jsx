@@ -1,5 +1,5 @@
 
-export default function HomePageSolutionsCTA() {
+export default function SolutionsCTA() {
     return (
         <section id="solutions" className="section flex-col px-8">
 

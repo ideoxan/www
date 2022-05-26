@@ -1,15 +1,15 @@
 import NavigationBar from "app/components/NavigationBar"
 import HeroSection from "app/components/Hero"
-import HomePageFeaturesSection from "app/components/HomePageFeaturesSection"
-import HomePageSolutionsCTA from "app/components/HomePageSolutionsCTA"
+import FeaturesSection from "app/components/Home/FeaturesSection"
+import SolutionsCTA from "app/components/Home/SolutionsCTA"
 
 export default function Index() {
     return (
         <>
             <NavigationBar />
             <HeroSection />
-            <HomePageFeaturesSection />
-            <HomePageSolutionsCTA />
+            <FeaturesSection />
+            <SolutionsCTA />
         </>
     )
 }
