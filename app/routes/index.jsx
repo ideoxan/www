@@ -7,6 +7,7 @@ import CoursesSection from "app/components/Home/CoursesSection"
 import OpenSourceSection from "app/components/Home/OpenSourceSection"
 import RewardsSection from "app/components/Home/RewardsSection"
 import SignupCTA from "app/components/Home/SignupCTA"
+import Footer from "app/components/Footer"
 
 export default function Index() {
     return (
@@ -20,6 +21,7 @@ export default function Index() {
             <OpenSourceSection />
             <RewardsSection />
             <SignupCTA />
+            <Footer />
         </>
     )
 }
