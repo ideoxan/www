@@ -722,6 +722,10 @@ body {
   width: 12rem;
 }
 
+.w-0 {
+  width: 0px;
+}
+
 .min-w-full {
   min-width: 100%;
 }
@@ -893,8 +897,17 @@ body {
   padding-bottom: 0.25rem;
 }
 
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 .pt-6 {
   padding-top: 1.5rem;
+}
+
+.pb-6 {
+  padding-bottom: 1.5rem;
 }
 
 .text-left {
@@ -1064,6 +1077,16 @@ body {
 }
 
 @media (min-width: 768px) {
+  .md\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .md\:my-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
   .md\:mb-10 {
     margin-bottom: 2.5rem;
   }
@@ -1082,6 +1105,12 @@ body {
 
   .md\:w-1\/2 {
     width: 50%;
+  }
+
+  .md\:w-max {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
   }
 
   .md\:grid-cols-1 {
@@ -1108,6 +1137,15 @@ body {
     background-image: url("/images/heroBgBlur.png");
   }
 
+  .md\:py-6 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .md\:text-left {
+    text-align: left;
+  }
+
   .md\:text-6xl {
     font-size: 3.75rem;
     line-height: 1;
@@ -1120,6 +1158,11 @@ body {
 }
 
 @media (min-width: 1024px) {
+  .lg\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .lg\:mt-40 {
     margin-top: 10rem;
   }
@@ -1136,6 +1179,14 @@ body {
     width: 100%;
   }
 
+  .lg\:w-1\/4 {
+    width: 25%;
+  }
+
+  .lg\:w-1\/2 {
+    width: 50%;
+  }
+
   .lg\:max-w-7xl {
     max-width: 80rem;
   }
@@ -1146,5 +1197,9 @@ body {
 
   .lg\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lg\:text-center {
+    text-align: center;
   }
 }
