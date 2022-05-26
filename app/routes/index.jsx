@@ -4,6 +4,7 @@ import FeaturesSection from "app/components/Home/FeaturesSection"
 import SolutionsCTA from "app/components/Home/SolutionsCTA"
 import FreeForAllSection from "app/components/Home/FreeForAllSection"
 import CoursesSection from "app/components/Home/CoursesSection"
+import OpenSourceSection from "app/components/Home/OpenSourceSection"
 
 export default function Index() {
     return (
@@ -14,6 +15,7 @@ export default function Index() {
             <SolutionsCTA />
             <FreeForAllSection />
             <CoursesSection />
+            <OpenSourceSection />
         </>
     )
 }
