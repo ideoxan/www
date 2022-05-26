@@ -607,6 +607,11 @@ body {
   margin-right: 2rem;
 }
 
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .mt-20 {
   margin-top: 5rem;
 }
@@ -651,8 +656,20 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
 .flex {
   display: flex;
+}
+
+.grid {
+  display: grid;
 }
 
 .hidden {
@@ -669,6 +686,10 @@ body {
 
 .h-4 {
   height: 1rem;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .w-full {
@@ -691,6 +712,16 @@ body {
   width: 1rem;
 }
 
+.w-max {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.w-48 {
+  width: 12rem;
+}
+
 .min-w-full {
   min-width: 100%;
 }
@@ -711,12 +742,29 @@ body {
   flex-grow: 0;
 }
 
+.grid-flow-row {
+  grid-auto-flow: row;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
 .flex-row {
   flex-direction: row;
 }
 
 .flex-col {
   flex-direction: column;
+}
+
+.gap-x-6 {
+  -moz-column-gap: 1.5rem;
+       column-gap: 1.5rem;
+}
+
+.gap-y-4 {
+  row-gap: 1rem;
 }
 
 .space-x-6 > :not([hidden]) ~ :not([hidden]) {
@@ -745,12 +793,22 @@ body {
   overflow-y: visible;
 }
 
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .rounded-lg {
   border-radius: 0.5rem;
 }
 
 .rounded-2xl {
   border-radius: 1rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
 }
 
 .bg-primary {
@@ -771,6 +829,10 @@ body {
 .bg-gray-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(21 9 49 / var(--tw-bg-opacity));
+}
+
+.bg-opacity-50 {
+  --tw-bg-opacity: 0.5;
 }
 
 .bg-contain {
@@ -816,6 +878,21 @@ body {
   padding-bottom: 3rem;
 }
 
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
 .pt-6 {
   padding-top: 1.5rem;
 }
@@ -847,6 +924,15 @@ body {
   line-height: 1.75rem;
 }
 
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-2xs {
+  font-size: 0.6rem;
+}
+
 .font-extrabold {
   font-weight: 800;
 }
@@ -859,6 +945,10 @@ body {
   font-weight: 600;
 }
 
+.font-bold {
+  font-weight: 700;
+}
+
 .tracking-tight {
   letter-spacing: -0.025em;
 }
@@ -868,13 +958,32 @@ body {
   color: rgb(248 245 255 / var(--tw-text-opacity));
 }
 
+.text-secondary {
+  --tw-text-opacity: 1;
+  color: rgb(167 129 254 / var(--tw-text-opacity));
+}
+
 .opacity-80 {
   opacity: 0.8;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.opacity-100 {
+  opacity: 1;
 }
 
 .shadow-2xl {
   --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-lg {
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -921,7 +1030,23 @@ body {
 
 /* Custom Styles */
 
+.hover\:opacity-100:hover {
+  opacity: 1;
+}
+
+.hover\:opacity-80:hover {
+  opacity: 0.8;
+}
+
 @media (min-width: 640px) {
+  .sm\:flex {
+    display: flex;
+  }
+
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .sm\:px-12 {
     padding-left: 3rem;
     padding-right: 3rem;
@@ -959,6 +1084,10 @@ body {
     width: 50%;
   }
 
+  .md\:grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
@@ -967,6 +1096,12 @@ body {
     --tw-space-x-reverse: 0;
     margin-right: calc(3rem * var(--tw-space-x-reverse));
     margin-left: calc(3rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .md\:space-x-6 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(1.5rem * var(--tw-space-x-reverse));
+    margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
   .md\:bg-img-hero {
@@ -993,6 +1128,10 @@ body {
     margin-bottom: 4rem;
   }
 
+  .lg\:flex {
+    display: flex;
+  }
+
   .lg\:w-full {
     width: 100%;
   }
@@ -1003,5 +1142,9 @@ body {
 
   .lg\:max-w-6xl {
     max-width: 72rem;
+  }
+
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
