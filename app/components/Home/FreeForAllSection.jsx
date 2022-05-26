@@ -2,16 +2,16 @@ import FeaturesItem from 'app/components/Home/FeaturesItem'
 
 export default function FreeForAllSection() {
     return (
-        <section id="cost" class="section flex-col">
+        <section id="cost" className="section flex-col">
 
             {/* Features */}
-            <div class="section-container flex-col md:flex-row space-x-6">
+            <div className="section-container flex-col md:flex-row space-x-6">
 
                 {/* Feature Listing Column */}
-                <div class="flex flex-col p-6 md:w-1/2 my-auto">
+                <div className="flex flex-col p-6 md:w-1/2 my-auto">
 
-                    <h2 class="section-header">Free for everyone, forever</h2>
-                    <ul class="flex flex-col mt-8 space-y-8">
+                    <h2 className="section-header">Free for everyone, forever</h2>
+                    <ul className="flex flex-col mt-8 space-y-8">
 
                         {/* Feature 1 */}
                         <FeaturesItem
@@ -32,8 +32,8 @@ export default function FreeForAllSection() {
                 </div>
 
                 {/* Image Column */}
-                <div class="hidden md:flex flex-shrink flex-grow-0 flex-col w-1/2 p-6">
-                    <img src="/images/Cost1.png" class="flex-shrink w-auto mx-auto my-auto" alt="A child and her parents on a laptop" />
+                <div className="hidden md:flex flex-shrink flex-grow-0 flex-col w-1/2 p-6">
+                    <img src="/images/Cost1.png" className="flex-shrink w-auto mx-auto my-auto" alt="A child and her parents on a laptop" />
                 </div>
 
             </div>

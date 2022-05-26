@@ -6,11 +6,10 @@ export default function Icon({
     width = 4,
     height = 4,
     color = "gray-50",
-    source = "/icons/sprite.svg",
     strokeThickness = 2
 }) {
 
-    if (name == null || !iconSet.hasOwnProperty(name)) {
+    if (name == null || typeof iconSet[name] === "undefined") {
         throw new Error("Icon name is required")
     }
 
