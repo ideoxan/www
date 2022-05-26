@@ -14,21 +14,21 @@ export default function HomePageFeaturesSection() {
 
                         {/* Feature 1 */}
                         <HomePageFeaturesItem
-                            icon="box"
+                            icon="Box"
                             title="Interactive Content"
                             description="All courses include interactive quizzes, lessons, and exercises. Each exercise has a certain objective that needs to be completed through the online code editor."
                         />
 
                         {/* Feature 2 */}
                         <HomePageFeaturesItem
-                            icon="award"
+                            icon="Award"
                             title="Professional Grade Courses"
                             description="Courses are written by developers with years of programming and computer science experience. Gain technical know-how and job relevant knowledge with ease."
                         />
 
                         {/* Feature 3 */}
                         <HomePageFeaturesItem
-                            icon="zap"
+                            icon="Zap"
                             title="Take Control"
                             description="Learn at your own pace without the pressure from an online instructor. You get to decide your future in CS with the tools of tomorrow."
                         />

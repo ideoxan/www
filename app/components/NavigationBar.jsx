@@ -17,7 +17,7 @@ export default function NavigationBar() {
                 <div id="mobile-nav-menu-icon" className="flex md:hidden">
                     <button onClick={toggleMobileNavMenu}>
                         <Icon
-                            name="menu"
+                            name="Menu"
                             width={4}
                             height={4}
                             color="gray-50"
@@ -47,7 +47,7 @@ export default function NavigationBar() {
                     <li className="flex nav-link">
                         <button>
                             <Icon
-                                name="user"
+                                name="User"
                                 width={4}
                                 height={4}
                                 color="gray-50"
