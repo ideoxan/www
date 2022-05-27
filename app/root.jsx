@@ -15,8 +15,8 @@ export const meta = () => ({
     viewport: "width=device-width,initial-scale=1",
     "http-equiv:X-UA-Compatible": "ie=edge",
     "msapplication-TileColor": "#da532c",
-    "theme-color": "#ffffff",
-    description: "👩‍💻 Ideoxan is a free to use online tool to learn programming."
+    "theme-color": "#da532c",
+    description: "&#128105;&#8205;&#128187; Ideoxan is a free to use online tool to learn programming."
 })
 
 export function links() {
