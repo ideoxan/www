@@ -1,6 +1,8 @@
 import { json } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import EditorNavigationBar from "app/components/Editor/EditorNavigationBar"
+import EditorActivitiesBar from "app/components/Editor/EditorActivitiesBar"
+import EditorStatusBar from "app/components/Editor/EditorStatusBar"
 
 export const loader = async ({ params }) => {
     // TODO: use params.courseId, params.chapterId, params.lessonId to load the lesson from
@@ -68,7 +70,7 @@ export default function Editor() {
     const metadata = useLoaderData()
 
     return (
-        <>
+        <div className="flex flex-col max-h-screen h-screen min-h-screen">
             <EditorNavigationBar
                 courseUUID={metadata.course.uuid}
                 lessonIndex={metadata.lesson.index}
@@ -78,6 +80,10 @@ export default function Editor() {
                 navigationNext={metadata.lesson.navigation.next}
                 navigationPrevious={metadata.lesson.navigation.previous}
             />
-        </>
+            <main className="flex flex-row flex-grow w-full">
+                <EditorActivitiesBar />
+            </main>
+            <EditorStatusBar />
+        </div>
     )
 }
