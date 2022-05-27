@@ -1,4 +1,5 @@
 import Icon from 'app/components/Icon'
+import { Link } from "@remix-run/react"
 
 export default function EditorNavigationBar({
     courseUUID,
@@ -17,12 +18,12 @@ export default function EditorNavigationBar({
     }
 
     return (
-        <nav className="w-full bg-gray-700 flex flex-row py-3 px-6 border-b border-b-gray-500 border-opacity-20">
+        <nav className="w-full bg-gray-700 flex flex-row py-3 px-4 border-b border-b-gray-500 border-opacity-20">
 
             {/* Ideoxan Logo */}
-            <div className="flex my-auto w-1/4">
+            <Link to="/" className="flex my-auto w-1/4">
                 <img src="/images/ix_logo_white_trans_253x50.png" alt="Ideoxan" className="h-3 opacity-50" />
-            </div>
+            </Link>
 
             {/* Lesson Header */}
             <h1 className="font-sans font-bold text-xs text-center w-1/2 text-gray-50 my-auto">Lesson {lessonIndex + 1}: {lessonName} (Chapter {chapterIndex + 1}) &mdash; {courseName}</h1>
