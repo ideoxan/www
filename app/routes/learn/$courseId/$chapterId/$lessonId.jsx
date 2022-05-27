@@ -3,6 +3,7 @@ import { useLoaderData } from "@remix-run/react"
 import EditorNavigationBar from "app/components/Editor/EditorNavigationBar"
 import EditorActivitiesBar from "app/components/Editor/EditorActivitiesBar"
 import EditorStatusBar from "app/components/Editor/EditorStatusBar"
+import EditorCodeArea from "app/components/Editor/CodeArea/EditorCodeArea"
 
 export const loader = async ({ params }) => {
     // TODO: use params.courseId, params.chapterId, params.lessonId to load the lesson from
@@ -82,6 +83,7 @@ export default function Editor() {
             />
             <main className="flex flex-row flex-grow w-full">
                 <EditorActivitiesBar />
+                <EditorCodeArea />
             </main>
             <EditorStatusBar />
         </div>
