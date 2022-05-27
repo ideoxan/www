@@ -11,12 +11,28 @@ import styles from 'app/styles/app.css'
 
 export const meta = () => ({
     charset: "utf-8",
-    title: "Ideoxan",
+    lang: "en",
     viewport: "width=device-width,initial-scale=1",
-    "http-equiv:X-UA-Compatible": "ie=edge",
-    "msapplication-TileColor": "#da532c",
-    "theme-color": "#da532c",
-    description: "&#128105;&#8205;&#128187; Ideoxan is a free to use online tool to learn programming."
+
+    // SEO
+    title: "Ideoxan",
+    description: "&#128105;&#8205;&#128187; Ideoxan is a free to use online tool to learn programming.",
+    keywords: "programming, learn how to code, free, coding, software, developer",
+
+    // OG and Twitter
+    "twitter:card": "summary_large_image",
+    "twitter:url": "https://ideoxan.com",
+    "twitter:title": "Ideoxan",
+    "twitter:description": "👩‍💻 Ideoxan is a free to use online tool to learn programming.",
+    "twitter:image": "https://next.ideoxan.com/images/ix_og_embed_1200x628.png",
+    "og:type": "website",
+    "og:url": "https://ideoxan.com",
+    "og:title": "Ideoxan",
+    "og:description": "👩‍💻 Ideoxan is a free to use online tool to learn programming.",
+    "og:image": "https://next.ideoxan.com/images/ix_og_embed_1200x628.png",
+    "image": "https://next.ideoxan.com/images/ix_og_embed_1200x628.png",
+    "msapplication-TileColor": "#6e2fff",
+    "theme-color": "#6e2fff",
 })
 
 export function links() {
