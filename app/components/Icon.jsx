@@ -9,8 +9,12 @@ export default function Icon({
     strokeThickness = 2
 }) {
 
-    if (name == null || typeof iconSet[name] === "undefined") {
+    if (name == null || typeof name !== "string") {
         throw new Error("Icon name is required")
+    }
+
+    if (typeof iconSet[name] === "undefined") {
+        throw new Error("Icon name is invalid. Received: " + name)
     }
 
     let classNameString = `w-${ width } h-${ height } text-${ color } stroke-${ color } stroke-${ strokeThickness } ${ className }`
