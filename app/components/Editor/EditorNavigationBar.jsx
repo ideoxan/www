@@ -1,15 +1,7 @@
 import Icon from 'app/components/Icon'
 import { Link } from "@remix-run/react"
 
-export default function EditorNavigationBar({
-    courseUUID,
-    lessonIndex,
-    lessonName,
-    chapterIndex,
-    courseName,
-    navigationNext,
-    navigationPrevious
-}) {
+export default function EditorNavigationBar({ metadata }) {
 
     let navIcons = {
         size: 4,
@@ -26,14 +18,14 @@ export default function EditorNavigationBar({
             </Link>
 
             {/* Lesson Header */}
-            <h1 className="font-sans font-bold text-xs text-center w-1/2 text-gray-50 my-auto">Lesson {lessonIndex + 1}: {lessonName} (Chapter {chapterIndex + 1}) &mdash; {courseName}</h1>
+            <h1 className="font-sans font-bold text-xs text-center w-1/2 text-gray-50 my-auto">Lesson {metadata.lesson.index + 1}: {metadata.lesson.name} (Chapter {metadata.chapter.index + 1}) &mdash; {metadata.course.name}</h1>
 
             {/* Navigation Buttons */}
             <div className="flex flex-row w-1/4 space-x-4 justify-end my-auto">
 
                 {/* Previous Lesson */}
-                {navigationPrevious && (
-                    <a href={"/learn/" + courseUUID + "/" + navigationPrevious[0] + "/" + navigationPrevious[1]}>
+                {metadata.lesson.navigation.previous && (
+                    <a href={"/learn/" + metadata.course.uuid + "/" + metadata.lesson.navigation.previous[0] + "/" + metadata.lesson.navigation.previous[1]}>
                         <Icon
                             name="ArrowLeft"
                             width={navIcons.size}
@@ -46,7 +38,7 @@ export default function EditorNavigationBar({
                 )}
 
                 {/* Courses Page */}
-                <a href={"/courses/#" + courseUUID}>
+                <a href={"/courses/#" + metadata.course.uuid}>
                     <Icon
                         name="Library"
                         width={navIcons.size}
@@ -58,8 +50,8 @@ export default function EditorNavigationBar({
                 </a>
 
                 {/* Next Lesson */}
-                {navigationNext && (
-                    <a href={"/learn/" + courseUUID + "/" + navigationNext[0] + "/" + navigationNext[1]}>
+                {metadata.lesson.navigation.next && (
+                    <a href={"/learn/" + metadata.course.uuid + "/" + metadata.lesson.navigation.next[0] + "/" + metadata.lesson.navigation.next[1]}>
                         <Icon
                             name="ArrowRight"
                             width={navIcons.size}

@@ -1,6 +1,8 @@
 import Icon from "app/components/Icon"
 
-export default function EditorActivityWorkspace() {
+export default function EditorActivityWorkspace({ metadata, ...props }) {
+    const files = null
+
     return (
         <>
             <h2 className="font-sans font-bold text-xs text-left text-gray-50">Workspace</h2>
@@ -14,7 +16,7 @@ export default function EditorActivityWorkspace() {
                         strokeThickness={2}
                         className="my-auto"
                     />
-                    <p className="font-sans font-medium text-xs text-left text-gray-50 ml-2 truncate">index.js</p>
+                    <p className="font-sans font-medium text-xs text-left text-gray-50 ml-2 truncate">{Object.keys(metadata.lesson.content.workspace)[0]}</p>
                 </div>
             </div>
         </>
