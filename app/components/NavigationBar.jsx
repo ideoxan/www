@@ -1,6 +1,7 @@
 
 import { useState } from 'react'
 import Icon from 'app/components/Icon'
+import { Link } from '@remix-run/react'
 
 export default function NavigationBar() {
 
@@ -12,7 +13,7 @@ export default function NavigationBar() {
 
     return (
         <>
-            <nav id="nav" className="flex flex-row pt-6 bg-gray-900 min-w-full w-full px-4 sm:px-12">
+            <nav id="nav" className="flex flex-row py-6 bg-gray-900 min-w-full w-full px-4 sm:px-12">
                 {/* Mobile Menu */}
                 <div id="mobile-nav-menu-icon" className="flex md:hidden">
                     <button onClick={toggleMobileNavMenu}>
@@ -28,9 +29,9 @@ export default function NavigationBar() {
                 </div>
 
                 {/* Logo */}
-                <div id="nav-logo" className="flex flex-row ml-auto md:ml-0 mr-auto flex-shrink-0">
+                <Link id="nav-logo" className="flex flex-row ml-auto md:ml-0 mr-auto flex-shrink-0" to="/">
                     <img src="/images/ix_logo_white_trans_253x50.png" className="w-auto h-4" alt="Ideoxan Logo"></img>
-                </div>
+                </Link>
 
                 {/* Clickable Nav Links */}
                 <ul id="nav-content" className="flex flex-row font-sans font-medium text-sm text-center text-gray-50 md:space-x-12">
