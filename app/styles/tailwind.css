@@ -51,6 +51,10 @@
         @apply font-sans font-bold text-center whitespace-nowrap;
     }
 
+    .bttn-square {
+        @apply rounded-md;
+    }
+
     .bttn-outline {
         @apply border-2 rounded-full;
     }
@@ -61,6 +65,10 @@
 
     .bttn-outline-white {
         @apply border-gray-50 text-gray-50;
+    }
+
+    .bttn-white {
+        @apply bg-gray-50 text-gray-900;
     }
 
     .bttn-disabled {
@@ -82,5 +90,10 @@
     .suggest-widget {
         display: none !important;
         visibility: hidden !important;
+    }
+
+    input::placeholder {
+        color: unset;
+        opacity: unset;
     }
 }
