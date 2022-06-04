@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useFetcher } from '@remix-run/react'
+import { useFetcher, useLoaderData } from '@remix-run/react'
 import { json } from '@remix-run/node'
 import { authenticator } from 'app/utils/auth.server'
 import { supabaseClient } from 'app/utils/db.client'
@@ -16,11 +16,21 @@ export async function loader({ request }) {
     await authenticator.isAuthenticated(request, {
         successRedirect: '/dashboard',
     })
+
+    const searchParams = new URL(request.url)?.searchParams
+    if (!searchParams || searchParams.get("error")) {
+        return json({
+            error: {
+                message: searchParams.get("error_description") || searchParams.get("error")
+            }
+        })
+    }
     return json({})
 }
 
 export default function OAuthCallback() {
     const fetcher = useFetcher()
+    const loaderData = useLoaderData()
 
     useEffect(() => {
         const { data: authListener } = supabaseClient.auth.onAuthStateChange((event, session) => {
@@ -40,10 +50,18 @@ export default function OAuthCallback() {
 
     return (
         <AuthSplash>
-
-            <h1 className="mx-auto font-sans font-extrabold tracking-tight text-center text-2xl text-gray-50">Logging in...</h1>
-            <p className="mx-auto mt-1 font-sans font-medium text-center text-sm text-gray-50 opacity-50">If the page does not redirect shortly, contact support.</p>
-
-        </AuthSplash>
+            {loaderData?.error ? (
+                <>
+                    <h1 className="mx-auto font-sans font-extrabold tracking-tight text-center text-2xl text-gray-50">Sign in failed.</h1>
+                    <p className="mx-auto mt-6 font-sans font-medium text-center text-xs px-8 py-2 bg-red-500/50 text-red-50 rounded-lg">{loaderData?.error?.message}</p>
+                </>
+            ) : (
+                <>
+                    <h1 className="mx-auto font-sans font-extrabold tracking-tight text-center text-2xl text-gray-50">Logging in...</h1>
+                    <p className="mx-auto mt-1 font-sans font-medium text-center text-sm text-gray-50 opacity-50">If the page does not redirect shortly, contact support.</p>
+                </>
+            )
+            }
+        </AuthSplash >
     )
 }
