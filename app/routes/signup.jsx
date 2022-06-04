@@ -2,9 +2,8 @@ import { Link, Form, useActionData } from "@remix-run/react"
 import { json } from "@remix-run/node"
 import { authenticator, sessionStorage } from "app/utils/auth.server"
 import { supabaseAdmin } from "app/utils/db.server"
-import { oauthSignIn } from "app/utils/db.client"
-import { Facebook, Github, Google, Linkedin, Twitter } from "@icons-pack/react-simple-icons"
-import AuthScreen from "app/components/AuthScreen"
+import AuthSplash from "app/components/Auth/AuthSplash"
+import AuthOAuth from "app/components/Auth/AuthOAuth"
 
 export function meta() {
     return {
@@ -69,7 +68,7 @@ export default function Signup({ request }) {
     let { error } = useActionData() || {}
 
     return (
-        <AuthScreen>
+        <AuthSplash>
 
             <h1 className="mx-auto font-sans font-extrabold tracking-tight text-center text-2xl text-gray-50">Register for a new account</h1>
             <Link className="mx-auto mt-1 font-sans font-medium text-center text-sm text-gray-50 opacity-50 hover:underline" to="/login">Or log into an existing account</Link>
@@ -103,29 +102,8 @@ export default function Signup({ request }) {
 
             </div>
 
-            <div className="flex flex-row justify-between px-8">
+            <AuthOAuth />
 
-                <button className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
-                    <Google width={18} />
-                </button>
-                <button className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
-                    <Facebook width={18} />
-                </button>
-                <button className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
-                    <Twitter width={18} />
-                </button>
-                <button
-                    className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row"
-                    onClick={() => oauthSignIn({ provider: "github" })}
-                >
-                    <Github width={18} />
-                </button>
-                <button className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
-                    <Linkedin width={18} />
-                </button>
-
-            </div>
-
-        </AuthScreen>
+        </AuthSplash>
     )
 }

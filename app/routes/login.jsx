@@ -1,8 +1,8 @@
 import { Link, Form, useLoaderData } from "@remix-run/react"
 import { json } from "@remix-run/node"
 import { authenticator, sessionStorage } from "app/utils/auth.server"
-import { Facebook, Github, Google, Linkedin, Twitter } from "@icons-pack/react-simple-icons"
-import AuthScreen from "app/components/AuthScreen"
+import AuthSplash from "app/components/Auth/AuthSplash"
+import AuthOAuth from "app/components/Auth/AuthOAuth"
 
 export function meta() {
     return {
@@ -30,7 +30,7 @@ export default function LogIn() {
     const { error } = useLoaderData()
 
     return (
-        <AuthScreen>
+        <AuthSplash>
 
             <h1 className="mx-auto font-sans font-extrabold tracking-tight text-center text-2xl text-gray-50">Log into an existing account</h1>
             <Link className="mx-auto mt-1 font-sans font-medium text-center text-sm text-gray-50 opacity-50 hover:underline" to="/signup">Or register for a new account</Link>
@@ -62,26 +62,8 @@ export default function LogIn() {
 
             </div>
 
-            <div className="flex flex-row justify-between px-8">
+            <AuthOAuth />
 
-                <button className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
-                    <Google width={18} />
-                </button>
-                <button className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
-                    <Facebook width={18} />
-                </button>
-                <button className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
-                    <Twitter width={18} />
-                </button>
-                <button className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
-                    <Github width={18} />
-                </button>
-                <button className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
-                    <Linkedin width={18} />
-                </button>
-
-            </div>
-
-        </AuthScreen>
+        </AuthSplash>
     )
 }
