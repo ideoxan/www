@@ -45,10 +45,6 @@ export async function action({ request }) {
     let { session, error } = await supabaseAdmin.auth.signUp({
         email,
         password
-    }, {
-        data: {
-            requires_onboarding: true
-        },
     })
 
     if (error) {
