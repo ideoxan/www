@@ -11,7 +11,7 @@ export default function AuthScreen({ children, ...props }) {
             {/* Splash content */}
             <div className="absolute top-0 left-0 w-screen h-screen flex flex-row">
 
-                <div className="flex flex-col w-1/4 mx-auto my-auto px-12 py-8 bg-gray-900 ring-1 ring-gray-500 ring-opacity-20 shadow-xl rounded-lg">
+                <div className="flex flex-col w-1/4 mx-auto my-auto px-12 py-8 bg-gray-900 ring-1 ring-gray-500 ring-opacity-20 shadow-xl rounded-lg z-40">
 
                     {children}
                 </div>

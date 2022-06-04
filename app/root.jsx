@@ -1,3 +1,4 @@
+import { json } from "@remix-run/node"
 import {
     Links,
     LiveReload,
@@ -5,6 +6,7 @@ import {
     Outlet,
     Scripts,
     ScrollRestoration,
+    useLoaderData,
 } from "@remix-run/react"
 
 import styles from 'app/styles/app.css'
@@ -39,7 +41,27 @@ export function links() {
     return [{ rel: "stylesheet", href: styles }]
 }
 
+export function loader({ request }) {
+    if (process.env.NODE_ENV === "production") {
+        return json({
+            ENV: {
+                SUPABASE_URL: process.env.SUPABASE_URL,
+                SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
+            }
+        })
+    } else {
+        return json({
+            ENV: {
+                SUPABASE_URL_DEV: process.env.SUPABASE_URL_DEV,
+                SUPABASE_ANON_KEY_DEV: process.env.SUPABASE_ANON_KEY_DEV,
+            }
+        })
+    }
+}
+
 export default function App() {
+    let loaderData = useLoaderData()
+
     return (
         <html lang="en">
             <head>
@@ -54,6 +76,9 @@ export default function App() {
             <body>
                 <Outlet />
                 <ScrollRestoration />
+                <script dangerouslySetInnerHTML={{
+                    __html: `window.env = ${ JSON.stringify(loaderData.ENV) }`
+                }} />
                 <Scripts />
                 <LiveReload />
             </body>

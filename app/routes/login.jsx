@@ -1,6 +1,6 @@
 import { Link, Form, useLoaderData } from "@remix-run/react"
 import { json } from "@remix-run/node"
-import { authenticator, sessionStorage, supabaseStrategy } from "app/utils/auth.server"
+import { authenticator, sessionStorage } from "app/utils/auth.server"
 import { Facebook, Github, Google, Linkedin, Twitter } from "@icons-pack/react-simple-icons"
 import AuthScreen from "app/components/AuthScreen"
 
@@ -11,7 +11,7 @@ export function meta() {
 }
 
 export async function loader({ request }) {
-    await supabaseStrategy.checkSession(request, {
+    await authenticator.isAuthenticated(request, {
         successRedirect: "/dashboard"
     })
 
@@ -21,8 +21,6 @@ export async function loader({ request }) {
 }
 
 export async function action({ request }) {
-    const session = await sessionStorage.getSession(request.headers.get("Cookie"))
-    console.log(session)
     await authenticator.authenticate("local", request, {
         successRedirect: "/dashboard",
     })
@@ -66,21 +64,21 @@ export default function LogIn() {
 
             <div className="flex flex-row justify-between px-8">
 
-                <a href="/" className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
+                <button className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
                     <Google width={18} />
-                </a>
-                <a href="/" className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
+                </button>
+                <button className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
                     <Facebook width={18} />
-                </a>
-                <a href="/" className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
+                </button>
+                <button className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
                     <Twitter width={18} />
-                </a>
-                <a href="/" className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
+                </button>
+                <button className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
                     <Github width={18} />
-                </a>
-                <a href="/" className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
+                </button>
+                <button className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
                     <Linkedin width={18} />
-                </a>
+                </button>
 
             </div>
 

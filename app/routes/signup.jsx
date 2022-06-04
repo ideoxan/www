@@ -1,7 +1,8 @@
 import { Link, Form, useActionData } from "@remix-run/react"
 import { json } from "@remix-run/node"
-import { authenticator, sessionStorage, supabaseStrategy } from "app/utils/auth.server"
-import { supabaseClient } from "app/utils/db.server"
+import { authenticator, sessionStorage } from "app/utils/auth.server"
+import { supabaseAdmin } from "app/utils/db.server"
+import { oauthSignIn } from "app/utils/db.client"
 import { Facebook, Github, Google, Linkedin, Twitter } from "@icons-pack/react-simple-icons"
 import AuthScreen from "app/components/AuthScreen"
 
@@ -12,13 +13,18 @@ export function meta() {
 }
 
 export async function loader({ request }) {
-    await supabaseStrategy.checkSession(request, {
-        successRedirect: "/"
+    await authenticator.isAuthenticated(request, {
+        successRedirect: "/dashboard"
     })
 
     const session = await sessionStorage.getSession(request.headers.get("Cookie"))
     const error = session?.get(authenticator.sessionErrorKey)
-    return json({ error })
+    return json({
+        error, ENV: {
+            SUPABASE_URL: process.env.SUPABASE_URL,
+            SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
+        }
+    })
 }
 
 export async function action({ request }) {
@@ -37,7 +43,7 @@ export async function action({ request }) {
         }
     }
 
-    let { session, error } = await supabaseClient.auth.signUp({
+    let { session, error } = await supabaseAdmin.auth.signUp({
         email,
         password
     }, {
@@ -47,7 +53,6 @@ export async function action({ request }) {
     })
 
     if (error) {
-        console.log(error)
         return { error }
     }
 
@@ -60,7 +65,7 @@ export async function action({ request }) {
     }
 }
 
-export default function Signup() {
+export default function Signup({ request }) {
     let { error } = useActionData() || {}
 
     return (
@@ -100,21 +105,24 @@ export default function Signup() {
 
             <div className="flex flex-row justify-between px-8">
 
-                <a href="/" className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
+                <button className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
                     <Google width={18} />
-                </a>
-                <a href="/" className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
+                </button>
+                <button className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
                     <Facebook width={18} />
-                </a>
-                <a href="/" className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
+                </button>
+                <button className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
                     <Twitter width={18} />
-                </a>
-                <a href="/" className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
+                </button>
+                <button
+                    className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row"
+                    onClick={() => oauthSignIn({ provider: "github" })}
+                >
                     <Github width={18} />
-                </a>
-                <a href="/" className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
+                </button>
+                <button className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row">
                     <Linkedin width={18} />
-                </a>
+                </button>
 
             </div>
 

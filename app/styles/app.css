@@ -627,6 +627,10 @@ input::placeholder {
   bottom: 0px;
 }
 
+.z-40 {
+  z-index: 40;
+}
+
 .m-auto {
   margin: auto;
 }

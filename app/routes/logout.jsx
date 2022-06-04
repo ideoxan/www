@@ -1,4 +1,4 @@
-import { supabaseStrategy, authenticator } from "app/utils/auth.server"
+import { authenticator } from "app/utils/auth.server"
 
 export async function action({ request }) {
     await handle(request)
@@ -11,10 +11,9 @@ export async function loader({ request }) {
 }
 
 async function handle(request) {
-    await supabaseStrategy.checkSession(request, {
+    await authenticator.isAuthenticated(request, {
         failureRedirect: "/login",
     })
 
-    console.log("Logging out...")
     throw await authenticator.logout(request, { redirectTo: "/" })
 }
