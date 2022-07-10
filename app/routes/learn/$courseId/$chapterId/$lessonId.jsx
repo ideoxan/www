@@ -19,10 +19,12 @@ export const loader = async ({ params }) => {
     //??: Would a graphql query be more efficient?
     const metadata = {}
 
+    // URLs we use to get the course and lesson data
     const courseMetaURL = `${ params.courseId }/course.json`
     const chapterMetaURL = `${ params.courseId }/${ params.chapterId.padStart(2, '0') }/chapter.json`
     const lessonMetaURL = `${ params.courseId }/${ params.chapterId.padStart(2, '0') }/${ params.lessonId.padStart(2, '0') }/lesson.json`
 
+    // Get the course metadata
     const { data: courseData, error: courseDataError } = await supabaseAdmin.storage
         .from('course-content')
         .download(courseMetaURL)
@@ -30,9 +32,10 @@ export const loader = async ({ params }) => {
         throw new Response("Not Found", {
             status: 404
         })
-
+    // Append the course metadata to the metadata object
     metadata.course = JSON.parse(await courseData.text())
 
+    // Get the chapter metadata
     const { data: chapterData, error: chapterDataError } = await supabaseAdmin.storage
         .from('course-content')
         .download(chapterMetaURL)
@@ -40,10 +43,11 @@ export const loader = async ({ params }) => {
         throw new Response("Not Found", {
             status: 404
         })
-
+    // Append the chapter metadata to the metadata object
     metadata.chapter = JSON.parse(await chapterData.text())
     metadata.chapter.index = params.chapterId
 
+    // Get the lesson metadata
     const { data: lessonData, error: lessonDataError } = await supabaseAdmin.storage
         .from('course-content')
         .download(lessonMetaURL)
@@ -51,13 +55,16 @@ export const loader = async ({ params }) => {
         throw new Response("Not Found", {
             status: 404
         })
-
+    // Append the lesson metadata to the metadata object
     metadata.lesson = JSON.parse(await lessonData.text())
     metadata.lesson.index = params.lessonId
 
+
+    // Time to figure out navigation. Arrays consist of [<chapter>, <lesson>] (no padding)
     let nextNav = []
     let prevNav = []
 
+    // Lets see if there is a next lesson in this chapter
     const { data: currentLessonListing, error: currentLessonListingError } = await supabaseAdmin.storage
         .from('course-content')
         .list(`${ params.courseId }/${ params.chapterId }/`)
@@ -67,14 +74,21 @@ export const loader = async ({ params }) => {
             message: currentLessonListingError?.message,
             content: `Listing: ${ params.courseId }/${ params.chapterId }/`
         })
+
+    // Filter out non-lesson folders and put them in an array
     let availableCurrentLessons = currentLessonListing
         .filter(object => object.id == null && !Number.isNaN(parseInt(object.name)))
         .map(object => {
             return parseInt(object.name)
         })
+
     if (availableCurrentLessons.length - 1 > parseInt(params.lessonId)) {
+        // If there is a next lesson, lets increase the index by one
         nextNav = [parseInt(params.chapterId), parseInt(params.lessonId) + 1]
+
     } else {
+
+        // Otherwise we check if there is a next chapter
         const { data: nextChaptersListing, error: nextChaptersListingError } = await supabaseAdmin.storage
             .from('course-content')
             .list(`${ params.courseId }/`)
@@ -84,23 +98,33 @@ export const loader = async ({ params }) => {
                 message: nextChaptersListingError?.message,
                 content: `Listing: ${ params.courseId }/`
             })
-
+        // Filter out non-chapter folders and put them in an array
         let availableNextChapters = nextChaptersListing
             .filter(object => object.id == null && !Number.isNaN(parseInt(object.name)))
             .map(chapter => {
                 return parseInt(chapter.name)
             })
+
         if (availableNextChapters.length - 1 > parseInt(params.chapterId)) {
+            // If there is a next chapter, lets increase the chapter index by one, reset the lesson
+            // index to 0
             nextNav = [parseInt(params.chapterId) + 1, 0]
+
         } else {
+            // If there is no next chapter, we are at the end of the course. Congrats!
             nextNav = null
         }
     }
 
+    // Now to figure out the previous lesson (this doesn't rely on data discovered/not discovered
+    // in the search for a next lesson)
     if (parseInt(params.lessonId) > 0) {
+        // If there is a previous lesson, lets decrease the index by one
         prevNav = [parseInt(params.chapterId), parseInt(params.lessonId) - 1]
     } else {
+        // Otherwise we fall back a chapter
         if (parseInt(params.chapterId) > 0) {
+            // If there is a previous chapter, lets decrease the chapter index by one...
             const { data: prevLessonListing, error: prevLessonListingError } = await supabaseAdmin.storage
                 .from('course-content')
                 .list(`${ params.courseId }/${ (parseInt(params.chapterId) + 1).toString().padStart(2, '0') }/`)
@@ -110,23 +134,32 @@ export const loader = async ({ params }) => {
                     message: prevLessonListingError?.message,
                     content: `Listing: ${ params.courseId }/${ (parseInt(params.chapterId) + 1).toString().padStart(2, '0') }/`
                 })
+
+            // Filter out non-lesson folders and put them in an array
             let availablePrevLessons = prevLessonListing
                 .filter(object => object.id == null && !Number.isNaN(parseInt(object.name)))
                 .map(object => {
                     return parseInt(object.name)
                 })
+
+            // Now we can figure out what the last lesson in the previous chapter is and set the
+            // lesson index to that
             prevNav = [parseInt(params.chapterId) - 1, availablePrevLessons.length - 1]
+
         } else {
+            // If there is no previous chapter, we are at the beginning of the course. :(
             prevNav = null
         }
     }
 
+    // Set navigation properties
     metadata.lesson.navigation = {
         next: nextNav,
         previous: prevNav
     }
 
     // TODO: workspace
+    // Temporary workaround for the fact that the workspace is not yet implemented
     metadata.lesson.content = {
         guide: "Hello, World!",
         workspace: {
@@ -136,12 +169,14 @@ export const loader = async ({ params }) => {
         }
     }
 
+    // Return the metadata
     return json(metadata)
 }
 
 export default function Editor() {
+    // Lets load in the course metadata. If there is an error returned, our children must be
+    // resilient against a lack of properly formatted metadata
     const metadata = useLoaderData()
-    console.log(metadata)
 
     // States
     // - Activities Sidebar
