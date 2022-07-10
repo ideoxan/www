@@ -12,71 +12,136 @@ import EditorStatusBar from "app/components/Editor/EditorStatusBar"
 // Code Editor
 import EditorCodeArea from "app/components/Editor/CodeArea/EditorCodeArea"
 import EditorTabContainer from "app/components/Editor/EditorTabContainer"
+import { supabaseAdmin } from "app/utils/db.server.js"
+
 
 export const loader = async ({ params }) => {
-    // TODO: use params.courseId, params.chapterId, params.lessonId to load the lesson from
-    // TODO: supabase and serve it. (GraphQL?)
-    return json({
-        course: {
-            name: "Intro to NodeJS (Testing Sample)",
-            uuid: "07e68b9a-d10b-452f-acf7-53a200caecb3",
-            description: "A sample course for testing the Ideoxan website using NodeJS",
-            tags: ["nodejs", "testing", "javascript"],
-            author: ["@ideoxan"],
-        },
-        chapter: {
-            name: "Introduction",
-            index: 0,
-        },
-        lesson: {
-            name: "What is NodeJS?",
-            index: 0,
-            quiz: false,
-            content: {
-                guide: "Hello, World!",
-                workspace: {
-                    "index.js": "function sum(a, b) {\n  return a + b\n}\n\nconsole.log(sum(1, 2))",
-                    "index.html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Document</title>\n</head>\n<body>\n<h1>Hello, World!</h1>\n<p>Welcome to my website!</p>\n</body>\n</html>",
-                    "src/b.txt": "lol\n"
-                }
-            },
-            tasks: [
-                {
-                    instructions: "Run the project",
-                    completedByDefault: false,
-                    conditions: [
-                        {
-                            type: "file",
-                            file: "index.js",
-                            content: "function sum(a, b) {\n  return a + b\n}\n\nconsole.log(sum(1, 2))",
-                            is: "equal",
-                        },
-                        {
-                            type: "run",
-                            successful: true,
-                        }
-                    ]
-                }
-            ],
-            environment: {
-                tesseract: true,
-                on: "node:latest",
-                commands: [
-                    "npm install",
-                ],
-                viewport: false,
-                console: true
-            },
-            navigation: {
-                next: [0, 1],
-                previous: null,
-            }
+    //??: Would a graphql query be more efficient?
+    const metadata = {}
+
+    const courseMetaURL = `${ params.courseId }/course.json`
+    const chapterMetaURL = `${ params.courseId }/${ params.chapterId.padStart(2, '0') }/chapter.json`
+    const lessonMetaURL = `${ params.courseId }/${ params.chapterId.padStart(2, '0') }/${ params.lessonId.padStart(2, '0') }/lesson.json`
+
+    const { data: courseData, error: courseDataError } = await supabaseAdmin.storage
+        .from('course-content')
+        .download(courseMetaURL)
+    if (courseDataError || !courseData || !(courseData instanceof Blob))
+        throw new Response("Not Found", {
+            status: 404
+        })
+
+    metadata.course = JSON.parse(await courseData.text())
+
+    const { data: chapterData, error: chapterDataError } = await supabaseAdmin.storage
+        .from('course-content')
+        .download(chapterMetaURL)
+    if (chapterDataError || !chapterData || !(chapterData instanceof Blob))
+        throw new Response("Not Found", {
+            status: 404
+        })
+
+    metadata.chapter = JSON.parse(await chapterData.text())
+    metadata.chapter.index = params.chapterId
+
+    const { data: lessonData, error: lessonDataError } = await supabaseAdmin.storage
+        .from('course-content')
+        .download(lessonMetaURL)
+    if (lessonDataError || !lessonData || !(lessonData instanceof Blob))
+        throw new Response("Not Found", {
+            status: 404
+        })
+
+    metadata.lesson = JSON.parse(await lessonData.text())
+    metadata.lesson.index = params.lessonId
+
+    let nextNav = []
+    let prevNav = []
+
+    const { data: currentLessonListing, error: currentLessonListingError } = await supabaseAdmin.storage
+        .from('course-content')
+        .list(`${ params.courseId }/${ params.chapterId }/`)
+    if (currentLessonListingError || !currentLessonListing)
+        return json({
+            error: "Error loading course content",
+            message: currentLessonListingError?.message,
+            content: `Listing: ${ params.courseId }/${ params.chapterId }/`
+        })
+    let availableCurrentLessons = currentLessonListing
+        .filter(object => object.id == null && !Number.isNaN(parseInt(object.name)))
+        .map(object => {
+            return parseInt(object.name)
+        })
+    if (availableCurrentLessons.length - 1 > parseInt(params.lessonId)) {
+        nextNav = [parseInt(params.chapterId), parseInt(params.lessonId) + 1]
+    } else {
+        const { data: nextChaptersListing, error: nextChaptersListingError } = await supabaseAdmin.storage
+            .from('course-content')
+            .list(`${ params.courseId }/`)
+        if (nextChaptersListingError || !nextChaptersListing)
+            return json({
+                error: "Error loading course content",
+                message: nextChaptersListingError?.message,
+                content: `Listing: ${ params.courseId }/`
+            })
+
+        let availableNextChapters = nextChaptersListing
+            .filter(object => object.id == null && !Number.isNaN(parseInt(object.name)))
+            .map(chapter => {
+                return parseInt(chapter.name)
+            })
+        if (availableNextChapters.length - 1 > parseInt(params.chapterId)) {
+            nextNav = [parseInt(params.chapterId) + 1, 0]
+        } else {
+            nextNav = null
         }
-    })
+    }
+
+    if (parseInt(params.lessonId) > 0) {
+        prevNav = [parseInt(params.chapterId), parseInt(params.lessonId) - 1]
+    } else {
+        if (parseInt(params.chapterId) > 0) {
+            const { data: prevLessonListing, error: prevLessonListingError } = await supabaseAdmin.storage
+                .from('course-content')
+                .list(`${ params.courseId }/${ (parseInt(params.chapterId) + 1).toString().padStart(2, '0') }/`)
+            if (prevLessonListingError || !prevLessonListing)
+                return json({
+                    error: "Error loading course content",
+                    message: prevLessonListingError?.message,
+                    content: `Listing: ${ params.courseId }/${ (parseInt(params.chapterId) + 1).toString().padStart(2, '0') }/`
+                })
+            let availablePrevLessons = prevLessonListing
+                .filter(object => object.id == null && !Number.isNaN(parseInt(object.name)))
+                .map(object => {
+                    return parseInt(object.name)
+                })
+            prevNav = [parseInt(params.chapterId) - 1, availablePrevLessons.length - 1]
+        } else {
+            prevNav = null
+        }
+    }
+
+    metadata.lesson.navigation = {
+        next: nextNav,
+        previous: prevNav
+    }
+
+    // TODO: workspace
+    metadata.lesson.content = {
+        guide: "Hello, World!",
+        workspace: {
+            "index.js": "function sum(a, b) {\n  return a + b\n}\n\nconsole.log(sum(1, 2))",
+            "index.html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Document</title>\n</head>\n<body>\n<h1>Hello, World!</h1>\n<p>Welcome to my website!</p>\n</body>\n</html>",
+            "src/b.txt": "lol\n"
+        }
+    }
+
+    return json(metadata)
 }
 
 export default function Editor() {
     const metadata = useLoaderData()
+    console.log(metadata)
 
     // States
     // - Activities Sidebar
@@ -95,12 +160,12 @@ export default function Editor() {
     ])
     const [activeCodeTab, setActiveCodeTab] = useState(openCodeTabs[0])
     let defaultOpenPreviewTabs = []
-    if (metadata.lesson.environment.viewport) {
+    if (metadata?.lesson?.environment?.viewport) {
         defaultOpenPreviewTabs.push({
             name: "Viewport",
         })
     }
-    if (metadata.lesson.environment.console) {
+    if (metadata?.lesson?.environment?.console) {
         defaultOpenPreviewTabs.push({
             name: "Console",
         })
@@ -118,75 +183,77 @@ export default function Editor() {
     return (
         <div className="flex flex-col max-h-screen h-screen min-h-screen overflow-hidden">
 
-            {/* Navigation Bar */}
-            <EditorNavigationBar metadata={metadata} />
+            {metadata?.lesson?.environment?.type == "editor_interactive" && (<>
+                {/* Navigation Bar */}
+                < EditorNavigationBar metadata={metadata} />
 
-            <main className="flex flex-row flex-grow w-full">
-                <div className="h-full w-1/6 flex flex-row">
-                    {/* Activities Bar */}
-                    <EditorActivitiesBar
-                        availableActivities={availableActivities}
-                        activity={activity}
-                        setActivity={setActivity}
-                    />
-
-                    {/* Left Sidebar */}
-                    <div className="h-full flex flex-col px-3 py-3 w-full bg-gray-700 border-r border-r-gray-500 border-opacity-20">
-                        {availableActivities.map((item, index) => {
-                            let Sidebar = item.content
-                            return (
-                                <div key={index} hidden={activity !== index}>
-                                    {Sidebar && (<Sidebar
-                                        metadata={metadata}
-                                    />)}
-                                </div>
-                            )
-                        })}
-
-                    </div>
-
-                </div >
-
-                <div className="flex flex-col h-full w-3/6" >
-                    {/* Editor Code Tabs */}
-                    <EditorTabContainer
-                        openTabs={openCodeTabs}
-                        setOpenTabs={setOpenCodeTabs}
-                        activeTab={activeCodeTab}
-                        setActiveTab={setActiveCodeTab}
-                    />
-                    {/* Editor Code Area */}
-                    <div className="flex flex-col max-h-full h-full w-full px-2 pb-2">
-                        <EditorCodeArea />
-                    </div>
-                </div>
-
-                {/* Editor Right Sidebar */}
-                <div className="flex flex-col h-full w-2/6">
-                    {/* Editor Preview Area */}
-                    <div className="flex flex-col h-2/5 w-full">
-                        {/* Editor Preview Tabs */}
-                        <EditorTabContainer
-                            openTabs={openPreviewTabs}
-                            setOpenTabs={setOpenPreviewTabs}
-                            activeTab={activePreviewTab}
-                            setActiveTab={setActivePreviewTab}
+                <main className="flex flex-row flex-grow w-full">
+                    <div className="h-full w-1/6 flex flex-row">
+                        {/* Activities Bar */}
+                        <EditorActivitiesBar
+                            availableActivities={availableActivities}
+                            activity={activity}
+                            setActivity={setActivity}
                         />
-                    </div>
-                    {/* Editor Lesson Guide Area */}
-                    <div className="flex flex-col h-3/5 w-full">
-                        {/* Editor Lesson Guide Tabs */}
-                        <EditorTabContainer
-                            openTabs={openLessonGuideTabs}
-                            setOpenTabs={setOpenLessonGuideTabs}
-                            activeTab={activeLessonGuideTab}
-                            setActiveTab={setActiveLessonGuideTab}
-                        />
-                    </div>
-                </div>
-            </main>
 
-            <EditorStatusBar />
+                        {/* Left Sidebar */}
+                        <div className="h-full flex flex-col px-3 py-3 w-full bg-gray-700 border-r border-r-gray-500 border-opacity-20">
+                            {availableActivities.map((item, index) => {
+                                let Sidebar = item.content
+                                return (
+                                    <div key={index} hidden={activity !== index}>
+                                        {Sidebar && (<Sidebar
+                                            metadata={metadata}
+                                        />)}
+                                    </div>
+                                )
+                            })}
+
+                        </div>
+
+                    </div >
+
+                    <div className="flex flex-col h-full w-3/6" >
+                        {/* Editor Code Tabs */}
+                        <EditorTabContainer
+                            openTabs={openCodeTabs}
+                            setOpenTabs={setOpenCodeTabs}
+                            activeTab={activeCodeTab}
+                            setActiveTab={setActiveCodeTab}
+                        />
+                        {/* Editor Code Area */}
+                        <div className="flex flex-col max-h-full h-full w-full px-2 pb-2">
+                            <EditorCodeArea />
+                        </div>
+                    </div>
+
+                    {/* Editor Right Sidebar */}
+                    <div className="flex flex-col h-full w-2/6">
+                        {/* Editor Preview Area */}
+                        <div className="flex flex-col h-2/5 w-full">
+                            {/* Editor Preview Tabs */}
+                            <EditorTabContainer
+                                openTabs={openPreviewTabs}
+                                setOpenTabs={setOpenPreviewTabs}
+                                activeTab={activePreviewTab}
+                                setActiveTab={setActivePreviewTab}
+                            />
+                        </div>
+                        {/* Editor Lesson Guide Area */}
+                        <div className="flex flex-col h-3/5 w-full">
+                            {/* Editor Lesson Guide Tabs */}
+                            <EditorTabContainer
+                                openTabs={openLessonGuideTabs}
+                                setOpenTabs={setOpenLessonGuideTabs}
+                                activeTab={activeLessonGuideTab}
+                                setActiveTab={setActiveLessonGuideTab}
+                            />
+                        </div>
+                    </div>
+                </main>
+
+                <EditorStatusBar />
+            </>)}
         </div>
     )
 }
