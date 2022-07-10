@@ -75,7 +75,7 @@ export const supabaseOAuthStrategy = new SupabaseStrategy({
 authenticator.use(supabaseOAuthStrategy, "oauth")
 
 
-
+// Update user info on auth
 const updateInfoOnAuth = async ({ req, user }) => {
 
     if (!user)
@@ -94,6 +94,7 @@ const updateInfoOnAuth = async ({ req, user }) => {
     let userDataError = null
 
     if (selectData.length == 0) {
+        // If user data does not exist, create it
         ({ data: userData, error: userDataError } = await supabaseAdmin
             .from("user_data")
             .insert([{
@@ -120,6 +121,7 @@ const updateInfoOnAuth = async ({ req, user }) => {
                 rewards_points: 100,
             }]))
     } else {
+        // If user data exists, update it
         ({ data: userData, error: userDataError } = await supabaseAdmin
             .from("user_data")
             .update({
