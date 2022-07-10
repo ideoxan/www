@@ -90,12 +90,11 @@ const updateInfoOnAuth = async ({ req, user }) => {
         throw new AuthorizationError(selectError?.message || "An unknown error occurred")
 
     let now = new Date()
-    let userData = null
     let userDataError = null
 
     if (selectData.length == 0) {
         // If user data does not exist, create it
-        ({ data: userData, error: userDataError } = await supabaseAdmin
+        ({ error: userDataError } = await supabaseAdmin
             .from("user_data")
             .insert([{
                 id: user.id,
@@ -122,7 +121,7 @@ const updateInfoOnAuth = async ({ req, user }) => {
             }]))
     } else {
         // If user data exists, update it
-        ({ data: userData, error: userDataError } = await supabaseAdmin
+        ({ error: userDataError } = await supabaseAdmin
             .from("user_data")
             .update({
                 last_sign_in_at: now.toISOString(),
