@@ -19,10 +19,7 @@ export async function loader({ request }) {
     const session = await sessionStorage.getSession(request.headers.get("Cookie"))
     const error = session?.get(authenticator.sessionErrorKey)
     return json({
-        error, ENV: {
-            SUPABASE_URL: process.env.SUPABASE_URL,
-            SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
-        }
+        error
     })
 }
 
