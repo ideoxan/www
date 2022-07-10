@@ -1,5 +1,5 @@
 import { Link, Form, useActionData } from "@remix-run/react"
-import { json } from "@remix-run/node"
+import { json, redirect } from "@remix-run/node"
 import { authenticator, sessionStorage } from "app/utils/auth.server"
 import { supabaseAdmin } from "app/utils/db.server"
 import AuthSplash from "app/components/Auth/AuthSplash"
@@ -58,6 +58,8 @@ export async function action({ request }) {
             }
         }
     }
+
+    throw redirect("/dashboard")
 }
 
 export default function Signup({ request }) {

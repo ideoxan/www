@@ -1,6 +1,6 @@
 import { Link } from "@remix-run/react"
 
-export default function AuthScreen({ children, ...props }) {
+export default function AuthSplash({ children, ...props }) {
     return (
         <main className="w-screen h-screen overflow-hidden bg-black" {...props}>
 

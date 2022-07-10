@@ -41,7 +41,8 @@ export function links() {
     return [{ rel: "stylesheet", href: styles }]
 }
 
-export function loader({ request }) {
+export async function loader({ request }) {
+    // This injects the env vars into the browser
     if (process.env.NODE_ENV === "production") {
         return json({
             ENV: {

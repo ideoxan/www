@@ -17,7 +17,10 @@ if (window.env.NODE_ENV === "production") {
     dbKey = window.env.SUPABASE_ANON_KEY_DEV
 }
 
-const supabaseClient = createClient(dbURL, dbKey)
+const supabaseClient = createClient(dbURL, dbKey, {
+    autoRefreshToken: false,
+    persistSession: false,
+})
 
 async function oauthSignIn({ provider }) {
     supabaseClient.auth.signIn({ provider }, {

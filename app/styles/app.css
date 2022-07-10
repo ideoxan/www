@@ -640,14 +640,14 @@ input::placeholder {
   margin-right: auto;
 }
 
-.my-auto {
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
 .mx-8 {
   margin-left: 2rem;
   margin-right: 2rem;
+}
+
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .my-6 {
@@ -761,6 +761,18 @@ input::placeholder {
   display: none;
 }
 
+.h-auto {
+  height: auto;
+}
+
+.h-4 {
+  height: 1rem;
+}
+
+.h-px {
+  height: 1px;
+}
+
 .h-screen {
   height: 100vh;
 }
@@ -769,18 +781,6 @@ input::placeholder {
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-}
-
-.h-4 {
-  height: 1rem;
-}
-
-.h-auto {
-  height: auto;
-}
-
-.h-px {
-  height: 1px;
 }
 
 .h-10 {
@@ -819,20 +819,20 @@ input::placeholder {
   min-height: 100vh;
 }
 
-.w-screen {
-  width: 100vw;
-}
-
-.w-1\/4 {
-  width: 25%;
+.w-full {
+  width: 100%;
 }
 
 .w-auto {
   width: auto;
 }
 
-.w-full {
-  width: 100%;
+.w-screen {
+  width: 100vw;
+}
+
+.w-1\/4 {
+  width: 25%;
 }
 
 .w-10 {
@@ -881,12 +881,12 @@ input::placeholder {
   max-width: 48rem;
 }
 
-.flex-shrink-0 {
-  flex-shrink: 0;
-}
-
 .flex-shrink {
   flex-shrink: 1;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
 }
 
 .flex-grow-0 {
@@ -1073,19 +1073,14 @@ input::placeholder {
   --tw-border-opacity: 0;
 }
 
-.bg-black {
+.bg-gray-700 {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+  background-color: rgb(21 9 49 / var(--tw-bg-opacity));
 }
 
 .bg-gray-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(9 0 31 / var(--tw-bg-opacity));
-}
-
-.bg-gray-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(21 9 49 / var(--tw-bg-opacity));
 }
 
 .bg-gray-800 {
@@ -1100,6 +1095,11 @@ input::placeholder {
 .bg-gray-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(248 245 255 / var(--tw-bg-opacity));
+}
+
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 .bg-primary {
@@ -1141,11 +1141,6 @@ input::placeholder {
 
 .p-6 {
   padding: 1.5rem;
-}
-
-.px-12 {
-  padding-left: 3rem;
-  padding-right: 3rem;
 }
 
 .py-8 {
@@ -1191,6 +1186,11 @@ input::placeholder {
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+
+.px-12 {
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .py-1 {
@@ -1240,13 +1240,13 @@ input::placeholder {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-.text-2xs {
-  font-size: 0.6rem;
-}
-
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
+}
+
+.text-2xs {
+  font-size: 0.6rem;
 }
 
 .text-xs {
@@ -1283,10 +1283,6 @@ input::placeholder {
   line-height: 1.75rem;
 }
 
-.font-medium {
-  font-weight: 500;
-}
-
 .font-extrabold {
   font-weight: 800;
 }
@@ -1297,6 +1293,10 @@ input::placeholder {
 
 .font-normal {
   font-weight: 400;
+}
+
+.font-medium {
+  font-weight: 500;
 }
 
 .font-semibold {
@@ -1331,8 +1331,12 @@ input::placeholder {
           text-decoration-line: underline;
 }
 
-.opacity-30 {
-  opacity: 0.3;
+.opacity-20 {
+  opacity: 0.2;
+}
+
+.opacity-80 {
+  opacity: 0.8;
 }
 
 .opacity-50 {
@@ -1343,27 +1347,23 @@ input::placeholder {
   opacity: 0.7;
 }
 
-.opacity-20 {
-  opacity: 0.2;
-}
-
-.opacity-80 {
-  opacity: 0.8;
+.opacity-30 {
+  opacity: 0.3;
 }
 
 .opacity-100 {
   opacity: 1;
 }
 
-.shadow-xl {
-  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
 .shadow-2xl {
   --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-xl {
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -1388,12 +1388,12 @@ input::placeholder {
   --tw-ring-color: rgb(61 36 117 / var(--tw-ring-opacity));
 }
 
-.ring-opacity-20 {
-  --tw-ring-opacity: 0.2;
-}
-
 .ring-opacity-50 {
   --tw-ring-opacity: 0.5;
+}
+
+.ring-opacity-20 {
+  --tw-ring-opacity: 0.2;
 }
 
 /* Font Faces */

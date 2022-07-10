@@ -23,6 +23,7 @@ export async function loader({ request }) {
 export async function action({ request }) {
     await authenticator.authenticate("local", request, {
         successRedirect: "/dashboard",
+        failureRedirect: "/login"
     })
 }
 

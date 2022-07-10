@@ -1,24 +1,24 @@
 import { json, redirect } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
-import { authenticator } from "app/utils/auth.server"
-import { supabaseAdmin } from "app/utils/db.server"
+import { authenticator } from "app/utils/auth.server.js"
+import { supabaseAdmin } from "app/utils/db.server.js"
 
 export async function loader({ request }) {
-    let user = await authenticator.isAuthenticated(request, {
-        failureRedirect: "/login"
-    })
+    let session = await authenticator.isAuthenticated(request)
+    if (!session) throw redirect("/login")
 
-    let { data: profile, error } = supabaseAdmin.from("profiles")
-        .select("id")
+    let { user } = session
+    if (!user || !user.id) throw redirect("/login")
+
+    let { data: userData, error } = supabaseAdmin.from("user_data")
+        .select()
         .eq("id", user.id)
 
-    if (!profile) throw redirect("/onboarding")
-
-    return json({ profile, user })
+    return json({ userData })
 }
 
 export default function Dashboard() {
-    let { profile, user } = useLoaderData()
+    let { userData } = useLoaderData()
 
     return (
         <h1>Dashboard</h1>

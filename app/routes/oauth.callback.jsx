@@ -1,15 +1,21 @@
 import { useEffect } from 'react'
 import { useFetcher, useLoaderData } from '@remix-run/react'
-import { json } from '@remix-run/node'
-import { authenticator } from 'app/utils/auth.server'
+import { json, redirect } from '@remix-run/node'
+import { authenticator } from 'app/utils/auth.server.js'
 import { supabaseClient } from 'app/utils/db.client'
 import AuthSplash from 'app/components/Auth/AuthSplash'
 
 export async function action({ request }) {
-    await authenticator.authenticate('oauth', request, {
-        successRedirect: '/dashboard',
-        failureRedirect: '/login',
+    let session = await authenticator.authenticate('oauth', request, {
+        successRedirect: "/dashboard",
+        failureRedirect: "/login"
     })
+
+    if (!session) throw redirect('/login')
+
+    let { user } = session
+
+    if (!user || !user.id) throw redirect('/login')
 }
 
 export async function loader({ request }) {
@@ -34,7 +40,7 @@ export default function OAuthCallback() {
 
     useEffect(() => {
         const { data: authListener } = supabaseClient.auth.onAuthStateChange((event, session) => {
-            if (event == "SIGNED_IN") {
+            if (event == "SIGNED_IN" && session) {
                 const formData = new FormData()
                 formData.append("session", JSON.stringify(session))
                 fetcher.submit(formData, {
