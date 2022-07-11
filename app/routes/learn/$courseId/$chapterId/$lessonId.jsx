@@ -17,6 +17,7 @@ import { supabaseAdmin } from "app/utils/db.server.js"
 
 export const loader = async ({ params }) => {
     //??: Would a graphql query be more efficient?
+    // TODO: replace all public api calls with a url fetch
     const metadata = {}
 
     // URLs we use to get the course and lesson data
@@ -60,7 +61,7 @@ export const loader = async ({ params }) => {
     metadata.lesson.index = params.lessonId
 
 
-    // Time to figure out navigation. Arrays consist of [<chapter>, <lesson>] (no padding)
+    /*// Time to figure out navigation. Arrays consist of [<chapter>, <lesson>] (no padding)
     let nextNav = []
     let prevNav = []
 
@@ -150,23 +151,60 @@ export const loader = async ({ params }) => {
             // If there is no previous chapter, we are at the beginning of the course. :(
             prevNav = null
         }
-    }
+    }*/
 
     // Set navigation properties
     metadata.lesson.navigation = {
-        next: nextNav,
-        previous: prevNav
+        next: null, //nextNav,
+        previous: null //prevNav
     }
 
-    // TODO: workspace
-    // Temporary workaround for the fact that the workspace is not yet implemented
+    // Lets grab the workspace dictionary
+    const { data: workspaceData, error: workspaceDataError } = await supabaseAdmin
+        .storage
+        .from('course-content')
+        .download(`${ params.courseId }/${ params.chapterId.padStart(2, '0') }/${ params.lessonId.padStart(2, '0') }/workspace_map.json`)
+    if (workspaceDataError || !workspaceData || !(workspaceData instanceof Blob))
+        return json({
+            error: "Error loading course content",
+            message: workspaceDataError?.message,
+            content: `Grabbing workspace map: ${ params.courseId }/${ params.chapterId.padStart(2, '0') }/${ params.lessonId.padStart(2, '0') }/workspace_map.json`
+        })
+    const workspaceDictionary = JSON.parse(await workspaceData.text())
+    const workspaceContent = {}
+    for (const [_, value] of Object.entries(workspaceDictionary)) {
+        // Grab the workspace content
+        const { data, error } = await supabaseAdmin
+            .storage
+            .from('course-content')
+            .download(`${ value }`)
+        if (error || !data || !(data instanceof Blob))
+            return json({
+                error: "Error loading course content",
+                message: error?.message,
+                content: `Grabbing workspace content: ${ value }`
+            })
+        workspaceContent[value.replace(`${ params.courseId }/${ params.chapterId.padStart(2, '0') }/${ params.lessonId.padStart(2, '0') }/workspace/`, "")] = await data.text()
+    }
+
+
+    // Grab the lesson guide
+    const { data: lessonGuideData, error: lessonGuideDataError } = await supabaseAdmin
+        .storage
+        .from('course-content')
+        .download(`${ params.courseId }/${ params.chapterId.padStart(2, '0') }/${ params.lessonId.padStart(2, '0') }/resources/guide.md`)
+    if (lessonGuideDataError || !lessonGuideData || !(lessonGuideData instanceof Blob))
+        return json({
+            error: "Error loading course content",
+            message: lessonGuideDataError?.message,
+            content: `Grabbing lesson guide: ${ params.courseId }/${ params.chapterId.padStart(2, '0') }/${ params.lessonId.padStart(2, '0') }/resources/guide.md`
+        })
+    const lessonGuide = await lessonGuideData.text()
+
+    // Append the lesson content to the metadata
     metadata.lesson.content = {
-        guide: "Hello, World!",
-        workspace: {
-            "index.js": "function sum(a, b) {\n  return a + b\n}\n\nconsole.log(sum(1, 2))",
-            "index.html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Document</title>\n</head>\n<body>\n<h1>Hello, World!</h1>\n<p>Welcome to my website!</p>\n</body>\n</html>",
-            "src/b.txt": "lol\n"
-        }
+        guide: lessonGuide,
+        workspace: workspaceContent
     }
 
     // Return the metadata
@@ -177,6 +215,7 @@ export default function Editor() {
     // Lets load in the course metadata. If there is an error returned, our children must be
     // resilient against a lack of properly formatted metadata
     const metadata = useLoaderData()
+    console.log(metadata)
 
     // States
     // - Activities Sidebar
