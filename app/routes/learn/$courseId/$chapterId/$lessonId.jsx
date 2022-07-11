@@ -21,45 +21,51 @@ export const loader = async ({ params }) => {
     const metadata = {}
 
     // URLs we use to get the course and lesson data
-    const courseMetaURL = `${ params.courseId }/course.json`
-    const chapterMetaURL = `${ params.courseId }/${ params.chapterId.padStart(2, '0') }/chapter.json`
-    const lessonMetaURL = `${ params.courseId }/${ params.chapterId.padStart(2, '0') }/${ params.lessonId.padStart(2, '0') }/lesson.json`
+    const storageURL = `${ process.env.SUPABASE_URL || process.env.SUPABASE_URL_DEV }/storage/v1/object/public/course-content`
+
+    const paddedChapterId = params.chapterId.padStart(2, "0")
+    const paddedLessonId = params.lessonId.padStart(2, "0")
 
     // Get the course metadata
-    const { data: courseData, error: courseDataError } = await supabaseAdmin.storage
-        .from('course-content')
-        .download(courseMetaURL)
-    if (courseDataError || !courseData || !(courseData instanceof Blob))
+    try {
+        // Append the course metadata to the metadata object
+        let data = await fetch(`${ storageURL }/${ params.courseId }/course.json`)
+        if (!data.ok) throw new Error(JSON.stringify(await data.json()))
+        metadata.course = await data.json()
+    } catch (error) {
+        if (process.env.NODE_ENV !== "production") console.log(error)
         throw new Response("Not Found", {
             status: 404
         })
-    // Append the course metadata to the metadata object
-    metadata.course = JSON.parse(await courseData.text())
+    }
 
     // Get the chapter metadata
-    const { data: chapterData, error: chapterDataError } = await supabaseAdmin.storage
-        .from('course-content')
-        .download(chapterMetaURL)
-    if (chapterDataError || !chapterData || !(chapterData instanceof Blob))
+    try {
+        // Append the course metadata to the metadata object
+        let data = await fetch(`${ storageURL }/${ params.courseId }/${ paddedChapterId }/chapter.json`)
+        if (!data.ok) throw new Error(JSON.stringify(await data.json()))
+        metadata.chapter = await data.json()
+        metadata.chapter.index = params.chapterId
+    } catch (error) {
+        if (process.env.NODE_ENV !== "production") console.log(error)
         throw new Response("Not Found", {
             status: 404
         })
-    // Append the chapter metadata to the metadata object
-    metadata.chapter = JSON.parse(await chapterData.text())
-    metadata.chapter.index = params.chapterId
+    }
 
     // Get the lesson metadata
-    const { data: lessonData, error: lessonDataError } = await supabaseAdmin.storage
-        .from('course-content')
-        .download(lessonMetaURL)
-    if (lessonDataError || !lessonData || !(lessonData instanceof Blob))
+    try {
+        // Append the course metadata to the metadata object
+        let data = await fetch(`${ storageURL }/${ params.courseId }/${ paddedChapterId }/${ paddedLessonId }/lesson.json`)
+        if (!data.ok) throw new Error(JSON.stringify(await data.json()))
+        metadata.lesson = await data.json()
+        metadata.lesson.index = params.lessonId
+    } catch (error) {
+        if (process.env.NODE_ENV !== "production") console.log(error)
         throw new Response("Not Found", {
             status: 404
         })
-    // Append the lesson metadata to the metadata object
-    metadata.lesson = JSON.parse(await lessonData.text())
-    metadata.lesson.index = params.lessonId
-
+    }
 
     /*// Time to figure out navigation. Arrays consist of [<chapter>, <lesson>] (no padding)
     let nextNav = []
@@ -159,52 +165,48 @@ export const loader = async ({ params }) => {
         previous: null //prevNav
     }
 
+    // Prep for lesson content prop
+    metadata.lesson.content = {}
+
     // Lets grab the workspace dictionary
-    const { data: workspaceData, error: workspaceDataError } = await supabaseAdmin
-        .storage
-        .from('course-content')
-        .download(`${ params.courseId }/${ params.chapterId.padStart(2, '0') }/${ params.lessonId.padStart(2, '0') }/workspace_map.json`)
-    if (workspaceDataError || !workspaceData || !(workspaceData instanceof Blob))
-        return json({
-            error: "Error loading course content",
-            message: workspaceDataError?.message,
-            content: `Grabbing workspace map: ${ params.courseId }/${ params.chapterId.padStart(2, '0') }/${ params.lessonId.padStart(2, '0') }/workspace_map.json`
+    try {
+        // Append the course metadata to the metadata object
+        let data = await fetch(`${ storageURL }/${ params.courseId }/${ paddedChapterId }/${ paddedLessonId }/workspace_map.json`)
+        if (!data.ok) throw new Error(JSON.stringify(await data.json()))
+        const workspaceDictionary = await data.json()
+        const workspaceContent = {}
+
+        for (const [_, value] of Object.entries(workspaceDictionary)) {
+            // Grab the workspace content
+            let data = await fetch(`${ storageURL }${ value }`)
+            if (!data.ok) throw new Error(JSON.stringify(await data.json()))
+
+            // Append to content
+            workspaceContent[value.replace(`${ params.courseId }/${ params.chapterId.padStart(2, '0') }/${ params.lessonId.padStart(2, '0') }/workspace/`, "")] = await data.text()
+        }
+
+        // Append to content
+        metadata.lesson.content.workspace = workspaceContent
+    } catch (error) {
+        if (process.env.NODE_ENV !== "production") console.log(error)
+        throw new Response("Internal Server Error", {
+            status: 500
         })
-    const workspaceDictionary = JSON.parse(await workspaceData.text())
-    const workspaceContent = {}
-    for (const [_, value] of Object.entries(workspaceDictionary)) {
-        // Grab the workspace content
-        const { data, error } = await supabaseAdmin
-            .storage
-            .from('course-content')
-            .download(`${ value }`)
-        if (error || !data || !(data instanceof Blob))
-            return json({
-                error: "Error loading course content",
-                message: error?.message,
-                content: `Grabbing workspace content: ${ value }`
-            })
-        workspaceContent[value.replace(`${ params.courseId }/${ params.chapterId.padStart(2, '0') }/${ params.lessonId.padStart(2, '0') }/workspace/`, "")] = await data.text()
     }
 
 
     // Grab the lesson guide
-    const { data: lessonGuideData, error: lessonGuideDataError } = await supabaseAdmin
-        .storage
-        .from('course-content')
-        .download(`${ params.courseId }/${ params.chapterId.padStart(2, '0') }/${ params.lessonId.padStart(2, '0') }/resources/guide.md`)
-    if (lessonGuideDataError || !lessonGuideData || !(lessonGuideData instanceof Blob))
-        return json({
-            error: "Error loading course content",
-            message: lessonGuideDataError?.message,
-            content: `Grabbing lesson guide: ${ params.courseId }/${ params.chapterId.padStart(2, '0') }/${ params.lessonId.padStart(2, '0') }/resources/guide.md`
+    try {
+        // Append the course metadata to the metadata object
+        let data = await fetch(`${ storageURL }/${ params.courseId }/${ paddedChapterId }/${ paddedLessonId }/resources/guide.md`)
+        if (!data.ok) throw new Error(JSON.stringify(await data.json()))
+        // Append to content
+        metadata.lesson.content.guide = await data.text()
+    } catch (error) {
+        if (process.env.NODE_ENV !== "production") console.log(error)
+        throw new Response("Internal Server Error", {
+            status: 500
         })
-    const lessonGuide = await lessonGuideData.text()
-
-    // Append the lesson content to the metadata
-    metadata.lesson.content = {
-        guide: lessonGuide,
-        workspace: workspaceContent
     }
 
     // Return the metadata
@@ -215,7 +217,6 @@ export default function Editor() {
     // Lets load in the course metadata. If there is an error returned, our children must be
     // resilient against a lack of properly formatted metadata
     const metadata = useLoaderData()
-    console.log(metadata)
 
     // States
     // - Activities Sidebar
