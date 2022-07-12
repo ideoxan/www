@@ -67,147 +67,15 @@ export const loader = async ({ params }) => {
         })
     }
 
-    /*// Time to figure out navigation. Arrays consist of [<chapter>, <lesson>] (no padding)
-    let nextNav = []
-    let prevNav = []
-
-    // Lets see if there is a next lesson in this chapter
-    const { data: currentLessonListing, error: currentLessonListingError } = await supabaseAdmin.storage
-        .from('course-content')
-        .list(`${ params.courseId }/${ params.chapterId }/`)
-    if (currentLessonListingError || !currentLessonListing)
-        return json({
-            error: "Error loading course content",
-            message: currentLessonListingError?.message,
-            content: `Listing: ${ params.courseId }/${ params.chapterId }/`
-        })
-
-    // Filter out non-lesson folders and put them in an array
-    let availableCurrentLessons = currentLessonListing
-        .filter(object => object.id == null && !Number.isNaN(parseInt(object.name)))
-        .map(object => {
-            return parseInt(object.name)
-        })
-
-    if (availableCurrentLessons.length - 1 > parseInt(params.lessonId)) {
-        // If there is a next lesson, lets increase the index by one
-        nextNav = [parseInt(params.chapterId), parseInt(params.lessonId) + 1]
-
-    } else {
-
-        // Otherwise we check if there is a next chapter
-        const { data: nextChaptersListing, error: nextChaptersListingError } = await supabaseAdmin.storage
-            .from('course-content')
-            .list(`${ params.courseId }/`)
-        if (nextChaptersListingError || !nextChaptersListing)
-            return json({
-                error: "Error loading course content",
-                message: nextChaptersListingError?.message,
-                content: `Listing: ${ params.courseId }/`
-            })
-        // Filter out non-chapter folders and put them in an array
-        let availableNextChapters = nextChaptersListing
-            .filter(object => object.id == null && !Number.isNaN(parseInt(object.name)))
-            .map(chapter => {
-                return parseInt(chapter.name)
-            })
-
-        if (availableNextChapters.length - 1 > parseInt(params.chapterId)) {
-            // If there is a next chapter, lets increase the chapter index by one, reset the lesson
-            // index to 0
-            nextNav = [parseInt(params.chapterId) + 1, 0]
-
-        } else {
-            // If there is no next chapter, we are at the end of the course. Congrats!
-            nextNav = null
-        }
-    }
-
-    // Now to figure out the previous lesson (this doesn't rely on data discovered/not discovered
-    // in the search for a next lesson)
-    if (parseInt(params.lessonId) > 0) {
-        // If there is a previous lesson, lets decrease the index by one
-        prevNav = [parseInt(params.chapterId), parseInt(params.lessonId) - 1]
-    } else {
-        // Otherwise we fall back a chapter
-        if (parseInt(params.chapterId) > 0) {
-            // If there is a previous chapter, lets decrease the chapter index by one...
-            const { data: prevLessonListing, error: prevLessonListingError } = await supabaseAdmin.storage
-                .from('course-content')
-                .list(`${ params.courseId }/${ (parseInt(params.chapterId) + 1).toString().padStart(2, '0') }/`)
-            if (prevLessonListingError || !prevLessonListing)
-                return json({
-                    error: "Error loading course content",
-                    message: prevLessonListingError?.message,
-                    content: `Listing: ${ params.courseId }/${ (parseInt(params.chapterId) + 1).toString().padStart(2, '0') }/`
-                })
-
-            // Filter out non-lesson folders and put them in an array
-            let availablePrevLessons = prevLessonListing
-                .filter(object => object.id == null && !Number.isNaN(parseInt(object.name)))
-                .map(object => {
-                    return parseInt(object.name)
-                })
-
-            // Now we can figure out what the last lesson in the previous chapter is and set the
-            // lesson index to that
-            prevNav = [parseInt(params.chapterId) - 1, availablePrevLessons.length - 1]
-
-        } else {
-            // If there is no previous chapter, we are at the beginning of the course. :(
-            prevNav = null
-        }
-    }*/
-
     // Set navigation properties
     metadata.lesson.navigation = {
-        next: null, //nextNav,
-        previous: null //prevNav
+        next: null,
+        previous: null
     }
 
-    // Prep for lesson content prop
-    metadata.lesson.content = {}
-
-    // Lets grab the workspace dictionary
-    try {
-        // Append the course metadata to the metadata object
-        let data = await fetch(`${ storageURL }/${ params.courseId }/${ paddedChapterId }/${ paddedLessonId }/workspace_map.json`)
-        if (!data.ok) throw new Error(JSON.stringify(await data.json()))
-        const workspaceDictionary = await data.json()
-        const workspaceContent = {}
-
-        for (const [_, value] of Object.entries(workspaceDictionary)) {
-            // Grab the workspace content
-            let data = await fetch(`${ storageURL }${ value }`)
-            if (!data.ok) throw new Error(JSON.stringify(await data.json()))
-
-            // Append to content
-            workspaceContent[value.replace(`${ params.courseId }/${ params.chapterId.padStart(2, '0') }/${ params.lessonId.padStart(2, '0') }/workspace/`, "")] = await data.text()
-        }
-
-        // Append to content
-        metadata.lesson.content.workspace = workspaceContent
-    } catch (error) {
-        if (process.env.NODE_ENV !== "production") console.log(error)
-        throw new Response("Internal Server Error", {
-            status: 500
-        })
-    }
-
-
-    // Grab the lesson guide
-    try {
-        // Append the course metadata to the metadata object
-        let data = await fetch(`${ storageURL }/${ params.courseId }/${ paddedChapterId }/${ paddedLessonId }/resources/guide.md`)
-        if (!data.ok) throw new Error(JSON.stringify(await data.json()))
-        // Append to content
-        metadata.lesson.content.guide = await data.text()
-    } catch (error) {
-        if (process.env.NODE_ENV !== "production") console.log(error)
-        throw new Response("Internal Server Error", {
-            status: 500
-        })
-    }
+    if (metadata?.error) throw new Response(JSON.stringify(metadata), {
+        status: 500
+    })
 
     // Return the metadata
     return json(metadata)
@@ -219,6 +87,8 @@ export default function Editor() {
     const metadata = useLoaderData()
 
     // States
+    // - Loading
+    const [loading, setLoading] = useState(true)
     // - Activities Sidebar
     const [activity, setActivity] = useState(0)
     // - Tabs
