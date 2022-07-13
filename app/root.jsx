@@ -48,6 +48,7 @@ export async function loader({ request }) {
             ENV: {
                 SUPABASE_URL: process.env.SUPABASE_URL,
                 SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
+                NODE_ENV: process.env.NODE_ENV,
             }
         })
     } else {
@@ -55,6 +56,7 @@ export async function loader({ request }) {
             ENV: {
                 SUPABASE_URL_DEV: process.env.SUPABASE_URL_DEV,
                 SUPABASE_ANON_KEY_DEV: process.env.SUPABASE_ANON_KEY_DEV,
+                NODE_ENV: process.env.NODE_ENV,
             }
         })
     }

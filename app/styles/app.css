@@ -799,12 +799,20 @@ input::placeholder {
   height: 100%;
 }
 
+.h-6 {
+  height: 1.5rem;
+}
+
 .h-2\/5 {
   height: 40%;
 }
 
 .h-3\/5 {
   height: 60%;
+}
+
+.h-8 {
+  height: 2rem;
 }
 
 .max-h-full {
@@ -1208,6 +1216,11 @@ input::placeholder {
   padding-right: 0.75rem;
 }
 
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 .pt-px {
   padding-top: 1px;
 }
@@ -1324,6 +1337,14 @@ input::placeholder {
 
 .text-opacity-70 {
   --tw-text-opacity: 0.7;
+}
+
+.text-opacity-20 {
+  --tw-text-opacity: 0.2;
+}
+
+.text-opacity-80 {
+  --tw-text-opacity: 0.8;
 }
 
 .underline {

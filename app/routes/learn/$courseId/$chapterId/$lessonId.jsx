@@ -1,7 +1,7 @@
 // General
 import { json } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 // Navigation
 import EditorNavigationBar from "app/components/Editor/EditorNavigationBar"
 // Activities
@@ -12,81 +12,25 @@ import EditorStatusBar from "app/components/Editor/EditorStatusBar"
 // Code Editor
 import EditorCodeArea from "app/components/Editor/CodeArea/EditorCodeArea"
 import EditorTabContainer from "app/components/Editor/EditorTabContainer"
-import { supabaseAdmin } from "app/utils/db.server.js"
+import { BarLoader } from "react-spinners"
 
 
 export const loader = async ({ params }) => {
+    // It slows down the website a lot if we start loading the data from the server
+    // At least if we handle it manually in the component, we can show a loading splash screen.
     //??: Would a graphql query be more efficient?
-    // TODO: replace all public api calls with a url fetch
-    const metadata = {}
-
-    // URLs we use to get the course and lesson data
-    const storageURL = `${ process.env.SUPABASE_URL || process.env.SUPABASE_URL_DEV }/storage/v1/object/public/course-content`
-
-    const paddedChapterId = params.chapterId.padStart(2, "0")
-    const paddedLessonId = params.lessonId.padStart(2, "0")
-
-    // Get the course metadata
-    try {
-        // Append the course metadata to the metadata object
-        let data = await fetch(`${ storageURL }/${ params.courseId }/course.json`)
-        if (!data.ok) throw new Error(JSON.stringify(await data.json()))
-        metadata.course = await data.json()
-    } catch (error) {
-        if (process.env.NODE_ENV !== "production") console.log(error)
-        throw new Response("Not Found", {
-            status: 404
-        })
-    }
-
-    // Get the chapter metadata
-    try {
-        // Append the course metadata to the metadata object
-        let data = await fetch(`${ storageURL }/${ params.courseId }/${ paddedChapterId }/chapter.json`)
-        if (!data.ok) throw new Error(JSON.stringify(await data.json()))
-        metadata.chapter = await data.json()
-        metadata.chapter.index = params.chapterId
-    } catch (error) {
-        if (process.env.NODE_ENV !== "production") console.log(error)
-        throw new Response("Not Found", {
-            status: 404
-        })
-    }
-
-    // Get the lesson metadata
-    try {
-        // Append the course metadata to the metadata object
-        let data = await fetch(`${ storageURL }/${ params.courseId }/${ paddedChapterId }/${ paddedLessonId }/lesson.json`)
-        if (!data.ok) throw new Error(JSON.stringify(await data.json()))
-        metadata.lesson = await data.json()
-        metadata.lesson.index = params.lessonId
-    } catch (error) {
-        if (process.env.NODE_ENV !== "production") console.log(error)
-        throw new Response("Not Found", {
-            status: 404
-        })
-    }
-
-    // Set navigation properties
-    metadata.lesson.navigation = {
-        next: null,
-        previous: null
-    }
-
-    if (metadata?.error) throw new Response(JSON.stringify(metadata), {
-        status: 500
-    })
-
-    // Return the metadata
-    return json(metadata)
+    return json({ params })
 }
 
 export default function Editor() {
     // Lets load in the course metadata. If there is an error returned, our children must be
     // resilient against a lack of properly formatted metadata
-    const metadata = useLoaderData()
+    let data = useLoaderData()
+    let { params } = data
 
     // States
+    // - Metadata
+    const [metadata, setMetadata] = useState({})
     // - Loading
     const [loading, setLoading] = useState(true)
     // - Activities Sidebar
@@ -124,11 +68,90 @@ export default function Editor() {
     ])
     const [activeLessonGuideTab, setActiveLessonGuideTab] = useState(openLessonGuideTabs[0])
 
+    // Side Effects
+    // - Loading
+    useEffect(() => {
+        fetchData()
+
+        async function fetchData() {
+            setLoading(true)
+            let _meta = {}
+            // URLs we use to get the course and lesson data
+            const storageURL = `${ window.env.SUPABASE_URL || window.env.SUPABASE_URL_DEV }/storage/v1/object/public/course-content`
+
+            const paddedChapterId = params.chapterId.padStart(2, "0")
+            const paddedLessonId = params.lessonId.padStart(2, "0")
+
+            // Get the course metadata
+            try {
+                // Append the course metadata to the metadata object
+                let data = await fetch(`${ storageURL }/${ params.courseId }/course.json`)
+                if (!data.ok) throw new Error(JSON.stringify(await data.json()))
+                _meta.course = await data.json()
+            } catch (error) {
+                if (window.env.NODE_ENV !== "production") console.log(error)
+                throw new Response("Not Found", {
+                    status: 404
+                })
+            }
+
+            // Get the chapter metadata
+            try {
+                // Append the course metadata to the metadata object
+                let data = await fetch(`${ storageURL }/${ params.courseId }/${ paddedChapterId }/chapter.json`)
+                if (!data.ok) throw new Error(JSON.stringify(await data.json()))
+                _meta.chapter = await data.json()
+                _meta.chapter.index = params.chapterId
+            } catch (error) {
+                if (window.env.NODE_ENV !== "production") console.log(error)
+                throw new Response("Not Found", {
+                    status: 404
+                })
+            }
+
+            // Get the lesson metadata
+            try {
+                // Append the course metadata to the metadata object
+                let data = await fetch(`${ storageURL }/${ params.courseId }/${ paddedChapterId }/${ paddedLessonId }/lesson.json`)
+                if (!data.ok) throw new Error(JSON.stringify(await data.json()))
+                _meta.lesson = await data.json()
+                _meta.lesson.index = params.lessonId
+            } catch (error) {
+                if (window.env.NODE_ENV !== "production") console.log(error)
+                throw new Response("Not Found", {
+                    status: 404
+                })
+            }
+
+            // Set navigation properties
+            _meta.lesson.navigation = {
+                next: null,
+                previous: null
+            }
+
+            if (_meta?.error) throw new Response(JSON.stringify(_meta), {
+                status: 500
+            })
+            setMetadata(_meta)
+            setTimeout(() => {
+                setLoading(false)
+            }, 1000)
+        }
+    }, [params])
+
     // Render
     return (
         <div className="flex flex-col max-h-screen h-screen min-h-screen overflow-hidden">
-
-            {metadata?.lesson?.environment?.type == "editor_interactive" && (<>
+            { /* Loading Splash */}
+            {loading && (
+                <div className="absolute z-40 top-0 left-0 flex flex-col w-full h-full bg-gray-900">
+                    <div className="flex flex-col m-auto px-6 py-4">
+                        <p className="font-sans font-bold text-sm text-center text-gray-50 text-opacity-80 mx-auto">Loading</p>
+                        <BarLoader color="#6E2FFF" className="mt-4" height={5} width={220} />
+                    </div>
+                </div>
+            )}
+            {!loading && metadata?.lesson?.environment?.type == "editor_interactive" && (<>
                 {/* Navigation Bar */}
                 < EditorNavigationBar metadata={metadata} />
 
