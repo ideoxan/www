@@ -96,4 +96,48 @@
         color: unset;
         opacity: unset;
     }
+
+    .react-markdown {
+    }
+
+    .react-markdown p {
+        @apply font-sans font-normal text-xs text-gray-50 leading-5;
+    }
+
+    .react-markdown h1 {
+        @apply font-sans font-extrabold text-2xl text-gray-50 text-left tracking-tight mt-2;
+    }
+
+    .react-markdown h2 {
+        @apply font-sans font-bold text-xl text-gray-50 text-left tracking-tight mt-2;
+    }
+
+    .react-markdown h3 {
+        @apply font-sans font-bold text-lg text-gray-50 text-left tracking-tight mt-2;
+    }
+
+    .react-markdown h4 {
+        @apply font-sans font-bold text-base text-gray-50 text-left tracking-tight mt-2;
+    }
+
+    .react-markdown h5 {
+        @apply font-sans font-semibold text-xs text-gray-50 text-left mt-1;
+    }
+
+    .react-markdown h6 {
+        @apply font-sans font-semibold text-2xs text-gray-50 opacity-80 text-left mt-1;
+    }
+
+    .react-markdown a {
+        @apply font-sans font-normal text-sm md:text-base text-gray-50 underline;
+    }
+
+    .react-markdown a:hover {
+        @apply no-underline;
+    }
+
+    .react-markdown img {
+        @apply max-w-full;
+    }
+
 }

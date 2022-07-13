@@ -1,7 +1,7 @@
 import Icon from "app/components/Icon"
 
 export default function EditorTab({ active = false, FileTypeIconName = null, fileTypeIconColor = "#fff", label = "New Tab", closeHandler = null, canBeClosed = true, ...props }) {
-    let defaultClassNames = "flex flex-row flex-grow-0 flex-shrink-0 w-48 pl-4 pr-2 py-2 mr-2 rounded-lg border-2 border-primary bg-gray-700 cursor-pointer "
+    let defaultClassNames = "flex flex-row flex-grow-0 flex-shrink-0 w-48 h-max pl-4 pr-2 py-2 mr-2 rounded-lg border-2 border-primary bg-gray-700 cursor-pointer "
     let activeClassNames = "border-opacity-100 bg-opacity-100 opacity-100"
     let inactiveClassNames = "border-opacity-0 bg-opacity-0 opacity-50"
 

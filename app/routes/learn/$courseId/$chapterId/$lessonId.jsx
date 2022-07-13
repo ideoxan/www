@@ -13,6 +13,7 @@ import EditorStatusBar from "app/components/Editor/EditorStatusBar"
 import EditorCodeArea from "app/components/Editor/CodeArea/EditorCodeArea"
 import EditorTabContainer from "app/components/Editor/EditorTabContainer"
 import { BarLoader } from "react-spinners"
+import { marked } from "marked"
 
 
 export const loader = async ({ params }) => {
@@ -101,7 +102,7 @@ export default function Editor() {
                 let data = await fetch(`${ storageURL }/${ params.courseId }/${ paddedChapterId }/chapter.json`)
                 if (!data.ok) throw new Error(JSON.stringify(await data.json()))
                 _meta.chapter = await data.json()
-                _meta.chapter.index = params.chapterId
+                _meta.chapter.index = parseInt(params.chapterId)
             } catch (error) {
                 if (window.env.NODE_ENV !== "production") console.log(error)
                 throw new Response("Not Found", {
@@ -115,7 +116,7 @@ export default function Editor() {
                 let data = await fetch(`${ storageURL }/${ params.courseId }/${ paddedChapterId }/${ paddedLessonId }/lesson.json`)
                 if (!data.ok) throw new Error(JSON.stringify(await data.json()))
                 _meta.lesson = await data.json()
-                _meta.lesson.index = params.lessonId
+                _meta.lesson.index = parseInt(params.lessonId)
             } catch (error) {
                 if (window.env.NODE_ENV !== "production") console.log(error)
                 throw new Response("Not Found", {
@@ -216,6 +217,16 @@ export default function Editor() {
                                 activeTab={activeLessonGuideTab}
                                 setActiveTab={setActiveLessonGuideTab}
                             />
+                            {/* Editor Lesson Guide Area */}
+                            <div className="flex flex-col max-h-full h-full w-full px-2 pb-2">
+                                <div className="react-markdown flex flex-col max-h-full h-full w-full rounded-lg ring-1 ring-gray-500 ring-opacity-20 shadow-xl bg-gray-700 px-4 py-4">
+                                    <h1>Lessson {metadata.lesson.index + 1}: {metadata.lesson.name}</h1>
+                                    <h6>Chapter {metadata.chapter.index + 1}<span className="mx-2">|</span>{metadata.course.name}</h6>
+                                    <div className="react-markdown w-full mb-6" dangerouslySetInnerHTML={{
+                                        __html: marked.parse(metadata?.lesson?.content?.guide)
+                                    }} />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </main>
