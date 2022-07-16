@@ -14,6 +14,7 @@ import EditorCodeArea from "app/components/Editor/CodeArea/EditorCodeArea"
 import EditorTabContainer from "app/components/Editor/EditorTabContainer"
 import { BarLoader } from "react-spinners"
 import { marked } from "marked"
+import FileSystem from "../../../../utils/fs.client"
 
 
 export const loader = async ({ params }) => {
@@ -134,6 +135,21 @@ export default function Editor() {
                 status: 500
             })
             setMetadata(_meta)
+
+
+            // Construct filesystem
+            let fs = new FileSystem({
+                fsName: params.courseId
+            })
+            await fs.init()
+            // Go through the lesson metadata and add the files to the filesystem
+            for (let file of Object.keys(_meta.lesson.content.workspace)) {
+                await fs.writeFile({
+                    filePath: file,
+                    content: _meta.lesson.content.workspace[file]
+                })
+            }
+
             setTimeout(() => {
                 setLoading(false)
             }, 1000)
