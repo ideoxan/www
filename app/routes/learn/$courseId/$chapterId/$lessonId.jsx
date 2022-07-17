@@ -63,12 +63,12 @@ export default function Editor() {
     }
     const [openPreviewTabs, setOpenPreviewTabs] = useState(defaultOpenPreviewTabs)
     const [activePreviewTab, setActivePreviewTab] = useState(openPreviewTabs[0])
-    const [openLessonGuideTabs, setOpenLessonGuideTabs] = useState([
+    /* const [openLessonGuideTabs, setOpenLessonGuideTabs] = useState([
         {
             name: "Lesson Guide",
         }
     ])
-    const [activeLessonGuideTab, setActiveLessonGuideTab] = useState(openLessonGuideTabs[0])
+    const [activeLessonGuideTab, setActiveLessonGuideTab] = useState(openLessonGuideTabs[0]) */
     // - FileSystem
     const [fs, setFs] = useState(null)
 
@@ -161,7 +161,7 @@ export default function Editor() {
 
     // Render
     return (
-        <div className="flex flex-col max-h-screen h-screen min-h-screen overflow-hidden">
+        <div className="flex flex-col max-h-full h-full min-h-full overflow-hidden">
             { /* Loading Splash */}
             {loading && (
                 <div className="absolute z-40 top-0 left-0 flex flex-col w-full h-full bg-gray-900">
@@ -223,12 +223,12 @@ export default function Editor() {
                         {/* Editor Lesson Guide Area */}
                         <div className="flex flex-col h-3/5 w-full">
                             {/* Editor Lesson Guide Tabs */}
-                            <EditorTabContainer
+                            {/* <EditorTabContainer
                                 openTabs={openLessonGuideTabs}
                                 setOpenTabs={setOpenLessonGuideTabs}
                                 activeTab={activeLessonGuideTab}
                                 setActiveTab={setActiveLessonGuideTab}
-                            />
+                            /> */}
                             {/* Editor Lesson Guide Area */}
                             <div className="flex flex-col max-h-full h-full w-full px-2 pb-2">
                                 <div className="react-markdown flex flex-col max-h-full h-full w-full rounded-lg ring-1 ring-gray-500 ring-opacity-20 shadow-xl bg-gray-700 px-4 py-4">

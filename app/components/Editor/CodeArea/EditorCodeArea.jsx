@@ -12,7 +12,7 @@ export default function EditorCodeArea({ onChange, language, code, theme, ...pro
                 height="99.85%"
                 language={language}
                 defaultLanguage="javascript"
-                theme={theme || "Dracula"}
+                theme={"vs-dark"}
                 value={value}
                 defaultValue={code}
                 options={{
@@ -43,6 +43,9 @@ export default function EditorCodeArea({ onChange, language, code, theme, ...pro
                 onChange={(newValue) => {
                     setValue(newValue)
                     onChange(newValue)
+                }}
+                onMount={(editor, m) => {
+
                 }}
             />
         </div>

@@ -66,7 +66,7 @@ export default function App() {
     let loaderData = useLoaderData()
 
     return (
-        <html lang="en">
+        <html lang="en" className="h-full w-full">
             <head>
                 <Meta />
                 <Links />
@@ -76,7 +76,7 @@ export default function App() {
                 <link rel="manifest" href="/site.webmanifest"></link>
                 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#6f2bff"></link>
             </head>
-            <body>
+            <body className="h-full w-full">
                 <Outlet />
                 <ScrollRestoration />
                 <script dangerouslySetInnerHTML={{
