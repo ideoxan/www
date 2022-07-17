@@ -6,7 +6,6 @@ import { useEffect, useState } from "react"
 import EditorNavigationBar from "app/components/Editor/EditorNavigationBar"
 // Activities
 import EditorActivitiesBar from "app/components/Editor/Activities/EditorActivitiesBar"
-import availableActivities from "app/components/Editor/Activities/availableActivities"
 // Status Bar
 import EditorStatusBar from "app/components/Editor/EditorStatusBar"
 // Code Editor
@@ -15,6 +14,7 @@ import EditorTabContainer from "app/components/Editor/EditorTabContainer"
 import { BarLoader } from "react-spinners"
 import { marked } from "marked"
 import FileSystem from "../../../../utils/fs.client"
+import EditorActivityWorkspace from "app/components/Editor/Activities/Workspace/EditorActivityWorkspace"
 
 
 export const loader = async ({ params }) => {
@@ -69,6 +69,8 @@ export default function Editor() {
         }
     ])
     const [activeLessonGuideTab, setActiveLessonGuideTab] = useState(openLessonGuideTabs[0])
+    // - FileSystem
+    const [fs, setFs] = useState(null)
 
     // Side Effects
     // - Loading
@@ -138,17 +140,18 @@ export default function Editor() {
 
 
             // Construct filesystem
-            let fs = new FileSystem({
+            let _fs = new FileSystem({
                 fsName: params.courseId
             })
-            await fs.init()
+            await _fs.init()
             // Go through the lesson metadata and add the files to the filesystem
             for (let file of Object.keys(_meta.lesson.content.workspace)) {
-                await fs.writeFile({
+                await _fs.writeFile({
                     filePath: file,
                     content: _meta.lesson.content.workspace[file]
                 })
             }
+            setFs(_fs)
 
             setTimeout(() => {
                 setLoading(false)
@@ -176,24 +179,17 @@ export default function Editor() {
                     <div className="h-full w-1/6 flex flex-row">
                         {/* Activities Bar */}
                         <EditorActivitiesBar
-                            availableActivities={availableActivities}
                             activity={activity}
                             setActivity={setActivity}
                         />
 
                         {/* Left Sidebar */}
                         <div className="h-full flex flex-col px-3 py-3 w-full bg-gray-700 border-r border-r-gray-500 border-opacity-20">
-                            {availableActivities.map((item, index) => {
-                                let Sidebar = item.content
-                                return (
-                                    <div key={index} hidden={activity !== index}>
-                                        {Sidebar && (<Sidebar
-                                            metadata={metadata}
-                                        />)}
-                                    </div>
-                                )
-                            })}
-
+                            <div hidden={activity !== 0}>
+                                <EditorActivityWorkspace
+                                    metadata={metadata} fs={fs}
+                                />
+                            </div>
                         </div>
 
                     </div >

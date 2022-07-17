@@ -774,6 +774,16 @@ input::placeholder {
   margin-bottom: 0.25rem;
 }
 
+.my-0\.5 {
+  margin-top: 0.125rem;
+  margin-bottom: 0.125rem;
+}
+
+.my-0 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -859,6 +869,10 @@ input::placeholder {
   margin-bottom: 1.5rem;
 }
 
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
 .block {
   display: block;
 }
@@ -871,8 +885,16 @@ input::placeholder {
   display: flex;
 }
 
+.table {
+  display: table;
+}
+
 .grid {
   display: grid;
+}
+
+.contents {
+  display: contents;
 }
 
 .hidden {
@@ -1339,6 +1361,11 @@ input::placeholder {
   padding-bottom: 1rem;
 }
 
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
 .pt-px {
   padding-top: 1px;
 }
@@ -1531,6 +1558,10 @@ input::placeholder {
   --tw-ring-opacity: 0.2;
 }
 
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
 /* Font Faces */
 
 @font-face {
@@ -1558,6 +1589,11 @@ input::placeholder {
 }
 
 /* Custom Styles */
+
+.hover\:bg-gray-900:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(9 0 31 / var(--tw-bg-opacity));
+}
 
 .hover\:underline:hover {
   -webkit-text-decoration-line: underline;
@@ -1593,6 +1629,10 @@ input::placeholder {
 .group:hover .group-hover\:text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
 }
 
 @media (min-width: 640px) {
