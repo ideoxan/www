@@ -45,7 +45,10 @@ export default function EditorCodeArea({ onChange, language, code, theme, ...pro
                     onChange(newValue)
                 }}
                 onMount={(editor, m) => {
-
+                    import('app/styles/Galileo.tmTheme.json').then(theme => {
+                        m.editor.defineTheme("galileo", theme)
+                        m.editor.setTheme("galileo")
+                    })
                 }}
             />
         </div>
