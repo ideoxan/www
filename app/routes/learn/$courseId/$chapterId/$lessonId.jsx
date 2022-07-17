@@ -171,7 +171,7 @@ export default function Editor() {
                     </div>
                 </div>
             )}
-            {!loading && metadata?.lesson?.environment?.type == "editor_interactive" && (<>
+            {metadata?.lesson?.environment?.type == "editor_interactive" && (<>
                 {/* Navigation Bar */}
                 < EditorNavigationBar metadata={metadata} />
 
