@@ -13,7 +13,9 @@ export default function File({
         // If the tab is already open, just set it to active
         let index = null
         // eslint-disable-next-line no-cond-assign
-        if ((index = openCodeTabs.findIndex(e => e.path == file.path)) != -1) {
+        if (openCodeTabs.length > 0
+            && (index = openCodeTabs.findIndex(e => e.path == file.path)) != -1
+        ) {
             setActiveCodeTab(index)
         } else {
             let newOpenTabs = [...openCodeTabs]
@@ -26,7 +28,7 @@ export default function File({
         }
     }
 
-    if (openCodeTabs[activeCodeTab].path == file.path) {
+    if (activeCodeTab >= 0 && openCodeTabs[activeCodeTab]?.path == file.path) {
         classes = defaultClassName + " bg-gray-900 opacity-100"
     } else {
         classes = defaultClassName + " opacity-70 hover:bg-gray-800 hover:opacity-90"

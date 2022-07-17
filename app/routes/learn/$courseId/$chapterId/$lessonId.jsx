@@ -39,17 +39,8 @@ export default function Editor() {
     // - Activities Sidebar
     const [activity, setActivity] = useState(0)
     // - Code Area Tabs
-    const [openCodeTabs, setOpenCodeTabs] = useState([
-        {
-            name: "index.html",
-            path: "/index.html",
-        },
-        {
-            name: "index.js",
-            path: "/index.js",
-        },
-    ])
-    const [activeCodeTab, setActiveCodeTab] = useState(0)
+    const [openCodeTabs, setOpenCodeTabs] = useState([])
+    const [activeCodeTab, setActiveCodeTab] = useState(-1)
     // - Preview Area Tabs
     let defaultOpenPreviewTabs = []
     if (metadata?.lesson?.environment?.viewport) {
@@ -199,9 +190,16 @@ export default function Editor() {
                         />
                         {/* Editor Code Area */}
                         <div className="flex flex-col max-h-full h-full w-full px-2 pb-2">
-                            <EditorCodeArea onChange={() => {
+                            {(openCodeTabs.length > 0) ? (
+                                <EditorCodeArea onChange={() => {
 
-                            }} />
+                                }} />
+                            ) : (
+                                <div className="flex flex-col justify-center items-center h-full w-full">
+                                    <img className="w-48 opacity-5" src="/images/ix_icon_flat_white_trans_250x250.png" alt="" />
+                                    <p className="font-sans font-medium text-sm text-center opacity-20 text-gray-50 mt-8">To open a file, click on any item to the left</p>
+                                </div>
+                            )}
                         </div>
                     </div>
 

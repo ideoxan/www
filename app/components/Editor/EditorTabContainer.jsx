@@ -19,16 +19,30 @@ export default function EditorTabContainer({
     }
 
     function closeTab(index) {
-        if (openTabs.length === 1) {
-            return
-        }
         let newOpenTabs = [...openTabs]
         newOpenTabs.splice(index, 1)
         setOpenTabs(newOpenTabs)
         // !!!: [BUG] If the last tab is active and gets closed, the active tab will be stuck at
         // !!!: the last tab. Also, it shifts the active tab over by one if a tab to the left is
         // !!!: closed. NEEDSFIX
-        setActiveTab((index - 1) >= 0 ? (index - 1) : index)
+        console.log(activeTab)
+        if (newOpenTabs.length == 0) {
+            //console.log("No tabs left")
+            setActiveTab(-1)
+        } else if (activeTab == 0) {
+            //console.log("Active tab is 0")
+            setActiveTab(0)
+        } else if (activeTab < index) {
+            //console.log("Active tab is unaffected")
+            setActiveTab(activeTab)
+        } else if (activeTab >= index) {
+            //console.log("Active tab is shifted down by 1")
+            setActiveTab(activeTab - 1)
+        } else if (activeTab == openTabs.length) {
+            //console.log("Active tab is shifted down by 1")
+            setActiveTab(activeTab - 1)
+        }
+
     }
 
     function addTab(label) {

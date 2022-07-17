@@ -1007,6 +1007,14 @@ input::placeholder {
   width: 0.75rem;
 }
 
+.w-12 {
+  width: 3rem;
+}
+
+.w-24 {
+  width: 6rem;
+}
+
 .min-w-full {
   min-width: 100%;
 }
@@ -1061,8 +1069,16 @@ input::placeholder {
   flex-wrap: nowrap;
 }
 
+.items-center {
+  align-items: center;
+}
+
 .justify-end {
   justify-content: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
 }
 
 .justify-between {
@@ -1509,6 +1525,10 @@ input::placeholder {
 
 .opacity-100 {
   opacity: 1;
+}
+
+.opacity-5 {
+  opacity: 0.05;
 }
 
 .shadow-2xl {
