@@ -4,6 +4,9 @@ export default function File({
     file, openCodeTabs, setOpenCodeTabs, activeCodeTab, setActiveCodeTab, ...props
 }) {
 
+    let classes = ""
+    const defaultClassName = "flex flex-row py-2 px-1 rounded-md w-full h-max cursor-pointer"
+
     function openTab() {
         // If the tab is already open, just set it to active
         let index = null
@@ -21,8 +24,15 @@ export default function File({
         }
     }
 
+    console.log(openCodeTabs[activeCodeTab].path == file.path)
+    if (openCodeTabs[activeCodeTab].path == file.path) {
+        classes = defaultClassName + " bg-gray-900 opacity-100"
+    } else {
+        classes = defaultClassName + " opacity-70 hover:bg-gray-800 hover:opacity-90"
+    }
+
     return (
-        <li className="flex flex-row py-2 px-1 rounded-md hover:bg-gray-900 w-full h-max cursor-pointer opacity-80 hover:opacity-100" onClick={() => { openTab() }}>
+        <li className={classes} onClick={() => { openTab() }}>
             <Icon
                 name="File"
                 width={3}
