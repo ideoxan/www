@@ -24,7 +24,6 @@ export default function File({
         }
     }
 
-    console.log(openCodeTabs[activeCodeTab].path == file.path)
     if (openCodeTabs[activeCodeTab].path == file.path) {
         classes = defaultClassName + " bg-gray-900 opacity-100"
     } else {
