@@ -2,7 +2,9 @@ import File from "app/components/Editor/Activities/Workspace/File.jsx"
 import Folder from "app/components/Editor/Activities/Workspace/Folder.jsx"
 import { useEffect, useState } from "react"
 
-export default function EditorActivityWorkspace({ metadata, fs, ...props }) {
+export default function EditorActivityWorkspace({
+    metadata, fs, openCodeTabs, setOpenCodeTabs, activeCodeTab, setActiveCodeTab, ...props
+}) {
 
     const [files, setFiles] = useState([])
 
@@ -19,11 +21,25 @@ export default function EditorActivityWorkspace({ metadata, fs, ...props }) {
                 {files.map(file => {
                     if (file.type === "file") {
                         return (
-                            <File key={file.object_id} file={file} />
+                            <File
+                                key={file.object_id}
+                                file={file}
+                                openCodeTabs={openCodeTabs}
+                                setOpenCodeTabs={setOpenCodeTabs}
+                                activeCodeTab={activeCodeTab}
+                                setActiveCodeTab={setActiveCodeTab}
+                            />
                         )
                     } else {
                         return (
-                            <Folder key={file.object_id} file={file} />
+                            <Folder
+                                key={file.object_id}
+                                file={file}
+                                openCodeTabs={openCodeTabs}
+                                setOpenCodeTabs={setOpenCodeTabs}
+                                activeCodeTab={activeCodeTab}
+                                setActiveCodeTab={setActiveCodeTab}
+                            />
                         )
                     }
                 })}

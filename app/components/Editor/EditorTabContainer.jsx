@@ -25,6 +25,10 @@ export default function EditorTabContainer({
         let newOpenTabs = [...openTabs]
         newOpenTabs.splice(index, 1)
         setOpenTabs(newOpenTabs)
+        // !!!: [BUG] If the last tab is active and gets closed, the active tab will be stuck at
+        // !!!: the last tab. Also, it shifts the active tab over by one if a tab to the left is
+        // !!!: closed. NEEDSFIX
+        setActiveTab((index - 1) >= 0 ? (index - 1) : index)
     }
 
     function addTab(label) {
@@ -39,9 +43,10 @@ export default function EditorTabContainer({
     // This is a temp fix for the issue where the active tab can't be updated when a user closes
     // out of a tab
     // TODO: Fix this
+    /*
     useEffect(() => {
         setActiveTab(0)
-    }, [setActiveTab, openTabs])
+    }, [setActiveTab, openTabs]) */
 
 
     return (

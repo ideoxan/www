@@ -41,16 +41,15 @@ export default function Editor() {
     // - Code Area Tabs
     const [openCodeTabs, setOpenCodeTabs] = useState([
         {
-            name: "index.html"
+            name: "index.html",
+            path: "/index.html",
         },
         {
-            name: "index.js"
-        },
-        {
-            name: "style.css"
+            name: "index.js",
+            path: "/index.js",
         },
     ])
-    const [activeCodeTab, setActiveCodeTab] = useState(openCodeTabs[0])
+    const [activeCodeTab, setActiveCodeTab] = useState(0)
     // - Preview Area Tabs
     let defaultOpenPreviewTabs = []
     if (metadata?.lesson?.environment?.viewport) {
@@ -64,7 +63,7 @@ export default function Editor() {
         })
     }
     const [openPreviewTabs, setOpenPreviewTabs] = useState(defaultOpenPreviewTabs)
-    const [activePreviewTab, setActivePreviewTab] = useState(openPreviewTabs[0])
+    const [activePreviewTab, setActivePreviewTab] = useState(0)
 
     // Side Effects
     // - Loading
@@ -178,7 +177,12 @@ export default function Editor() {
                         <div className="h-full flex flex-col px-3 py-3 w-full bg-gray-700 border-r border-r-gray-500 border-opacity-20">
                             <div hidden={activity !== 0}>
                                 <EditorActivityWorkspace
-                                    metadata={metadata} fs={FileSystem}
+                                    metadata={metadata}
+                                    fs={FileSystem}
+                                    openCodeTabs={openCodeTabs}
+                                    setOpenCodeTabs={setOpenCodeTabs}
+                                    activeCodeTab={activeCodeTab}
+                                    setActiveCodeTab={setActiveCodeTab}
                                 />
                             </div>
                         </div>

@@ -2,7 +2,9 @@ import File from "app/components/Editor/Activities/Workspace/File.jsx"
 import Icon from "app/components/Icon"
 import { useState } from "react"
 
-export default function Folder({ file, ...props }) {
+export default function Folder({
+    file, openCodeTabs, setOpenCodeTabs, activeCodeTab, setActiveCodeTab, ...props
+}) {
     const [showChildren, setShowChildren] = useState(false)
 
     const folderName = file.path.split("/")
@@ -34,11 +36,25 @@ export default function Folder({ file, ...props }) {
                     {file.children.map(file => {
                         if (file.type === "file") {
                             return (
-                                <File key={file.object_id} file={file} />
+                                <File
+                                    key={file.object_id}
+                                    file={file}
+                                    openCodeTabs={openCodeTabs}
+                                    setOpenCodeTabs={setOpenCodeTabs}
+                                    activeCodeTab={activeCodeTab}
+                                    setActiveCodeTab={setActiveCodeTab}
+                                />
                             )
                         } else {
                             return (
-                                <Folder key={file.object_id} file={file} />
+                                <Folder
+                                    key={file.object_id}
+                                    file={file}
+                                    openCodeTabs={openCodeTabs}
+                                    setOpenCodeTabs={setOpenCodeTabs}
+                                    activeCodeTab={activeCodeTab}
+                                    setActiveCodeTab={setActiveCodeTab}
+                                />
                             )
                         }
                     })}
