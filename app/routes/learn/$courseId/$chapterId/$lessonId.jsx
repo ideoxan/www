@@ -199,7 +199,9 @@ export default function Editor() {
                         />
                         {/* Editor Code Area */}
                         <div className="flex flex-col max-h-full h-full w-full px-2 pb-2">
-                            <EditorCodeArea />
+                            <EditorCodeArea onChange={() => {
+
+                            }} />
                         </div>
                     </div>
 
