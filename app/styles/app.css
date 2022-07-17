@@ -720,6 +720,10 @@ input::placeholder {
   max-width: 100%;
 }
 
+.static {
+  position: static;
+}
+
 .absolute {
   position: absolute;
 }

@@ -13,7 +13,7 @@ import EditorCodeArea from "app/components/Editor/CodeArea/EditorCodeArea"
 import EditorTabContainer from "app/components/Editor/EditorTabContainer"
 import { BarLoader } from "react-spinners"
 import { marked } from "marked"
-import FileSystem from "../../../../utils/fs.client"
+import FileSystem from "app/utils/fs.client"
 import EditorActivityWorkspace from "app/components/Editor/Activities/Workspace/EditorActivityWorkspace"
 
 
@@ -35,9 +35,10 @@ export default function Editor() {
     const [metadata, setMetadata] = useState({})
     // - Loading
     const [loading, setLoading] = useState(true)
+    const [loadingScreen, setLoadingScreen] = useState(true)
     // - Activities Sidebar
     const [activity, setActivity] = useState(0)
-    // - Tabs
+    // - Code Area Tabs
     const [openCodeTabs, setOpenCodeTabs] = useState([
         {
             name: "index.html"
@@ -50,6 +51,7 @@ export default function Editor() {
         },
     ])
     const [activeCodeTab, setActiveCodeTab] = useState(openCodeTabs[0])
+    // - Preview Area Tabs
     let defaultOpenPreviewTabs = []
     if (metadata?.lesson?.environment?.viewport) {
         defaultOpenPreviewTabs.push({
@@ -63,14 +65,6 @@ export default function Editor() {
     }
     const [openPreviewTabs, setOpenPreviewTabs] = useState(defaultOpenPreviewTabs)
     const [activePreviewTab, setActivePreviewTab] = useState(openPreviewTabs[0])
-    /* const [openLessonGuideTabs, setOpenLessonGuideTabs] = useState([
-        {
-            name: "Lesson Guide",
-        }
-    ])
-    const [activeLessonGuideTab, setActiveLessonGuideTab] = useState(openLessonGuideTabs[0]) */
-    // - FileSystem
-    const [fs, setFs] = useState(null)
 
     // Side Effects
     // - Loading
@@ -79,6 +73,7 @@ export default function Editor() {
 
         async function fetchData() {
             setLoading(true)
+            setLoadingScreen(true)
             let _meta = {}
             // URLs we use to get the course and lesson data
             const storageURL = `${ window.env.SUPABASE_URL || window.env.SUPABASE_URL_DEV }/storage/v1/object/public/course-content`
@@ -138,23 +133,19 @@ export default function Editor() {
             })
             setMetadata(_meta)
 
-
             // Construct filesystem
-            let _fs = new FileSystem({
-                fsName: params.courseId
-            })
-            await _fs.init()
             // Go through the lesson metadata and add the files to the filesystem
             for (let file of Object.keys(_meta.lesson.content.workspace)) {
-                await _fs.writeFile({
+                await FileSystem.writeFile({
                     filePath: file,
                     content: _meta.lesson.content.workspace[file]
                 })
             }
-            setFs(_fs)
+
+            setLoading(false)
 
             setTimeout(() => {
-                setLoading(false)
+                setLoadingScreen(false)
             }, 1000)
         }
     }, [params])
@@ -163,7 +154,7 @@ export default function Editor() {
     return (
         <div className="flex flex-col max-h-full h-full min-h-full overflow-hidden">
             { /* Loading Splash */}
-            {loading && (
+            {loadingScreen && (
                 <div className="absolute z-40 top-0 left-0 flex flex-col w-full h-full bg-gray-900">
                     <div className="flex flex-col m-auto px-6 py-4">
                         <p className="font-sans font-bold text-sm text-center text-gray-50 text-opacity-80 mx-auto">Loading</p>
@@ -171,7 +162,7 @@ export default function Editor() {
                     </div>
                 </div>
             )}
-            {metadata?.lesson?.environment?.type == "editor_interactive" && (<>
+            {!loading && metadata?.lesson?.environment?.type == "editor_interactive" && (<>
                 {/* Navigation Bar */}
                 < EditorNavigationBar metadata={metadata} />
 
@@ -187,7 +178,7 @@ export default function Editor() {
                         <div className="h-full flex flex-col px-3 py-3 w-full bg-gray-700 border-r border-r-gray-500 border-opacity-20">
                             <div hidden={activity !== 0}>
                                 <EditorActivityWorkspace
-                                    metadata={metadata} fs={fs}
+                                    metadata={metadata} fs={FileSystem}
                                 />
                             </div>
                         </div>
@@ -222,15 +213,8 @@ export default function Editor() {
                         </div>
                         {/* Editor Lesson Guide Area */}
                         <div className="flex flex-col h-3/5 w-full">
-                            {/* Editor Lesson Guide Tabs */}
-                            {/* <EditorTabContainer
-                                openTabs={openLessonGuideTabs}
-                                setOpenTabs={setOpenLessonGuideTabs}
-                                activeTab={activeLessonGuideTab}
-                                setActiveTab={setActiveLessonGuideTab}
-                            /> */}
                             {/* Editor Lesson Guide Area */}
-                            <div className="flex flex-col max-h-full h-full w-full px-2 pb-2">
+                            <div className="flex flex-col max-h-full h-full w-full pr-2 pb-2">
                                 <div className="react-markdown flex flex-col max-h-full h-full w-full rounded-lg ring-1 ring-gray-500 ring-opacity-20 shadow-xl bg-gray-700 px-4 py-4">
                                     <h1>Lessson {metadata.lesson.index + 1}: {metadata.lesson.name}</h1>
                                     <h6>Chapter {metadata.chapter.index + 1}<span className="mx-2">|</span>{metadata.course.name}</h6>
