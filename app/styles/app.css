@@ -1003,6 +1003,10 @@ input::placeholder {
   width: 33.333333%;
 }
 
+.w-3 {
+  width: 0.75rem;
+}
+
 .min-w-full {
   min-width: 100%;
 }

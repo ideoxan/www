@@ -1,11 +1,13 @@
 import Icon from "app/components/Icon"
+import languages from "app/components/Editor/Activities/supportedLanguages"
+
 
 export default function File({
     file, openCodeTabs, setOpenCodeTabs, activeCodeTab, setActiveCodeTab, ...props
 }) {
 
     let classes = ""
-    const defaultClassName = "flex flex-row py-2 px-1 rounded-md w-full h-max cursor-pointer"
+    const defaultClassName = "flex flex-row py-2 px-2 rounded-md w-full h-max cursor-pointer"
 
     function openTab() {
         // If the tab is already open, just set it to active
@@ -30,16 +32,33 @@ export default function File({
         classes = defaultClassName + " opacity-70 hover:bg-gray-800 hover:opacity-90"
     }
 
+    let langData = null
+    for (let lang in languages) {
+        if (languages[lang].mime == file.mime) {
+            langData = languages[lang]
+            break
+        }
+    }
+    let FileIcon = null
+    if (langData) {
+        FileIcon = langData.icon
+    }
+
     return (
         <li className={classes} onClick={() => { openTab() }}>
-            <Icon
-                name="File"
-                width={3}
-                height={3}
-                color="gray-50"
-                strokeThickness={2}
-                className="my-auto"
-            />
+            {FileIcon ? (
+                <FileIcon className="w-3 h-3 my-auto opacity-50" color={langData.color} />
+            ) : (
+                <Icon
+                    name="File"
+                    width={3}
+                    height={3}
+                    color="gray-50"
+                    strokeThickness={2}
+                    className="my-auto"
+                />
+            )}
+
             <p className="font-sans font-medium text-xs text-left text-gray-50 ml-2 truncate">{file.path.split('/').pop()}</p>
         </li>
     )
