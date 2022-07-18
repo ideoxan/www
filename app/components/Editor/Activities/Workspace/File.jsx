@@ -7,7 +7,7 @@ export default function File({
 }) {
 
     let classes = ""
-    const defaultClassName = "flex flex-row py-2 px-2 rounded-md w-full h-max cursor-pointer"
+    const defaultClassName = "flex flex-row py-2 px-3 rounded-md w-full h-max cursor-pointer"
 
     function openTab() {
         // If the tab is already open, just set it to active

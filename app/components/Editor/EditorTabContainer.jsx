@@ -1,12 +1,13 @@
 import supportedLanguages from "app/components/Editor/Activities/supportedLanguages"
-import { useEffect } from "react"
 import EditorCodeTab from "app/components/Editor/EditorTab"
 
 export default function EditorTabContainer({
     openTabs,
     setOpenTabs,
     activeTab,
-    setActiveTab
+    setActiveTab,
+    className,
+    ...props
 }) {
 
     function getSupportedLanguageFromExtension(ext) {
@@ -64,7 +65,7 @@ export default function EditorTabContainer({
 
 
     return (
-        <div className="flex flex-row flex-nowrap w-full h-max px-2 py-2 overflow-y-hidden overflow-x-auto" >
+        <div className={"flex flex-row flex-nowrap w-full flex-shrink-0 pr-2 py-2 overflow-y-hidden overflow-x-auto " + className}>
             {openTabs.map((tab, index) => {
                 // Get Extension
                 const ext = tab.name.split(".")[1]
@@ -84,7 +85,7 @@ export default function EditorTabContainer({
                         closeHandler={() => {
                             closeTab(index)
                         }}
-                        canBeClosed={!(tab.name == "Viewport" || tab.name == "Console" || tab.name == "Lesson Guide")}
+                        canBeClosed={!(tab.name == "Preview" || tab.name == "Console" || tab.name == "Lesson Guide")}
                     />
                 )
             })}

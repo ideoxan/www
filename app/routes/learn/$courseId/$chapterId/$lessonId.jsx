@@ -42,18 +42,7 @@ export default function Editor() {
     const [openCodeTabs, setOpenCodeTabs] = useState([])
     const [activeCodeTab, setActiveCodeTab] = useState(-1)
     // - Preview Area Tabs
-    let defaultOpenPreviewTabs = []
-    if (metadata?.lesson?.environment?.viewport) {
-        defaultOpenPreviewTabs.push({
-            name: "Viewport",
-        })
-    }
-    if (metadata?.lesson?.environment?.console) {
-        defaultOpenPreviewTabs.push({
-            name: "Console",
-        })
-    }
-    const [openPreviewTabs, setOpenPreviewTabs] = useState(defaultOpenPreviewTabs)
+    const [openPreviewTabs, setOpenPreviewTabs] = useState([])
     const [activePreviewTab, setActivePreviewTab] = useState(0)
 
     // Side Effects
@@ -123,6 +112,16 @@ export default function Editor() {
             })
             setMetadata(_meta)
 
+            // Change UI states
+            let _starterPreviewTabs = []
+            if (_meta.lesson.environment.viewport) _starterPreviewTabs.push({
+                name: "Preview",
+            })
+            if (_meta.lesson.environment.console) _starterPreviewTabs.push({
+                name: "Console",
+            })
+            setOpenPreviewTabs(_starterPreviewTabs)
+
             // Construct filesystem
             // Go through the lesson metadata and add the files to the filesystem
             for (let file of Object.keys(_meta.lesson.content.workspace)) {
@@ -154,7 +153,7 @@ export default function Editor() {
             )}
             {!loading && metadata?.lesson?.environment?.type == "editor_interactive" && (<>
                 {/* Navigation Bar */}
-                < EditorNavigationBar metadata={metadata} />
+                <EditorNavigationBar metadata={metadata} />
 
                 <main className="flex flex-row flex-grow w-full">
                     <div className="h-full w-1/6 flex flex-row">
@@ -187,6 +186,7 @@ export default function Editor() {
                             setOpenTabs={setOpenCodeTabs}
                             activeTab={activeCodeTab}
                             setActiveTab={setActiveCodeTab}
+                            className="pl-2"
                         />
                         {/* Editor Code Area */}
                         <div className="flex flex-col max-h-full h-full w-full px-2 pb-2">
@@ -214,6 +214,12 @@ export default function Editor() {
                                 activeTab={activePreviewTab}
                                 setActiveTab={setActivePreviewTab}
                             />
+                            {/* Editor Preview Area */}
+                            <div className="flex flex-col h-full w-full pr-2 pb-2">
+                                <div className="flex flex-col max-h-full h-full w-full rounded-lg ring-1 ring-gray-500 ring-opacity-20 shadow-xl bg-gray-700">
+
+                                </div>
+                            </div>
                         </div>
                         {/* Editor Lesson Guide Area */}
                         <div className="flex flex-col h-3/5 w-full">

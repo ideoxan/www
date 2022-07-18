@@ -12,7 +12,7 @@ export default function Folder({
 
     return (
         <li className="group flex flex-col w-full h-max">
-            <div className="flex flex-row py-2 px-2 rounded-md hover:bg-gray-800 w-full h-max cursor-pointer opacity-70 hover:opacity-90" onClick={() => { setShowChildren(!showChildren) }}>
+            <div className="flex flex-row py-2 px-3 rounded-md hover:bg-gray-800 w-full h-max cursor-pointer opacity-70 hover:opacity-90" onClick={() => { setShowChildren(!showChildren) }}>
                 <Icon
                     name="Folder"
                     width={3}
