@@ -991,6 +991,10 @@ input::placeholder {
   width: 0px;
 }
 
+.w-3 {
+  width: 0.75rem;
+}
+
 .w-1\/6 {
   width: 16.666667%;
 }
@@ -1001,18 +1005,6 @@ input::placeholder {
 
 .w-2\/6 {
   width: 33.333333%;
-}
-
-.w-3 {
-  width: 0.75rem;
-}
-
-.w-12 {
-  width: 3rem;
-}
-
-.w-24 {
-  width: 6rem;
 }
 
 .min-w-full {
@@ -1142,6 +1134,10 @@ input::placeholder {
 
 .overflow-y-visible {
   overflow-y: visible;
+}
+
+.overflow-y-scroll {
+  overflow-y: scroll;
 }
 
 .truncate {
@@ -1364,11 +1360,6 @@ input::placeholder {
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-}
-
-.px-1 {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
 }
 
 .py-4 {
@@ -1603,11 +1594,6 @@ input::placeholder {
 }
 
 /* Custom Styles */
-
-.hover\:bg-gray-900:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(9 0 31 / var(--tw-bg-opacity));
-}
 
 .hover\:bg-gray-800:hover {
   --tw-bg-opacity: 1;
