@@ -6,9 +6,10 @@
   "sideEffects": false,
   "scripts": {
     "build": "remix build",
-    "build:css": "tailwindcss -m -i ./app/styles/tailwind.css -o app/styles/app.css  -c ./tailwind.config.cjs",
+    "build:css": "npm run generate:css -- -m",
     "dev": "remix dev",
-    "dev:css": "tailwindcss -w -i ./app/styles/tailwind.css -o app/styles/app.css  -c ./tailwind.config.cjs"
+    "dev:css": "npm run generate:css -- -w ",
+    "generate:css": "npx tailwindcss -i ./app/styles/tailwind.css -o app/styles/app.css  -c ./tailwind.config.cjs"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^4.7.0",
@@ -29,7 +30,8 @@
     "remix-auth": "^3.2.2",
     "remix-auth-supabase": "^4.0.0",
     "uuid": "^8.3.2",
-    "xterm": "^4.19.0"
+    "xterm": "^4.19.0",
+    "xterm-addon-fit": "^0.5.0"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.4.3",
