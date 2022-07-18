@@ -49,6 +49,7 @@ export async function loader({ request }) {
                 SUPABASE_URL: process.env.SUPABASE_URL,
                 SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
                 NODE_ENV: process.env.NODE_ENV,
+                TESSERACT_URL: process.env.TESSERACT_URL,
             }
         })
     } else {
@@ -57,6 +58,7 @@ export async function loader({ request }) {
                 SUPABASE_URL_DEV: process.env.SUPABASE_URL_DEV,
                 SUPABASE_ANON_KEY_DEV: process.env.SUPABASE_ANON_KEY_DEV,
                 NODE_ENV: process.env.NODE_ENV,
+                TESSERACT_URL: process.env.TESSERACT_URL,
             }
         })
     }

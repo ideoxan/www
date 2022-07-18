@@ -1,5 +1,5 @@
 // General
-import { json } from "@remix-run/node"
+import { json, redirect } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { useEffect, useState } from "react"
 // Navigation
@@ -16,22 +16,40 @@ import { marked } from "marked"
 import FileSystem from "app/utils/fs.client"
 import EditorActivityWorkspace from "app/components/Editor/Activities/Workspace/EditorActivityWorkspace"
 import Console from "app/components/Editor/Preview/Console/Console.client"
+import { authenticator } from "app/utils/auth.server.js"
+import { supabaseAdmin } from "app/utils/db.server.js"
 
 import termStyles from "app/styles/xterm.css"
 export const links = () => [{ rel: "stylesheet", href: termStyles }]
 
-export const loader = async ({ params }) => {
+export const loader = async ({ params, request }) => {
     // It slows down the website a lot if we start loading the data from the server
     // At least if we handle it manually in the component, we can show a loading splash screen.
     //??: Would a graphql query be more efficient?
-    return json({ params })
+    // Check user auth
+    let session = await authenticator.isAuthenticated(request)
+
+    // If the user session is bad, redirect to the login page
+    if (session) {
+        let { user } = session
+        if (!user || !user.id) throw redirect("/login")
+
+        // If the user is authenticated, get the user's data from the database
+        let { data: userData, error } = supabaseAdmin.from("user_data")
+            .select()
+            .eq("id", user.id)
+
+        return json({ params, session, userData })
+    }
+
+    return json({ params, session: null, userData: null })
 }
 
 export default function Editor() {
     // Lets load in the course metadata. If there is an error returned, our children must be
     // resilient against a lack of properly formatted metadata
     let data = useLoaderData()
-    let { params } = data
+    let { params, session, userData } = data
 
     // States
     // - Metadata
@@ -219,7 +237,7 @@ export default function Editor() {
                             />
                             {/* Editor Preview Area */}
                             <div className="flex flex-col h-full w-full pr-2 pb-2">
-                                <Console />
+                                <Console session={session} userData={userData} />
 
                             </div>
                         </div>
