@@ -831,14 +831,6 @@ input::placeholder {
   margin-right: 0.5rem;
 }
 
-.-ml-1 {
-  margin-left: -0.25rem;
-}
-
-.-mr-2 {
-  margin-right: -0.5rem;
-}
-
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -865,14 +857,6 @@ input::placeholder {
 
 .mb-6 {
   margin-bottom: 1.5rem;
-}
-
-.-ml-2 {
-  margin-left: -0.5rem;
-}
-
-.-mr-3 {
-  margin-right: -0.75rem;
 }
 
 .block {
@@ -937,16 +921,18 @@ input::placeholder {
   height: 0.75rem;
 }
 
-.h-2 {
-  height: 0.5rem;
-}
-
 .h-2\/5 {
   height: 40%;
 }
 
 .h-3\/5 {
   height: 60%;
+}
+
+.h-min {
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
 }
 
 .max-h-full {
@@ -991,16 +977,12 @@ input::placeholder {
   width: 12rem;
 }
 
-.w-2 {
-  width: 0.5rem;
+.w-3 {
+  width: 0.75rem;
 }
 
 .w-0 {
   width: 0px;
-}
-
-.w-3 {
-  width: 0.75rem;
 }
 
 .w-1\/6 {
@@ -1013,6 +995,12 @@ input::placeholder {
 
 .w-2\/6 {
   width: 33.333333%;
+}
+
+.w-min {
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
 }
 
 .min-w-full {
@@ -1041,6 +1029,10 @@ input::placeholder {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.resize {
+  resize: both;
 }
 
 .appearance-none {
@@ -1285,6 +1277,10 @@ input::placeholder {
   background-size: contain;
 }
 
+.bg-clip-border {
+  background-clip: border-box;
+}
+
 .bg-center {
   background-position: center;
 }
@@ -1391,12 +1387,12 @@ input::placeholder {
   padding-bottom: 1.5rem;
 }
 
-.pb-2 {
-  padding-bottom: 0.5rem;
-}
-
 .pl-2 {
   padding-left: 0.5rem;
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem;
 }
 
 .text-left {
@@ -1409,6 +1405,10 @@ input::placeholder {
 
 .font-sans {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 .text-base {
@@ -1565,6 +1565,11 @@ input::placeholder {
 .ring-gray-500 {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(61 36 117 / var(--tw-ring-opacity));
+}
+
+.ring-black {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(0 0 0 / var(--tw-ring-opacity));
 }
 
 .ring-opacity-50 {

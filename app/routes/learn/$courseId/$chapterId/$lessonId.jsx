@@ -15,7 +15,10 @@ import { BarLoader } from "react-spinners"
 import { marked } from "marked"
 import FileSystem from "app/utils/fs.client"
 import EditorActivityWorkspace from "app/components/Editor/Activities/Workspace/EditorActivityWorkspace"
+import Console from "app/components/Editor/Preview/Console/Console.client"
 
+import termStyles from "app/styles/xterm.css"
+export const links = () => [{ rel: "stylesheet", href: termStyles }]
 
 export const loader = async ({ params }) => {
     // It slows down the website a lot if we start loading the data from the server
@@ -216,9 +219,8 @@ export default function Editor() {
                             />
                             {/* Editor Preview Area */}
                             <div className="flex flex-col h-full w-full pr-2 pb-2">
-                                <div className="flex flex-col max-h-full h-full w-full rounded-lg ring-1 ring-gray-500 ring-opacity-20 shadow-xl bg-gray-700">
+                                <Console />
 
-                                </div>
                             </div>
                         </div>
                         {/* Editor Lesson Guide Area */}
