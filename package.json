@@ -28,7 +28,8 @@
     "react-spinners": "^0.13.3",
     "remix-auth": "^3.2.2",
     "remix-auth-supabase": "^4.0.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "xterm": "^4.19.0"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.4.3",
