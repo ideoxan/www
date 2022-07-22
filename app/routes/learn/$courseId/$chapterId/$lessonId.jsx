@@ -212,9 +212,14 @@ export default function Editor() {
                         {/* Editor Code Area */}
                         <div className="flex flex-col max-h-full h-full w-full px-2 pb-2">
                             {(openCodeTabs.length > 0) ? (
-                                <EditorCodeArea onChange={() => {
+                                <EditorCodeArea
+                                    onChange={() => {
 
-                                }} />
+                                    }}
+                                    fs={FileSystem}
+                                    activeCodeTab={activeCodeTab}
+                                    openCodeTabs={openCodeTabs}
+                                />
                             ) : (
                                 <div className="flex flex-col justify-center items-center h-full w-full">
                                     <img className="w-48 opacity-5" src="/images/ix_icon_flat_white_trans_250x250.png" alt="" />
@@ -244,11 +249,11 @@ export default function Editor() {
                         {/* Editor Lesson Guide Area */}
                         <div className="flex flex-col h-3/5 w-full">
                             {/* Editor Lesson Guide Area */}
-                            <div className="flex flex-col max-h-full h-full w-full pr-2 pb-2 overflow-y-scroll">
-                                <div className="react-markdown flex flex-col max-h-full h-full w-full rounded-lg ring-1 ring-gray-500 ring-opacity-20 shadow-xl bg-gray-700 px-6 py-4">
+                            <div className="flex flex-col max-h-full h-full w-full pr-2 pb-2 overflow-y-scroll flex-shrink">
+                                <div className="react-markdown flex flex-col max-h-full h-full w-full rounded-lg ring-1 ring-gray-500 ring-opacity-20 shadow-xl bg-gray-700 px-6 py-4 flex-shrink">
                                     <h1>Lessson {metadata.lesson.index + 1}: {metadata.lesson.name}</h1>
                                     <h6>Chapter {metadata.chapter.index + 1}<span className="mx-2">|</span>{metadata.course.name}</h6>
-                                    <div className="react-markdown w-full mb-6" dangerouslySetInnerHTML={{
+                                    <div className="react-markdown w-full mb-6 flex-shrink" dangerouslySetInnerHTML={{
                                         __html: marked.parse(metadata?.lesson?.content?.guide)
                                     }} />
                                 </div>

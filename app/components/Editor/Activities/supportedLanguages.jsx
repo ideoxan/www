@@ -44,4 +44,11 @@ export default {
         extension: "css",
         mime: "text/css",
     },
+    "plaintext": {
+        name: "Plain Text",
+        icon: null,
+        color: "#fff",
+        extension: "txt",
+        mime: "text/plain",
+    }
 }

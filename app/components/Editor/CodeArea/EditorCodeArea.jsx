@@ -1,8 +1,25 @@
 import Monaco from "@monaco-editor/react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { getType } from "mime"
+import supportedLanguages from "app/components/Editor/Activities/supportedLanguages"
 
-export default function EditorCodeArea({ onChange, language, code, theme, ...props }) {
+export default function EditorCodeArea({ onChange, openCodeTabs, activeCodeTab, fs, language, code, theme, ...props }) {
     const [value, setValue] = useState(code || "")
+    const [lang, setLang] = useState(language || "javascript")
+
+    useEffect(() => {
+        (async () => {
+            let tab = openCodeTabs[activeCodeTab]
+            let mime = getType(tab.path)
+            setValue(await fs.readFile({ filePath: tab.path }))
+            for (let l in supportedLanguages) {
+                if (supportedLanguages[l].mime == mime) {
+                    setLang(l)
+                    break
+                }
+            }
+        })()
+    }, [openCodeTabs, activeCodeTab, fs])
 
     return (
         <div className="overflow-hidden flex flex-col max-h-full h-full w-full rounded-lg ring-1 ring-gray-500 ring-opacity-20 shadow-xl">
@@ -10,11 +27,9 @@ export default function EditorCodeArea({ onChange, language, code, theme, ...pro
             <Monaco
                 width="100%"
                 height="99.85%"
-                language={language}
-                defaultLanguage="javascript"
+                language={lang}
                 theme={"vs-dark"}
                 value={value}
-                defaultValue={code}
                 options={{
                     showDeprecated: false,
                     codeLens: false,
