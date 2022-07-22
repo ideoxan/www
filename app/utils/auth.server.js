@@ -115,27 +115,23 @@ const updateInfoOnAuth = async ({ req, user }) => {
                 privacy_avatar: true,
                 privacy_pronouns: true,
                 privacy_birthdate: true,
-                api_secret: "",
+                api_hit_count: 0,
                 api_limit: 1000,
                 rewards_points: 100,
             }]))
     } else {
         // If user data exists, update it
+        let current_login_streak = selectData[0].current_login_streak
+        let last_sign_in_at = selectData[0].last_sign_in_at
+        let newDay = (new Date().setUTCHours(0, 0, 0, 0)
+            - new Date(last_sign_in_at).setUTCHours(0, 0, 0, 0) == 86400000);
+
         ({ error: userDataError } = await supabaseAdmin
             .from("user_data")
             .update({
                 last_sign_in_at: now.toISOString(),
-                current_login_streak: (() => {
-                    let current_login_streak = selectData[0].current_login_streak
-                    let last_sign_in_at = selectData[0].last_sign_in_at
-
-                    if (new Date().setUTCHours(0, 0, 0, 0)
-                        - new Date(last_sign_in_at).setUTCHours(0, 0, 0, 0) == 86400000) {
-                        return current_login_streak + 1
-                    }
-
-                    return 0
-                })(),
+                current_login_streak: (newDay) ? current_login_streak + 1 : 0,
+                api_hit_count: (newDay) ? 0 : selectData[0].api_hit_count,
             })
             .match({ id: user.id }))
     }
