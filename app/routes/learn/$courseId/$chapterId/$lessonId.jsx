@@ -158,7 +158,8 @@ export default function Editor() {
                 setLoadingScreen(false)
             }, 1000)
         }
-    }, [params])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     // Render
     return (

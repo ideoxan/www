@@ -115,7 +115,8 @@ export default function Console({ session, userData }) {
                 return
             }
         })()
-    }, [session, userData])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     // Resizing
     useEffect(() => {
