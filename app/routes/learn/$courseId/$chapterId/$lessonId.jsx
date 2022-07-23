@@ -16,7 +16,7 @@ import { marked } from "marked"
 import FileSystem from "app/utils/fs.client"
 import EditorActivityWorkspace from "app/components/Editor/Activities/Workspace/EditorActivityWorkspace"
 import Console from "app/components/Editor/Preview/Console/Console.client"
-import { authenticator } from "app/utils/auth.server.js"
+import { supabaseLocalStrategy } from "app/utils/auth.server.js"
 import { supabaseAdmin } from "app/utils/db.server.js"
 
 import termStyles from "app/styles/xterm.css"
@@ -27,7 +27,7 @@ export const loader = async ({ params, request }) => {
     // At least if we handle it manually in the component, we can show a loading splash screen.
     //??: Would a graphql query be more efficient?
     // Check user auth
-    let session = await authenticator.isAuthenticated(request)
+    let session = await supabaseLocalStrategy.checkSession(request)
 
     // If the user session is bad, redirect to the login page
     if (session) {

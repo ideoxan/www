@@ -1,6 +1,6 @@
 import { Link, Form, useLoaderData } from "@remix-run/react"
 import { json } from "@remix-run/node"
-import { authenticator, sessionStorage } from "app/utils/auth.server"
+import { authenticator, sessionStorage, supabaseLocalStrategy } from "app/utils/auth.server"
 import AuthSplash from "app/components/Auth/AuthSplash"
 import AuthOAuth from "app/components/Auth/AuthOAuth"
 
@@ -11,12 +11,12 @@ export function meta() {
 }
 
 export async function loader({ request }) {
-    await authenticator.isAuthenticated(request, {
+    await supabaseLocalStrategy.checkSession(request, {
         successRedirect: "/dashboard"
     })
 
     const session = await sessionStorage.getSession(request.headers.get("Cookie"))
-    const error = session?.get(authenticator.sessionErrorKey)
+    const error = session?.get(authenticator.sessionErrorKey) || null
     return json({ error })
 }
 
