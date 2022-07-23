@@ -6,6 +6,7 @@ import { io } from "socket.io-client"
 export default function Console({ session, userData }) {
     // Grab ref to terminal elm
     const term = useRef(null)
+    const socket = useRef(null)
 
     function handleResize(e) {
         // Styles
@@ -75,14 +76,14 @@ export default function Console({ session, userData }) {
 
             console.log("[Terminal] Connecting to socket (" + connectionURL + ")...")
 
-            const socket = io(connectionURL, {
+            socket.current = io(connectionURL, {
                 auth: {
                     token: session.access_token
                 }
             })
 
             // Listen for socket events
-            socket.on("connect", () => {
+            socket.current.on("connect", () => {
                 console.log("[Terminal] Connected.")
                 setTimeout(() => {
                     clearInterval(loader)
@@ -91,11 +92,11 @@ export default function Console({ session, userData }) {
                 }, 2000)
             })
 
-            socket.on("disconnect", () => {
+            socket.current.on("disconnect", () => {
                 console.log("[Terminal] Disconnected.")
             })
 
-            socket.on("connect_error", (err) => {
+            socket.current.on("connect_error", (err) => {
                 console.error("[Terminal] Connect error:", err)
                 return fastFail()
             })
