@@ -86,7 +86,7 @@ export default function Console({ session, userData }) {
                 console.log("[Terminal] Connected.")
                 setTimeout(() => {
                     clearInterval(loader)
-                    term.current.write("\x1b[2K\r")
+                    term.current.write("\x1b[H\x1b[2J")
                     term.current.write("Connected.\r\n")
                 }, 2000)
             })
@@ -102,7 +102,7 @@ export default function Console({ session, userData }) {
 
             function fastFail() {
                 clearInterval(loader)
-                term.current.write("\x1b[2K\r")
+                term.current.write("\x1b[H\x1b[2J")
                 term.current.write("\x1b[41;1m ERROR: \x1b[0m Unable to load console.\r\n")
                 term.current.write("\x1b[41;1m ERROR: \x1b[0m Looks like you're not logged in.\r\n\r\n")
                 term.current.write("\x1b[33;1mIf you want to be able to run your code, save your\r\n")
