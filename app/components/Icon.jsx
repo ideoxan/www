@@ -6,7 +6,8 @@ export default function Icon({
     width = 4,
     height = 4,
     color = "gray-50",
-    strokeThickness = 2
+    strokeThickness = 2,
+    onClick = null
 }) {
 
     if (name == null || typeof name !== "string") {
@@ -21,6 +22,6 @@ export default function Icon({
     let IconComponent = iconSet[name]
 
     return (
-        <IconComponent className={classNameString} />
+        <IconComponent className={classNameString} onClick={onClick} />
     )
 }

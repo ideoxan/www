@@ -818,6 +818,10 @@ input::placeholder {
   position: absolute;
 }
 
+.relative {
+  position: relative;
+}
+
 .top-0 {
   top: 0px;
 }
@@ -832,6 +836,10 @@ input::placeholder {
 
 .z-40 {
   z-index: 40;
+}
+
+.z-10 {
+  z-index: 10;
 }
 
 .m-auto {
@@ -1467,6 +1475,14 @@ input::placeholder {
 
 .pb-2 {
   padding-bottom: 0.5rem;
+}
+
+.pl-3 {
+  padding-left: 0.75rem;
+}
+
+.pt-3 {
+  padding-top: 0.75rem;
 }
 
 .text-left {

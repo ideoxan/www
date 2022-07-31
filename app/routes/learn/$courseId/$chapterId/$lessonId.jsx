@@ -243,7 +243,7 @@ export default function Editor() {
                             />
                             {/* Editor Preview Area */}
                             <div className="flex flex-col h-full w-full pr-2 pb-2">
-                                <Console session={session} userData={userData} />
+                                <Console session={session} userData={userData} metadata={metadata} />
 
                             </div>
                         </div>
