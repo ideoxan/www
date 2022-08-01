@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 
-export default function FadeInSection({ children }) {
+export default function FadeInSection({ disable = false, children }) {
     const [isVisible, setIsVisible] = useState(false)
     const ref = useRef()
 
@@ -18,9 +18,17 @@ export default function FadeInSection({ children }) {
         return () => observer.unobserve(ref.current)
     }, [])
 
-    return (
-        <div ref={ref} className={"opacity-0" + (isVisible ? " animate-fade-in-up" : "")}>
-            {children}
-        </div>
-    )
+    if (disable) {
+        return (
+            <div ref={ref} className="opacity-100">
+                {children}
+            </div>
+        )
+    } else {
+        return (
+            <div ref={ref} className={"opacity-0" + (isVisible ? " animate-fade-in-up" : "")}>
+                {children}
+            </div>
+        )
+    }
 }
