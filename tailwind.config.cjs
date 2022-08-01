@@ -44,6 +44,21 @@ module.exports = {
       secondary: '#A781FE'
     },
     extend: {
+      keyframes: {
+        "fade-in-up": {
+          "0%": {
+            opacity: 0,
+            transform: 'translateY(12px)',
+          },
+          "100%": {
+            opacity: 1,
+            transform: 'translateY(0)',
+          },
+        }
+      },
+      animation: {
+        "fade-in-up": "fade-in-up 700ms ease-in-out 300ms forwards",
+      },
       strokeWidth: {
         '3': '3px',
       },

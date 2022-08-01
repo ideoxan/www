@@ -1,7 +1,9 @@
 import FeaturesItem from "app/components/Home/FeaturesItem"
+import FadeInSection from "app/components/FadeInSection"
 
 export default function RewardsSection() {
     return (
+        <FadeInSection>
         <section id="rewards" className="section flex-col">
 
             {/* Features */}
@@ -47,6 +49,7 @@ export default function RewardsSection() {
 
             </div>
 
-        </section>
+            </section>
+        </FadeInSection>
     )
 }
