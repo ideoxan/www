@@ -36,14 +36,13 @@ export default function NavigationBar({ session, userData }) {
                 {/* Clickable Nav Links */}
                 <ul id="nav-content" className="flex flex-row font-sans font-medium text-sm text-center text-gray-50 md:space-x-12">
                     <li className="hidden md:flex nav-link">
-                        <a href="/courses">Courses</a>
+                        <Link to="/courses">Courses</Link>
                     </li>
                     <li className="hidden md:flex nav-link">
-                        <a href="/solutions">Solutions</a>
+                        <Link to="/solutions">Solutions</Link>
                     </li>
                     <li className="hidden md:flex nav-link">
-                        <a href="/about">About
-                        </a>
+                        <Link to="/about">About</Link>
                     </li>
                     {session && userData && (
                         <li className="flex nav-link">
@@ -76,15 +75,29 @@ export default function NavigationBar({ session, userData }) {
             <div id="mobile-nav-menu" className="hidden flex-col w-full bg-gray-800 px-4 py-12 mt-6">
                 <ul className="flex flex-col mx-8 font-sans font-medium text-sm text-left text-gray-50 space-y-4">
                     <li className="nav-link">
-                        <a href="/courses">Courses</a>
+                        <Link to="/courses">Courses</Link>
                     </li>
                     <li className="nav-link">
-                        <a href="/solutions">Solutions</a>
+                        <Link to="/solutions">Solutions</Link>
                     </li>
                     <li className="nav-link">
-                        <a href="/about">About
-                        </a>
+                        <Link to="/about">About</Link>
                     </li>
+                    {session && userData && (
+                        <li className="flex nav-link">
+                            <Link to="/dashboard">Dashboard</Link>=
+                        </li>
+                    )}
+                    {!session && (
+                        <li className="flex nav-link">
+                            <Link to="/login">Login</Link>
+                        </li>
+                    )}
+                    {!session && (
+                        <li className="flex nav-link">
+                            <Link to="/signup">Sign Up</Link>
+                        </li>
+                    )}
                 </ul>
             </div>
         </>
