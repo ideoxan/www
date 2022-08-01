@@ -55,6 +55,10 @@
         @apply rounded-md;
     }
 
+    .bttn-round {
+        @apply rounded-full;
+    }
+
     .bttn-outline {
         @apply border-2 rounded-full;
     }
@@ -71,12 +75,23 @@
         @apply bg-gray-50 text-gray-900;
     }
 
+    .bttn-primary {
+        @apply bg-primary text-gray-50;
+        }
+
     .bttn-disabled {
         @apply opacity-50 cursor-not-allowed;
     }
 
     .paragraph {
         @apply font-sans font-normal text-sm md:text-base text-gray-50 opacity-80;
+    }
+
+    .glow-text-white {
+        background: linear-gradient(to top right, #EE2FFF99, #fff0, #fff), linear-gradient(to top left, #6E2FFF99, #fff, #fff), #F8F5FF;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 72px rgb(219 192 255 / 75%), 0 0 24px rgb(120 65 255 / 24%);
     }
 
     .editor-sidebar-container {
