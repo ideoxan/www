@@ -2,7 +2,7 @@ import Icon from "app/components/Icon"
 
 export default function Footer() {
     return (
-        <footer id="footer" className="overflow-hidden flex w-full py-8 md:py-12 flex-col bg-gray-700 border-t-2 border-gray-500 border-opacity-50">
+        <footer id="footer" className="overflow-hidden flex w-full py-8 md:py-12 flex-col bg-gray-900">
             {/* Features */}
             <div className="section-container flex-col px-8">
                 {/* Made with */}
