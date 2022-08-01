@@ -39,7 +39,9 @@ export const loader = async ({ params, request }) => {
             .select()
             .eq("id", user.id)
 
-        return json({ params, session, userData })
+        if (error) return json({ params, session: null, userData: null, error })
+
+        return json({ params, session, userData: userData[0] })
     }
 
     return json({ params, session: null, userData: null })

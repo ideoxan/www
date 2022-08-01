@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Icon from 'app/components/Icon'
 import { Link } from '@remix-run/react'
 
-export default function NavigationBar() {
+export default function NavigationBar({ session, userData }) {
 
     const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
 
@@ -45,17 +45,30 @@ export default function NavigationBar() {
                         <a href="/about">About
                         </a>
                     </li>
-                    <li className="flex nav-link">
-                        <button>
-                            <Icon
-                                name="User"
-                                width={4}
-                                height={4}
-                                color="gray-50"
-                                strokeThickness={2}
-                            />
-                        </button>
-                    </li>
+                    {session && userData && (
+                        <li className="flex nav-link">
+                            <Link to="/dashboard">Dashboard</Link>
+                            {/* <button>
+                                <Icon
+                                    name="User"
+                                    width={4}
+                                    height={4}
+                                    color="gray-50"
+                                    strokeThickness={2}
+                                />
+                            </button> */}
+                        </li>
+                    )}
+                    {!session && (
+                        <li className="flex nav-link">
+                            <Link to="/login">Login</Link>
+                        </li>
+                    )}
+                    {!session && (
+                        <li className="flex nav-link">
+                            <Link to="/signup">Sign Up</Link>
+                        </li>
+                    )}
                 </ul>
             </nav>
 
