@@ -8,6 +8,7 @@ export default function Console({ session, userData, metadata }) {
     // Grab ref to terminal elm
     const term = useRef(null)
     const socket = useRef(null)
+    const loader = useRef(null)
     const [isRunning, setIsRunning] = useState(false)
 
     let spinners = [
@@ -75,7 +76,7 @@ export default function Console({ session, userData, metadata }) {
             console.log("[Terminal] Loading...")
             let li = 0
             term.current.write("Loading  ")
-            let loader = setInterval(() => {
+            loader.current = setInterval(() => {
                 term.current.write("\b")
                 if (li >= spinners.length) li = 0
                 term.current.write(spinners[li++])
@@ -83,7 +84,7 @@ export default function Console({ session, userData, metadata }) {
 
             if (!session || !userData) {
                 console.log("[Terminal] No session or user data, closing terminal (fast fail)...")
-                return fastFail()
+                return authFail()
             }
 
             // Connect to socket
@@ -101,9 +102,9 @@ export default function Console({ session, userData, metadata }) {
             socket.current.on("connect", () => {
                 console.log("[Terminal] Connected.")
                 setTimeout(() => {
-                    clearInterval(loader)
+                    clearInterval(loader.current)
                     term.current.write("\x1b[H\x1b[2J")
-                    term.current.write("Connected.\r\n")
+                    term.current.write("\u001b[32;1mConnected.\x1b[0m\r\n")
                 }, 2000)
             })
 
@@ -139,11 +140,12 @@ export default function Console({ session, userData, metadata }) {
             socket.current.on("tesseract_request_error", ({ error }) => {
                 term.current.write("\x1bcError running: " + error + "\r\n")
                 console.error(error)
+                clearInterval(loader.current)
                 setIsRunning(false)
             })
 
-            function fastFail() {
-                clearInterval(loader)
+            function authFail() {
+                clearInterval(loader.current)
                 term.current.write("\x1b[H\x1b[2J")
                 term.current.write("\x1b[41;1m ERROR: \x1b[0m Unable to load console.\r\n")
                 term.current.write("\x1b[41;1m ERROR: \x1b[0m Looks like you're not logged in.\r\n\r\n")
@@ -153,6 +155,14 @@ export default function Console({ session, userData, metadata }) {
                 term.current.write("https://ideoxan.com/login\r\n")
                 term.current.write("\t - or -\r\n")
                 term.current.write("https://ideoxan.com/signup\r\n\x1b[0m")
+                term.current.write("\r\n\r\n(Process exited with code -1) ")
+                return
+            }
+
+            function fastFail() {
+                clearInterval(loader.current)
+                term.current.write("\x1b[H\x1b[2J")
+                term.current.write("\x1b[41;1m ERROR: \x1b[0m Unable to load console.\r\n\x1b[0m")
                 term.current.write("\r\n\r\n(Process exited with code -1) ")
                 return
             }
@@ -183,7 +193,7 @@ export default function Console({ session, userData, metadata }) {
                             setIsRunning(true)
                             let si = 0
                             term.current.write("\x1bcSetting up  ")
-                            let settingUpLoader = setInterval(() => {
+                            loader.current = setInterval(() => {
                                 term.current.write("\b")
                                 if (si >= spinners.length) si = 0
                                 term.current.write(spinners[si++])
@@ -198,16 +208,16 @@ export default function Console({ session, userData, metadata }) {
                                 workspace: ""
                             })
                             socket.current.on("tesseract_request_ok", (data) => {
-                                clearInterval(settingUpLoader)
+                                clearInterval(loader.current)
                                 let ri = 0
                                 term.current.write("\x1bcRunning  ")
-                                let runningLoader = setInterval(() => {
+                                loader.current = setInterval(() => {
                                     term.current.write("\b")
                                     if (ri >= spinners.length) ri = 0
                                     term.current.write(spinners[ri++])
                                 }, 80)
                                 socket.current.on("tesseract_exec_start", (data) => {
-                                    clearInterval(runningLoader)
+                                    clearInterval(loader.current)
                                     term.current.write("\x1bc")
                                 })
                             })
