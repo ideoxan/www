@@ -11,26 +11,26 @@ export default function FreeForAllSection() {
 
                     {/* Feature Listing Column */}
                     <div className="flex flex-col p-6 md:w-1/2 my-auto">
+                        <FadeInSection direction="right">
+                            <h2 className="section-header">Free for everyone, forever</h2>
+                            <ul className="flex flex-col mt-8 space-y-8">
 
-                        <h2 className="section-header">Free for everyone, forever</h2>
-                        <ul className="flex flex-col mt-8 space-y-8">
+                                {/* Feature 1 */}
+                                <FeaturesItem
+                                    icon="DollarSign"
+                                    title="Zero Cost"
+                                    description="We have kept our promise of &quot;Free for everyone, forever.&quot; We will never charge individual accounts nor will content ever be paywalled"
+                                />
 
-                            {/* Feature 1 */}
-                            <FeaturesItem
-                                icon="DollarSign"
-                                title="Zero Cost"
-                                description="We have kept our promise of &quot;Free for everyone, forever.&quot; We will never charge individual accounts nor will content ever be paywalled"
-                            />
+                                {/* Feature 2 */}
+                                <FeaturesItem
+                                    icon="BookOpen"
+                                    title="Open For All"
+                                    description="All courses are licensed under the Creative Commons Attribution ShareAlike 4.0 International (CC BY-SA 4.0) license. Courses can be viewed, modified, and re-distributed free of charge."
+                                />
 
-                            {/* Feature 2 */}
-                            <FeaturesItem
-                                icon="BookOpen"
-                                title="Open For All"
-                                description="All courses are licensed under the Creative Commons Attribution ShareAlike 4.0 International (CC BY-SA 4.0) license. Courses can be viewed, modified, and re-distributed free of charge."
-                            />
-
-                        </ul>
-
+                            </ul>
+                        </FadeInSection>
                     </div>
 
                     {/* Image Column */}

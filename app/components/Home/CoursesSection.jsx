@@ -41,11 +41,11 @@ export default function CoursesSection() {
 
                     {/* Feature Listing Column */}
                     <div className="flex flex-col p-6 md:w-1/2 my-auto">
-
-                        <h2 className="section-header">Learn the next great thing</h2>
-                        <p className="paragraph mt-8">With so many courses to choose from, you can find your new favorite programming language. Drop into a ready developer environment within seconds and start coding in any browser.</p>
-                        <img src="/images/tesseract_50.png" className="mt-8 h-auto w-48" aria-hidden="true" alt="" />
-
+                        <FadeInSection direction="right">
+                            <h2 className="section-header">Learn the next great thing</h2>
+                            <p className="paragraph mt-8">With so many courses to choose from, you can find your new favorite programming language. Drop into a ready developer environment within seconds and start coding in any browser.</p>
+                            <img src="/images/tesseract_50.png" className="mt-8 h-auto w-48" aria-hidden="true" alt="" />
+                        </FadeInSection>
                     </div>
 
                     {/* Image Column */}
