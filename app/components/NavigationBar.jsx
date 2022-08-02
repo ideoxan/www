@@ -29,7 +29,7 @@ export default function NavigationBar({ session, userData }) {
                 </div>
 
                 {/* Logo */}
-                <Link id="nav-logo" className="flex flex-row ml-auto md:ml-0 mr-auto flex-shrink-0" to="/">
+                <Link id="nav-logo" className="flex flex-row ml-2 md:ml-0 mr-auto flex-shrink-0" to="/">
                     <img src="/images/ix_logo_white_trans_253x50.png" className="w-auto h-4" alt="Ideoxan Logo"></img>
                 </Link>
 
@@ -45,7 +45,7 @@ export default function NavigationBar({ session, userData }) {
                         <Link to="/about">About</Link>
                     </li>
                     {session && userData && (
-                        <li className="flex nav-link">
+                        <li className="hidden md:flex nav-link">
                             <Link to="/dashboard">Dashboard</Link>
                             {/* <button>
                                 <Icon
@@ -59,12 +59,12 @@ export default function NavigationBar({ session, userData }) {
                         </li>
                     )}
                     {!session && (
-                        <li className="flex nav-link">
+                        <li className="hidden md:flex nav-link">
                             <Link to="/login">Login</Link>
                         </li>
                     )}
                     {!session && (
-                        <li className="flex nav-link">
+                        <li className="hidden md:flex nav-link">
                             <Link to="/signup">Sign Up</Link>
                         </li>
                     )}

@@ -77,7 +77,11 @@
 
     .bttn-primary {
         @apply bg-primary text-gray-50;
-        }
+    }
+
+    .bttn-gradient {
+        background: linear-gradient(to top right, #EE2FFF99, #fff0, #fff), linear-gradient(to top left, #6E2FFF99, #fff, #fff), #F8F5FF;
+    }
 
     .bttn-disabled {
         @apply opacity-50 cursor-not-allowed;
