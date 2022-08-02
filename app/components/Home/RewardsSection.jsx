@@ -13,7 +13,10 @@ export default function RewardsSection() {
                     <div className="flex flex-col p-6 md:w-1/2 my-auto">
                         <FadeInSection direction="right">
                             <h2 className="section-header">Level up your coding skills</h2>
-                            <ul className="flex flex-col mt-8 space-y-8">
+                            <div className="mt-4 bg-tertiary bg-opacity-25 text-tertiary font-sans font-bold text-xs rounded-full px-2 py-1 w-max uppercase">
+                                Coming Soon
+                            </div>
+                            <ul className="flex flex-col mt-6 space-y-8">
 
                                 {/* Feature 1 */}
                                 <FeaturesItem
