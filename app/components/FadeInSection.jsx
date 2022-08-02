@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState } from "react"
 
-export default function FadeInSection({ disable = false, children, direction = "up" }) {
+export default function FadeInSection({
+    disable = false,
+    children,
+    direction = "up",
+    threshold = 0.3
+}) {
     const [isVisible, setIsVisible] = useState(false)
     const ref = useRef()
 
@@ -11,6 +16,8 @@ export default function FadeInSection({ disable = false, children, direction = "
 
                 observer.unobserve(ref.current)
             }
+        }, {
+            threshold: threshold
         })
 
         observer.observe(ref.current)
