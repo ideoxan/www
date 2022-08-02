@@ -15,7 +15,7 @@ export default function SolutionsCTA() {
                     <div className="flex flex-col p-6">
                         <h2 className="mx-auto section-header text-center">Introducing Ideoxan Solutions</h2>
                         <p className="mx-auto mt-4 paragraph text-center">Need to supercharge learning in your classroom? Find a new way to educate with <b>IX/EDU</b></p>
-                        <button className="mx-auto mt-6 mb-2 bttn bttn-outline bttn-normal bttn-outline-white bttn-disabled">Coming Soon</button>
+                        <button className="mx-auto mt-6 mb-2 bttn bttn-round bttn-normal bttn-white bttn-disabled">Coming Soon</button>
                     </div>
 
                 </div>

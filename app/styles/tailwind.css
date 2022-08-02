@@ -51,7 +51,7 @@
     }
 
     .bttn {
-        @apply font-sans font-bold text-center whitespace-nowrap;
+        @apply font-sans font-bold text-center whitespace-nowrap transition-all;
     }
 
     .bttn-square {
@@ -84,6 +84,23 @@
 
     .bttn-gradient {
         background: linear-gradient(to top right, #EE2FFF99, #fff0, #fff), linear-gradient(to top left, #6E2FFF99, #fff, #fff), #F8F5FF;
+        background-size: 100% 100%;
+        background-position: center;
+    }
+
+    .bttn-gradient::after {
+        @apply transition-all;
+        display: inline-block;
+        content: "-->";
+        padding-left: 0.5em;
+    }
+
+    .bttn-gradient:hover::after {
+        padding-left: 0.75em;
+    }
+
+    .bttn-gradient:hover {
+        background-size: 150% 100%;
     }
 
     .bttn-disabled {

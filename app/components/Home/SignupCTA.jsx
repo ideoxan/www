@@ -19,7 +19,7 @@ export default function SignupCTA() {
 
                     {/* Signup Button */}
                     <div className="lg:w-1/4 flex md:my-auto mx-auto px-6 pb-6 md:py-6">
-                        <a href="/signup" className="mx-auto my-auto bttn bttn-outline bttn-normal bttn-outline-white">Join the Waitlist --&gt;</a>
+                        <a href="/signup" className="mx-auto my-auto bttn bttn-round bttn-normal bttn-gradient">Join the Waitlist</a>
                     </div>
 
                 </div>
