@@ -969,10 +969,6 @@ input::placeholder {
   margin-bottom: 1.5rem;
 }
 
-.mb-48 {
-  margin-bottom: 12rem;
-}
-
 .block {
   display: block;
 }
@@ -1160,6 +1156,93 @@ input::placeholder {
 .animate-fade-in-up {
   -webkit-animation: fade-in-up 700ms ease-in-out 300ms forwards;
           animation: fade-in-up 700ms ease-in-out 300ms forwards;
+}
+
+@-webkit-keyframes fade-in-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-down {
+  -webkit-animation: fade-in-down 700ms ease-in-out 300ms forwards;
+          animation: fade-in-down 700ms ease-in-out 300ms forwards;
+}
+
+@-webkit-keyframes fade-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-left {
+  -webkit-animation: fade-in-left 700ms ease-in-out 300ms forwards;
+          animation: fade-in-left 700ms ease-in-out 300ms forwards;
+}
+
+@-webkit-keyframes fade-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-right {
+  -webkit-animation: fade-in-right 700ms ease-in-out 300ms forwards;
+          animation: fade-in-right 700ms ease-in-out 300ms forwards;
 }
 
 .cursor-pointer {
@@ -1420,14 +1503,6 @@ input::placeholder {
 
 .bg-contain {
   background-size: contain;
-}
-
-.bg-cover {
-  background-size: cover;
-}
-
-.bg-fixed {
-  background-attachment: fixed;
 }
 
 .bg-center {

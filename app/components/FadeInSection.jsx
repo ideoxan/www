@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 
-export default function FadeInSection({ disable = false, children }) {
+export default function FadeInSection({ disable = false, children, direction = "up" }) {
     const [isVisible, setIsVisible] = useState(false)
     const ref = useRef()
 
@@ -18,6 +18,22 @@ export default function FadeInSection({ disable = false, children }) {
         return () => observer.unobserve(ref.current)
     }, [])
 
+    let animationToUse = ""
+    switch (direction) {
+        case "down":
+            animationToUse = "animate-fade-in-down"
+            break
+        case "left":
+            animationToUse = "animate-fade-in-left"
+            break
+        case "right":
+            animationToUse = "animate-fade-in-right"
+            break
+        default:
+            animationToUse = "animate-fade-in-up"
+            break
+    }
+
     if (disable) {
         return (
             <div ref={ref} className="opacity-100">
@@ -26,7 +42,7 @@ export default function FadeInSection({ disable = false, children }) {
         )
     } else {
         return (
-            <div ref={ref} className={"opacity-0" + (isVisible ? " animate-fade-in-up" : "")}>
+            <div ref={ref} className={"opacity-0 " + (isVisible ? animationToUse : "")}>
                 {children}
             </div>
         )
