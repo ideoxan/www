@@ -14,7 +14,7 @@ export default function HeroSection() {
 
                 {/* Hero image */}
                 <div className="hidden md:flex flex-col flex-shrink mt-2 mb-32 w-full mx-auto px-8">
-                    <img src="/images/EditorConcept.jpg" className="mx-auto w-full lg:max-w-5xl h-auto rounded-lg ring-1 ring-gray-500 ring-opacity-50 shadow-2xl" alt="A screenshot of the Ideoxan Editor"></img>
+                    <img src="/images/editor_20220801.png" className="mx-auto w-full lg:max-w-5xl h-auto rounded-lg ring-1 ring-gray-500 ring-opacity-50 shadow-2xl" alt="A screenshot of the Ideoxan Editor"></img>
                 </div>
             </header>
         </FadeInSection>
