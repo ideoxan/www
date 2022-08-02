@@ -578,6 +578,13 @@ body {
 }
 
 .section-header {
+  background-image: linear-gradient(to top right, var(--tw-gradient-stops));
+  --tw-gradient-from: #6E2FFF;
+  --tw-gradient-to: rgb(110 47 255 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-to: rgb(248 245 255 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), #F8F5FF, var(--tw-gradient-to);
+  --tw-gradient-to: #F8F5FF;
   text-align: left;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1.5rem;
@@ -593,6 +600,12 @@ body {
     font-size: 2.25rem;
     line-height: 2.5rem;
   }
+}
+
+.section-header {
+  background: linear-gradient(to top right, #6E2FFF99, #fff0, #fff), linear-gradient(to top left, #6E2FFFBF, #fff, #fff), #F8F5FF;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .section {
@@ -954,6 +967,10 @@ input::placeholder {
 
 .mb-6 {
   margin-bottom: 1.5rem;
+}
+
+.mb-48 {
+  margin-bottom: 12rem;
 }
 
 .block {
@@ -1403,6 +1420,14 @@ input::placeholder {
 
 .bg-contain {
   background-size: contain;
+}
+
+.bg-cover {
+  background-size: cover;
+}
+
+.bg-fixed {
+  background-attachment: fixed;
 }
 
 .bg-center {

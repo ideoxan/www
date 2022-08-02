@@ -36,7 +36,10 @@
     }
 
     .section-header {
-        @apply font-sans font-extrabold text-2xl md:text-4xl text-gray-50 text-left tracking-tight;
+        @apply font-sans font-extrabold text-2xl md:text-4xl text-gray-50 text-left tracking-tight bg-gradient-to-tr from-primary via-gray-50 to-gray-50;
+        background: linear-gradient(to top right, #6E2FFF99, #fff0, #fff), linear-gradient(to top left, #6E2FFFBF, #fff, #fff), #F8F5FF;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 
     .section {
