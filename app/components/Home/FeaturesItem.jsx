@@ -3,7 +3,7 @@ import Icon from "app/components/Icon"
 export default function FeaturesItem({ icon, title, description }) {
     return (
         <li className="flex flex-row">
-            <div className="flex flex-col bg-primary w-10 h-10 rounded-lg flex-shrink-0">
+            <div className="flex flex-col bg-gradient-to-tr from-primary to-secondary w-10 h-10 rounded-lg flex-shrink-0">
                 <Icon
                     name={icon}
                     width={5}

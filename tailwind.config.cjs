@@ -5,9 +5,6 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    backgroundImage: {
-      'img-hero': 'url("/images/heroBgBlur.png")',
-    },
     colors: {
       black: colors.black,
       white: colors.white,
@@ -41,9 +38,13 @@ module.exports = {
         900: '#09001F',
       },
       primary: '#6E2FFF',
-      secondary: '#A781FE'
+      secondary: '#A781FE',
+      tertiary: '#EE2FFF'
     },
     extend: {
+      backgroundImage: {
+        'img-hero': 'url("/images/heroBgBlur.png")',
+      },
       keyframes: {
         "fade-in-up": {
           "0%": {
