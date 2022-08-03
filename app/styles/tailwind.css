@@ -101,12 +101,16 @@
     }
 
     .bttn-gradient:hover {
+        @apply box-glow-hover;
         background-size: 150% 100%;
-        box-shadow: 0 0 18px rgb(219 192 255 / 50%), 0 0 4px rgb(120 65 255 / 12%);
     }
 
     .bttn-disabled {
         @apply opacity-50 cursor-not-allowed;
+    }
+
+    .box-glow-hover:hover {
+        box-shadow: 0 0 18px rgb(219 192 255 / 50%), 0 0 4px rgb(120 65 255 / 12%);
     }
 
     .paragraph {
