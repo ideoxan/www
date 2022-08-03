@@ -31,15 +31,20 @@
         @apply bg-gray-900 overflow-x-hidden scroll-smooth;
     }
 
+    .bg-gradient-multi {
+        background: linear-gradient(to top right, theme(colors.tertiary / 50%), theme(colors.gray.50 / 0%), theme(colors.gray.50)), linear-gradient(to top left, theme(colors.primary / 50%), theme(colors.gray.50), theme(colors.gray.50)), theme(colors.gray.50);
+    }
+
+    .bg-gradient-white {
+        background: linear-gradient(to top right, theme(colors.primary / 75%), theme(colors.gray.50 / 0%), theme(colors.gray.50)), linear-gradient(to top left, theme(colors.primary / 40%), theme(colors.gray.50), theme(colors.gray.50)), theme(colors.gray.50);
+    }
+
     .nav-link {
         @apply my-auto opacity-80 hover:opacity-100;
     }
 
     .section-header {
-        @apply font-sans font-extrabold text-2xl md:text-4xl text-gray-50 text-left tracking-tight bg-gradient-to-tr from-primary via-gray-50 to-gray-50;
-        background: linear-gradient(to top right, #6E2FFF99, #fff0, #fff), linear-gradient(to top left, #6E2FFFBF, #fff, #fff), #F8F5FF;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        @apply font-sans font-extrabold text-2xl md:text-4xl text-gray-50 text-left tracking-tight text-transparent bg-gradient-white bg-clip-text;
     }
 
     .section {
@@ -83,24 +88,21 @@
     }
 
     .bttn-gradient {
-        background: linear-gradient(to top right, #EE2FFF99, #fff0, #fff), linear-gradient(to top left, #6E2FFF99, #fff, #fff), #F8F5FF;
-        background-size: 100% 100%;
-        background-position: center;
+        @apply transition-shadow duration-500 delay-75 bg-gradient-multi bg-center;
     }
 
     .bttn-gradient::after {
-        @apply transition-all;
-        display: inline-block;
+        @apply transition-all inline-block pl-2;
         content: "-->";
-        padding-left: 0.5em;
     }
 
     .bttn-gradient:hover::after {
-        padding-left: 0.75em;
+        @apply pl-3;
     }
 
     .bttn-gradient:hover {
         background-size: 150% 100%;
+        box-shadow: 0 0 18px rgb(219 192 255 / 50%), 0 0 4px rgb(120 65 255 / 12%);
     }
 
     .bttn-disabled {
@@ -112,9 +114,7 @@
     }
 
     .glow-text-white {
-        background: linear-gradient(to top right, #EE2FFF99, #fff0, #fff), linear-gradient(to top left, #6E2FFF99, #fff, #fff), #F8F5FF;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        @apply text-transparent bg-gradient-multi bg-clip-text;
         text-shadow: 0 0 72px rgb(219 192 255 / 75%), 0 0 24px rgb(120 65 255 / 24%);
     }
 

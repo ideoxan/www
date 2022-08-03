@@ -39,7 +39,8 @@ module.exports = {
       },
       primary: '#6E2FFF',
       secondary: '#A781FE',
-      tertiary: '#EE2FFF'
+      tertiary: '#EE2FFF',
+      transparent: 'transparent',
     },
     extend: {
       backgroundImage: {
@@ -49,7 +50,7 @@ module.exports = {
         "fade-in-up": {
           "0%": {
             opacity: 0,
-            transform: 'translateY(12px)',
+            transform: 'translateY(18px)',
           },
           "100%": {
             opacity: 1,
@@ -59,7 +60,7 @@ module.exports = {
         "fade-in-down": {
           "0%": {
             opacity: 0,
-            transform: 'translateY(-12px)',
+            transform: 'translateY(-18px)',
           },
           "100%": {
             opacity: 1,
@@ -69,7 +70,7 @@ module.exports = {
         "fade-in-left": {
           "0%": {
             opacity: 0,
-            transform: 'translateX(-12px)',
+            transform: 'translateX(-24px)',
           },
           "100%": {
             opacity: 1,
@@ -79,7 +80,7 @@ module.exports = {
         "fade-in-right": {
           "0%": {
             opacity: 0,
-            transform: 'translateX(12px)',
+            transform: 'translateX(24px)',
           },
           "100%": {
             opacity: 1,
