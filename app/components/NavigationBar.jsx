@@ -42,6 +42,9 @@ export default function NavigationBar({ session, userData }) {
                         <Link to="/solutions">Solutions</Link>
                     </li>
                     <li className="hidden md:flex nav-link">
+                        <Link to="/blog">Blog</Link>
+                    </li>
+                    <li className="hidden md:flex nav-link">
                         <Link to="/about">About</Link>
                     </li>
                     {session && userData && (
@@ -79,6 +82,9 @@ export default function NavigationBar({ session, userData }) {
                     </li>
                     <li className="nav-link">
                         <Link to="/solutions">Solutions</Link>
+                    </li>
+                    <li className="hidden md:flex nav-link">
+                        <Link to="/blog">Blog</Link>
                     </li>
                     <li className="nav-link">
                         <Link to="/about">About</Link>
