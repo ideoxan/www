@@ -24,7 +24,7 @@ export default function FeaturesSection() {
 
                                 {/* Feature 2 */}
                                 <FeaturesItem
-                                    icon="Award"
+                                    icon="GraduationCap"
                                     title="Professional Grade Courses"
                                     description="Courses are written by developers with years of programming and computer science experience. Gain technical know-how and job relevant knowledge with ease."
                                 />
