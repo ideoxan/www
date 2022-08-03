@@ -209,21 +209,19 @@ export default function Editor() {
                         />
                         {/* Editor Code Area */}
                         <div className="flex flex-col max-h-full h-full w-full px-2 pb-2">
-                            {(openCodeTabs.length > 0) ? (
-                                <EditorCodeArea
-                                    onChange={() => {
+                            <EditorCodeArea
+                                hidden={(openCodeTabs.length <= 0)}
+                                onChange={() => {
 
-                                    }}
-                                    fs={FileSystem}
-                                    activeCodeTab={activeCodeTab}
-                                    openCodeTabs={openCodeTabs}
-                                />
-                            ) : (
-                                <div className="flex flex-col justify-center items-center h-full w-full">
-                                    <img className="w-48 opacity-5" src="/images/ix_icon_flat_white_trans_250x250.png" alt="" />
-                                    <p className="font-sans font-medium text-sm text-center opacity-20 text-gray-50 mt-8">To open a file, click on any item to the left</p>
-                                </div>
-                            )}
+                                }}
+                                fs={FileSystem}
+                                activeCodeTab={activeCodeTab}
+                                openCodeTabs={openCodeTabs}
+                            />
+                            <div className={"flex-col justify-center items-center h-full w-full " + ((openCodeTabs.length <= 0) ? "flex" : "hidden")}>
+                                <img className="w-48 opacity-5" src="/images/ix_icon_flat_white_trans_250x250.png" alt="" />
+                                <p className="font-sans font-medium text-sm text-center opacity-20 text-gray-50 mt-8">To open a file, click on any item to the left</p>
+                            </div>
                         </div>
                     </div>
 

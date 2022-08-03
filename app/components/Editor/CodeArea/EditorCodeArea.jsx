@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { getType } from "mime"
 import supportedLanguages from "app/components/Editor/Activities/supportedLanguages"
 
-export default function EditorCodeArea({ onChange, openCodeTabs, activeCodeTab, fs, language, code, theme, ...props }) {
+export default function EditorCodeArea({ onChange, openCodeTabs, activeCodeTab, fs, language, code, theme, hidden, ...props }) {
     const [value, setValue] = useState(code || "")
     const [lang, setLang] = useState(language || "javascript")
 
@@ -22,7 +22,7 @@ export default function EditorCodeArea({ onChange, openCodeTabs, activeCodeTab, 
     }, [openCodeTabs, activeCodeTab, fs])
 
     return (
-        <div className="overflow-hidden flex flex-col max-h-full h-full w-full rounded-lg ring-1 ring-gray-500 ring-opacity-20 shadow-xl">
+        <div className={"overflow-hidden flex-col max-h-full h-full w-full rounded-lg ring-1 ring-gray-500 ring-opacity-20 shadow-xl " + (hidden ? "hidden" : "flex")} {...props}>
             {/* For some reason it keeps expanding when it's height == 100% */}
             <Monaco
                 width="100%"
