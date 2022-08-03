@@ -6,12 +6,12 @@ export default function AuthSplash({ children, ...props }) {
 
             {/* Splash image */}
             {/* //TODO: Convert png to jpg*/}
-            <img src="/images/signup_splash_edit.png" alt="" className="opacity-30" />
+            <div className="w-full h-full bg-auth-splash opacity-30 bg-center bg-cover"></div>
 
             {/* Splash content */}
             <div className="absolute top-0 left-0 w-screen h-screen flex flex-row">
 
-                <div className="flex flex-col w-1/4 mx-auto my-auto px-12 py-8 bg-gray-900 ring-1 ring-gray-500 ring-opacity-20 shadow-xl rounded-lg z-40">
+                <div className="flex flex-col h-full md:h-auto w-full md:w-1/2 xl:w-1/3 2xl:w-1/4 md:mx-auto md:my-auto px-12 py-8 bg-gray-900 md:ring-1 ring-gray-500 ring-opacity-20 md:shadow-xl md:rounded-lg z-40">
 
                     {children}
                 </div>

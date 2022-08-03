@@ -63,7 +63,7 @@ export default function Signup({ request }) {
     return (
         <AuthSplash>
 
-            <h1 className="mx-auto font-sans font-extrabold tracking-tight text-center text-2xl text-gray-50">Register for a new account</h1>
+            <h1 className="mx-auto font-sans font-extrabold tracking-tight text-center text-2xl text-transparent bg-gradient-white bg-clip-text">Register for a new account</h1>
             <Link className="mx-auto mt-1 font-sans font-medium text-center text-sm text-gray-50 opacity-50 hover:underline" to="/login">Or log into an existing account</Link>
 
             {error?.message && (<p className="mx-auto mt-6 font-sans font-medium text-center text-xs px-8 py-2 bg-red-500/50 text-red-50 rounded-lg">{error?.message}</p>)}
