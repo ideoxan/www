@@ -4,7 +4,7 @@ export default function FadeInSection({
     disable = false,
     children,
     direction = "up",
-    threshold = 0.3
+    threshold = 0.4
 }) {
     const [isVisible, setIsVisible] = useState(false)
     const ref = useRef()
