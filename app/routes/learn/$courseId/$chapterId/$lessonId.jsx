@@ -83,17 +83,17 @@ export default function Editor() {
             const paddedChapterId = params.chapterId.padStart(2, "0")
             const paddedLessonId = params.lessonId.padStart(2, "0")
 
-            // Get the course metadata
+            // Get the lesson metadata (this is first since if there is no lesson, we can't get the
+            // compiled course metadata)
             try {
                 // Append the course metadata to the metadata object
-                let data = await fetch(`${ storageURL }/${ params.courseId }/course.json`)
+                let data = await fetch(`${ storageURL }/${ params.courseId }/${ paddedChapterId }/${ paddedLessonId }/lesson.json`)
                 if (!data.ok) throw new Error(JSON.stringify(await data.json()))
-                _meta.course = await data.json()
+                _meta.lesson = await data.json()
+                _meta.lesson.index = parseInt(params.lessonId)
             } catch (error) {
                 if (window.env.NODE_ENV !== "production") console.log(error)
-                throw new Response("Not Found", {
-                    status: 404
-                })
+                window.location = window.location.toString() + "/404"
             }
 
             // Get the chapter metadata
@@ -105,23 +105,18 @@ export default function Editor() {
                 _meta.chapter.index = parseInt(params.chapterId)
             } catch (error) {
                 if (window.env.NODE_ENV !== "production") console.log(error)
-                throw new Response("Not Found", {
-                    status: 404
-                })
+                window.location = window.location.toString() + "/404"
             }
 
-            // Get the lesson metadata
+            // Get the course metadata
             try {
                 // Append the course metadata to the metadata object
-                let data = await fetch(`${ storageURL }/${ params.courseId }/${ paddedChapterId }/${ paddedLessonId }/lesson.json`)
+                let data = await fetch(`${ storageURL }/${ params.courseId }/course.json`)
                 if (!data.ok) throw new Error(JSON.stringify(await data.json()))
-                _meta.lesson = await data.json()
-                _meta.lesson.index = parseInt(params.lessonId)
+                _meta.course = await data.json()
             } catch (error) {
                 if (window.env.NODE_ENV !== "production") console.log(error)
-                throw new Response("Not Found", {
-                    status: 404
-                })
+                window.location = window.location.toString() + "/404"
             }
 
             // Set navigation properties
