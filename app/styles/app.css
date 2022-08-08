@@ -1265,6 +1265,14 @@ input::placeholder {
   display: none;
 }
 
+.aspect-auto {
+  aspect-ratio: auto;
+}
+
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
 .h-full {
   height: 100%;
 }
@@ -1579,6 +1587,22 @@ input::placeholder {
   flex-wrap: nowrap;
 }
 
+.place-content-center {
+  place-content: center;
+}
+
+.content-end {
+  align-content: flex-end;
+}
+
+.content-around {
+  align-content: space-around;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
 .items-center {
   align-items: center;
 }
@@ -1593,6 +1617,14 @@ input::placeholder {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
 }
 
 .gap-x-6 {
@@ -1979,6 +2011,10 @@ input::placeholder {
 
 .text-center {
   text-align: center;
+}
+
+.align-top {
+  vertical-align: top;
 }
 
 .font-sans {
