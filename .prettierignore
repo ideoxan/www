@@ -1,0 +1,9 @@
+node_modules
+
+/build
+/public/build
+.env
+
+/app/styles/app.css
+
+api
