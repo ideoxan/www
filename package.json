@@ -9,7 +9,8 @@
         "build:css": "npm run generate:css -- -m",
         "dev": "remix dev",
         "dev:css": "npm run generate:css -- -w ",
-        "generate:css": "npx tailwindcss -i ./app/styles/tailwind.css -o app/styles/app.css  -c ./tailwind.config.cjs"
+        "generate:css": "npx tailwindcss -i ./app/styles/tailwind.css -o app/styles/app.css  -c ./tailwind.config.cjs",
+        "format": "npx prettier --write ."
     },
     "dependencies": {
         "@icons-pack/react-simple-icons": "^4.7.2",
