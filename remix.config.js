@@ -1,3 +1,4 @@
+
 /**
  * @type {import('@remix-run/dev').AppConfig}
  */
@@ -8,8 +9,20 @@ module.exports = {
   // so we default back to the standard build output.
   server: process.env.NODE_ENV === "development" ? undefined : "./server.js",
   ignoredRouteFiles: ["**/.*"],
-  // appDirectory: "app",
+  appDirectory: "app",
   // assetsBuildDirectory: "public/build",
   // serverBuildPath: "api/index.js",
   // publicPath: "/build/",
+  mdx: async () => {
+    const [rehypePrism, remarkReadingTime, readingMdxTime] = await Promise.all([
+      import("@mapbox/rehype-prism").then((mod) => mod.default),
+      import("remark-reading-time").then((mod) => mod.default),
+      import("remark-reading-time/mdx.js").then((mod) => mod.default),
+    ])
+
+    return {
+      rehypePlugins: [rehypePrism],
+      remarkPlugins: [remarkReadingTime, readingMdxTime],
+    }
+  }
 }
