@@ -38,9 +38,9 @@ export default function NavigationBar({ session, userData }) {
                     <li className="hidden md:flex nav-link">
                         <Link to="/courses">Courses</Link>
                     </li>
-                    <li className="hidden md:flex nav-link">
+                    {/* <li className="hidden md:flex nav-link">
                         <Link to="/solutions">Solutions</Link>
-                    </li>
+                    </li> */}
                     <li className="hidden md:flex nav-link">
                         <Link to="/blog">Blog</Link>
                     </li>
@@ -80,9 +80,9 @@ export default function NavigationBar({ session, userData }) {
                     <li className="nav-link">
                         <Link to="/courses">Courses</Link>
                     </li>
-                    <li className="nav-link">
+                    {/* <li className="nav-link">
                         <Link to="/solutions">Solutions</Link>
-                    </li>
+                    </li> */}
                     <li className="hidden md:flex nav-link">
                         <Link to="/blog">Blog</Link>
                     </li>
