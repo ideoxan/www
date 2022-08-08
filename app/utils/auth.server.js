@@ -6,7 +6,6 @@ import { supabaseAdmin } from "app/utils/db.server"
 const SESSION_KEY = "ix:session"
 const SESSION_ERROR_KEY = "ix:error"
 
-
 if (!process.env.COOKIE_SECRET) {
     throw new Error("Cookie secret is not set")
 }
@@ -19,67 +18,67 @@ export const sessionStorage = createCookieSessionStorage({
         sameSite: "lax",
         secure: process.env.NODE_ENV === "production",
         secrets: [process.env.COOKIE_SECRET],
-    }
+    },
 })
 export const authenticator = new Authenticator(sessionStorage, {
     sessionKey: SESSION_KEY,
     sessionErrorKey: SESSION_ERROR_KEY,
 })
 
-
-
 // Local Strategy
-export const supabaseLocalStrategy = new SupabaseStrategy({
-    supabaseClient: supabaseAdmin,
-    sessionStorage,
-    sessionKey: SESSION_KEY,
-    sessionErrorKey: SESSION_ERROR_KEY,
-}, async ({ req, supabaseClient }) => {
-    const formData = await req.formData()
-    const email = formData?.get("email")
-    const password = formData?.get("password")
+export const supabaseLocalStrategy = new SupabaseStrategy(
+    {
+        supabaseClient: supabaseAdmin,
+        sessionStorage,
+        sessionKey: SESSION_KEY,
+        sessionErrorKey: SESSION_ERROR_KEY,
+    },
+    async ({ req, supabaseClient }) => {
+        const formData = await req.formData()
+        const email = formData?.get("email")
+        const password = formData?.get("password")
 
-    if (!email || typeof email !== "string") throw new AuthorizationError("Email is required")
-    if (!password || typeof password !== "string") throw new AuthorizationError("Password is required")
+        if (!email || typeof email !== "string") throw new AuthorizationError("Email is required")
+        if (!password || typeof password !== "string")
+            throw new AuthorizationError("Password is required")
 
-    let { data, error } = await supabaseClient.auth.api.signInWithEmail(email, password)
-    if (error || !data) {
-        throw new AuthorizationError(error?.message || "An unknown error occurred")
+        let { data, error } = await supabaseClient.auth.api.signInWithEmail(email, password)
+        if (error || !data) {
+            throw new AuthorizationError(error?.message || "An unknown error occurred")
+        }
+
+        await updateInfoOnAuth({ req, user: data?.user || null })
+
+        return data
     }
-
-    await updateInfoOnAuth({ req, user: data?.user || null })
-
-    return data
-})
+)
 authenticator.use(supabaseLocalStrategy, "local")
 
-
-
 // OAuth Strategy
-export const supabaseOAuthStrategy = new SupabaseStrategy({
-    supabaseClient: supabaseAdmin,
-    sessionStorage,
-    sessionKey: SESSION_KEY,
-    sessionErrorKey: SESSION_ERROR_KEY,
-}, async ({ req }) => {
-    const form = await req.formData()
-    const session = form?.get("session")
+export const supabaseOAuthStrategy = new SupabaseStrategy(
+    {
+        supabaseClient: supabaseAdmin,
+        sessionStorage,
+        sessionKey: SESSION_KEY,
+        sessionErrorKey: SESSION_ERROR_KEY,
+    },
+    async ({ req }) => {
+        const form = await req.formData()
+        const session = form?.get("session")
 
-    if (typeof session !== "string") throw new AuthorizationError("Session not found")
-    let parsedSession = JSON.parse(session)
+        if (typeof session !== "string") throw new AuthorizationError("Session not found")
+        let parsedSession = JSON.parse(session)
 
-    await updateInfoOnAuth({ req, user: parsedSession?.user || null })
+        await updateInfoOnAuth({ req, user: parsedSession?.user || null })
 
-    return parsedSession
-})
+        return parsedSession
+    }
+)
 authenticator.use(supabaseOAuthStrategy, "oauth")
-
 
 // Update user info on auth
 const updateInfoOnAuth = async ({ req, user }) => {
-
-    if (!user)
-        throw new AuthorizationError("An unknown error occurred")
+    if (!user) throw new AuthorizationError("An unknown error occurred")
 
     let { data: selectData, error: selectError } = await supabaseAdmin
         .from("user_data")
@@ -94,9 +93,8 @@ const updateInfoOnAuth = async ({ req, user }) => {
 
     if (selectData.length == 0) {
         // If user data does not exist, create it
-        ({ error: userDataError } = await supabaseAdmin
-            .from("user_data")
-            .insert([{
+        ;({ error: userDataError } = await supabaseAdmin.from("user_data").insert([
+            {
                 id: user.id,
                 created_at: now.toISOString(),
                 roles: ["user"],
@@ -118,20 +116,23 @@ const updateInfoOnAuth = async ({ req, user }) => {
                 api_hit_count: 0,
                 api_limit: 1000,
                 rewards_points: 100,
-            }]))
+            },
+        ]))
     } else {
         // If user data exists, update it
         let current_login_streak = selectData[0].current_login_streak
         let last_sign_in_at = selectData[0].last_sign_in_at
-        let newDay = (new Date().setUTCHours(0, 0, 0, 0)
-            - new Date(last_sign_in_at).setUTCHours(0, 0, 0, 0) == 86400000);
+        let newDay =
+            new Date().setUTCHours(0, 0, 0, 0) -
+                new Date(last_sign_in_at).setUTCHours(0, 0, 0, 0) ==
+            86400000
 
-        ({ error: userDataError } = await supabaseAdmin
+        ;({ error: userDataError } = await supabaseAdmin
             .from("user_data")
             .update({
                 last_sign_in_at: now.toISOString(),
-                current_login_streak: (newDay) ? current_login_streak + 1 : 0,
-                api_hit_count: (newDay) ? 0 : selectData[0].api_hit_count,
+                current_login_streak: newDay ? current_login_streak + 1 : 0,
+                api_hit_count: newDay ? 0 : selectData[0].api_hit_count,
             })
             .match({ id: user.id }))
     }

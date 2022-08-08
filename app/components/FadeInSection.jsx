@@ -4,21 +4,24 @@ export default function FadeInSection({
     disable = false,
     children,
     direction = "up",
-    threshold = 0.4
+    threshold = 0.4,
 }) {
     const [isVisible, setIsVisible] = useState(false)
     const ref = useRef()
 
     useEffect(() => {
-        const observer = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting) {
-                setIsVisible(true)
+        const observer = new IntersectionObserver(
+            entries => {
+                if (entries[0].isIntersecting) {
+                    setIsVisible(true)
 
-                observer.unobserve(ref.current)
+                    observer.unobserve(ref.current)
+                }
+            },
+            {
+                threshold: threshold,
             }
-        }, {
-            threshold: threshold
-        })
+        )
 
         observer.observe(ref.current)
 

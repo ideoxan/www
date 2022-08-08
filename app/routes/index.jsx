@@ -23,7 +23,8 @@ export const loader = async ({ request }) => {
         if (!user || !user.id) throw redirect("/login")
 
         // If the user is authenticated, get the user's data from the database
-        let { data: userData, error } = await supabaseAdmin.from("user_data")
+        let { data: userData, error } = await supabaseAdmin
+            .from("user_data")
             .select()
             .eq("id", user.id)
 

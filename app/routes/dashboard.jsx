@@ -13,7 +13,8 @@ export async function loader({ request }) {
         if (!user || !user.id) throw redirect("/login")
 
         // If the user is authenticated, get the user's data from the database
-        let { data: userData, error } = await supabaseAdmin.from("user_data")
+        let { data: userData, error } = await supabaseAdmin
+            .from("user_data")
             .select()
             .eq("id", user.id)
 
@@ -30,7 +31,5 @@ export async function loader({ request }) {
 export default function Dashboard() {
     let { session, userData } = useLoaderData()
 
-    return (
-        <h1>Dashboard</h1>
-    )
+    return <h1>Dashboard</h1>
 }

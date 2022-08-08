@@ -4,21 +4,21 @@
 
 /* Font Faces */
 @font-face {
-    font-family: 'Inter';
-    src: url('/fonts/Inter-VariableFont.ttf') format('truetype');
+    font-family: "Inter";
+    src: url("/fonts/Inter-VariableFont.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: 'Cascadia Code';
+    font-family: "Cascadia Code";
     font-weight: normal;
-    src: url('/fonts/CascadiaCode.woff2') format('woff2');
+    src: url("/fonts/CascadiaCode.woff2") format("woff2");
 }
 
 @font-face {
-    font-family: 'Cascadia Code';
+    font-family: "Cascadia Code";
     font-weight: normal;
     font-style: italic;
-    src: url('/fonts/CascadiaCodeItalic.woff2') format('woff2');
+    src: url("/fonts/CascadiaCodeItalic.woff2") format("woff2");
 }
 
 /* Custom Styles */
@@ -32,11 +32,35 @@
     }
 
     .bg-gradient-multi {
-        background: linear-gradient(to top right, theme(colors.tertiary / 50%), theme(colors.gray.50 / 0%), theme(colors.gray.50)), linear-gradient(to top left, theme(colors.primary / 50%), theme(colors.gray.50), theme(colors.gray.50)), theme(colors.gray.50);
+        background: linear-gradient(
+                to top right,
+                theme(colors.tertiary / 50%),
+                theme(colors.gray.50 / 0%),
+                theme(colors.gray.50)
+            ),
+            linear-gradient(
+                to top left,
+                theme(colors.primary / 50%),
+                theme(colors.gray.50),
+                theme(colors.gray.50)
+            ),
+            theme(colors.gray.50);
     }
 
     .bg-gradient-white {
-        background: linear-gradient(to top right, theme(colors.primary / 75%), theme(colors.gray.50 / 0%), theme(colors.gray.50)), linear-gradient(to top left, theme(colors.primary / 40%), theme(colors.gray.50), theme(colors.gray.50)), theme(colors.gray.50);
+        background: linear-gradient(
+                to top right,
+                theme(colors.primary / 75%),
+                theme(colors.gray.50 / 0%),
+                theme(colors.gray.50)
+            ),
+            linear-gradient(
+                to top left,
+                theme(colors.primary / 40%),
+                theme(colors.gray.50),
+                theme(colors.gray.50)
+            ),
+            theme(colors.gray.50);
     }
 
     .nav-link {
@@ -204,11 +228,11 @@
     }
 
     .blog-content h5 {
-        @apply font-sans font-extrabold text-xs text-gray-50 text-left mt-2 mb-2 ;
+        @apply font-sans font-extrabold text-xs text-gray-50 text-left mt-2 mb-2;
     }
 
     .blog-content h6 {
-        @apply font-sans font-semibold text-2xs text-gray-50 opacity-80 text-left mt-2 mb-2 ;
+        @apply font-sans font-semibold text-2xs text-gray-50 opacity-80 text-left mt-2 mb-2;
     }
 
     .blog-content a {
@@ -238,5 +262,4 @@
     .blog-content pre {
         @apply font-mono font-normal text-xs md:text-sm px-4 pt-0 pb-4 bg-gray-700 rounded-md ring-1 ring-gray-500 ring-opacity-40 whitespace-pre-wrap;
     }
-
 }

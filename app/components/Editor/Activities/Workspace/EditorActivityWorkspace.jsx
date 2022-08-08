@@ -3,13 +3,18 @@ import Folder from "app/components/Editor/Activities/Workspace/Folder.jsx"
 import { useEffect, useState } from "react"
 
 export default function EditorActivityWorkspace({
-    metadata, fs, openCodeTabs, setOpenCodeTabs, activeCodeTab, setActiveCodeTab, ...props
+    metadata,
+    fs,
+    openCodeTabs,
+    setOpenCodeTabs,
+    activeCodeTab,
+    setActiveCodeTab,
+    ...props
 }) {
-
     const [files, setFiles] = useState([])
 
     useEffect(() => {
-        (async () => {
+        ;(async () => {
             setFiles((await fs.tree({ dirPath: "/" })).children)
         })()
     }, [fs])
@@ -46,5 +51,4 @@ export default function EditorActivityWorkspace({
             </ul>
         </>
     )
-
 }

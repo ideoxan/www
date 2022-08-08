@@ -4,7 +4,6 @@ import { Facebook, Github, Google, Linkedin, Twitter } from "@icons-pack/react-s
 export default function AuthOAuth() {
     return (
         <div className="flex flex-row justify-between px-8">
-
             <button
                 className="text-gray-50 opacity-70 hover:opacity-100 flex flex-row"
                 onClick={() => oauthSignIn({ provider: "google" })}
@@ -35,7 +34,6 @@ export default function AuthOAuth() {
             >
                 <Linkedin width={18} />
             </button>
-
         </div>
     )
 }

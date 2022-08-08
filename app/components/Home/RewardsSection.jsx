@@ -5,10 +5,8 @@ export default function RewardsSection() {
     return (
         <FadeInSection>
             <section id="rewards" className="section flex-col">
-
                 {/* Features */}
                 <div className="section-container flex-col md:flex-row space-x-6">
-
                     {/* Feature Listing Column */}
                     <div className="flex flex-col p-6 md:w-1/2 my-auto">
                         <FadeInSection direction="right">
@@ -17,7 +15,6 @@ export default function RewardsSection() {
                                 Coming Soon
                             </div>
                             <ul className="flex flex-col mt-6 space-y-8">
-
                                 {/* Feature 1 */}
                                 <FeaturesItem
                                     icon="Award"
@@ -38,20 +35,19 @@ export default function RewardsSection() {
                                     title="Earn Prizes"
                                     description="In the Ideoxan Marketplace, you can exchange Bits for various prizes. Not only can you earn some cool Ideoxan merch, but you can also take part in limited time offers through our industry partners."
                                 />
-
                             </ul>
                         </FadeInSection>
                     </div>
 
                     {/* Image Column */}
                     <div className="hidden md:flex flex-shrink flex-grow-0 flex-col w-1/2 p-6">
-
-                        <img src="/images/rewards_sample.png" className="flex-shrink w-auto mx-auto my-auto" alt="" />
-
+                        <img
+                            src="/images/rewards_sample.png"
+                            className="flex-shrink w-auto mx-auto my-auto"
+                            alt=""
+                        />
                     </div>
-
                 </div>
-
             </section>
         </FadeInSection>
     )

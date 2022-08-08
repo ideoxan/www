@@ -3,12 +3,22 @@ import { useState, useEffect } from "react"
 import { getType } from "mime"
 import supportedLanguages from "app/components/Editor/Activities/supportedLanguages"
 
-export default function EditorCodeArea({ onChange, openCodeTabs, activeCodeTab, fs, language, code, theme, hidden, ...props }) {
+export default function EditorCodeArea({
+    onChange,
+    openCodeTabs,
+    activeCodeTab,
+    fs,
+    language,
+    code,
+    theme,
+    hidden,
+    ...props
+}) {
     const [value, setValue] = useState(code || "")
     const [lang, setLang] = useState(language || "javascript")
 
     useEffect(() => {
-        (async () => {
+        ;(async () => {
             let tab = openCodeTabs[activeCodeTab]
             let mime = getType(tab.path)
             setValue(await fs.readFile({ filePath: tab.path }))
@@ -22,7 +32,13 @@ export default function EditorCodeArea({ onChange, openCodeTabs, activeCodeTab, 
     }, [openCodeTabs, activeCodeTab, fs])
 
     return (
-        <div className={"overflow-hidden flex-col max-h-full h-full w-full rounded-lg ring-1 ring-gray-500 ring-opacity-20 shadow-xl " + (hidden ? "hidden" : "flex")} {...props}>
+        <div
+            className={
+                "overflow-hidden flex-col max-h-full h-full w-full rounded-lg ring-1 ring-gray-500 ring-opacity-20 shadow-xl " +
+                (hidden ? "hidden" : "flex")
+            }
+            {...props}
+        >
             {/* For some reason it keeps expanding when it's height == 100% */}
             <Monaco
                 width="100%"
@@ -37,7 +53,7 @@ export default function EditorCodeArea({ onChange, openCodeTabs, activeCodeTab, 
                     fontLigatures: false,
                     fontSize: "11px",
                     minimap: {
-                        enabled: false
+                        enabled: false,
                     },
                     tabSize: 4,
                     quickSuggestions: false,
@@ -53,14 +69,13 @@ export default function EditorCodeArea({ onChange, openCodeTabs, activeCodeTab, 
                     },
                     showUnused: false,
                     wordWrap: "on",
-
                 }}
-                onChange={(newValue) => {
+                onChange={newValue => {
                     setValue(newValue)
                     onChange(newValue)
                 }}
                 onMount={(editor, m) => {
-                    import('app/styles/Galileo.tmTheme.json').then(theme => {
+                    import("app/styles/Galileo.tmTheme.json").then(theme => {
                         m.editor.defineTheme("galileo", theme)
                         m.editor.setTheme("galileo")
                     })

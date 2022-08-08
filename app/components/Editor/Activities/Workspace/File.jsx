@@ -1,11 +1,14 @@
 import Icon from "app/components/Icon"
 import languages from "app/components/Editor/Activities/supportedLanguages"
 
-
 export default function File({
-    file, openCodeTabs, setOpenCodeTabs, activeCodeTab, setActiveCodeTab, ...props
+    file,
+    openCodeTabs,
+    setOpenCodeTabs,
+    activeCodeTab,
+    setActiveCodeTab,
+    ...props
 }) {
-
     let classes = ""
     const defaultClassName = "flex flex-row py-2 px-3 rounded-md w-full h-max cursor-pointer"
 
@@ -13,14 +16,15 @@ export default function File({
         // If the tab is already open, just set it to active
         let index = null
         // eslint-disable-next-line no-cond-assign
-        if (openCodeTabs.length > 0
-            && (index = openCodeTabs.findIndex(e => e.path == file.path)) != -1
+        if (
+            openCodeTabs.length > 0 &&
+            (index = openCodeTabs.findIndex(e => e.path == file.path)) != -1
         ) {
             setActiveCodeTab(index)
         } else {
             let newOpenTabs = [...openCodeTabs]
             newOpenTabs.push({
-                name: file.path.split('/').pop(),
+                name: file.path.split("/").pop(),
                 path: file.path,
             })
             setOpenCodeTabs(newOpenTabs)
@@ -47,7 +51,12 @@ export default function File({
     }
 
     return (
-        <li className={classes} onClick={() => { openTab() }}>
+        <li
+            className={classes}
+            onClick={() => {
+                openTab()
+            }}
+        >
             {FileIcon ? (
                 <FileIcon className="w-3 h-3 my-auto opacity-50" color={langData.color} />
             ) : (
@@ -61,7 +70,9 @@ export default function File({
                 />
             )}
 
-            <p className="font-sans font-medium text-xs text-left text-gray-50 ml-2 truncate">{file.path.split('/').pop()}</p>
+            <p className="font-sans font-medium text-xs text-left text-gray-50 ml-2 truncate">
+                {file.path.split("/").pop()}
+            </p>
         </li>
     )
 }

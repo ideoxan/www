@@ -568,7 +568,19 @@ body {
 }
 
 .bg-gradient-white {
-  background: linear-gradient(to top right, rgb(110 47 255 / 75%), rgb(248 245 255 / 0%), #F8F5FF), linear-gradient(to top left, rgb(110 47 255 / 40%), #F8F5FF, #F8F5FF), #F8F5FF;
+  background: linear-gradient(
+                to top right,
+                rgb(110 47 255 / 75%),
+                rgb(248 245 255 / 0%),
+                #F8F5FF
+            ),
+            linear-gradient(
+                to top left,
+                rgb(110 47 255 / 40%),
+                #F8F5FF,
+                #F8F5FF
+            ),
+            #F8F5FF;
 }
 
 .nav-link {
@@ -582,7 +594,19 @@ body {
 }
 
 .section-header {
-  background: linear-gradient(to top right, rgb(110 47 255 / 75%), rgb(248 245 255 / 0%), #F8F5FF), linear-gradient(to top left, rgb(110 47 255 / 40%), #F8F5FF, #F8F5FF), #F8F5FF;
+  background: linear-gradient(
+                to top right,
+                rgb(110 47 255 / 75%),
+                rgb(248 245 255 / 0%),
+                #F8F5FF
+            ),
+            linear-gradient(
+                to top left,
+                rgb(110 47 255 / 40%),
+                #F8F5FF,
+                #F8F5FF
+            ),
+            #F8F5FF;
   -webkit-background-clip: text;
           background-clip: text;
   text-align: left;
@@ -661,7 +685,19 @@ body {
 }
 
 .bttn-gradient {
-  background: linear-gradient(to top right, rgb(238 47 255 / 50%), rgb(248 245 255 / 0%), #F8F5FF), linear-gradient(to top left, rgb(110 47 255 / 50%), #F8F5FF, #F8F5FF), #F8F5FF;
+  background: linear-gradient(
+                to top right,
+                rgb(238 47 255 / 50%),
+                rgb(248 245 255 / 0%),
+                #F8F5FF
+            ),
+            linear-gradient(
+                to top left,
+                rgb(110 47 255 / 50%),
+                #F8F5FF,
+                #F8F5FF
+            ),
+            #F8F5FF;
   background-position: center;
   transition-property: box-shadow;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -713,7 +749,19 @@ body {
 }
 
 .glow-text-white {
-  background: linear-gradient(to top right, rgb(238 47 255 / 50%), rgb(248 245 255 / 0%), #F8F5FF), linear-gradient(to top left, rgb(110 47 255 / 50%), #F8F5FF, #F8F5FF), #F8F5FF;
+  background: linear-gradient(
+                to top right,
+                rgb(238 47 255 / 50%),
+                rgb(248 245 255 / 0%),
+                #F8F5FF
+            ),
+            linear-gradient(
+                to top left,
+                rgb(110 47 255 / 50%),
+                #F8F5FF,
+                #F8F5FF
+            ),
+            #F8F5FF;
   -webkit-background-clip: text;
           background-clip: text;
   color: transparent;
@@ -858,7 +906,19 @@ input::placeholder {
 }
 
 .blog-content h1 {
-  background: linear-gradient(to top right, rgb(110 47 255 / 75%), rgb(248 245 255 / 0%), #F8F5FF), linear-gradient(to top left, rgb(110 47 255 / 40%), #F8F5FF, #F8F5FF), #F8F5FF;
+  background: linear-gradient(
+                to top right,
+                rgb(110 47 255 / 75%),
+                rgb(248 245 255 / 0%),
+                #F8F5FF
+            ),
+            linear-gradient(
+                to top left,
+                rgb(110 47 255 / 40%),
+                #F8F5FF,
+                #F8F5FF
+            ),
+            #F8F5FF;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
   -webkit-background-clip: text;
@@ -882,7 +942,19 @@ input::placeholder {
 }
 
 .blog-content h2 {
-  background: linear-gradient(to top right, rgb(110 47 255 / 75%), rgb(248 245 255 / 0%), #F8F5FF), linear-gradient(to top left, rgb(110 47 255 / 40%), #F8F5FF, #F8F5FF), #F8F5FF;
+  background: linear-gradient(
+                to top right,
+                rgb(110 47 255 / 75%),
+                rgb(248 245 255 / 0%),
+                #F8F5FF
+            ),
+            linear-gradient(
+                to top left,
+                rgb(110 47 255 / 40%),
+                #F8F5FF,
+                #F8F5FF
+            ),
+            #F8F5FF;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   -webkit-background-clip: text;
@@ -906,7 +978,19 @@ input::placeholder {
 }
 
 .blog-content h3 {
-  background: linear-gradient(to top right, rgb(110 47 255 / 75%), rgb(248 245 255 / 0%), #F8F5FF), linear-gradient(to top left, rgb(110 47 255 / 40%), #F8F5FF, #F8F5FF), #F8F5FF;
+  background: linear-gradient(
+                to top right,
+                rgb(110 47 255 / 75%),
+                rgb(248 245 255 / 0%),
+                #F8F5FF
+            ),
+            linear-gradient(
+                to top left,
+                rgb(110 47 255 / 40%),
+                #F8F5FF,
+                #F8F5FF
+            ),
+            #F8F5FF;
   margin-top: 0.75rem;
   margin-bottom: 0.5rem;
   -webkit-background-clip: text;
@@ -930,7 +1014,19 @@ input::placeholder {
 }
 
 .blog-content h4 {
-  background: linear-gradient(to top right, rgb(110 47 255 / 75%), rgb(248 245 255 / 0%), #F8F5FF), linear-gradient(to top left, rgb(110 47 255 / 40%), #F8F5FF, #F8F5FF), #F8F5FF;
+  background: linear-gradient(
+                to top right,
+                rgb(110 47 255 / 75%),
+                rgb(248 245 255 / 0%),
+                #F8F5FF
+            ),
+            linear-gradient(
+                to top left,
+                rgb(110 47 255 / 40%),
+                #F8F5FF,
+                #F8F5FF
+            ),
+            #F8F5FF;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   -webkit-background-clip: text;
@@ -1265,14 +1361,6 @@ input::placeholder {
   display: none;
 }
 
-.aspect-auto {
-  aspect-ratio: auto;
-}
-
-.aspect-video {
-  aspect-ratio: 16 / 9;
-}
-
 .h-full {
   height: 100%;
 }
@@ -1387,14 +1475,6 @@ input::placeholder {
 
 .w-2\/6 {
   width: 33.333333%;
-}
-
-.w-1 {
-  width: 0.25rem;
-}
-
-.w-px {
-  width: 1px;
 }
 
 .min-w-full {
@@ -1591,18 +1671,6 @@ input::placeholder {
   place-content: center;
 }
 
-.content-end {
-  align-content: flex-end;
-}
-
-.content-around {
-  align-content: space-around;
-}
-
-.items-start {
-  align-items: flex-start;
-}
-
 .items-center {
   align-items: center;
 }
@@ -1617,14 +1685,6 @@ input::placeholder {
 
 .justify-between {
   justify-content: space-between;
-}
-
-.justify-around {
-  justify-content: space-around;
-}
-
-.justify-evenly {
-  justify-content: space-evenly;
 }
 
 .gap-x-6 {
@@ -1817,16 +1877,6 @@ input::placeholder {
   background-color: rgb(238 47 255 / var(--tw-bg-opacity));
 }
 
-.bg-gray-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(37 20 77 / var(--tw-bg-opacity));
-}
-
-.bg-gray-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(61 36 117 / var(--tw-bg-opacity));
-}
-
 .bg-opacity-100 {
   --tw-bg-opacity: 1;
 }
@@ -2013,10 +2063,6 @@ input::placeholder {
   text-align: center;
 }
 
-.align-top {
-  vertical-align: top;
-}
-
 .font-sans {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
@@ -2130,11 +2176,6 @@ input::placeholder {
   color: rgb(238 47 255 / var(--tw-text-opacity));
 }
 
-.text-gray-400 {
-  --tw-text-opacity: 1;
-  color: rgb(80 49 148 / var(--tw-text-opacity));
-}
-
 .text-opacity-70 {
   --tw-text-opacity: 0.7;
 }
@@ -2232,27 +2273,27 @@ input::placeholder {
 /* Font Faces */
 
 @font-face {
-  font-family: 'Inter';
+  font-family: "Inter";
 
-  src: url('/fonts/Inter-VariableFont.ttf') format('truetype');
+  src: url("/fonts/Inter-VariableFont.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Cascadia Code';
+  font-family: "Cascadia Code";
 
   font-weight: normal;
 
-  src: url('/fonts/CascadiaCode.woff2') format('woff2');
+  src: url("/fonts/CascadiaCode.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Cascadia Code';
+  font-family: "Cascadia Code";
 
   font-weight: normal;
 
   font-style: italic;
 
-  src: url('/fonts/CascadiaCodeItalic.woff2') format('woff2');
+  src: url("/fonts/CascadiaCodeItalic.woff2") format("woff2");
 }
 
 /* Custom Styles */
@@ -2578,18 +2619,6 @@ input::placeholder {
 
   .lg\:flex-col {
     flex-direction: column;
-  }
-
-  .lg\:bg-opacity-25 {
-    --tw-bg-opacity: 0.25;
-  }
-
-  .lg\:bg-opacity-30 {
-    --tw-bg-opacity: 0.3;
-  }
-
-  .lg\:bg-opacity-50 {
-    --tw-bg-opacity: 0.5;
   }
 
   .lg\:text-center {

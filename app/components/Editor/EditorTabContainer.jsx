@@ -9,7 +9,6 @@ export default function EditorTabContainer({
     className,
     ...props
 }) {
-
     function getSupportedLanguageFromExtension(ext) {
         for (let key in supportedLanguages) {
             if (supportedLanguages[key].extension === ext) {
@@ -43,13 +42,12 @@ export default function EditorTabContainer({
             //console.log("Active tab is shifted down by 1")
             setActiveTab(activeTab - 1)
         }
-
     }
 
     function addTab(label) {
         let newOpenTabs = [...openTabs]
         newOpenTabs.push({
-            name: label
+            name: label,
         })
         setOpenTabs(newOpenTabs)
         setActiveTab(newOpenTabs.length - 1)
@@ -63,9 +61,13 @@ export default function EditorTabContainer({
         setActiveTab(0)
     }, [setActiveTab, openTabs]) */
 
-
     return (
-        <div className={"flex flex-row flex-nowrap w-full flex-shrink-0 pr-2 py-2 overflow-y-hidden overflow-x-auto " + className}>
+        <div
+            className={
+                "flex flex-row flex-nowrap w-full flex-shrink-0 pr-2 py-2 overflow-y-hidden overflow-x-auto " +
+                className
+            }
+        >
             {openTabs.map((tab, index) => {
                 // Get Extension
                 const ext = tab.name.split(".")[1]
@@ -85,7 +87,13 @@ export default function EditorTabContainer({
                         closeHandler={() => {
                             closeTab(index)
                         }}
-                        canBeClosed={!(tab.name == "Preview" || tab.name == "Console" || tab.name == "Lesson Guide")}
+                        canBeClosed={
+                            !(
+                                tab.name == "Preview" ||
+                                tab.name == "Console" ||
+                                tab.name == "Lesson Guide"
+                            )
+                        }
                     />
                 )
             })}

@@ -1,53 +1,54 @@
 {
-  "name": "www",
-  "private": true,
-  "description": "The Ideoxan website and server, all rolled into one, powered by Remix, TailwindCSS, and Supabase.",
-  "license": "(MIT OR MPL-2.0 OR CC-BY-SA-4.0)",
-  "sideEffects": false,
-  "scripts": {
-    "build": "remix build",
-    "build:css": "npm run generate:css -- -m",
-    "dev": "remix dev",
-    "dev:css": "npm run generate:css -- -w ",
-    "generate:css": "npx tailwindcss -i ./app/styles/tailwind.css -o app/styles/app.css  -c ./tailwind.config.cjs"
-  },
-  "dependencies": {
-    "@icons-pack/react-simple-icons": "^4.7.2",
-    "@mapbox/rehype-prism": "^0.8.0",
-    "@monaco-editor/react": "^4.4.5",
-    "@remix-run/node": "^1.4.3",
-    "@remix-run/react": "^1.6.7",
-    "@remix-run/vercel": "^1.6.7",
-    "@supabase/supabase-js": "^1.35.4",
-    "@vercel/node": "^1.15.4",
-    "dexie": "^3.2.2",
-    "lucide-react": "^0.49.0",
-    "marked": "^4.0.18",
-    "mime": "^3.0.0",
-    "monaco-themes": "^0.4.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-spinners": "^0.13.4",
-    "remark-reading-time": "^2.0.1",
-    "remix-auth": "^3.2.2",
-    "remix-auth-supabase": "^4.0.0",
-    "socket.io": "^4.5.1",
-    "socket.io-client": "^4.5.1",
-    "uuid": "^8.3.2",
-    "xterm": "^4.19.0",
-    "xterm-addon-fit": "^0.5.0"
-  },
-  "devDependencies": {
-    "@remix-run/dev": "^1.6.7",
-    "@remix-run/eslint-config": "^1.6.7",
-    "@remix-run/serve": "^1.4.3",
-    "autoprefixer": "^10.4.8",
-    "concurrent": "^0.3.2",
-    "eslint": "^8.21.0",
-    "postcss": "^8.4.14",
-    "tailwindcss": "^3.1.7"
-  },
-  "engines": {
-    "node": ">=16"
-  }
+    "name": "www",
+    "private": true,
+    "description": "The Ideoxan website and server, all rolled into one, powered by Remix, TailwindCSS, and Supabase.",
+    "license": "(MIT OR MPL-2.0 OR CC-BY-SA-4.0)",
+    "sideEffects": false,
+    "scripts": {
+        "build": "remix build",
+        "build:css": "npm run generate:css -- -m",
+        "dev": "remix dev",
+        "dev:css": "npm run generate:css -- -w ",
+        "generate:css": "npx tailwindcss -i ./app/styles/tailwind.css -o app/styles/app.css  -c ./tailwind.config.cjs"
+    },
+    "dependencies": {
+        "@icons-pack/react-simple-icons": "^4.7.2",
+        "@mapbox/rehype-prism": "^0.8.0",
+        "@monaco-editor/react": "^4.4.5",
+        "@remix-run/node": "^1.4.3",
+        "@remix-run/react": "^1.6.7",
+        "@remix-run/vercel": "^1.6.7",
+        "@supabase/supabase-js": "^1.35.4",
+        "@vercel/node": "^1.15.4",
+        "dexie": "^3.2.2",
+        "lucide-react": "^0.49.0",
+        "marked": "^4.0.18",
+        "mime": "^3.0.0",
+        "monaco-themes": "^0.4.2",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-spinners": "^0.13.4",
+        "remark-reading-time": "^2.0.1",
+        "remix-auth": "^3.2.2",
+        "remix-auth-supabase": "^4.0.0",
+        "socket.io": "^4.5.1",
+        "socket.io-client": "^4.5.1",
+        "uuid": "^8.3.2",
+        "xterm": "^4.19.0",
+        "xterm-addon-fit": "^0.5.0"
+    },
+    "devDependencies": {
+        "@remix-run/dev": "^1.6.7",
+        "@remix-run/eslint-config": "^1.6.7",
+        "@remix-run/serve": "^1.4.3",
+        "autoprefixer": "^10.4.8",
+        "concurrent": "^0.3.2",
+        "eslint": "^8.21.0",
+        "postcss": "^8.4.14",
+        "prettier": "^2.7.1",
+        "tailwindcss": "^3.1.7"
+    },
+    "engines": {
+        "node": ">=16"
+    }
 }

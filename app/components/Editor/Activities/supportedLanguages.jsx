@@ -2,53 +2,53 @@ import { CssThree, Html5, Javascript, Json, Typescript } from "@icons-pack/react
 
 // List of supported languages, associated file extensions, MIME types, and icons
 export default {
-    "null": {
+    null: {
         name: "New Tab",
         icon: null,
         color: "#fff",
         extension: null,
-        mime: null
+        mime: null,
     },
-    "html": {
+    html: {
         name: "Hypertext Markup Language",
         icon: Html5,
         color: "#E34F26",
         extension: "html",
         mime: "text/html",
     },
-    "javascript": {
+    javascript: {
         name: "JavaScript",
         icon: Javascript,
         color: "#F7DF1E",
         extension: "js",
         mime: "application/javascript",
     },
-    "typescript": {
+    typescript: {
         name: "TypeScript",
         icon: Typescript,
         color: "#3178C6",
         extension: "ts",
         mime: "application/typescript",
     },
-    "json": {
+    json: {
         name: "JavaScript Object Notation",
         icon: Json,
         color: "#ffffff",
         extension: "json",
         mime: "application/json",
     },
-    "css": {
+    css: {
         name: "Cascading Style Sheets",
         icon: CssThree,
         color: "#3178C6",
         extension: "css",
         mime: "text/css",
     },
-    "plaintext": {
+    plaintext: {
         name: "Plain Text",
         icon: null,
         color: "#fff",
         extension: "txt",
         mime: "text/plain",
-    }
+    },
 }

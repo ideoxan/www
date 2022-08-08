@@ -1,4 +1,4 @@
-import * as iconSet from 'lucide-react'
+import * as iconSet from "lucide-react"
 
 export default function Icon({
     name = null,
@@ -7,9 +7,8 @@ export default function Icon({
     height = 4,
     color = "gray-50",
     strokeThickness = 2,
-    onClick = null
+    onClick = null,
 }) {
-
     if (name == null || typeof name !== "string") {
         throw new Error("Icon name is required")
     }
@@ -18,10 +17,8 @@ export default function Icon({
         throw new Error("Icon name is invalid. Received: " + name)
     }
 
-    let classNameString = `w-${ width } h-${ height } text-${ color } stroke-${ color } stroke-${ strokeThickness } ${ className }`
+    let classNameString = `w-${width} h-${height} text-${color} stroke-${color} stroke-${strokeThickness} ${className}`
     let IconComponent = iconSet[name]
 
-    return (
-        <IconComponent className={classNameString} onClick={onClick} />
-    )
+    return <IconComponent className={classNameString} onClick={onClick} />
 }

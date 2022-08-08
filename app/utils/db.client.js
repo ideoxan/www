@@ -23,9 +23,12 @@ const supabaseClient = createClient(dbURL, dbKey, {
 })
 
 async function oauthSignIn({ provider }) {
-    supabaseClient.auth.signIn({ provider }, {
-        redirectTo: window.location.protocol + "//" + window.location.host + "/oauth/callback"
-    })
+    supabaseClient.auth.signIn(
+        { provider },
+        {
+            redirectTo: window.location.protocol + "//" + window.location.host + "/oauth/callback",
+        }
+    )
 }
 
 export { supabaseClient, oauthSignIn }

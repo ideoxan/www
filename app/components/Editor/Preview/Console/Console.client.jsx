@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { Terminal } from "xterm"
 import { FitAddon } from "xterm-addon-fit"
 import { io } from "socket.io-client"
-import Icon from 'app/components/Icon'
+import Icon from "app/components/Icon"
 
 export default function Console({ session, userData, metadata }) {
     // Grab ref to terminal elm
@@ -11,18 +11,7 @@ export default function Console({ session, userData, metadata }) {
     const loader = useRef(null)
     const [isRunning, setIsRunning] = useState(false)
 
-    let spinners = [
-        "⠋",
-        "⠙",
-        "⠹",
-        "⠸",
-        "⠼",
-        "⠴",
-        "⠦",
-        "⠧",
-        "⠇",
-        "⠏"
-    ]
+    let spinners = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
 
     function handleResize(e) {
         // Styles
@@ -31,8 +20,8 @@ export default function Console({ session, userData, metadata }) {
         let px = parseFloat(s.paddingLeft.split("px")[0]),
             py = parseFloat(s.paddingTop.split("px")[0])
         // True values
-        let iw = e.clientWidth - (px),
-            ih = e.clientHeight - (py)
+        let iw = e.clientWidth - px,
+            ih = e.clientHeight - py
         // Find out how big a character actually is
         let cw = 7.166666666666667,
             ch = 16 * 1.0
@@ -46,7 +35,7 @@ export default function Console({ session, userData, metadata }) {
 
     // Setup terminal
     useEffect(() => {
-        (async () => {
+        ;(async () => {
             // Create terminal
             console.log("[Terminal] Creating terminal...")
             term.current = new Terminal({
@@ -70,7 +59,9 @@ export default function Console({ session, userData, metadata }) {
             term.current.open(document.querySelector("#terminal"))
 
             // Resize terminal on window resize
-            window.addEventListener("resize", () => handleResize(document.querySelector("#terminal")))
+            window.addEventListener("resize", () =>
+                handleResize(document.querySelector("#terminal"))
+            )
 
             // Inform of impending loading
             console.log("[Terminal] Loading...")
@@ -88,14 +79,17 @@ export default function Console({ session, userData, metadata }) {
             }
 
             // Connect to socket
-            const connectionURL = (window.env.NODE_ENV == "production") ? "https://" + session.user.id + "." + window.env.TESSERACT_URL : "http://localhost:5972"
+            const connectionURL =
+                window.env.NODE_ENV == "production"
+                    ? "https://" + session.user.id + "." + window.env.TESSERACT_URL
+                    : "http://localhost:5972"
 
             console.log("[Terminal] Connecting to socket (" + connectionURL + ")...")
 
             socket.current = io(connectionURL, {
                 auth: {
-                    token: session.access_token
-                }
+                    token: session.access_token,
+                },
             })
 
             // Listen for socket events
@@ -113,21 +107,21 @@ export default function Console({ session, userData, metadata }) {
                 setIsRunning(false)
             })
 
-            socket.current.on("connect_error", (err) => {
+            socket.current.on("connect_error", err => {
                 console.error("[Terminal] Connect error:", err)
                 setIsRunning(false)
                 return fastFail()
             })
 
-            socket.current.on("tesseract_exec_stdout", (data) => {
+            socket.current.on("tesseract_exec_stdout", data => {
                 term.current.write(data)
             })
 
-            socket.current.on("tesseract_exec_stderr", (data) => {
+            socket.current.on("tesseract_exec_stderr", data => {
                 term.current.write(data)
             })
 
-            socket.current.on("tesseract_exec_end", (data) => {
+            socket.current.on("tesseract_exec_end", data => {
                 term.current.write("\r\n")
                 setIsRunning(false)
             })
@@ -148,8 +142,12 @@ export default function Console({ session, userData, metadata }) {
                 clearInterval(loader.current)
                 term.current.write("\x1b[H\x1b[2J")
                 term.current.write("\x1b[41;1m ERROR: \x1b[0m Unable to load console.\r\n")
-                term.current.write("\x1b[41;1m ERROR: \x1b[0m Looks like you're not logged in.\r\n\r\n")
-                term.current.write("\x1b[33;1mIf you want to be able to run your code, save your\r\n")
+                term.current.write(
+                    "\x1b[41;1m ERROR: \x1b[0m Looks like you're not logged in.\r\n\r\n"
+                )
+                term.current.write(
+                    "\x1b[33;1mIf you want to be able to run your code, save your\r\n"
+                )
                 term.current.write("progress, and advance through this course, log in\r\n")
                 term.current.write("or sign up for an account.\r\n\r\n")
                 term.current.write("https://ideoxan.com/login\r\n")
@@ -177,9 +175,10 @@ export default function Console({ session, userData, metadata }) {
 
     return (
         <div className="flex flex-col h-full w-full rounded-lg ring-1 ring-gray-500 ring-opacity-20 shadow-xl bg-black">
-            <div id="terminal" className="flex flex-col h-full w-full pl-3 pr-2 pt-3 flex-shrink">
-
-            </div>
+            <div
+                id="terminal"
+                className="flex flex-col h-full w-full pl-3 pr-2 pt-3 flex-shrink"
+            ></div>
             <div className="relative flex flex-row bottom-0 py-3 px-3 mx-auto z-10">
                 {socket?.current && session && userData && !isRunning && (
                     <Icon
@@ -203,11 +202,11 @@ export default function Console({ session, userData, metadata }) {
                                 user: session.user.id,
                                 environment: {
                                     on: metadata.lesson.environment.on,
-                                    commands: metadata.lesson.environment.commands
+                                    commands: metadata.lesson.environment.commands,
                                 },
-                                workspace: ""
+                                workspace: "",
                             })
-                            socket.current.on("tesseract_request_ok", (data) => {
+                            socket.current.on("tesseract_request_ok", data => {
                                 clearInterval(loader.current)
                                 let ri = 0
                                 term.current.write("\x1bcRunning  ")
@@ -216,7 +215,7 @@ export default function Console({ session, userData, metadata }) {
                                     if (ri >= spinners.length) ri = 0
                                     term.current.write(spinners[ri++])
                                 }, 80)
-                                socket.current.on("tesseract_exec_start", (data) => {
+                                socket.current.on("tesseract_exec_start", data => {
                                     clearInterval(loader.current)
                                     term.current.write("\x1bc")
                                 })

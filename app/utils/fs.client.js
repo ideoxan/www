@@ -6,16 +6,15 @@ const FS_DB_NAME = "fs-ix"
 const FS_DB_VERSION = 1
 const FS_DB_TABLE_NAME = "files"
 
-
 let db = null
 fillIfVoid()
 
 function fillIfVoid() {
     if (
-        db == null
-        || !(db instanceof Dexie)
-        || db.table(FS_DB_TABLE_NAME) == null
-        || typeof db?.table(FS_DB_TABLE_NAME) == "undefined"
+        db == null ||
+        !(db instanceof Dexie) ||
+        db.table(FS_DB_TABLE_NAME) == null ||
+        typeof db?.table(FS_DB_TABLE_NAME) == "undefined"
     ) {
         // Create a new Dexie database
         db = new Dexie(FS_DB_NAME)
@@ -24,9 +23,9 @@ function fillIfVoid() {
         db.on("ready", () => {
             console.log("[FileSystem] Info: Online. Ready.")
         })
-        db.on("versionchange", async (e) => {
+        db.on("versionchange", async e => {
             e.preventDefault()
-            console.log(`[FileSystem] Warn: Version differs (${ e.oldVersion } vs ${ e.newVersion }).`)
+            console.log(`[FileSystem] Warn: Version differs (${e.oldVersion} vs ${e.newVersion}).`)
             console.log(`[FileSystem] Warn: Discarding old FileSystem data in favor of new one.`)
             console.log(`[FileSystem] Warn: This process is irreversible!`)
             await db.table(FS_DB_TABLE_NAME).clear()
@@ -35,10 +34,9 @@ function fillIfVoid() {
 
         // Create a table for the files
         db.version(FS_DB_VERSION).stores({
-            [FS_DB_TABLE_NAME]: "&object_id, &path, mime, type, modified, content"
+            [FS_DB_TABLE_NAME]: "&object_id, &path, mime, type, modified, content",
         })
     }
-
 }
 
 export default class FileSystem {
@@ -48,14 +46,12 @@ export default class FileSystem {
         // Set the contents of the file
         try {
             fillIfVoid()
-            console.log(`[FileSystem] Info: Writing file: ${ filePath }`)
+            console.log(`[FileSystem] Info: Writing file: ${filePath}`)
             if (await db.table(FS_DB_TABLE_NAME).get({ path: filePath })) {
-
                 await db.table(FS_DB_TABLE_NAME).update(filePath, {
                     content: content,
                     modified: new Date(),
                 })
-
             } else {
                 let object_id = uuidv4()
                 let folders = filePath.split("/")
@@ -71,7 +67,7 @@ export default class FileSystem {
                 })
             }
         } catch (e) {
-            console.error(`[FileSystem] Error: Failed to write file: ${ filePath }`)
+            console.error(`[FileSystem] Error: Failed to write file: ${filePath}`)
             console.error(e)
         }
     }
@@ -80,10 +76,10 @@ export default class FileSystem {
     static async removeFile({ filePath }) {
         try {
             fillIfVoid()
-            console.log(`[FileSystem] Info: Removing file: ${ filePath }`)
+            console.log(`[FileSystem] Info: Removing file: ${filePath}`)
             await db.table(FS_DB_TABLE_NAME).delete(filePath)
         } catch (e) {
-            console.error(`[FileSystem] Error: Failed to remove file: ${ filePath }`)
+            console.error(`[FileSystem] Error: Failed to remove file: ${filePath}`)
             console.error(e)
         }
     }
@@ -92,11 +88,11 @@ export default class FileSystem {
     static async readFile({ filePath }) {
         try {
             fillIfVoid()
-            console.log(`[FileSystem] Info: Reading file: ${ filePath }`)
+            console.log(`[FileSystem] Info: Reading file: ${filePath}`)
             const file = await db.table(FS_DB_TABLE_NAME).get({ path: filePath })
             return file.content
         } catch (e) {
-            console.error(`[FileSystem] Error: Failed to read file: ${ filePath }`)
+            console.error(`[FileSystem] Error: Failed to read file: ${filePath}`)
             console.error(e)
         }
     }
@@ -105,23 +101,19 @@ export default class FileSystem {
     static async stat({ filePath }) {
         try {
             fillIfVoid()
-            console.log(`[FileSystem] Info: Stating file: ${ filePath }`)
-            const {
-                object_id,
-                path,
-                mime,
-                type,
-                modified
-            } = await db.table(FS_DB_TABLE_NAME).get({ path: filePath })
+            console.log(`[FileSystem] Info: Stating file: ${filePath}`)
+            const { object_id, path, mime, type, modified } = await db
+                .table(FS_DB_TABLE_NAME)
+                .get({ path: filePath })
             return {
                 object_id,
                 path,
                 mime,
                 type,
-                modified
+                modified,
             }
         } catch (e) {
-            console.error(`[FileSystem] Error: Failed to stat file: ${ filePath }`)
+            console.error(`[FileSystem] Error: Failed to stat file: ${filePath}`)
             console.error(e)
         }
     }
@@ -130,25 +122,28 @@ export default class FileSystem {
     static async ls({ dirPath }) {
         fillIfVoid()
         if (db.table(FS_DB_TABLE_NAME).get({ path: dirPath })) {
-            console.log(`[FileSystem] Info: Listing direcotry: ${ dirPath }`)
+            console.log(`[FileSystem] Info: Listing direcotry: ${dirPath}`)
             let pathSplitCount = dirPath.split("/").length
-            return db.table(FS_DB_TABLE_NAME)
-                .where("path")
-                .startsWith(dirPath)
-                .filter((file) => {
-                    // Split up the path and count the number of folders included
-                    let fileSplitPath = file.path.split("/")
-                    // Filter out the current directory
-                    if (file.path == dirPath) return false
-                    // Filter out subdirectories outside with depth greater than 1
-                    if (fileSplitPath.length <= pathSplitCount + 1) {
-                        // Make sure folders are included, but none of their children
-                        if (fileSplitPath.length == pathSplitCount + 1) {
-                            return fileSplitPath[pathSplitCount] == ""
-                        } else return true
-                    } else return false
-                })
-                .toArray() || []
+            return (
+                db
+                    .table(FS_DB_TABLE_NAME)
+                    .where("path")
+                    .startsWith(dirPath)
+                    .filter(file => {
+                        // Split up the path and count the number of folders included
+                        let fileSplitPath = file.path.split("/")
+                        // Filter out the current directory
+                        if (file.path == dirPath) return false
+                        // Filter out subdirectories outside with depth greater than 1
+                        if (fileSplitPath.length <= pathSplitCount + 1) {
+                            // Make sure folders are included, but none of their children
+                            if (fileSplitPath.length == pathSplitCount + 1) {
+                                return fileSplitPath[pathSplitCount] == ""
+                            } else return true
+                        } else return false
+                    })
+                    .toArray() || []
+            )
         }
         return null
     }
@@ -161,15 +156,15 @@ export default class FileSystem {
         let currentPath = ""
         for (let i = 0; i < folders.length; i++) {
             currentPath += folders[i] + "/"
-            if (!await db.table(FS_DB_TABLE_NAME).get({ path: currentPath })) {
-                console.log(`[FileSystem] Info: Creating direcotry: ${ currentPath }`)
+            if (!(await db.table(FS_DB_TABLE_NAME).get({ path: currentPath }))) {
+                console.log(`[FileSystem] Info: Creating direcotry: ${currentPath}`)
                 await db.table(FS_DB_TABLE_NAME).add({
                     object_id: uuidv4(),
                     path: currentPath,
                     mime: null,
                     type: "directory",
                     modified: new Date(),
-                    content: null
+                    content: null,
                 })
             }
         }

@@ -1,10 +1,10 @@
 {
-  "build": {
-    "env": {
-      "ENABLE_FILE_SYSTEM_API": "1"
+    "build": {
+        "env": {
+            "ENABLE_FILE_SYSTEM_API": "1"
+        }
+    },
+    "github": {
+        "silent": true
     }
-  },
-  "github": {
-    "silent": true
-  }
 }
