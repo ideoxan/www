@@ -44,14 +44,14 @@ export default function Index() {
     return (
         <main>
             <NavigationBar session={session} userData={userData} />
-            <HeroSection />
+            <HeroSection session={session} />
             <FeaturesSection />
             <SolutionsCTA />
             <FreeForAllSection />
             <CoursesSection />
             <OpenSourceSection />
             <RewardsSection />
-            <SignupCTA />
+            {!session?.user && <SignupCTA />}
             <Footer />
         </main>
     )

@@ -9,8 +9,7 @@ export default function SolutionsCTA() {
                     {/* Image */}
                     <img
                         src="/images/ix_edu_cta.png"
-                        alt="Group of students sitting on laptops programming."
-                    ></img>
+                        alt="Group of students sitting on laptops programming."></img>
 
                     {/* Text */}
                     <div className="flex flex-col p-6">
@@ -21,7 +20,9 @@ export default function SolutionsCTA() {
                             Need to supercharge learning in your classroom? Find a new way to
                             educate with <b>IX/EDU</b>
                         </p>
-                        <button className="mx-auto mt-6 mb-2 bttn bttn-round bttn-normal bttn-white bttn-disabled">
+                        <button
+                            disabled={true}
+                            className="mx-auto mt-6 bttn bttn-round bttn-normal bttn-gradient bttn-disabled">
                             Coming Soon
                         </button>
                     </div>

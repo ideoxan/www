@@ -1,6 +1,6 @@
 import FadeInSection from "app/components/FadeInSection"
 
-export default function HeroSection() {
+export default function HeroSection({ session }) {
     return (
         <FadeInSection>
             <header
@@ -15,11 +15,19 @@ export default function HeroSection() {
                         Ideoxan is empowering the next generation of programmers, makers, and
                         inventors.
                     </h2>
-                    <a
-                        href="/signup"
-                        className="sm:mx-auto mt-12 bttn bttn-round bttn-normal bttn-gradient bttn-glow">
-                        Join the Waitlist
-                    </a>
+                    {session?.user ? (
+                        <button
+                            disabled={true}
+                            className="sm:mx-auto mt-12 bttn bttn-round bttn-normal bttn-gradient bttn-disabled">
+                            You are already on the Waitlist
+                        </button>
+                    ) : (
+                        <a
+                            href="/signup"
+                            className="sm:mx-auto mt-12 bttn bttn-round bttn-normal bttn-gradient box-glow-hover bttn-gradient-arrow">
+                            Join the Waitlist
+                        </a>
+                    )}
                 </div>
 
                 {/* Hero image */}
