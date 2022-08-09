@@ -4,12 +4,11 @@ import trimStringToWord from "app/utils/trimStringToWord"
 export default function BlogCard({ post, ...props }) {
     return (
         <div
-            className="flex flex-col flex-1 rounded-md ring-1 ring-opacity-30 ring-gray-500 bg-gray-700 w-full h-full hover:scale-105 hover:translate-y-px cursor-pointer"
+            className="flex flex-col flex-1 rounded-md ring-1 ring-opacity-30 ring-gray-500 bg-gray-700 w-96 h-full hover:scale-105 hover:translate-y-px cursor-pointer"
             onClick={() => {
                 window.location = "/blog/post/" + post.attributes.slug
             }}
-            {...props}
-        >
+            {...props}>
             <img
                 src={post.attributes.thumbnail}
                 className="w-full h-48 object-cover rounded-t-md"
@@ -36,8 +35,7 @@ export default function BlogCard({ post, ...props }) {
                             Posted by{" "}
                             <a
                                 href={post.attributes.author.replace("@", "/user/")}
-                                className="hover:underline"
-                            >
+                                className="hover:underline">
                                 {post.attributes.author}
                             </a>
                         </p>
