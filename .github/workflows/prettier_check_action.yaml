@@ -23,4 +23,4 @@ jobs:
               run: npm install --production=false
 
             - name: Check formatting
-              run: prettier --check .
+              run: npx prettier --check .
