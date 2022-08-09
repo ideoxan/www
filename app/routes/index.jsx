@@ -42,7 +42,7 @@ export default function Index() {
     let { session, userData } = useLoaderData()
 
     return (
-        <>
+        <main>
             <NavigationBar session={session} userData={userData} />
             <HeroSection />
             <FeaturesSection />
@@ -53,6 +53,6 @@ export default function Index() {
             <RewardsSection />
             <SignupCTA />
             <Footer />
-        </>
+        </main>
     )
 }

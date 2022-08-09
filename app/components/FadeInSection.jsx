@@ -5,6 +5,8 @@ export default function FadeInSection({
     children,
     direction = "up",
     threshold = 0.4,
+    className = "",
+    ...props
 }) {
     const [isVisible, setIsVisible] = useState(false)
     const ref = useRef()
@@ -46,13 +48,16 @@ export default function FadeInSection({
 
     if (disable) {
         return (
-            <div ref={ref} className="opacity-100">
+            <div ref={ref} className={"opacity-100 " + className} {...props}>
                 {children}
             </div>
         )
     } else {
         return (
-            <div ref={ref} className={"opacity-0 " + (isVisible ? animationToUse : "")}>
+            <div
+                ref={ref}
+                className={"opacity-0 " + (isVisible ? animationToUse : "") + " " + className}
+                {...props}>
                 {children}
             </div>
         )

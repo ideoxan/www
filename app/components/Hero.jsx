@@ -5,8 +5,7 @@ export default function HeroSection() {
         <FadeInSection>
             <header
                 id="hero"
-                className="bg-center bg-contain bg-no-repeat overflow-y-visible flex flex-col w-full md:bg-img-hero"
-            >
+                className="bg-center bg-contain bg-no-repeat overflow-y-visible flex flex-col w-full md:bg-img-hero">
                 {/* Header and tagline */}
                 <div className="flex flex-col mt-8 lg:mt-32 mb-0 md:mb-10 lg:mb-8 md:mx-auto max-w-3xl lg:max-w-7xl lg:w-full p-8">
                     <h1 className="sm:mx-auto font-sans font-extrabold tracking-tight text-3xl sm:text-4xl md:text-5xl max-w-sm sm:max-w-md md:max-w-full sm:text-center glow-text-white">
@@ -18,8 +17,7 @@ export default function HeroSection() {
                     </h2>
                     <a
                         href="/signup"
-                        className="sm:mx-auto mt-12 bttn bttn-round bttn-normal bttn-gradient bttn-glow"
-                    >
+                        className="sm:mx-auto mt-12 bttn bttn-round bttn-normal bttn-gradient bttn-glow">
                         Join the Waitlist
                     </a>
                 </div>
@@ -29,8 +27,7 @@ export default function HeroSection() {
                     <img
                         src="/images/editor_20220801.png"
                         className="mx-auto w-full lg:max-w-5xl h-auto rounded-lg ring-1 ring-gray-500 ring-opacity-50 shadow-2xl"
-                        alt="A screenshot of the Ideoxan Editor"
-                    ></img>
+                        alt="A screenshot of the Ideoxan Editor"></img>
                 </div>
             </header>
         </FadeInSection>

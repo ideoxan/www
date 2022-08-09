@@ -41,7 +41,7 @@ export default function FeaturesSection() {
                             src="/images/Feat1.png"
                             className="flex-shrink w-auto mx-auto my-auto"
                             alt="Two people programming"
-                        ></img>
+                        />
                     </div>
                 </div>
             </section>
