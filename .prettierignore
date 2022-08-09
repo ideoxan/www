@@ -1,9 +1,12 @@
 node_modules
+package-lock.json
 
-/build
-/public/build
+build
+public/build
 .env
 
-/app/styles/app.css
+app/styles/app.css
+app/styles/xterm.css
+app/styles/prism-theme.css
 
 api
