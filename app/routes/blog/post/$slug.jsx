@@ -72,18 +72,18 @@ export default function BlogPost() {
     return (
         <>
             <NavigationBar session={session} userData={userData} />
-            <main className="flex flex-col w-full">
-                <div className="flex flex-col lg:flex-row md:mt-8 mb-2 lg:mb-20 md:mx-auto h-full">
-                    <article className="flex flex-col max-w-3xl w-full p-8">
+            <main className="flex w-full flex-col">
+                <div className="mb-2 flex h-full flex-col md:mx-auto md:mt-8 lg:mb-20 lg:flex-row">
+                    <article className="flex w-full max-w-3xl flex-col p-8">
                         <div className="flex flex-col md:flex-row">
                             <div className="flex flex-row">
                                 <img
                                     src="/images/ix_logo_purple_1024_1024.png"
                                     alt={post.attributes.author + "'s Profile Picture"}
-                                    className="w-8 h-8 my-auto rounded-full"
+                                    className="my-auto h-8 w-8 rounded-full"
                                 />
-                                <div className="flex flex-col ml-4">
-                                    <p className="font-sans font-medium text-left text-sm text-gray-50 opacity-80">
+                                <div className="ml-4 flex flex-col">
+                                    <p className="text-left font-sans text-sm font-medium text-gray-50 opacity-80">
                                         Posted by{" "}
                                         <a
                                             href={post.attributes.author.replace("@", "/user/")}
@@ -92,14 +92,14 @@ export default function BlogPost() {
                                             {post.attributes.author}
                                         </a>
                                     </p>
-                                    <p className="mt-0.5 font-sans font-bold text-left text-2xs text-gray-100 opacity-80">
+                                    <p className="mt-0.5 text-left font-sans text-2xs font-bold text-gray-100 opacity-80">
                                         {formatDate(post.attributes.date)}
                                     </p>
                                 </div>
                             </div>
-                            <div className="flex flex-row mt-6 md:ml-auto space-x-6 md:my-auto">
+                            <div className="mt-6 flex flex-row space-x-6 md:my-auto md:ml-auto">
                                 <button
-                                    className="text-gray-50 opacity-50 hover:opacity-100 flex flex-row"
+                                    className="flex flex-row text-gray-50 opacity-50 hover:opacity-100"
                                     onClick={() => {
                                         window.open(share.fb, "_blank")
                                     }}
@@ -107,7 +107,7 @@ export default function BlogPost() {
                                     <Facebook width={16} />
                                 </button>
                                 <button
-                                    className="text-gray-50 opacity-50 hover:opacity-100 flex flex-row"
+                                    className="flex flex-row text-gray-50 opacity-50 hover:opacity-100"
                                     onClick={() => {
                                         window.open(share.twitter, "_blank")
                                     }}
@@ -115,7 +115,7 @@ export default function BlogPost() {
                                     <Twitter width={16} />
                                 </button>
                                 <button
-                                    className="text-gray-50 opacity-50 hover:opacity-100 flex flex-row"
+                                    className="flex flex-row text-gray-50 opacity-50 hover:opacity-100"
                                     onClick={() => {
                                         window.open(share.linkedin, "_blank")
                                     }}
@@ -124,18 +124,18 @@ export default function BlogPost() {
                                 </button>
                             </div>
                         </div>
-                        <h1 className="mt-8 pb-2 font-sans font-extrabold tracking-tight text-2xl sm:text-3xl md:text-4xl glow-text-white">
+                        <h1 className="glow-text-white mt-8 pb-2 font-sans text-2xl font-extrabold tracking-tight sm:text-3xl md:text-4xl">
                             {post.attributes.title}
                         </h1>
-                        <h2 className="italic mt-2 font-sans font-semibold tracking-tight text-sm sm:text-base text-gray-100">
+                        <h2 className="mt-2 font-sans text-sm font-semibold italic tracking-tight text-gray-100 sm:text-base">
                             {post.attributes.description}
                         </h2>
                         <img
                             src={post.attributes.thumbnail}
-                            className="mt-6 md:mt-8 w-full h-auto object-cover rounded-md"
+                            className="mt-6 h-auto w-full rounded-md object-cover md:mt-8"
                             alt={post.attributes.title + "'s thumbnail"}
                         />
-                        <div className="mt-6 md:mt-8 blog-content">
+                        <div className="blog-content mt-6 md:mt-8">
                             <PostMDX />
                         </div>
                     </article>

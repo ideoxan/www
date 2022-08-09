@@ -64,7 +64,7 @@ export default function EditorTabContainer({
     return (
         <div
             className={
-                "flex flex-row flex-nowrap w-full flex-shrink-0 pr-2 py-2 overflow-y-hidden overflow-x-auto " +
+                "flex w-full flex-shrink-0 flex-row flex-nowrap overflow-x-auto overflow-y-hidden py-2 pr-2 " +
                 className
             }
         >

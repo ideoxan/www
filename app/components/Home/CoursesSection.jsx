@@ -42,7 +42,7 @@ export default function CoursesSection() {
                 {/* Features */}
                 <div className="section-container flex-col md:flex-row md:space-x-6">
                     {/* Feature Listing Column */}
-                    <div className="flex flex-col p-6 md:w-1/2 my-auto">
+                    <div className="my-auto flex flex-col p-6 md:w-1/2">
                         <FadeInSection direction="right">
                             <h2 className="section-header">Learn the next great thing</h2>
                             <p className="paragraph mt-8">
@@ -60,7 +60,7 @@ export default function CoursesSection() {
                     </div>
 
                     {/* Image Column */}
-                    <div className="my-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 grid-flow-row md:w-1/2 p-6 gap-x-6 gap-y-4 w-full">
+                    <div className="my-auto grid w-full grid-flow-row grid-cols-1 gap-x-6 gap-y-4 p-6 sm:grid-cols-2 md:w-1/2 md:grid-cols-1 lg:grid-cols-2">
                         {sampleCourseData.map((course, index) => (
                             <CourseCard
                                 key={index}

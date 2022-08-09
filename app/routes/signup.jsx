@@ -62,29 +62,29 @@ export default function Signup({ request }) {
 
     return (
         <AuthSplash>
-            <h1 className="mx-auto font-sans font-extrabold tracking-tight text-center text-2xl text-transparent bg-gradient-white bg-clip-text">
+            <h1 className="bg-gradient-white mx-auto bg-clip-text text-center font-sans text-2xl font-extrabold tracking-tight text-transparent">
                 Register for a new account
             </h1>
             <Link
-                className="mx-auto mt-1 font-sans font-medium text-center text-sm text-gray-50 opacity-50 hover:underline"
+                className="mx-auto mt-1 text-center font-sans text-sm font-medium text-gray-50 opacity-50 hover:underline"
                 to="/login"
             >
                 Or log into an existing account
             </Link>
 
             {error?.message && (
-                <p className="mx-auto mt-6 font-sans font-medium text-center text-xs px-8 py-2 bg-red-500/50 text-red-50 rounded-lg">
+                <p className="mx-auto mt-6 rounded-lg bg-red-500/50 px-8 py-2 text-center font-sans text-xs font-medium text-red-50">
                     {error?.message}
                 </p>
             )}
 
             {/* Signup form */}
-            <Form method="post" autoComplete="off" className="mt-6 flex flex-col w-full">
+            <Form method="post" autoComplete="off" className="mt-6 flex w-full flex-col">
                 <input
                     type="email"
                     name="email"
                     autoComplete="on"
-                    className="mt-4 appearance-none block w-full px-5 py-3 bg-gray-800 text-gray-50 text-opacity-70 focus:text-opacity-100 text-xs font-sans font-medium rounded-lg border focus:border-1 border-gray-500 focus:border-primary border-opacity-50 focus:outline-none outline-offset-0"
+                    className="focus:border-1 mt-4 block w-full appearance-none rounded-lg border border-gray-500 border-opacity-50 bg-gray-800 px-5 py-3 font-sans text-xs font-medium text-gray-50 text-opacity-70 outline-offset-0 focus:border-primary focus:text-opacity-100 focus:outline-none"
                     placeholder="Email"
                     required
                 />
@@ -93,7 +93,7 @@ export default function Signup({ request }) {
                     type="password"
                     name="password"
                     autoComplete="on"
-                    className="mt-4 appearance-none block w-full px-5 py-3 bg-gray-800 text-gray-50 text-opacity-70 focus:text-opacity-100 text-xs font-sans font-medium rounded-lg border focus:border-1 border-gray-500 focus:border-primary border-opacity-50 focus:outline-none outline-offset-0"
+                    className="focus:border-1 mt-4 block w-full appearance-none rounded-lg border border-gray-500 border-opacity-50 bg-gray-800 px-5 py-3 font-sans text-xs font-medium text-gray-50 text-opacity-70 outline-offset-0 focus:border-primary focus:text-opacity-100 focus:outline-none"
                     placeholder="Password"
                     required
                 />
@@ -102,17 +102,17 @@ export default function Signup({ request }) {
                     type="password"
                     name="password_confirm"
                     autoComplete="on"
-                    className="mt-4 appearance-none block w-full px-5 py-3 bg-gray-800 text-gray-50 text-opacity-70 focus:text-opacity-100 text-xs font-sans font-medium rounded-lg border focus:border-1 border-gray-500 focus:border-primary border-opacity-50 focus:outline-none outline-offset-0"
+                    className="focus:border-1 mt-4 block w-full appearance-none rounded-lg border border-gray-500 border-opacity-50 bg-gray-800 px-5 py-3 font-sans text-xs font-medium text-gray-50 text-opacity-70 outline-offset-0 focus:border-primary focus:text-opacity-100 focus:outline-none"
                     placeholder="Confirm Password"
                     required
                 />
 
-                <div className="w-full flex flex-row mt-6">
+                <div className="mt-6 flex w-full flex-row">
                     {/* <a href="/resetpassword" className="mr-auto mb-auto font-sans font-medium text-center text-2xs text-gray-50 opacity-50 hover:underline">Reset Password</a> */}
 
                     <button
                         type="submit"
-                        className="ml-auto my-auto bttn bttn-square bttn-normal bttn-white opacity-80 hover:opacity-100"
+                        className="bttn bttn-square bttn-normal bttn-white my-auto ml-auto opacity-80 hover:opacity-100"
                     >
                         Sign Up
                     </button>
@@ -120,11 +120,11 @@ export default function Signup({ request }) {
             </Form>
 
             <div className="my-6 flex flex-row opacity-50">
-                <div className="my-auto w-full h-px bg-gray-50 opacity-50"></div>
-                <p className="font-sans font-bold text-center text-xs text-gray-50 opacity-50 px-4">
+                <div className="my-auto h-px w-full bg-gray-50 opacity-50"></div>
+                <p className="px-4 text-center font-sans text-xs font-bold text-gray-50 opacity-50">
                     OR
                 </p>
-                <div className="my-auto w-full h-px bg-gray-50 opacity-50"></div>
+                <div className="my-auto h-px w-full bg-gray-50 opacity-50"></div>
             </div>
 
             <AuthOAuth />

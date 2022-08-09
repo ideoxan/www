@@ -57,7 +57,8 @@ export default function FadeInSection({
             <div
                 ref={ref}
                 className={"opacity-0 " + (isVisible ? animationToUse : "") + " " + className}
-                {...props}>
+                {...props}
+            >
                 {children}
             </div>
         )

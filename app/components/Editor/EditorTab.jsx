@@ -37,7 +37,7 @@ export default function EditorTab({
             {...props}
         >
             {FileTypeIconName ? (
-                <FileTypeIconName className="w-3 h-3 my-auto" color={fileTypeIconColor} />
+                <FileTypeIconName className="my-auto h-3 w-3" color={fileTypeIconColor} />
             ) : (
                 <Icon
                     name={fallbackIconName}
@@ -46,10 +46,10 @@ export default function EditorTab({
                     className="my-auto text-gray-50"
                 />
             )}
-            <p className="ml-3 font-sans font-medium text-xs text-left text-gray-50">{label}</p>
+            <p className="ml-3 text-left font-sans text-xs font-medium text-gray-50">{label}</p>
             {canBeClosed && (
                 <button
-                    className="ml-auto my-auto text-gray-50 opacity-50 hover:opacity-100"
+                    className="my-auto ml-auto text-gray-50 opacity-50 hover:opacity-100"
                     onClick={typeof closeHandler === "function" && closeHandler}
                 >
                     <Icon name="X" width={3} height={3} className="ml-auto" />

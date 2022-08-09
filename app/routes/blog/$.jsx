@@ -40,17 +40,17 @@ export default function BlogIndex() {
         <>
             <NavigationBar session={session} userData={userData} />
             <FadeInSection>
-                <div className="flex flex-col mt-14 md:mx-auto max-w-3xl lg:max-w-7xl lg:w-full p-8">
-                    <h1 className="sm:mx-auto font-sans font-extrabold tracking-tight text-3xl sm:text-4xl md:text-5xl max-w-sm sm:max-w-md md:max-w-full sm:text-center glow-text-white pb-2">
+                <div className="mt-14 flex max-w-3xl flex-col p-8 md:mx-auto lg:w-full lg:max-w-7xl">
+                    <h1 className="glow-text-white max-w-sm pb-2 font-sans text-3xl font-extrabold tracking-tight sm:mx-auto sm:max-w-md sm:text-center sm:text-4xl md:max-w-full md:text-5xl">
                         The Ideoxan Blog
                     </h1>
-                    <h2 className="sm:mx-auto mt-2 font-sans font-medium tracking-tight text-sm sm:text-base max-w-sm sm:max-w-md md:max-w-lg sm:text-center text-gray-50 opacity-80">
+                    <h2 className="mt-2 max-w-sm font-sans text-sm font-medium tracking-tight text-gray-50 opacity-80 sm:mx-auto sm:max-w-md sm:text-center sm:text-base md:max-w-lg">
                         The latest updates from the Ideoxan team
                     </h2>
                 </div>
             </FadeInSection>
-            <div className="section flex-col mx-auto">
-                <div className="flex flex-row flex-wrap justify-center p-6 max-w-8xl mx-auto w-full place-content-center gap-y-6 gap-x-8">
+            <div className="section mx-auto flex-col">
+                <div className="max-w-8xl mx-auto flex w-full flex-row flex-wrap place-content-center justify-center gap-y-6 gap-x-8 p-6">
                     {Object.values(posts).map((post, i) => {
                         if (!post.attributes.published) return null
                         return (

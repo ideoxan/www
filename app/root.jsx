@@ -78,31 +78,35 @@ export function CatchBoundary() {
                     <link
                         rel="apple-touch-icon"
                         sizes="180x180"
-                        href="/apple-touch-icon.png"></link>
+                        href="/apple-touch-icon.png"
+                    ></link>
                     <link
                         rel="icon"
                         type="image/png"
                         sizes="32x32"
-                        href="/favicon-32x32.png"></link>
+                        href="/favicon-32x32.png"
+                    ></link>
                     <link
                         rel="icon"
                         type="image/png"
                         sizes="16x16"
-                        href="/favicon-16x16.png"></link>
+                        href="/favicon-16x16.png"
+                    ></link>
                     <link rel="manifest" href="/site.webmanifest"></link>
                     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#6f2bff"></link>
                 </head>
-                <body className="h-full w-full flex flex-col">
+                <body className="flex h-full w-full flex-col">
                     <div className="m-auto flex flex-col">
-                        <h1 className="mx-auto font-sans font-extrabold tracking-tight text-6xl text-center glow-text-white pb-2">
+                        <h1 className="glow-text-white mx-auto pb-2 text-center font-sans text-6xl font-extrabold tracking-tight">
                             Work in Progress
                         </h1>
-                        <h2 className="mx-auto mt-4 font-sans font-semibold tracking-tight text-lg text-center text-gray-50 opacity-80">
+                        <h2 className="mx-auto mt-4 text-center font-sans text-lg font-semibold tracking-tight text-gray-50 opacity-80">
                             This page is coming soon. Check back later.
                         </h2>
                         <a
                             href="/"
-                            className="mx-auto mt-6 bttn bttn-round bttn-normal bttn-gradient box-glow-hover">
+                            className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover mx-auto mt-6"
+                        >
                             Go Home
                         </a>
                     </div>
@@ -126,31 +130,35 @@ export function CatchBoundary() {
                     <link
                         rel="apple-touch-icon"
                         sizes="180x180"
-                        href="/apple-touch-icon.png"></link>
+                        href="/apple-touch-icon.png"
+                    ></link>
                     <link
                         rel="icon"
                         type="image/png"
                         sizes="32x32"
-                        href="/favicon-32x32.png"></link>
+                        href="/favicon-32x32.png"
+                    ></link>
                     <link
                         rel="icon"
                         type="image/png"
                         sizes="16x16"
-                        href="/favicon-16x16.png"></link>
+                        href="/favicon-16x16.png"
+                    ></link>
                     <link rel="manifest" href="/site.webmanifest"></link>
                     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#6f2bff"></link>
                 </head>
-                <body className="h-full w-full flex flex-col">
+                <body className="flex h-full w-full flex-col">
                     <div className="m-auto flex flex-col">
-                        <h1 className="mx-auto font-sans font-extrabold tracking-tight text-6xl text-center glow-text-white">
+                        <h1 className="glow-text-white mx-auto text-center font-sans text-6xl font-extrabold tracking-tight">
                             {caught.status}
                         </h1>
-                        <h2 className="mx-auto mt-4 font-sans font-semibold tracking-tight text-lg text-center text-gray-50 opacity-80">
+                        <h2 className="mx-auto mt-4 text-center font-sans text-lg font-semibold tracking-tight text-gray-50 opacity-80">
                             {caught.statusText}
                         </h2>
                         <a
                             href="/"
-                            className="mx-auto mt-6 bttn bttn-round bttn-normal bttn-gradient box-glow-hover">
+                            className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover mx-auto mt-6"
+                        >
                             Go Home
                         </a>
                     </div>

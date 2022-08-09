@@ -6,15 +6,15 @@ export default function RewardsSection() {
         <FadeInSection>
             <section id="rewards" className="section flex-col">
                 {/* Features */}
-                <div className="section-container flex-col md:flex-row space-x-6">
+                <div className="section-container flex-col space-x-6 md:flex-row">
                     {/* Feature Listing Column */}
-                    <div className="flex flex-col p-6 md:w-1/2 my-auto">
+                    <div className="my-auto flex flex-col p-6 md:w-1/2">
                         <FadeInSection direction="right">
                             <h2 className="section-header">Level up your coding skills</h2>
-                            <div className="mt-4 bg-tertiary bg-opacity-25 text-tertiary font-sans font-bold text-xs rounded-full px-2 py-1 w-max uppercase">
+                            <div className="mt-4 w-max rounded-full bg-tertiary bg-opacity-25 px-2 py-1 font-sans text-xs font-bold uppercase text-tertiary">
                                 Coming Soon
                             </div>
-                            <ul className="flex flex-col mt-6 space-y-8">
+                            <ul className="mt-6 flex flex-col space-y-8">
                                 {/* Feature 1 */}
                                 <FeaturesItem
                                     icon="Award"
@@ -40,10 +40,10 @@ export default function RewardsSection() {
                     </div>
 
                     {/* Image Column */}
-                    <div className="hidden md:flex flex-shrink flex-grow-0 flex-col w-1/2 p-6">
+                    <div className="hidden w-1/2 flex-shrink flex-grow-0 flex-col p-6 md:flex">
                         <img
                             src="/images/rewards_sample.png"
-                            className="flex-shrink w-auto mx-auto my-auto"
+                            className="mx-auto my-auto w-auto flex-shrink"
                             alt=""
                         />
                     </div>

@@ -2,7 +2,7 @@ import EditorActivityButton from "app/components/Editor/EditorActivityButton"
 
 export default function EditorActivityBar({ activity, setActivity }) {
     return (
-        <div className="h-full bg-gray-700 flex flex-col px-3 py-3 border-r border-r-gray-500 border-opacity-20">
+        <div className="flex h-full flex-col border-r border-r-gray-500 border-opacity-20 bg-gray-700 px-3 py-3">
             {/* Activity Buttons */}
             <EditorActivityButton
                 active={activity === 0}

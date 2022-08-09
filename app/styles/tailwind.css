@@ -24,11 +24,11 @@
 /* Custom Styles */
 @layer components {
     * {
-        @apply transition duration-300 ease-in-out delay-100;
+        @apply transition delay-100 duration-300 ease-in-out;
     }
 
     body {
-        @apply bg-gray-900 overflow-x-hidden scroll-smooth;
+        @apply overflow-x-hidden scroll-smooth bg-gray-900;
     }
 
     .bg-gradient-multi {
@@ -68,19 +68,19 @@
     }
 
     .section-header {
-        @apply font-sans font-extrabold text-2xl md:text-4xl text-gray-50 text-left tracking-tight text-transparent bg-gradient-white bg-clip-text;
+        @apply bg-gradient-white bg-clip-text text-left font-sans text-2xl font-extrabold tracking-tight text-gray-50 text-transparent md:text-4xl;
     }
 
     .section {
-        @apply overflow-hidden flex w-full py-12 md:py-24;
+        @apply flex w-full overflow-hidden py-12 md:py-24;
     }
 
     .section-container {
-        @apply flex max-w-7xl w-full mx-auto;
+        @apply mx-auto flex w-full max-w-7xl;
     }
 
     .bttn {
-        @apply font-sans font-bold text-center whitespace-nowrap transition-all;
+        @apply whitespace-nowrap text-center font-sans font-bold transition-all;
     }
 
     .bttn-square {
@@ -92,7 +92,7 @@
     }
 
     .bttn-outline {
-        @apply border-2 rounded-full;
+        @apply rounded-full border-2;
     }
 
     .bttn-normal {
@@ -112,11 +112,11 @@
     }
 
     .bttn-gradient {
-        @apply transition-shadow duration-500 delay-75 bg-gradient-multi bg-center;
+        @apply bg-gradient-multi bg-center transition-shadow delay-75 duration-500;
     }
 
     .bttn-gradient-arrow::after {
-        @apply transition-all inline-block pl-2;
+        @apply inline-block pl-2 transition-all;
         content: "-->";
     }
 
@@ -129,7 +129,7 @@
     }
 
     .bttn-disabled {
-        @apply opacity-50 cursor-not-allowed;
+        @apply cursor-not-allowed opacity-50;
     }
 
     .box-glow-hover:hover {
@@ -137,11 +137,11 @@
     }
 
     .paragraph {
-        @apply font-sans font-normal text-sm md:text-base text-gray-50 opacity-80;
+        @apply font-sans text-sm font-normal text-gray-50 opacity-80 md:text-base;
     }
 
     .glow-text-white {
-        @apply text-transparent bg-gradient-multi bg-clip-text;
+        @apply bg-gradient-multi bg-clip-text text-transparent;
         text-shadow: 0 0 72px rgb(219 192 255 / 75%), 0 0 24px rgb(120 65 255 / 24%);
     }
 
@@ -150,7 +150,7 @@
     }
 
     .editor-sidebar-header {
-        @apply font-sans font-bold text-sm text-left text-gray-50;
+        @apply text-left font-sans text-sm font-bold text-gray-50;
     }
 
     .suggest-widget {
@@ -167,35 +167,35 @@
     }
 
     .react-markdown p {
-        @apply font-sans font-normal text-xs text-gray-50 leading-5;
+        @apply font-sans text-xs font-normal leading-5 text-gray-50;
     }
 
     .react-markdown h1 {
-        @apply font-sans font-extrabold text-2xl text-gray-50 text-left tracking-tight mt-2;
+        @apply mt-2 text-left font-sans text-2xl font-extrabold tracking-tight text-gray-50;
     }
 
     .react-markdown h2 {
-        @apply font-sans font-bold text-xl text-gray-50 text-left tracking-tight mt-2;
+        @apply mt-2 text-left font-sans text-xl font-bold tracking-tight text-gray-50;
     }
 
     .react-markdown h3 {
-        @apply font-sans font-bold text-lg text-gray-50 text-left tracking-tight mt-2;
+        @apply mt-2 text-left font-sans text-lg font-bold tracking-tight text-gray-50;
     }
 
     .react-markdown h4 {
-        @apply font-sans font-bold text-base text-gray-50 text-left tracking-tight mt-2;
+        @apply mt-2 text-left font-sans text-base font-bold tracking-tight text-gray-50;
     }
 
     .react-markdown h5 {
-        @apply font-sans font-semibold text-xs text-gray-50 text-left mt-1;
+        @apply mt-1 text-left font-sans text-xs font-semibold text-gray-50;
     }
 
     .react-markdown h6 {
-        @apply font-sans font-semibold text-2xs text-gray-50 opacity-80 text-left mt-1;
+        @apply mt-1 text-left font-sans text-2xs font-semibold text-gray-50 opacity-80;
     }
 
     .react-markdown a {
-        @apply font-sans font-normal text-sm md:text-base text-gray-50 underline;
+        @apply font-sans text-sm font-normal text-gray-50 underline md:text-base;
     }
 
     .react-markdown a:hover {
@@ -207,35 +207,35 @@
     }
 
     .blog-content p {
-        @apply mb-4 md:mb-6 font-sans font-normal text-sm md:text-base text-gray-50 leading-5;
+        @apply mb-4 font-sans text-sm font-normal leading-5 text-gray-50 md:mb-6 md:text-base;
     }
 
     .blog-content h1 {
-        @apply font-sans font-extrabold text-2xl md:text-3xl text-gray-50 text-left tracking-tight mt-6 mb-2 text-transparent bg-gradient-white bg-clip-text;
+        @apply bg-gradient-white mt-6 mb-2 bg-clip-text text-left font-sans text-2xl font-extrabold tracking-tight text-gray-50 text-transparent md:text-3xl;
     }
 
     .blog-content h2 {
-        @apply font-sans font-bold text-xl md:text-2xl text-gray-50 text-left tracking-tight mt-4 mb-2 text-transparent bg-gradient-white bg-clip-text;
+        @apply bg-gradient-white mt-4 mb-2 bg-clip-text text-left font-sans text-xl font-bold tracking-tight text-gray-50 text-transparent md:text-2xl;
     }
 
     .blog-content h3 {
-        @apply font-sans font-bold text-lg md:text-xl text-gray-50 text-left tracking-tight mt-3 mb-2 text-transparent bg-gradient-white bg-clip-text;
+        @apply bg-gradient-white mt-3 mb-2 bg-clip-text text-left font-sans text-lg font-bold tracking-tight text-gray-50 text-transparent md:text-xl;
     }
 
     .blog-content h4 {
-        @apply font-sans font-bold text-base md:text-lg text-gray-50 text-left tracking-tight mt-2 mb-2 text-transparent bg-gradient-white bg-clip-text;
+        @apply bg-gradient-white mt-2 mb-2 bg-clip-text text-left font-sans text-base font-bold tracking-tight text-gray-50 text-transparent md:text-lg;
     }
 
     .blog-content h5 {
-        @apply font-sans font-extrabold text-xs text-gray-50 text-left mt-2 mb-2;
+        @apply mt-2 mb-2 text-left font-sans text-xs font-extrabold text-gray-50;
     }
 
     .blog-content h6 {
-        @apply font-sans font-semibold text-2xs text-gray-50 opacity-80 text-left mt-2 mb-2;
+        @apply mt-2 mb-2 text-left font-sans text-2xs font-semibold text-gray-50 opacity-80;
     }
 
     .blog-content a {
-        @apply font-sans font-normal text-sm md:text-base text-gray-50 underline;
+        @apply font-sans text-sm font-normal text-gray-50 underline md:text-base;
     }
 
     .blog-content a:hover {
@@ -251,14 +251,14 @@
     }
 
     .blog-content li {
-        @apply font-sans font-normal text-sm md:text-base ml-8 mt-2 list-disc list-item list-outside text-gray-50;
+        @apply ml-8 mt-2 list-item list-outside list-disc font-sans text-sm font-normal text-gray-50 md:text-base;
     }
 
     .blog-content code {
-        @apply font-mono font-normal text-xs md:text-sm px-2 pt-1 pb-px bg-gray-700 rounded-md whitespace-pre-wrap;
+        @apply whitespace-pre-wrap rounded-md bg-gray-700 px-2 pt-1 pb-px font-mono text-xs font-normal md:text-sm;
     }
 
     .blog-content pre {
-        @apply font-mono font-normal text-xs md:text-sm px-4 pt-0 pb-4 bg-gray-700 rounded-md ring-1 ring-gray-500 ring-opacity-40 whitespace-pre-wrap;
+        @apply whitespace-pre-wrap rounded-md bg-gray-700 px-4 pt-0 pb-4 font-mono text-xs font-normal ring-1 ring-gray-500 ring-opacity-40 md:text-sm;
     }
 }

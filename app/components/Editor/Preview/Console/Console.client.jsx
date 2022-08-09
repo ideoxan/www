@@ -174,12 +174,12 @@ export default function Console({ session, userData, metadata }) {
     })
 
     return (
-        <div className="flex flex-col h-full w-full rounded-lg ring-1 ring-gray-500 ring-opacity-20 shadow-xl bg-black">
+        <div className="flex h-full w-full flex-col rounded-lg bg-black shadow-xl ring-1 ring-gray-500 ring-opacity-20">
             <div
                 id="terminal"
-                className="flex flex-col h-full w-full pl-3 pr-2 pt-3 flex-shrink"
+                className="flex h-full w-full flex-shrink flex-col pl-3 pr-2 pt-3"
             ></div>
-            <div className="relative flex flex-row bottom-0 py-3 px-3 mx-auto z-10">
+            <div className="relative bottom-0 z-10 mx-auto flex flex-row py-3 px-3">
                 {socket?.current && session && userData && !isRunning && (
                     <Icon
                         name="Play"
@@ -187,7 +187,7 @@ export default function Console({ session, userData, metadata }) {
                         height={4}
                         color={"gray-50"}
                         strokeThickness={2}
-                        className="my-auto opacity-50 hover:opacity-100 cursor-pointer"
+                        className="my-auto cursor-pointer opacity-50 hover:opacity-100"
                         onClick={() => {
                             setIsRunning(true)
                             let si = 0

@@ -58,19 +58,19 @@ export default function OAuthCallback() {
         <AuthSplash>
             {loaderData?.error ? (
                 <>
-                    <h1 className="mx-auto font-sans font-extrabold tracking-tight text-center text-2xl text-gray-50">
+                    <h1 className="mx-auto text-center font-sans text-2xl font-extrabold tracking-tight text-gray-50">
                         Sign in failed.
                     </h1>
-                    <p className="mx-auto mt-6 font-sans font-medium text-center text-xs px-8 py-2 bg-red-500/50 text-red-50 rounded-lg">
+                    <p className="mx-auto mt-6 rounded-lg bg-red-500/50 px-8 py-2 text-center font-sans text-xs font-medium text-red-50">
                         {loaderData?.error?.message}
                     </p>
                 </>
             ) : (
                 <>
-                    <h1 className="mx-auto font-sans font-extrabold tracking-tight text-center text-2xl text-gray-50">
+                    <h1 className="mx-auto text-center font-sans text-2xl font-extrabold tracking-tight text-gray-50">
                         Logging in...
                     </h1>
-                    <p className="mx-auto mt-1 font-sans font-medium text-center text-sm text-gray-50 opacity-50">
+                    <p className="mx-auto mt-1 text-center font-sans text-sm font-medium text-gray-50 opacity-50">
                         If the page does not redirect shortly, contact support.
                     </p>
                 </>

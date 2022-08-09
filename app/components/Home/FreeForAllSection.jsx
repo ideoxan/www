@@ -6,12 +6,12 @@ export default function FreeForAllSection() {
         <FadeInSection>
             <section id="cost" className="section flex-col">
                 {/* Features */}
-                <div className="section-container flex-col md:flex-row space-x-6">
+                <div className="section-container flex-col space-x-6 md:flex-row">
                     {/* Feature Listing Column */}
-                    <div className="flex flex-col p-6 md:w-1/2 my-auto">
+                    <div className="my-auto flex flex-col p-6 md:w-1/2">
                         <FadeInSection direction="right">
                             <h2 className="section-header">Free for everyone, forever</h2>
-                            <ul className="flex flex-col mt-8 space-y-8">
+                            <ul className="mt-8 flex flex-col space-y-8">
                                 {/* Feature 1 */}
                                 <FeaturesItem
                                     icon="DollarSign"
@@ -30,10 +30,10 @@ export default function FreeForAllSection() {
                     </div>
 
                     {/* Image Column */}
-                    <div className="hidden md:flex flex-shrink flex-grow-0 flex-col w-1/2 p-6">
+                    <div className="hidden w-1/2 flex-shrink flex-grow-0 flex-col p-6 md:flex">
                         <img
                             src="/images/Cost1.png"
-                            className="flex-shrink w-auto mx-auto my-auto"
+                            className="mx-auto my-auto w-auto flex-shrink"
                             alt="A child and her parents on a laptop"
                         />
                     </div>

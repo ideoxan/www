@@ -170,12 +170,12 @@ export default function Editor() {
 
     // Render
     return (
-        <div className="flex flex-col max-h-full h-full min-h-full overflow-hidden">
+        <div className="flex h-full max-h-full min-h-full flex-col overflow-hidden">
             {/* Loading Splash */}
             {loadingScreen && (
-                <div className="absolute z-40 top-0 left-0 flex flex-col w-full h-full bg-gray-900">
-                    <div className="flex flex-col m-auto px-6 py-4">
-                        <p className="font-sans font-bold text-sm text-center text-gray-50 text-opacity-80 mx-auto">
+                <div className="absolute top-0 left-0 z-40 flex h-full w-full flex-col bg-gray-900">
+                    <div className="m-auto flex flex-col px-6 py-4">
+                        <p className="mx-auto text-center font-sans text-sm font-bold text-gray-50 text-opacity-80">
                             Loading
                         </p>
                         <BarLoader color="#6E2FFF" className="mt-4" height={5} width={220} />
@@ -187,13 +187,13 @@ export default function Editor() {
                     {/* Navigation Bar */}
                     <EditorNavigationBar metadata={metadata} />
 
-                    <main className="flex flex-row flex-grow w-full">
-                        <div className="h-full w-1/6 flex flex-row">
+                    <main className="flex w-full flex-grow flex-row">
+                        <div className="flex h-full w-1/6 flex-row">
                             {/* Activities Bar */}
                             <EditorActivitiesBar activity={activity} setActivity={setActivity} />
 
                             {/* Left Sidebar */}
-                            <div className="h-full flex flex-col px-3 py-3 w-full bg-gray-700 border-r border-r-gray-500 border-opacity-20">
+                            <div className="flex h-full w-full flex-col border-r border-r-gray-500 border-opacity-20 bg-gray-700 px-3 py-3">
                                 <div hidden={activity !== 0}>
                                     <EditorActivityWorkspace
                                         metadata={metadata}
@@ -207,7 +207,7 @@ export default function Editor() {
                             </div>
                         </div>
 
-                        <div className="flex flex-col h-full w-3/6">
+                        <div className="flex h-full w-3/6 flex-col">
                             {/* Editor Code Tabs */}
                             <EditorTabContainer
                                 openTabs={openCodeTabs}
@@ -217,7 +217,7 @@ export default function Editor() {
                                 className="pl-2"
                             />
                             {/* Editor Code Area */}
-                            <div className="flex flex-col max-h-full h-full w-full px-2 pb-2">
+                            <div className="flex h-full max-h-full w-full flex-col px-2 pb-2">
                                 <EditorCodeArea
                                     hidden={openCodeTabs.length <= 0}
                                     onChange={() => {}}
@@ -227,7 +227,7 @@ export default function Editor() {
                                 />
                                 <div
                                     className={
-                                        "flex-col justify-center items-center h-full w-full " +
+                                        "h-full w-full flex-col items-center justify-center " +
                                         (openCodeTabs.length <= 0 ? "flex" : "hidden")
                                     }
                                 >
@@ -236,7 +236,7 @@ export default function Editor() {
                                         src="/images/ix_icon_flat_white_trans_250x250.png"
                                         alt=""
                                     />
-                                    <p className="font-sans font-medium text-sm text-center opacity-20 text-gray-50 mt-8">
+                                    <p className="mt-8 text-center font-sans text-sm font-medium text-gray-50 opacity-20">
                                         To open a file, click on any item to the left
                                     </p>
                                 </div>
@@ -244,9 +244,9 @@ export default function Editor() {
                         </div>
 
                         {/* Editor Right Sidebar */}
-                        <div className="flex flex-col h-full w-2/6">
+                        <div className="flex h-full w-2/6 flex-col">
                             {/* Editor Preview Area */}
-                            <div className="flex flex-col h-2/5 w-full">
+                            <div className="flex h-2/5 w-full flex-col">
                                 {/* Editor Preview Tabs */}
                                 <EditorTabContainer
                                     openTabs={openPreviewTabs}
@@ -255,7 +255,7 @@ export default function Editor() {
                                     setActiveTab={setActivePreviewTab}
                                 />
                                 {/* Editor Preview Area */}
-                                <div className="flex flex-col h-full w-full pr-2 pb-2">
+                                <div className="flex h-full w-full flex-col pr-2 pb-2">
                                     <Console
                                         session={session}
                                         userData={userData}
@@ -264,10 +264,10 @@ export default function Editor() {
                                 </div>
                             </div>
                             {/* Editor Lesson Guide Area */}
-                            <div className="flex flex-col h-3/5 w-full">
+                            <div className="flex h-3/5 w-full flex-col">
                                 {/* Editor Lesson Guide Area */}
-                                <div className="flex flex-col max-h-full h-full w-full pr-2 pb-2 overflow-y-scroll flex-shrink">
-                                    <div className="react-markdown flex flex-col max-h-full h-full w-full rounded-lg ring-1 ring-gray-500 ring-opacity-20 shadow-xl bg-gray-700 px-6 py-4 flex-shrink">
+                                <div className="flex h-full max-h-full w-full flex-shrink flex-col overflow-y-scroll pr-2 pb-2">
+                                    <div className="react-markdown flex h-full max-h-full w-full flex-shrink flex-col rounded-lg bg-gray-700 px-6 py-4 shadow-xl ring-1 ring-gray-500 ring-opacity-20">
                                         <h1>
                                             Lesson {metadata.lesson.index + 1}:{" "}
                                             {metadata.lesson.name}
@@ -278,7 +278,7 @@ export default function Editor() {
                                             {metadata.course.name}
                                         </h6>
                                         <div
-                                            className="react-markdown w-full mb-6 flex-shrink"
+                                            className="react-markdown mb-6 w-full flex-shrink"
                                             dangerouslySetInnerHTML={{
                                                 __html: marked.parse(
                                                     metadata?.lesson?.content?.guide

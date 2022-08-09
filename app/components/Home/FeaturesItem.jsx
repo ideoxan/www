@@ -3,7 +3,7 @@ import Icon from "app/components/Icon"
 export default function FeaturesItem({ icon, title, description }) {
     return (
         <li className="flex flex-row">
-            <div className="flex flex-col bg-gradient-to-tr from-primary to-secondary w-10 h-10 rounded-lg flex-shrink-0">
+            <div className="flex h-10 w-10 flex-shrink-0 flex-col rounded-lg bg-gradient-to-tr from-primary to-secondary">
                 <Icon
                     name={icon}
                     width={5}
@@ -13,8 +13,8 @@ export default function FeaturesItem({ icon, title, description }) {
                     className="m-auto"
                 />
             </div>
-            <div className="flex flex-col ml-4">
-                <h3 className="my-1 font-sans font-semibold text-lg text-gray-50">{title}</h3>
+            <div className="ml-4 flex flex-col">
+                <h3 className="my-1 font-sans text-lg font-semibold text-gray-50">{title}</h3>
                 <p className="paragraph">{description}</p>
             </div>
         </li>

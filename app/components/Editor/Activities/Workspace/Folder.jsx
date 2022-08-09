@@ -16,9 +16,9 @@ export default function Folder({
     folderName.pop()
 
     return (
-        <li className="group flex flex-col w-full h-max">
+        <li className="group flex h-max w-full flex-col">
             <div
-                className="flex flex-row py-2 px-3 rounded-md hover:bg-gray-800 w-full h-max cursor-pointer opacity-70 hover:opacity-90"
+                className="flex h-max w-full cursor-pointer flex-row rounded-md py-2 px-3 opacity-70 hover:bg-gray-800 hover:opacity-90"
                 onClick={() => {
                     setShowChildren(!showChildren)
                 }}
@@ -31,7 +31,7 @@ export default function Folder({
                     strokeThickness={2}
                     className="my-auto"
                 />
-                <p className="font-sans font-medium text-xs text-left text-gray-50 ml-2 truncate">
+                <p className="ml-2 truncate text-left font-sans text-xs font-medium text-gray-50">
                     {folderName.pop()}
                 </p>
                 <Icon
@@ -40,11 +40,11 @@ export default function Folder({
                     height={3}
                     color="gray-50"
                     strokeThickness={2}
-                    className="ml-auto my-auto opacity-50 group-hover:opacity-100"
+                    className="my-auto ml-auto opacity-50 group-hover:opacity-100"
                 />
             </div>
             {showChildren && (
-                <ul className="flex flex-col ml-4">
+                <ul className="ml-4 flex flex-col">
                     {file.children.map(file => {
                         if (file.type === "file") {
                             return (

@@ -58,7 +58,7 @@ export default function File({
             }}
         >
             {FileIcon ? (
-                <FileIcon className="w-3 h-3 my-auto opacity-50" color={langData.color} />
+                <FileIcon className="my-auto h-3 w-3 opacity-50" color={langData.color} />
             ) : (
                 <Icon
                     name="File"
@@ -70,7 +70,7 @@ export default function File({
                 />
             )}
 
-            <p className="font-sans font-medium text-xs text-left text-gray-50 ml-2 truncate">
+            <p className="ml-2 truncate text-left font-sans text-xs font-medium text-gray-50">
                 {file.path.split("/").pop()}
             </p>
         </li>

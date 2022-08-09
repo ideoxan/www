@@ -9,9 +9,9 @@ export default function EditorNavigationBar({ metadata }) {
     }
 
     return (
-        <nav className="w-full bg-gray-700 flex flex-row py-3 px-4 border-b border-b-gray-500 border-opacity-20">
+        <nav className="flex w-full flex-row border-b border-b-gray-500 border-opacity-20 bg-gray-700 py-3 px-4">
             {/* Ideoxan Logo */}
-            <Link to="/" className="flex my-auto w-1/4">
+            <Link to="/" className="my-auto flex w-1/4">
                 <img
                     src="/images/ix_logo_white_trans_253x50.png"
                     alt="Ideoxan"
@@ -20,13 +20,13 @@ export default function EditorNavigationBar({ metadata }) {
             </Link>
 
             {/* Lesson Header */}
-            <h1 className="font-sans font-bold text-xs text-center w-1/2 text-gray-50 my-auto">
+            <h1 className="my-auto w-1/2 text-center font-sans text-xs font-bold text-gray-50">
                 Lesson {metadata.lesson.index + 1}: {metadata.lesson.name} (Chapter{" "}
                 {metadata.chapter.index + 1}) &mdash; {metadata.course.name}
             </h1>
 
             {/* Navigation Buttons */}
-            <div className="flex flex-row w-1/4 space-x-4 justify-end my-auto">
+            <div className="my-auto flex w-1/4 flex-row justify-end space-x-4">
                 {/* Previous Lesson */}
                 {metadata.lesson.navigation.previous && (
                     <a

@@ -5,9 +5,9 @@ export default function OpenSourceSection() {
         <FadeInSection>
             <section id="oss" className="section flex-col">
                 {/* Features */}
-                <div className="section-container flex-col md:flex-row space-x-6">
+                <div className="section-container flex-col space-x-6 md:flex-row">
                     {/* Feature Listing Column */}
-                    <div className="flex flex-col p-6 md:w-1/2 my-auto">
+                    <div className="my-auto flex flex-col p-6 md:w-1/2">
                         <FadeInSection direction="right">
                             <h2 className="section-header">We &lt;3 open source</h2>
                             <p className="paragraph mt-8">
@@ -27,10 +27,10 @@ export default function OpenSourceSection() {
                     </div>
 
                     {/* Image Column */}
-                    <div className="hidden md:flex flex-shrink flex-grow-0 flex-col w-1/2 p-6">
+                    <div className="hidden w-1/2 flex-shrink flex-grow-0 flex-col p-6 md:flex">
                         <img
                             src="/images/oss2.png"
-                            className="flex-shrink w-auto mx-auto my-auto ring-1 ring-gray-500 ring-opacity-50 shadow-2xl rounded-lg"
+                            className="mx-auto my-auto w-auto flex-shrink rounded-lg shadow-2xl ring-1 ring-gray-500 ring-opacity-50"
                             alt="Screenshot of Ideoxan's GitHub organization page."
                         />
                     </div>

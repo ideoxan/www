@@ -13,11 +13,11 @@ export default function CourseCard({
     return (
         <div
             className={
-                "group flex flex-col px-4 py-3 bg-gray-700 rounded-lg ring-0 ring-gray-500 ring-opacity-50 w-full h-full hover:scale-105 hover:translate-y-px " +
+                "group flex h-full w-full flex-col rounded-lg bg-gray-700 px-4 py-3 ring-0 ring-gray-500 ring-opacity-50 hover:translate-y-px hover:scale-105 " +
                 className
             }
         >
-            <h3 className="font-sans text-transparent bg-gradient-white bg-clip-text text-left tracking-tight text-xl font-bold">
+            <h3 className="bg-gradient-white bg-clip-text text-left font-sans text-xl font-bold tracking-tight text-transparent">
                 {title}
             </h3>
             {/* {comingSoon ? (
@@ -25,19 +25,19 @@ export default function CourseCard({
                     Coming Soon
                 </div>
             ) : null} */}
-            <p className="paragraph h-full text-sm my-2 text-gray-50 text-left truncate">
+            <p className="paragraph my-2 h-full truncate text-left text-sm text-gray-50">
                 {description}
             </p>
-            <div className="flex flex-row w-full">
+            <div className="flex w-full flex-row">
                 <a
                     href={infoURL}
-                    className="inline-block text-gray-50 opacity-50 hover:opacity-100 text-sm font-medium tracking-tight"
+                    className="inline-block text-sm font-medium tracking-tight text-gray-50 opacity-50 hover:opacity-100"
                 >
                     Learn More
                 </a>
                 <a
                     href={startURL}
-                    className="ml-auto inline-block text-secondary opacity-100 hover:opacity-80 text-sm font-extrabold tracking-tight"
+                    className="ml-auto inline-block text-sm font-extrabold tracking-tight text-secondary opacity-100 hover:opacity-80"
                 >
                     Start --&gt;
                 </a>

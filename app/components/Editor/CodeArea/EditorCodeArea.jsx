@@ -34,7 +34,7 @@ export default function EditorCodeArea({
     return (
         <div
             className={
-                "overflow-hidden flex-col max-h-full h-full w-full rounded-lg ring-1 ring-gray-500 ring-opacity-20 shadow-xl " +
+                "h-full max-h-full w-full flex-col overflow-hidden rounded-lg shadow-xl ring-1 ring-gray-500 ring-opacity-20 " +
                 (hidden ? "hidden" : "flex")
             }
             {...props}
