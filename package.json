@@ -5,6 +5,7 @@
     "license": "(MIT OR MPL-2.0 OR CC-BY-SA-4.0)",
     "sideEffects": false,
     "scripts": {
+        "serve": "npm run build:css && npm run build",
         "build": "remix build",
         "build:css": "npm run generate:css -- -m",
         "dev": "remix dev",
@@ -47,6 +48,7 @@
         "eslint": "^8.21.0",
         "postcss": "^8.4.14",
         "prettier": "^2.7.1",
+        "prettier-plugin-tailwindcss": "^0.1.13",
         "tailwindcss": "^3.1.7"
     },
     "engines": {
