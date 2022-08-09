@@ -13,8 +13,7 @@ export default function NavigationBar({ session, userData }) {
         <>
             <nav
                 id="nav"
-                className="flex flex-row py-6 bg-gray-900 min-w-full w-full px-4 sm:px-12"
-            >
+                className="flex flex-row py-6 bg-gray-900 min-w-full w-full px-4 sm:px-12">
                 {/* Mobile Menu */}
                 <div id="mobile-nav-menu-icon" className="flex md:hidden">
                     <button onClick={toggleMobileNavMenu}>
@@ -33,20 +32,17 @@ export default function NavigationBar({ session, userData }) {
                 <Link
                     id="nav-logo"
                     className="flex flex-row ml-2 md:ml-0 mr-auto flex-shrink-0"
-                    to="/"
-                >
+                    to="/">
                     <img
                         src="/images/ix_logo_white_trans_253x50.png"
                         className="w-auto h-4"
-                        alt="Ideoxan Logo"
-                    ></img>
+                        alt="Ideoxan Logo"></img>
                 </Link>
 
                 {/* Clickable Nav Links */}
                 <ul
                     id="nav-content"
-                    className="flex flex-row font-sans font-medium text-sm text-center text-gray-50 md:space-x-12"
-                >
+                    className="flex flex-row font-sans font-medium text-sm text-center text-gray-50 md:space-x-12">
                     <li className="hidden md:flex nav-link">
                         <Link to="/courses">Courses</Link>
                     </li>
@@ -73,6 +69,11 @@ export default function NavigationBar({ session, userData }) {
                             </button> */}
                         </li>
                     )}
+                    {session && userData && (
+                        <li className="hidden md:flex nav-link">
+                            <Link to="/logout">Logout</Link>
+                        </li>
+                    )}
                     {!session && (
                         <li className="hidden md:flex nav-link">
                             <Link to="/login">Login</Link>
@@ -89,8 +90,7 @@ export default function NavigationBar({ session, userData }) {
             {/* Mobile Nav Menu Drop Down */}
             <div
                 id="mobile-nav-menu"
-                className="hidden flex-col w-full bg-gray-800 px-4 py-12 mt-6"
-            >
+                className="hidden flex-col w-full bg-gray-800 px-4 py-12 mt-6">
                 <ul className="flex flex-col mx-8 font-sans font-medium text-sm text-left text-gray-50 space-y-4">
                     <li className="nav-link">
                         <Link to="/courses">Courses</Link>
@@ -107,6 +107,11 @@ export default function NavigationBar({ session, userData }) {
                     {session && userData && (
                         <li className="flex nav-link">
                             <Link to="/dashboard">Dashboard</Link>=
+                        </li>
+                    )}
+                    {session && userData && (
+                        <li className="flex nav-link">
+                            <Link to="/logout">Logout</Link>=
                         </li>
                     )}
                     {!session && (
