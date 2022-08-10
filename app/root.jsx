@@ -69,7 +69,7 @@ export async function loader({ request }) {
 export function CatchBoundary() {
     const caught = useCatch()
 
-    if (caught.statusText == "WIP") {
+    if (caught.data == "WIP") {
         return (
             <html lang="en" className="h-full w-full">
                 <head>

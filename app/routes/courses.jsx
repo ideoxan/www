@@ -1,7 +1,7 @@
 import { useLoaderData } from "@remix-run/react"
 
 export const loader = async () => {
-    throw new Response("Not Found", {
+    throw new Response("WIP", {
         status: 404,
         statusText: "WIP",
     })
