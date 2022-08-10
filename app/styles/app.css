@@ -1653,6 +1653,31 @@ input::placeholder {
           animation: fade-in-up 700ms ease-in-out 300ms forwards;
 }
 
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  -webkit-animation: fade-in 700ms ease-in-out 300ms forwards;
+          animation: fade-in 700ms ease-in-out 300ms forwards;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
@@ -2512,6 +2537,10 @@ input::placeholder {
     margin-left: auto;
   }
 
+  .md\:block {
+    display: block;
+  }
+
   .md\:flex {
     display: flex;
   }
@@ -2568,6 +2597,11 @@ input::placeholder {
 
   .md\:rounded-lg {
     border-radius: 0.5rem;
+  }
+
+  .md\:bg-black {
+    --tw-bg-opacity: 1;
+    background-color: rgb(0 0 0 / var(--tw-bg-opacity));
   }
 
   .md\:bg-img-hero {

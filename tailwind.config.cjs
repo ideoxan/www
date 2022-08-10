@@ -86,12 +86,21 @@ module.exports = {
                         transform: "translateX(0)",
                     },
                 },
+                "fade-in": {
+                    "0%": {
+                        opacity: 0,
+                    },
+                    "100%": {
+                        opacity: 1,
+                    },
+                },
             },
             animation: {
                 "fade-in-up": "fade-in-up 700ms ease-in-out 300ms forwards",
                 "fade-in-down": "fade-in-down 700ms ease-in-out 300ms forwards",
                 "fade-in-left": "fade-in-left 700ms ease-in-out 300ms forwards",
                 "fade-in-right": "fade-in-right 700ms ease-in-out 300ms forwards",
+                "fade-in": "fade-in 700ms ease-in-out 300ms forwards",
             },
             strokeWidth: {
                 3: "3px",
