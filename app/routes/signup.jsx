@@ -4,6 +4,7 @@ import { authenticator, sessionStorage, supabaseLocalStrategy } from "app/utils/
 import { supabaseAdmin } from "app/utils/db.server"
 import AuthSplash from "app/components/Auth/AuthSplash"
 import AuthOAuth from "app/components/Auth/AuthOAuth"
+import prodBlockServer from "app/utils/prodBlock.server"
 
 export function meta() {
     return {
@@ -12,6 +13,8 @@ export function meta() {
 }
 
 export async function loader({ request }) {
+    prodBlockServer()
+
     await supabaseLocalStrategy.checkSession(request, {
         successRedirect: "/dashboard",
     })

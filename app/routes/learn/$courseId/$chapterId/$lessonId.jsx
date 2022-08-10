@@ -18,11 +18,13 @@ import EditorActivityWorkspace from "app/components/Editor/Activities/Workspace/
 import Console from "app/components/Editor/Preview/Console/Console.client"
 import { supabaseLocalStrategy } from "app/utils/auth.server.js"
 import { supabaseAdmin } from "app/utils/db.server.js"
+import prodBlockServer from "app/utils/prodBlock.server"
 
 import termStyles from "app/styles/xterm.css"
 export const links = () => [{ rel: "stylesheet", href: termStyles }]
 
 export const loader = async ({ params, request }) => {
+    prodBlockServer()
     // It slows down the website a lot if we start loading the data from the server
     // At least if we handle it manually in the component, we can show a loading splash screen.
     //??: Would a graphql query be more efficient?
