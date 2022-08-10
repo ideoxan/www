@@ -8,8 +8,7 @@ export default function BlogCard({ post, ...props }) {
             onClick={() => {
                 window.location = "/blog/post/" + post.attributes.slug
             }}
-            {...props}
-        >
+            {...props}>
             <img
                 src={post.attributes.thumbnail}
                 className="h-48 w-full rounded-t-md object-cover"
@@ -36,8 +35,7 @@ export default function BlogCard({ post, ...props }) {
                             Posted by{" "}
                             <a
                                 href={post.attributes.author.replace("@", "/user/")}
-                                className="hover:underline"
-                            >
+                                className="hover:underline">
                                 {post.attributes.author}
                             </a>
                         </p>

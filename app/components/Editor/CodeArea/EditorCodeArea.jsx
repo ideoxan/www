@@ -37,8 +37,7 @@ export default function EditorCodeArea({
                 "h-full max-h-full w-full flex-col overflow-hidden rounded-lg shadow-xl ring-1 ring-gray-500 ring-opacity-20 " +
                 (hidden ? "hidden" : "flex")
             }
-            {...props}
-        >
+            {...props}>
             {/* For some reason it keeps expanding when it's height == 100% */}
             <Monaco
                 width="100%"

@@ -13,8 +13,7 @@ export default function NavigationBar({ session, userData }) {
         <>
             <nav
                 id="nav"
-                className="flex w-full min-w-full flex-row bg-gray-900 py-6 px-4 sm:px-12"
-            >
+                className="flex w-full min-w-full flex-row bg-gray-900 py-6 px-4 sm:px-12">
                 {/* Mobile Menu */}
                 <div id="mobile-nav-menu-icon" className="flex md:hidden">
                     <button onClick={toggleMobileNavMenu}>
@@ -33,20 +32,17 @@ export default function NavigationBar({ session, userData }) {
                 <Link
                     id="nav-logo"
                     className="ml-2 mr-auto flex flex-shrink-0 flex-row md:ml-0"
-                    to="/"
-                >
+                    to="/">
                     <img
                         src="/images/ix_logo_white_trans_253x50.png"
                         className="h-4 w-auto"
-                        alt="Ideoxan Logo"
-                    ></img>
+                        alt="Ideoxan Logo"></img>
                 </Link>
 
                 {/* Clickable Nav Links */}
                 <ul
                     id="nav-content"
-                    className="flex flex-row text-center font-sans text-sm font-medium text-gray-50 md:space-x-12"
-                >
+                    className="flex flex-row text-center font-sans text-sm font-medium text-gray-50 md:space-x-12">
                     <li className="nav-link hidden md:flex">
                         <Link to="/courses">Courses</Link>
                     </li>
@@ -94,8 +90,7 @@ export default function NavigationBar({ session, userData }) {
             {/* Mobile Nav Menu Drop Down */}
             <div
                 id="mobile-nav-menu"
-                className="mt-6 hidden w-full flex-col bg-gray-800 px-4 py-12"
-            >
+                className="mt-6 hidden w-full flex-col bg-gray-800 px-4 py-12">
                 <ul className="mx-8 flex flex-col space-y-4 text-left font-sans text-sm font-medium text-gray-50">
                     <li className="nav-link">
                         <Link to="/courses">Courses</Link>

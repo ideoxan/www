@@ -55,8 +55,7 @@ export default function File({
             className={classes}
             onClick={() => {
                 openTab()
-            }}
-        >
+            }}>
             {FileIcon ? (
                 <FileIcon className="my-auto h-3 w-3 opacity-50" color={langData.color} />
             ) : (

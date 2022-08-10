@@ -67,8 +67,7 @@ export default function Signup({ request }) {
             </h1>
             <Link
                 className="mx-auto mt-1 text-center font-sans text-sm font-medium text-gray-50 opacity-50 hover:underline"
-                to="/login"
-            >
+                to="/login">
                 Or log into an existing account
             </Link>
 
@@ -112,8 +111,7 @@ export default function Signup({ request }) {
 
                     <button
                         type="submit"
-                        className="bttn bttn-square bttn-normal bttn-white my-auto ml-auto opacity-80 hover:opacity-100"
-                    >
+                        className="bttn bttn-square bttn-normal bttn-white my-auto ml-auto opacity-80 hover:opacity-100">
                         Sign Up
                     </button>
                 </div>

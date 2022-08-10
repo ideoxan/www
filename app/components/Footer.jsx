@@ -4,8 +4,7 @@ export default function Footer() {
     return (
         <footer
             id="footer"
-            className="flex w-full flex-col overflow-hidden bg-gray-900 py-8 md:py-12"
-        >
+            className="flex w-full flex-col overflow-hidden bg-gray-900 py-8 md:py-12">
             {/* Features */}
             <div className="section-container flex-col px-8">
                 {/* Made with */}
@@ -27,8 +26,7 @@ export default function Footer() {
                 <div className="mx-auto mt-6 flex flex-row">
                     <a
                         href="https://discord.gg/jxqKy6r"
-                        className="px-6 opacity-20 hover:opacity-50"
-                    >
+                        className="px-6 opacity-20 hover:opacity-50">
                         <Icon
                             name="MessageSquare"
                             width="6"
@@ -39,8 +37,7 @@ export default function Footer() {
                     </a>
                     <a
                         href="https://twitter.com/ideoxan"
-                        className="px-6 opacity-20 hover:opacity-50"
-                    >
+                        className="px-6 opacity-20 hover:opacity-50">
                         <Icon
                             name="Twitter"
                             width="6"
@@ -51,8 +48,7 @@ export default function Footer() {
                     </a>
                     <a
                         href="https://github.com/ideoxan"
-                        className="px-6 opacity-20 hover:opacity-50"
-                    >
+                        className="px-6 opacity-20 hover:opacity-50">
                         <Icon
                             name="Github"
                             width="6"
@@ -65,8 +61,7 @@ export default function Footer() {
                 <div className="mx-auto mt-6 flex flex-row">
                     <a
                         href="/privacy"
-                        className="px-4 pt-px text-center font-sans text-xs font-bold text-gray-50 opacity-20 hover:opacity-50"
-                    >
+                        className="px-4 pt-px text-center font-sans text-xs font-bold text-gray-50 opacity-20 hover:opacity-50">
                         Privacy
                     </a>
                     <div className="text-center font-sans text-sm font-normal text-gray-50 opacity-20">
@@ -74,8 +69,7 @@ export default function Footer() {
                     </div>
                     <a
                         href="/terms"
-                        className="px-4 pt-px text-center font-sans text-xs font-bold text-gray-50 opacity-20 hover:opacity-50"
-                    >
+                        className="px-4 pt-px text-center font-sans text-xs font-bold text-gray-50 opacity-20 hover:opacity-50">
                         Terms
                     </a>
                 </div>

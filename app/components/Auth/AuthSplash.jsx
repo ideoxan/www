@@ -20,8 +20,7 @@ export default function AuthSplash({ children, ...props }) {
                     <img
                         src="/images/ix_logo_white_trans_253x50.png"
                         className="h-4 w-auto"
-                        alt="Ideoxan Logo"
-                    ></img>
+                        alt="Ideoxan Logo"></img>
                 </Link>
             </div>
 
@@ -31,15 +30,13 @@ export default function AuthSplash({ children, ...props }) {
                     Photo by{" "}
                     <a
                         className="underline"
-                        href="https://unsplash.com/@orwhat?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
-                    >
+                        href="https://unsplash.com/@orwhat?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
                         Richard Horvath
                     </a>{" "}
                     on{" "}
                     <a
                         className="underline"
-                        href="https://unsplash.com/s/photos/abstract?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
-                    >
+                        href="https://unsplash.com/s/photos/abstract?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
                         Unsplash
                     </a>
                 </p>

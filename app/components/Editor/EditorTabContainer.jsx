@@ -66,8 +66,7 @@ export default function EditorTabContainer({
             className={
                 "flex w-full flex-shrink-0 flex-row flex-nowrap overflow-x-auto overflow-y-hidden py-2 pr-2 " +
                 className
-            }
-        >
+            }>
             {openTabs.map((tab, index) => {
                 // Get Extension
                 const ext = tab.name.split(".")[1]

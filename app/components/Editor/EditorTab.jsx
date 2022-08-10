@@ -34,8 +34,7 @@ export default function EditorTab({
     return (
         <div
             className={defaultClassNames + (active ? activeClassNames : inactiveClassNames)}
-            {...props}
-        >
+            {...props}>
             {FileTypeIconName ? (
                 <FileTypeIconName className="my-auto h-3 w-3" color={fileTypeIconColor} />
             ) : (
@@ -50,8 +49,7 @@ export default function EditorTab({
             {canBeClosed && (
                 <button
                     className="my-auto ml-auto text-gray-50 opacity-50 hover:opacity-100"
-                    onClick={typeof closeHandler === "function" && closeHandler}
-                >
+                    onClick={typeof closeHandler === "function" && closeHandler}>
                     <Icon name="X" width={3} height={3} className="ml-auto" />
                 </button>
             )}

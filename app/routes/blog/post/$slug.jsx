@@ -87,8 +87,7 @@ export default function BlogPost() {
                                         Posted by{" "}
                                         <a
                                             href={post.attributes.author.replace("@", "/user/")}
-                                            className="hover:underline"
-                                        >
+                                            className="hover:underline">
                                             {post.attributes.author}
                                         </a>
                                     </p>
@@ -102,24 +101,21 @@ export default function BlogPost() {
                                     className="flex flex-row text-gray-50 opacity-50 hover:opacity-100"
                                     onClick={() => {
                                         window.open(share.fb, "_blank")
-                                    }}
-                                >
+                                    }}>
                                     <Facebook width={16} />
                                 </button>
                                 <button
                                     className="flex flex-row text-gray-50 opacity-50 hover:opacity-100"
                                     onClick={() => {
                                         window.open(share.twitter, "_blank")
-                                    }}
-                                >
+                                    }}>
                                     <Twitter width={16} />
                                 </button>
                                 <button
                                     className="flex flex-row text-gray-50 opacity-50 hover:opacity-100"
                                     onClick={() => {
                                         window.open(share.linkedin, "_blank")
-                                    }}
-                                >
+                                    }}>
                                     <Linkedin width={16} />
                                 </button>
                             </div>

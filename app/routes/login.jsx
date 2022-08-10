@@ -37,8 +37,7 @@ export default function LogIn() {
             </h1>
             <Link
                 className="mx-auto mt-1 text-center font-sans text-sm font-medium text-gray-50 opacity-50 hover:underline"
-                to="/signup"
-            >
+                to="/signup">
                 Or register for a new account
             </Link>
 
@@ -71,15 +70,13 @@ export default function LogIn() {
                 <div className="mt-6 flex w-full flex-row">
                     <a
                         href="/resetpassword"
-                        className="mr-auto mb-auto text-center font-sans text-2xs font-medium text-gray-50 opacity-50 hover:underline"
-                    >
+                        className="mr-auto mb-auto text-center font-sans text-2xs font-medium text-gray-50 opacity-50 hover:underline">
                         Reset Password
                     </a>
 
                     <button
                         type="submit"
-                        className="bttn bttn-square bttn-normal bttn-white my-auto ml-auto opacity-80 hover:opacity-100"
-                    >
+                        className="bttn bttn-square bttn-normal bttn-white my-auto ml-auto opacity-80 hover:opacity-100">
                         Log In
                     </button>
                 </div>

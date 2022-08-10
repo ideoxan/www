@@ -177,8 +177,7 @@ export default function Console({ session, userData, metadata }) {
         <div className="flex h-full w-full flex-col rounded-lg bg-black shadow-xl ring-1 ring-gray-500 ring-opacity-20">
             <div
                 id="terminal"
-                className="flex h-full w-full flex-shrink flex-col pl-3 pr-2 pt-3"
-            ></div>
+                className="flex h-full w-full flex-shrink flex-col pl-3 pr-2 pt-3"></div>
             <div className="relative bottom-0 z-10 mx-auto flex flex-row py-3 px-3">
                 {socket?.current && session && userData && !isRunning && (
                     <Icon

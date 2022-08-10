@@ -21,8 +21,7 @@ export default function Folder({
                 className="flex h-max w-full cursor-pointer flex-row rounded-md py-2 px-3 opacity-70 hover:bg-gray-800 hover:opacity-90"
                 onClick={() => {
                     setShowChildren(!showChildren)
-                }}
-            >
+                }}>
                 <Icon
                     name="Folder"
                     width={3}

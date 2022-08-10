@@ -28,8 +28,7 @@ export default function SignupCTA() {
                     <div className="mx-auto flex px-6 pb-6 md:my-auto md:py-6 lg:w-1/4">
                         <a
                             href="/signup"
-                            className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover bttn-gradient-arrow mx-auto my-auto"
-                        >
+                            className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover bttn-gradient-arrow mx-auto my-auto">
                             Join the Waitlist
                         </a>
                     </div>

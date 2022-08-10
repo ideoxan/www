@@ -78,20 +78,17 @@ export function CatchBoundary() {
                     <link
                         rel="apple-touch-icon"
                         sizes="180x180"
-                        href="/apple-touch-icon.png"
-                    ></link>
+                        href="/apple-touch-icon.png"></link>
                     <link
                         rel="icon"
                         type="image/png"
                         sizes="32x32"
-                        href="/favicon-32x32.png"
-                    ></link>
+                        href="/favicon-32x32.png"></link>
                     <link
                         rel="icon"
                         type="image/png"
                         sizes="16x16"
-                        href="/favicon-16x16.png"
-                    ></link>
+                        href="/favicon-16x16.png"></link>
                     <link rel="manifest" href="/site.webmanifest"></link>
                     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#6f2bff"></link>
                 </head>
@@ -105,8 +102,7 @@ export function CatchBoundary() {
                         </h2>
                         <a
                             href="/"
-                            className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover mx-auto mt-6"
-                        >
+                            className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover mx-auto mt-6">
                             Go Home
                         </a>
                     </div>
@@ -130,20 +126,17 @@ export function CatchBoundary() {
                     <link
                         rel="apple-touch-icon"
                         sizes="180x180"
-                        href="/apple-touch-icon.png"
-                    ></link>
+                        href="/apple-touch-icon.png"></link>
                     <link
                         rel="icon"
                         type="image/png"
                         sizes="32x32"
-                        href="/favicon-32x32.png"
-                    ></link>
+                        href="/favicon-32x32.png"></link>
                     <link
                         rel="icon"
                         type="image/png"
                         sizes="16x16"
-                        href="/favicon-16x16.png"
-                    ></link>
+                        href="/favicon-16x16.png"></link>
                     <link rel="manifest" href="/site.webmanifest"></link>
                     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#6f2bff"></link>
                 </head>
@@ -157,8 +150,7 @@ export function CatchBoundary() {
                         </h2>
                         <a
                             href="/"
-                            className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover mx-auto mt-6"
-                        >
+                            className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover mx-auto mt-6">
                             Go Home
                         </a>
                     </div>

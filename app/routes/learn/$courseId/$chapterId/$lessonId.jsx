@@ -229,8 +229,7 @@ export default function Editor() {
                                     className={
                                         "h-full w-full flex-col items-center justify-center " +
                                         (openCodeTabs.length <= 0 ? "flex" : "hidden")
-                                    }
-                                >
+                                    }>
                                     <img
                                         className="w-48 opacity-5"
                                         src="/images/ix_icon_flat_white_trans_250x250.png"

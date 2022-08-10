@@ -10,8 +10,7 @@ export default function EditorActivityButton({ active, icon, onClick, className 
             className={
                 defaultClassNames + (active ? activeClassNames : inactiveClassNames) + className
             }
-            onClick={onClick}
-        >
+            onClick={onClick}>
             <Icon
                 name={icon}
                 width={4}

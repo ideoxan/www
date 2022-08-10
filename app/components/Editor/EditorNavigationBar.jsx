@@ -37,8 +37,7 @@ export default function EditorNavigationBar({ metadata }) {
                             metadata.lesson.navigation.previous[0] +
                             "/" +
                             metadata.lesson.navigation.previous[1]
-                        }
-                    >
+                        }>
                         <Icon
                             name="ArrowLeft"
                             width={navIcons.size}
@@ -72,8 +71,7 @@ export default function EditorNavigationBar({ metadata }) {
                             metadata.lesson.navigation.next[0] +
                             "/" +
                             metadata.lesson.navigation.next[1]
-                        }
-                    >
+                        }>
                         <Icon
                             name="ArrowRight"
                             width={navIcons.size}
