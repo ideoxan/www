@@ -14,7 +14,7 @@
         "format": "npx prettier --write ."
     },
     "dependencies": {
-        "@icons-pack/react-simple-icons": "^4.7.2",
+        "@icons-pack/react-simple-icons": "^5.2.0",
         "@mapbox/rehype-prism": "^0.7.0",
         "@monaco-editor/react": "^4.4.5",
         "@remix-run/node": "^1.4.3",
