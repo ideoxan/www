@@ -313,12 +313,12 @@ export default function BlogIndex() {
                                     </h3>
                                     <p className="mb-4 font-sans text-sm font-normal leading-5 text-gray-50 opacity-90 md:mb-6 md:text-base">
                                         Have any questions or concerns? Get in touch with us. For
-                                        the fastest response, join our
+                                        the fastest response, join our{" "}
                                         <a
                                             href="https://discord.gg/jxqKy6r"
                                             className="underline hover:no-underline">
                                             Discord
-                                        </a>
+                                        </a>{" "}
                                         server and send us a message.
                                     </p>
                                     <div className="mt-auto flex flex-row opacity-70">
