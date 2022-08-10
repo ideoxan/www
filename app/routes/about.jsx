@@ -82,6 +82,8 @@ export default function BlogIndex() {
     return (
         <>
             <NavigationBar session={session} userData={userData} />
+
+            {/* Header */}
             <FadeInSection>
                 <div className="mt-14 flex max-w-3xl flex-col p-8 md:mx-auto lg:w-full lg:max-w-7xl">
                     <h1 className="glow-text-white max-w-sm pb-2 font-sans text-3xl font-extrabold tracking-tight sm:mx-auto sm:max-w-md sm:text-center sm:text-4xl md:max-w-full md:text-5xl">
@@ -93,6 +95,8 @@ export default function BlogIndex() {
                     </h2>
                 </div>
             </FadeInSection>
+
+            {/* Mission */}
             <FadeInSection>
                 <section className="flex w-full flex-col overflow-hidden py-12 md:py-24">
                     <div className="mx-auto flex w-full max-w-7xl flex-col space-x-6 md:flex-row">
@@ -125,6 +129,8 @@ export default function BlogIndex() {
                     </div>
                 </section>
             </FadeInSection>
+
+            {/* Team */}
             <FadeInSection>
                 <section className="flex w-full flex-col overflow-hidden py-12 md:py-24">
                     <div className="mx-auto flex w-full max-w-7xl flex-col space-x-6 md:flex-row">
@@ -185,6 +191,8 @@ export default function BlogIndex() {
                     </div>
                 </section>
             </FadeInSection>
+
+            {/* Careers */}
             <FadeInSection>
                 <section className="flex w-full flex-col overflow-hidden py-12 md:py-24">
                     <div className="mx-auto flex w-full max-w-7xl flex-col space-x-6 md:flex-row">
@@ -217,6 +225,8 @@ export default function BlogIndex() {
                     </div>
                 </section>
             </FadeInSection>
+
+            {/* Research */}
             <FadeInSection>
                 <section className="flex w-full flex-col overflow-hidden py-12 md:py-24">
                     <div className="mx-auto flex w-full max-w-7xl flex-col space-x-6 md:flex-row">
@@ -265,6 +275,8 @@ export default function BlogIndex() {
                     </div>
                 </section>
             </FadeInSection>
+
+            {/* Outreach */}
             <FadeInSection>
                 <section className="flex w-full flex-col overflow-hidden py-12 md:py-24">
                     <div className="mx-auto flex w-full max-w-7xl flex-col space-x-6 md:flex-row">
@@ -300,7 +312,11 @@ export default function BlogIndex() {
                     </div>
                 </section>
             </FadeInSection>
+
+            {/* Open Source */}
             <OpenSourceSection />
+
+            {/* Contact */}
             <FadeInSection>
                 <section className="flex w-full flex-col overflow-hidden py-12 md:py-24">
                     <div className="mx-auto flex w-full max-w-7xl flex-col space-x-6 md:flex-row">
@@ -437,6 +453,7 @@ export default function BlogIndex() {
                     </div>
                 </section>
             </FadeInSection>
+
             <Footer />
         </>
     )
