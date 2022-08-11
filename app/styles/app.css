@@ -1724,8 +1724,16 @@ input::placeholder {
   place-content: center;
 }
 
+.place-content-start {
+  place-content: start;
+}
+
 .items-center {
   align-items: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
 }
 
 .justify-end {
