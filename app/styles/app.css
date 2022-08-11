@@ -567,6 +567,23 @@ body {
   background-color: rgb(9 0 31 / var(--tw-bg-opacity));
 }
 
+.font-style-paragraph {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  --tw-text-opacity: 1;
+  color: rgb(248 245 255 / var(--tw-text-opacity));
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .font-style-paragraph {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
 .bg-gradient-white {
   background: linear-gradient(
                 to top right,
@@ -729,23 +746,6 @@ body {
 
 .box-glow-hover:hover {
   box-shadow: 0 0 18px rgb(219 192 255 / 50%), 0 0 4px rgb(120 65 255 / 12%);
-}
-
-.paragraph {
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  font-weight: 400;
-  --tw-text-opacity: 1;
-  color: rgb(248 245 255 / var(--tw-text-opacity));
-  opacity: 0.8;
-}
-
-@media (min-width: 768px) {
-  .paragraph {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
 }
 
 .glow-text-white {
@@ -1257,6 +1257,10 @@ input::placeholder {
   margin-top: 0.5rem;
 }
 
+.mt-14 {
+  margin-top: 3.5rem;
+}
+
 .mt-8 {
   margin-top: 2rem;
 }
@@ -1279,10 +1283,6 @@ input::placeholder {
 
 .mr-auto {
   margin-right: auto;
-}
-
-.mt-14 {
-  margin-top: 3.5rem;
 }
 
 .mb-4 {
@@ -1919,11 +1919,6 @@ input::placeholder {
   background-color: rgb(248 245 255 / var(--tw-bg-opacity));
 }
 
-.bg-black {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-
 .bg-gray-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(21 9 49 / var(--tw-bg-opacity));
@@ -1937,6 +1932,11 @@ input::placeholder {
 .bg-tertiary {
   --tw-bg-opacity: 1;
   background-color: rgb(238 47 255 / var(--tw-bg-opacity));
+}
+
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-100 {
@@ -2291,10 +2291,6 @@ input::placeholder {
   opacity: 0.2;
 }
 
-.opacity-90 {
-  opacity: 0.9;
-}
-
 .opacity-50 {
   opacity: 0.5;
 }
@@ -2635,11 +2631,6 @@ input::placeholder {
   .md\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
-  }
-
-  .md\:text-base {
-    font-size: 1rem;
-    line-height: 1.5rem;
   }
 
   .md\:text-xl {

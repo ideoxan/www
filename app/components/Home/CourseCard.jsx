@@ -24,7 +24,7 @@ export default function CourseCard({
                     Coming Soon
                 </div>
             ) : null} */}
-            <p className="paragraph my-2 h-full truncate text-left text-sm text-gray-50">
+            <p className="font-style-paragraph my-2 h-full truncate text-left text-sm text-gray-50">
                 {description}
             </p>
             <div className="flex w-full flex-row">

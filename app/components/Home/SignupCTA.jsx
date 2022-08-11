@@ -19,7 +19,7 @@ export default function SignupCTA() {
                         <h2 className="section-header mx-auto text-center md:mx-0 md:text-left lg:mx-auto lg:text-center">
                             Start your programming journey.
                         </h2>
-                        <p className="paragraph mx-auto mt-4 text-center md:mx-0 md:text-left lg:mx-auto lg:text-center">
+                        <p className="font-style-paragraph mx-auto mt-4 text-center md:mx-0 md:text-left lg:mx-auto lg:text-center">
                             It takes less than 5 minutes to get started for no cost!
                         </p>
                     </div>

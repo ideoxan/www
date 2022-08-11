@@ -15,7 +15,7 @@ export default function FeaturesItem({ icon, title, description }) {
             </div>
             <div className="ml-4 flex flex-col">
                 <h3 className="my-1 font-sans text-lg font-semibold text-gray-50">{title}</h3>
-                <p className="paragraph">{description}</p>
+                <p className="font-style-paragraph">{description}</p>
             </div>
         </li>
     )

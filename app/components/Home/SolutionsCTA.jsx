@@ -16,7 +16,7 @@ export default function SolutionsCTA() {
                         <h2 className="section-header mx-auto text-center">
                             Introducing Ideoxan Solutions
                         </h2>
-                        <p className="paragraph mx-auto mt-4 text-center">
+                        <p className="font-style-paragraph mx-auto mt-4 text-center">
                             Need to supercharge learning in your classroom? Find a new way to
                             educate with <b>IX/EDU</b>
                         </p>

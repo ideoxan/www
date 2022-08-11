@@ -45,7 +45,7 @@ export default function CoursesSection() {
                     <div className="my-auto flex flex-col p-6 md:w-1/2">
                         <FadeInSection direction="right">
                             <h2 className="section-header">Learn the next great thing</h2>
-                            <p className="paragraph mt-8">
+                            <p className="font-style-paragraph mt-8">
                                 With so many courses to choose from, you can find your new favorite
                                 programming language. Drop into a ready developer environment within
                                 seconds and start coding in any browser.

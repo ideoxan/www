@@ -31,6 +31,10 @@
         @apply overflow-x-hidden scroll-smooth bg-gray-900;
     }
 
+    .font-style-paragraph {
+        @apply font-sans text-sm font-normal leading-5 text-gray-50 opacity-80 md:text-base;
+    }
+
     .bg-gradient-multi {
         background: linear-gradient(
                 to top right,
@@ -134,10 +138,6 @@
 
     .box-glow-hover:hover {
         box-shadow: 0 0 18px rgb(219 192 255 / 50%), 0 0 4px rgb(120 65 255 / 12%);
-    }
-
-    .paragraph {
-        @apply font-sans text-sm font-normal text-gray-50 opacity-80 md:text-base;
     }
 
     .glow-text-white {

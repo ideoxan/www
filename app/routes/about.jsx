@@ -8,7 +8,7 @@ import FadeInSection from "app/components/FadeInSection"
 import { Discord, Github, Twitter } from "@icons-pack/react-simple-icons"
 import OpenSourceSection from "app/components/Home/OpenSourceSection"
 import Icon from "app/components/Icon"
-import Header from "../components/Header"
+import Header from "app/components/Header"
 
 const teamData = [
     {
@@ -99,14 +99,14 @@ export default function BlogIndex() {
                         <div className="my-auto flex flex-col p-6 md:w-1/2">
                             <FadeInSection direction="right">
                                 <h2 className="section-header">Our mission</h2>
-                                <p className="mt-8 mb-4 font-sans text-sm font-normal leading-5 text-gray-50 opacity-90 md:mb-6 md:text-base">
+                                <p className="font-style-paragraph mt-8 mb-4 md:mb-6">
                                     Ideoxan is committed to a future where everyone can learn
                                     programming with ease. It is essential for tomorrow's workforce
                                     to be armed with the tools of today. Through free and
                                     educational activities, students can be the technology leaders
                                     and innovators they were meant to be.
                                 </p>
-                                <p className="mt-8 mb-4 font-sans text-sm font-normal leading-5 text-gray-50 opacity-90 md:mb-6 md:text-base">
+                                <p className="font-style-paragraph mt-8 mb-4 md:mb-6">
                                     A majority of the content provided by Ideoxan is free to use,
                                     edit, and redistribute. We made our website around this
                                     free-to-use and open source model to knock down the barriers
@@ -195,14 +195,14 @@ export default function BlogIndex() {
                         <div className="my-auto flex flex-col p-6 md:w-1/2">
                             <FadeInSection direction="right">
                                 <h2 className="section-header">Oppritunity at Ideoxan</h2>
-                                <p className="mt-8 mb-4 font-sans text-sm font-normal leading-5 text-gray-50 opacity-90 md:mb-6 md:text-base">
+                                <p className="font-style-paragraph mt-8 mb-4 md:mb-6">
                                     Want to be a part of the future of computer science education?
                                     Ideoxan is an entirely remote project. We advocate for a
                                     balanced work environment, and we are always looking for
                                     talented people to join our team. We hire in 6-month intervals
                                     or as needed.
                                 </p>
-                                <p className="mt-8 mb-4 font-sans text-sm font-normal leading-5 text-gray-50 opacity-90 md:mb-6 md:text-base">
+                                <p className="font-style-paragraph mt-8 mb-4 md:mb-6">
                                     Ideoxan is also actively working with our community and industry
                                     partners to create an internship program for high school and
                                     university students in the US. These internships will provide
@@ -229,13 +229,13 @@ export default function BlogIndex() {
                         <div className="my-auto flex flex-col p-6 md:w-1/2">
                             <FadeInSection direction="right">
                                 <h2 className="section-header">Beyond development</h2>
-                                <p className="mt-8 mb-4 font-sans text-sm font-normal leading-5 text-gray-50 opacity-90 md:mb-6 md:text-base">
+                                <p className="font-style-paragraph mt-8 mb-4 md:mb-6">
                                     Ideoxan is invested in the future of web technologies and
                                     computer science as a whole. We have made strides in the
                                     advancement of these technologies through research, education,
                                     and industry partnerships.
                                 </p>
-                                <p className="mt-8 mb-4 font-sans text-sm font-normal leading-5 text-gray-50 opacity-90 md:mb-6 md:text-base">
+                                <p className="font-style-paragraph mt-8 mb-4 md:mb-6">
                                     We have developed complex systems that we rely on to help power
                                     our work. And, we are only getting started.
                                 </p>
@@ -279,7 +279,7 @@ export default function BlogIndex() {
                         <div className="my-auto flex flex-col p-6 md:w-1/2">
                             <FadeInSection direction="right">
                                 <h2 className="section-header">Our responsibility</h2>
-                                <p className="mt-8 mb-4 font-sans text-sm font-normal leading-5 text-gray-50 opacity-90 md:mb-6 md:text-base">
+                                <p className="font-style-paragraph mt-8 mb-4 md:mb-6">
                                     In the modern age, technology is a necessity. In 2012, the
                                     United States Department of Education found that 16% of adults
                                     were digitally illiterate. This could mean that up to 41 million
@@ -287,7 +287,7 @@ export default function BlogIndex() {
                                     device. Ideoxan promotes the usage of our products and services
                                     to also provide digital literacy services.
                                 </p>
-                                <p className="mt-8 mb-4 font-sans text-sm font-normal leading-5 text-gray-50 opacity-90 md:mb-6 md:text-base">
+                                <p className="font-style-paragraph mt-8 mb-4 md:mb-6">
                                     Ideoxan focuses not only on our local community, but also the
                                     global community. Through open source and FOSS (free and open
                                     source software) initiatives, Ideoxan has thrived. We emphasize
@@ -323,7 +323,7 @@ export default function BlogIndex() {
                                     <h3 className="bg-gradient-white mt-6 bg-clip-text pb-2 text-left font-sans text-lg font-bold tracking-tight text-gray-50 text-transparent md:text-xl">
                                         General Inquires
                                     </h3>
-                                    <p className="mb-4 font-sans text-sm font-normal leading-5 text-gray-50 opacity-90 md:mb-6 md:text-base">
+                                    <p className="font-style-paragraph mb-4 md:mb-6">
                                         Have any questions or concerns? Get in touch with us. For
                                         the fastest response, join our{" "}
                                         <a
@@ -369,7 +369,7 @@ export default function BlogIndex() {
                                     <h3 className="bg-gradient-white mt-6 bg-clip-text pb-2 text-left font-sans text-lg font-bold tracking-tight text-gray-50 text-transparent md:text-xl">
                                         Technical Support Line
                                     </h3>
-                                    <p className="mb-4 font-sans text-sm font-normal leading-5 text-gray-50 opacity-90 md:mb-6 md:text-base">
+                                    <p className="font-style-paragraph mb-4 md:mb-6">
                                         Are you experiencing a technical problem with the website?
                                         Is something broken? Need help?
                                     </p>
@@ -409,7 +409,7 @@ export default function BlogIndex() {
                                     <h3 className="bg-gradient-white mt-6 bg-clip-text pb-2 text-left font-sans text-lg font-bold tracking-tight text-gray-50 text-transparent md:text-xl">
                                         Socials
                                     </h3>
-                                    <p className="mb-4 font-sans text-sm font-normal leading-5 text-gray-50 opacity-90 md:mb-6 md:text-base">
+                                    <p className="font-style-paragraph mb-4 md:mb-6">
                                         Check out our social media profiles to stay up to date with
                                         the latest news.
                                     </p>
