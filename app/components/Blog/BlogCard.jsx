@@ -4,7 +4,7 @@ import trimStringToWord from "app/utils/trimStringToWord"
 export default function BlogCard({ post, ...props }) {
     return (
         <div
-            className="flex h-full w-96 flex-1 cursor-pointer flex-col rounded-md bg-gray-700 ring-1 ring-gray-500 ring-opacity-30 hover:translate-y-px hover:scale-105"
+            className="flex h-full min-h-full w-96 flex-1 cursor-pointer flex-col rounded-md bg-gray-700 ring-1 ring-gray-500 ring-opacity-30 hover:translate-y-px hover:scale-105"
             onClick={() => {
                 window.location = "/blog/post/" + post.attributes.slug
             }}

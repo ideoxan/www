@@ -45,10 +45,14 @@ export default function BlogIndex() {
                 subtitle={"The latest updates from the Ideoxan team"}
             />
             <div className="section mx-auto flex-col">
-                <div className="max-w-8xl mx-auto flex w-full flex-row flex-wrap place-content-center justify-center gap-y-6 gap-x-8 p-6">
+                <div className="mx-auto flex w-full max-w-4xl flex-row flex-wrap place-content-center justify-center gap-y-6 gap-x-8 p-6">
                     {Object.values(posts).map((post, i) => {
                         if (!post.attributes.published) return null
-                        return <BlogCard key={i} post={post} />
+                        return (
+                            <FadeInSection key={i}>
+                                <BlogCard key={i} post={post} />
+                            </FadeInSection>
+                        )
                     })}
                 </div>
             </div>
