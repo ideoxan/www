@@ -1,4 +1,4 @@
-import Icon from "app/components/Icon"
+import { Github, Discord, Twitter } from "@icons-pack/react-simple-icons"
 
 export default function Footer() {
     return (
@@ -26,36 +26,18 @@ export default function Footer() {
                 <div className="mx-auto mt-6 flex flex-row">
                     <a
                         href="https://discord.gg/jxqKy6r"
-                        className="px-6 opacity-20 hover:opacity-50">
-                        <Icon
-                            name="MessageSquare"
-                            width="6"
-                            height="6"
-                            color="gray-50"
-                            strokeThickness="2"
-                        />
+                        className="px-6 text-gray-50 opacity-20 hover:opacity-50">
+                        <Discord width={24} />
                     </a>
                     <a
                         href="https://twitter.com/ideoxan"
-                        className="px-6 opacity-20 hover:opacity-50">
-                        <Icon
-                            name="Twitter"
-                            width="6"
-                            height="6"
-                            color="gray-50"
-                            strokeThickness="2"
-                        />
+                        className="px-6 text-gray-50 opacity-20 hover:opacity-50">
+                        <Twitter width={24} />
                     </a>
                     <a
                         href="https://github.com/ideoxan"
-                        className="px-6 opacity-20 hover:opacity-50">
-                        <Icon
-                            name="Github"
-                            width="6"
-                            height="6"
-                            color="gray-50"
-                            strokeThickness="2"
-                        />
+                        className="px-6 text-gray-50 opacity-20 hover:opacity-50">
+                        <Github width={24} />
                     </a>
                 </div>
                 <div className="mx-auto mt-6 flex flex-row">
