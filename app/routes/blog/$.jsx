@@ -48,11 +48,7 @@ export default function BlogIndex() {
                 <div className="max-w-8xl mx-auto flex w-full flex-row flex-wrap place-content-center justify-center gap-y-6 gap-x-8 p-6">
                     {Object.values(posts).map((post, i) => {
                         if (!post.attributes.published) return null
-                        return (
-                            <FadeInSection key={i}>
-                                <BlogCard key={i} post={post} />
-                            </FadeInSection>
-                        )
+                        return <BlogCard key={i} post={post} />
                     })}
                 </div>
             </div>
