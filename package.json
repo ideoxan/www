@@ -21,7 +21,7 @@
         "@remix-run/react": "^1.6.7",
         "@remix-run/vercel": "^1.6.7",
         "@supabase/supabase-js": "^1.35.6",
-        "@vercel/node": "^2.5.7",
+        "@vercel/node": "^2.5.8",
         "dexie": "^3.2.2",
         "lucide-react": "^0.84.0",
         "marked": "^4.0.18",
