@@ -18,7 +18,7 @@
         "@mapbox/rehype-prism": "^0.7.0",
         "@monaco-editor/react": "^4.4.5",
         "@remix-run/node": "^1.7.0",
-        "@remix-run/react": "^1.6.7",
+        "@remix-run/react": "^1.7.0",
         "@remix-run/vercel": "^1.6.7",
         "@supabase/supabase-js": "^1.35.6",
         "@vercel/node": "^2.5.11",
