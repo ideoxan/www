@@ -33,7 +33,7 @@
         "remark-reading-time": "^2.0.1",
         "remix-auth": "^3.2.2",
         "remix-auth-supabase": "^4.0.0",
-        "socket.io": "^4.5.1",
+        "socket.io": "^4.5.2",
         "socket.io-client": "^4.5.1",
         "uuid": "^8.3.2",
         "xterm": "^4.19.0",
