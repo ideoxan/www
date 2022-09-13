@@ -2,6 +2,7 @@ import { json, redirect } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { supabaseLocalStrategy } from "app/utils/auth.server.js"
 import { supabaseAdmin } from "app/utils/db.server.js"
+import NavigationBar from "app/components/NavigationBar"
 
 export async function loader({ request }) {
     // Check user auth
@@ -31,5 +32,5 @@ export async function loader({ request }) {
 export default function Dashboard() {
     let { session, userData } = useLoaderData()
 
-    return <h1>Dashboard</h1>
+    return <NavigationBar session={session} userData={userData} />
 }

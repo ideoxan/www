@@ -1225,6 +1225,11 @@ input::placeholder {
   margin-bottom: auto;
 }
 
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .my-6 {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
@@ -1233,11 +1238,6 @@ input::placeholder {
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-}
-
-.my-2 {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
 }
 
 .my-1 {
@@ -1305,12 +1305,12 @@ input::placeholder {
   margin-left: 1rem;
 }
 
-.mb-auto {
-  margin-bottom: auto;
-}
-
 .ml-auto {
   margin-left: auto;
+}
+
+.mb-auto {
+  margin-bottom: auto;
 }
 
 .mt-3 {
@@ -1453,12 +1453,12 @@ input::placeholder {
   width: max-content;
 }
 
-.w-screen {
-  width: 100vw;
-}
-
 .w-96 {
   width: 24rem;
+}
+
+.w-screen {
+  width: 100vw;
 }
 
 .w-8 {
@@ -1519,14 +1519,6 @@ input::placeholder {
 
 .flex-1 {
   flex: 1 1 0%;
-}
-
-.flex-none {
-  flex: none;
-}
-
-.flex-auto {
-  flex: 1 1 auto;
 }
 
 .flex-shrink {
@@ -1708,10 +1700,6 @@ input::placeholder {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
 .flex-row {
   flex-direction: row;
 }
@@ -1736,16 +1724,8 @@ input::placeholder {
   place-content: center;
 }
 
-.place-content-start {
-  place-content: start;
-}
-
 .items-center {
   align-items: center;
-}
-
-.justify-start {
-  justify-content: flex-start;
 }
 
 .justify-end {
@@ -1760,15 +1740,6 @@ input::placeholder {
   justify-content: space-between;
 }
 
-.gap-x-6 {
-  -moz-column-gap: 1.5rem;
-       column-gap: 1.5rem;
-}
-
-.gap-y-4 {
-  row-gap: 1rem;
-}
-
 .gap-y-6 {
   row-gap: 1.5rem;
 }
@@ -1776,6 +1747,15 @@ input::placeholder {
 .gap-x-8 {
   -moz-column-gap: 2rem;
        column-gap: 2rem;
+}
+
+.gap-x-6 {
+  -moz-column-gap: 1.5rem;
+       column-gap: 1.5rem;
+}
+
+.gap-y-4 {
+  row-gap: 1rem;
 }
 
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
@@ -1930,6 +1910,11 @@ input::placeholder {
   background-color: rgb(14 4 38 / var(--tw-bg-opacity));
 }
 
+.bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(21 9 49 / var(--tw-bg-opacity));
+}
+
 .bg-red-500\/50 {
   background-color: rgb(239 68 68 / 0.5);
 }
@@ -1937,11 +1922,6 @@ input::placeholder {
 .bg-gray-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(248 245 255 / var(--tw-bg-opacity));
-}
-
-.bg-gray-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(21 9 49 / var(--tw-bg-opacity));
 }
 
 .bg-secondary {
@@ -2061,6 +2041,11 @@ input::placeholder {
   padding-bottom: 3rem;
 }
 
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -2069,11 +2054,6 @@ input::placeholder {
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
-}
-
-.py-3 {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
 }
 
 .px-12 {
@@ -2203,6 +2183,11 @@ input::placeholder {
   line-height: 2.25rem;
 }
 
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -2210,11 +2195,6 @@ input::placeholder {
 
 .text-3xs {
   font-size: 0.5rem;
-}
-
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
 }
 
 .font-extrabold {
@@ -2262,14 +2242,14 @@ input::placeholder {
   color: transparent;
 }
 
-.text-red-50 {
-  --tw-text-opacity: 1;
-  color: rgb(254 242 242 / var(--tw-text-opacity));
-}
-
 .text-secondary {
   --tw-text-opacity: 1;
   color: rgb(167 129 254 / var(--tw-text-opacity));
+}
+
+.text-red-50 {
+  --tw-text-opacity: 1;
+  color: rgb(254 242 242 / var(--tw-text-opacity));
 }
 
 .text-gray-100 {
