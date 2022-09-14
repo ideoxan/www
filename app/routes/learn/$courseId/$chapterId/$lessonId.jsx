@@ -99,7 +99,7 @@ export default function Editor() {
                 _meta.lesson = await data.json()
                 _meta.lesson.index = parseInt(params.lessonId)
             } catch (error) {
-                if (window.env.NODE_ENV !== "production") console.log(error)
+                if (window.env.WORKER_ENV !== "production") console.log(error)
                 window.location = window.location.toString() + "/404"
             }
 
@@ -113,7 +113,7 @@ export default function Editor() {
                 _meta.chapter = await data.json()
                 _meta.chapter.index = parseInt(params.chapterId)
             } catch (error) {
-                if (window.env.NODE_ENV !== "production") console.log(error)
+                if (window.env.WORKER_ENV !== "production") console.log(error)
                 window.location = window.location.toString() + "/404"
             }
 
@@ -124,7 +124,7 @@ export default function Editor() {
                 if (!data.ok) throw new Error(JSON.stringify(await data.json()))
                 _meta.course = await data.json()
             } catch (error) {
-                if (window.env.NODE_ENV !== "production") console.log(error)
+                if (window.env.WORKER_ENV !== "production") console.log(error)
                 window.location = window.location.toString() + "/404"
             }
 

@@ -8,9 +8,9 @@ export const supabaseAdmin = ({ context }) => {
     let dbURL = null
     let dbKey = null
 
-    if (!context.NODE_ENV) throw new Error("Process is not defined")
+    if (!context.WORKER_ENV) throw new Error("Process is not defined")
 
-    if (context.NODE_ENV === "production") {
+    if (context.WORKER_ENV === "production") {
         dbURL = context.SUPABASE_URL
         dbKey = context.SUPABASE_SECRET_KEY
     } else {

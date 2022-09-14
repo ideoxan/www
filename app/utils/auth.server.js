@@ -24,7 +24,7 @@ export const sessionStorage = ({ context }) => {
             httpOnly: true,
             path: "/",
             sameSite: "lax",
-            secure: context.NODE_ENV === "production",
+            secure: context.WORKER_ENV === "production",
             secrets: [context.COOKIE_SECRET],
         },
     })

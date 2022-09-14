@@ -44,12 +44,12 @@ export function links() {
 
 export async function loader({ context }) {
     // This injects the env vars into the browser
-    if (context.NODE_ENV === "production") {
+    if (context.WORKER_ENV === "production") {
         return json({
             ENV: {
                 SUPABASE_URL: context.SUPABASE_URL,
                 SUPABASE_ANON_KEY: context.SUPABASE_ANON_KEY,
-                NODE_ENV: context.NODE_ENV,
+                WORKER_ENV: context.WORKER_ENV,
                 TESSERACT_URL: context.TESSERACT_URL,
             },
         })
@@ -58,7 +58,7 @@ export async function loader({ context }) {
             ENV: {
                 SUPABASE_URL_DEV: context.SUPABASE_URL_DEV,
                 SUPABASE_ANON_KEY_DEV: context.SUPABASE_ANON_KEY_DEV,
-                NODE_ENV: context.NODE_ENV,
+                WORKER_ENV: context.WORKER_ENV,
                 TESSERACT_URL: context.TESSERACT_URL,
             },
         })

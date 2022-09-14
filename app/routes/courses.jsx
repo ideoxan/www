@@ -34,7 +34,7 @@ export const loader = async ({ request, context }) => {
             if (!data.ok) throw new Error(JSON.stringify(await data.json()))
             courses.push(await data.json())
         } catch (error) {
-            if (context.NODE_ENV !== "production") console.log(error)
+            if (context.WORKER_ENV !== "production") console.log(error)
         }
     }
 

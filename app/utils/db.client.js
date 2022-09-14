@@ -5,7 +5,7 @@ let dbKey = null
 
 if (!window) throw new Error("Window is not defined")
 
-if (window.env.NODE_ENV === "production") {
+if (window.env.WORKER_ENV === "production") {
     if (!window.env.SUPABASE_URL) throw new Error("Supabase URL is not set")
     if (!window.env.SUPABASE_ANON_KEY) throw new Error("Supabase key is not set")
     dbURL = window.env.SUPABASE_URL

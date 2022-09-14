@@ -80,7 +80,7 @@ export default function Console({ session, userData, metadata }) {
 
             // Connect to socket
             const connectionURL =
-                window.env.NODE_ENV == "production"
+                window.env.WORKER_ENV == "production"
                     ? "https://" + session.user.id + "." + window.env.TESSERACT_URL
                     : "http://localhost:5972"
 

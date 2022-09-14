@@ -5,7 +5,7 @@ account_id = "fc7469b1bbe987ee5b82926ae054d5f3"
 workers_dev = true
 
 [vars]
-NODE_ENV = "development"
+WORKER_ENV = "development"
 # Secrets:
 # - SUPABASE_URL_DEV
 # - SUPABASE_SECRET_KEY_DEV
@@ -18,5 +18,5 @@ NODE_ENV = "development"
 # see https://developers.cloudflare.com/workers/cli-wrangler/commands#secret for more info
 
 [env.production.vars]
-NODE_ENV = "production"
+WORKER_ENV = "production"
 
