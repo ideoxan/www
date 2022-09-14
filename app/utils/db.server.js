@@ -1,22 +1,27 @@
 import { createClient } from "@supabase/supabase-js"
 
-let dbURL = null
-let dbKey = null
+let instance = null
 
-if (!process) throw new Error("Process is not defined")
+export const supabaseAdmin = ({ context }) => {
+    if (instance) return instance
 
-if (process.env.NODE_ENV === "production") {
-    if (!process.env.SUPABASE_URL) throw new Error("Supabase URL is not set")
-    if (!process.env.SUPABASE_SECRET_KEY) throw new Error("Supabase key is not set")
-    dbURL = process.env.SUPABASE_URL
-    dbKey = process.env.SUPABASE_SECRET_KEY
-} else {
-    if (!process.env.SUPABASE_URL_DEV) throw new Error("Supabase URL is not set")
-    if (!process.env.SUPABASE_SECRET_KEY_DEV) throw new Error("Supabase key is not set")
-    dbURL = process.env.SUPABASE_URL_DEV
-    dbKey = process.env.SUPABASE_SECRET_KEY_DEV
+    let dbURL = null
+    let dbKey = null
+
+    if (!context.NODE_ENV) throw new Error("Process is not defined")
+
+    if (context.NODE_ENV === "production") {
+        dbURL = context.SUPABASE_URL
+        dbKey = context.SUPABASE_SECRET_KEY
+    } else {
+        dbURL = context.SUPABASE_URL_DEV
+        dbKey = context.SUPABASE_SECRET_KEY_DEV
+    }
+
+    if (!dbURL) throw new Error("Supabase URL is not set")
+    if (!dbKey) throw new Error("Supabase key is not set")
+
+    instance = createClient(dbURL, dbKey)
+
+    return instance
 }
-
-const supabaseAdmin = createClient(dbURL, dbKey)
-
-export { supabaseAdmin }
