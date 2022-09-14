@@ -2,9 +2,11 @@ node_modules
 
 .cache
 .env
-.vercel
 .output
 
 /build/
 /public/build
 /api/
+/.cache
+/functions/\[\[path\]\].js
+/functions/\[\[path\]\].js.map
