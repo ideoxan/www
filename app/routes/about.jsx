@@ -1,6 +1,6 @@
 import NavigationBar from "app/components/NavigationBar"
 import Footer from "app/components/Footer"
-import { json, redirect } from "@remix-run/node"
+import { json, redirect } from "@remix-run/cloudflare"
 import { useLoaderData } from "@remix-run/react"
 import { supabaseLocalStrategy } from "app/utils/auth.server.js"
 import { supabaseAdmin } from "app/utils/db.server.js"
@@ -52,9 +52,9 @@ const teamData = [
     },
 ]
 
-export const loader = async ({ request }) => {
+export const loader = async ({ request, context }) => {
     // Check user auth
-    let session = await supabaseLocalStrategy.checkSession(request)
+    let session = await supabaseLocalStrategy({ context }).checkSession(request)
 
     // If the user session is bad, redirect to the login page
     if (session) {
@@ -62,7 +62,7 @@ export const loader = async ({ request }) => {
         if (!user || !user.id) throw redirect("/login")
 
         // If the user is authenticated, get the user's data from the database
-        let { data: userData, error } = await supabaseAdmin
+        let { data: userData, error } = await supabaseAdmin({ context })
             .from("user_data")
             .select()
             .eq("id", user.id)

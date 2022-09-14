@@ -1,5 +1,5 @@
 import { Link, Form, useActionData } from "@remix-run/react"
-import { json, redirect } from "@remix-run/node"
+import { json, redirect } from "@remix-run/cloudflare"
 import { authenticator, sessionStorage, supabaseLocalStrategy } from "app/utils/auth.server"
 import { supabaseAdmin } from "app/utils/db.server"
 import AuthSplash from "app/components/Auth/AuthSplash"
@@ -12,19 +12,19 @@ export function meta() {
     }
 }
 
-export async function loader({ request }) {
+export async function loader({ request, context }) {
     prodBlockServer()
 
-    await supabaseLocalStrategy.checkSession(request, {
+    await supabaseLocalStrategy({ context }).checkSession(request, {
         successRedirect: "/dashboard",
     })
 
-    const session = await sessionStorage.getSession(request.headers.get("Cookie"))
-    const error = session?.get(authenticator.sessionErrorKey) || null
+    const session = await sessionStorage({ context }).getSession(request.headers.get("Cookie"))
+    const error = session?.get(authenticator({ context }).sessionErrorKey) || null
     return json({ error })
 }
 
-export async function action({ request }) {
+export async function action({ request, context }) {
     // Get form data
     let form = await request.formData()
     let email = form.get("email")
@@ -40,7 +40,7 @@ export async function action({ request }) {
         }
     }
 
-    let { session, error } = await supabaseAdmin.auth.signUp({
+    let { session, error } = await supabaseAdmin({ context }).auth.signUp({
         email,
         password,
     })

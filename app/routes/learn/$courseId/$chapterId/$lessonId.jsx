@@ -1,5 +1,5 @@
 // General
-import { json, redirect } from "@remix-run/node"
+import { json, redirect } from "@remix-run/cloudflare"
 import { useLoaderData } from "@remix-run/react"
 import { useEffect, useState } from "react"
 // Navigation
@@ -23,13 +23,13 @@ import prodBlockServer from "app/utils/prodBlock.server"
 import termStyles from "app/styles/xterm.css"
 export const links = () => [{ rel: "stylesheet", href: termStyles }]
 
-export const loader = async ({ params, request }) => {
+export const loader = async ({ params, request, context }) => {
     prodBlockServer()
     // It slows down the website a lot if we start loading the data from the server
     // At least if we handle it manually in the component, we can show a loading splash screen.
     //??: Would a graphql query be more efficient?
     // Check user auth
-    let session = await supabaseLocalStrategy.checkSession(request)
+    let session = await supabaseLocalStrategy({ context }).checkSession(request)
 
     // If the user session is bad, redirect to the login page
     if (session) {
@@ -37,7 +37,7 @@ export const loader = async ({ params, request }) => {
         if (!user || !user.id) throw redirect("/login")
 
         // If the user is authenticated, get the user's data from the database
-        let { data: userData, error } = await supabaseAdmin
+        let { data: userData, error } = await supabaseAdmin({ context })
             .from("user_data")
             .select()
             .eq("id", user.id)

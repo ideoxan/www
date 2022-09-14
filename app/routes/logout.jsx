@@ -1,19 +1,19 @@
 import { authenticator } from "app/utils/auth.server"
 
-export async function action({ request }) {
-    await handle(request)
+export async function action({ request, context }) {
+    await handle(request, context)
     return null
 }
 
-export async function loader({ request }) {
-    await handle(request)
+export async function loader({ request, context }) {
+    await handle(request, context)
     return null
 }
 
-async function handle(request) {
-    await authenticator.isAuthenticated(request, {
+async function handle(request, context) {
+    await authenticator({ context }).isAuthenticated(request, {
         failureRedirect: "/login",
     })
 
-    throw await authenticator.logout(request, { redirectTo: "/" })
+    throw await authenticator({ context }).logout(request, { redirectTo: "/" })
 }

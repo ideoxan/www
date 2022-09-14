@@ -1,4 +1,4 @@
-import { json } from "@remix-run/node"
+import { json } from "@remix-run/cloudflare"
 import {
     Links,
     LiveReload,
@@ -42,24 +42,24 @@ export function links() {
     return [{ rel: "stylesheet", href: styles }]
 }
 
-export async function loader({ request }) {
+export async function loader({ context }) {
     // This injects the env vars into the browser
-    if (process.env.NODE_ENV === "production") {
+    if (context.NODE_ENV === "production") {
         return json({
             ENV: {
-                SUPABASE_URL: process.env.SUPABASE_URL,
-                SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
-                NODE_ENV: process.env.NODE_ENV,
-                TESSERACT_URL: process.env.TESSERACT_URL,
+                SUPABASE_URL: context.SUPABASE_URL,
+                SUPABASE_ANON_KEY: context.SUPABASE_ANON_KEY,
+                NODE_ENV: context.NODE_ENV,
+                TESSERACT_URL: context.TESSERACT_URL,
             },
         })
     } else {
         return json({
             ENV: {
-                SUPABASE_URL_DEV: process.env.SUPABASE_URL_DEV,
-                SUPABASE_ANON_KEY_DEV: process.env.SUPABASE_ANON_KEY_DEV,
-                NODE_ENV: process.env.NODE_ENV,
-                TESSERACT_URL: process.env.TESSERACT_URL,
+                SUPABASE_URL_DEV: context.SUPABASE_URL_DEV,
+                SUPABASE_ANON_KEY_DEV: context.SUPABASE_ANON_KEY_DEV,
+                NODE_ENV: context.NODE_ENV,
+                TESSERACT_URL: context.TESSERACT_URL,
             },
         })
     }

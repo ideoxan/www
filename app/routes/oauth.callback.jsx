@@ -1,12 +1,12 @@
 import { useEffect } from "react"
 import { useFetcher, useLoaderData } from "@remix-run/react"
-import { json, redirect } from "@remix-run/node"
+import { json, redirect } from "@remix-run/cloudflare"
 import { authenticator } from "app/utils/auth.server.js"
 import { supabaseClient } from "app/utils/db.client"
 import AuthSplash from "app/components/Auth/AuthSplash"
 
-export async function action({ request }) {
-    let session = await authenticator.authenticate("oauth", request, {
+export async function action({ request, context }) {
+    let session = await authenticator({ context }).authenticate("oauth", request, {
         successRedirect: "/dashboard",
         failureRedirect: "/login",
     })
@@ -18,8 +18,8 @@ export async function action({ request }) {
     if (!user || !user.id) throw redirect("/login")
 }
 
-export async function loader({ request }) {
-    await authenticator.isAuthenticated(request, {
+export async function loader({ request, context }) {
+    await authenticator({ context }).isAuthenticated(request, {
         successRedirect: "/dashboard",
     })
 
