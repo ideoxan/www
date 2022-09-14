@@ -2,11 +2,12 @@ node_modules
 
 .cache
 .env
+.dev.vars
 .output
 
 /build/
 /public/build
 /api/
 /.cache
-/functions/\[\[path\]\].js
-/functions/\[\[path\]\].js.map
+/functions/
+/functions/
