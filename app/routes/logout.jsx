@@ -11,9 +11,9 @@ export async function loader({ request, context }) {
 }
 
 async function handle(request, context) {
-    await authenticator({ context }).isAuthenticated(request, {
+    await authenticator().isAuthenticated(request, {
         failureRedirect: "/login",
     })
 
-    throw await authenticator({ context }).logout(request, { redirectTo: "/" })
+    throw await authenticator().logout(request, { redirectTo: "/" })
 }

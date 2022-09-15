@@ -6,7 +6,7 @@ import { supabaseClient } from "app/utils/db.client"
 import AuthSplash from "app/components/Auth/AuthSplash"
 
 export async function action({ request, context }) {
-    let session = await authenticator({ context }).authenticate("oauth", request, {
+    let session = await authenticator().authenticate("oauth", request, {
         successRedirect: "/dashboard",
         failureRedirect: "/login",
     })
@@ -19,7 +19,7 @@ export async function action({ request, context }) {
 }
 
 export async function loader({ request, context }) {
-    await authenticator({ context }).isAuthenticated(request, {
+    await authenticator().isAuthenticated(request, {
         successRedirect: "/dashboard",
     })
 

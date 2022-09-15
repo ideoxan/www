@@ -11,7 +11,7 @@ import Header from "app/components/Header"
 
 export const loader = async ({ request, context }) => {
     // Check user auth
-    let session = await supabaseLocalStrategy({ context }).checkSession(request)
+    let session = await supabaseLocalStrategy().checkSession(request)
 
     // If the user session is bad, redirect to the login page
     if (session) {
@@ -19,7 +19,7 @@ export const loader = async ({ request, context }) => {
         if (!user || !user.id) throw redirect("/login")
 
         // If the user is authenticated, get the user's data from the database
-        let { data: userData, error } = await supabaseAdmin({ context })
+        let { data: userData, error } = await supabaseAdmin()
             .from("user_data")
             .select()
             .eq("id", user.id)

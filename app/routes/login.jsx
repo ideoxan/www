@@ -14,17 +14,17 @@ export function meta() {
 export async function loader({ request, context }) {
     prodBlockServer()
 
-    await supabaseLocalStrategy({ context }).checkSession(request, {
+    await supabaseLocalStrategy().checkSession(request, {
         successRedirect: "/dashboard",
     })
 
-    const session = await sessionStorage({ context }).getSession(request.headers.get("Cookie"))
-    const error = session?.get(authenticator({ context }).sessionErrorKey) || null
+    const session = await sessionStorage().getSession(request.headers.get("Cookie"))
+    const error = session?.get(authenticator().sessionErrorKey) || null
     return json({ error })
 }
 
 export async function action({ request, context }) {
-    await authenticator({ context }).authenticate("local", request, {
+    await authenticator().authenticate("local", request, {
         successRedirect: "/dashboard",
         failureRedirect: "/login",
     })

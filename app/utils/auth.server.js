@@ -6,53 +6,40 @@ import { supabaseAdmin } from "app/utils/db.server"
 const SESSION_KEY = "ix:session"
 const SESSION_ERROR_KEY = "ix:error"
 
-let storageInstance = null
-let localStrategyInstance = null
-let oAuthStrategyInstance = null
-let authenticatorInstance = null
-
-export const sessionStorage = ({ context }) => {
-    if (storageInstance) return storageInstance
-
-    if (!context.COOKIE_SECRET) {
+export const sessionStorage = () => {
+    if (!global.env.COOKIE_SECRET) {
         throw new Error("Cookie secret is not set")
     }
 
-    storageInstance = createCookieSessionStorage({
+    return createCookieSessionStorage({
         cookie: {
             name: "ix",
             httpOnly: true,
             path: "/",
             sameSite: "lax",
-            secure: context.WORKER_ENV === "production",
-            secrets: [context.COOKIE_SECRET],
+            secure: global.env.WORKER_ENV === "production",
+            secrets: [global.env.COOKIE_SECRET],
         },
     })
-
-    return storageInstance
 }
 
-export const authenticator = ({ context }) => {
-    if (authenticatorInstance) return authenticatorInstance
-
-    authenticatorInstance = new Authenticator(sessionStorage({ context }), {
+export const authenticator = () => {
+    let auth = new Authenticator(sessionStorage(), {
         sessionKey: SESSION_KEY,
         sessionErrorKey: SESSION_ERROR_KEY,
     })
-    authenticator({ context }).use(supabaseLocalStrategy({ context }), "local")
-    authenticator({ context }).use(supabaseOAuthStrategy({ context }), "oauth")
+    auth.use(supabaseLocalStrategy(), "local")
+    auth.use(supabaseOAuthStrategy(), "oauth")
 
-    return authenticatorInstance
+    return auth
 }
 
 // Local Strategy
-export const supabaseLocalStrategy = ({ context }) => {
-    if (localStrategyInstance) return localStrategyInstance
-
-    localStrategyInstance = new SupabaseStrategy(
+export const supabaseLocalStrategy = () => {
+    return new SupabaseStrategy(
         {
-            supabaseClient: supabaseAdmin({ context }),
-            sessionStorage: sessionStorage({ context }),
+            supabaseClient: supabaseAdmin(),
+            sessionStorage: sessionStorage(),
             sessionKey: SESSION_KEY,
             sessionErrorKey: SESSION_ERROR_KEY,
         },
@@ -71,24 +58,19 @@ export const supabaseLocalStrategy = ({ context }) => {
                 throw new AuthorizationError(error?.message || "An unknown error occurred")
             }
 
-            await updateInfoOnAuth({ req, user: data?.user || null, context })
+            await updateInfoOnAuth({ req, user: data?.user || null })
 
             return data
         }
     )
-    authenticator({ context }).use(localStrategyInstance, "local")
-
-    return localStrategyInstance
 }
 
 // OAuth Strategy
-export const supabaseOAuthStrategy = ({ context }) => {
-    if (oAuthStrategyInstance) return oAuthStrategyInstance
-
-    oAuthStrategyInstance = new SupabaseStrategy(
+export const supabaseOAuthStrategy = () => {
+    return new SupabaseStrategy(
         {
-            supabaseClient: supabaseAdmin({ context }),
-            sessionStorage: sessionStorage({ context }),
+            supabaseClient: supabaseAdmin(),
+            sessionStorage: sessionStorage(),
             sessionKey: SESSION_KEY,
             sessionErrorKey: SESSION_ERROR_KEY,
         },
@@ -99,21 +81,18 @@ export const supabaseOAuthStrategy = ({ context }) => {
             if (typeof session !== "string") throw new AuthorizationError("Session not found")
             let parsedSession = JSON.parse(session)
 
-            await updateInfoOnAuth({ req, user: parsedSession?.user || null, context })
+            await updateInfoOnAuth({ req, user: parsedSession?.user || null })
 
             return parsedSession
         }
     )
-    authenticator({ context }).use(oAuthStrategyInstance, "oauth")
-
-    return oAuthStrategyInstance
 }
 
 // Update user info on auth
-const updateInfoOnAuth = async ({ req, user, context }) => {
+const updateInfoOnAuth = async ({ user }) => {
     if (!user) throw new AuthorizationError("An unknown error occurred")
 
-    let { data: selectData, error: selectError } = await supabaseAdmin({ context })
+    let { data: selectData, error: selectError } = await supabaseAdmin()
         .from("user_data")
         .select()
         .eq("id", user.id)
@@ -126,7 +105,7 @@ const updateInfoOnAuth = async ({ req, user, context }) => {
 
     if (selectData.length == 0) {
         // If user data does not exist, create it
-        ;({ error: userDataError } = await supabaseAdmin({ context })
+        ;({ error: userDataError } = await supabaseAdmin()
             .from("user_data")
             .insert([
                 {
@@ -162,7 +141,7 @@ const updateInfoOnAuth = async ({ req, user, context }) => {
                 new Date(last_sign_in_at).setUTCHours(0, 0, 0, 0) ==
             86400000
 
-        ;({ error: userDataError } = await supabaseAdmin({ context })
+        ;({ error: userDataError } = await supabaseAdmin()
             .from("user_data")
             .update({
                 last_sign_in_at: now.toISOString(),
