@@ -8,5 +8,6 @@ const handleRequest = createPagesFunctionHandler({
 })
 
 export function onRequest(context) {
+    global.env = context.env
     return handleRequest(context)
 }
