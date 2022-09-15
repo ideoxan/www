@@ -12,7 +12,7 @@
         "dev:remix": "remix watch",
         "dev": "remix build && run-p \"dev:*\"",
         "dev:css": "npm run generate:css -- -w ",
-        "dev:wrangler": "cross-env NODE_ENV=development wrangler pages dev ./public",
+        "dev:wrangler": "cross-env NODE_ENV=development wrangler pages dev -e dev ./public",
         "generate:css": "npx tailwindcss -i ./app/styles/tailwind.css -o app/styles/app.css  -c ./tailwind.config.cjs",
         "format": "npx prettier --write ."
     },
