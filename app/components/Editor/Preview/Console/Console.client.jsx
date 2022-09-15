@@ -62,6 +62,7 @@ export default function Console({ session, userData, metadata }) {
             window.addEventListener("resize", () =>
                 handleResize(document.querySelector("#terminal"))
             )
+            handleResize(document.querySelector("#terminal"))
 
             // Inform of impending loading
             console.log("[Terminal] Loading...")
