@@ -25,7 +25,7 @@ export default function EditorTabContainer({
         // !!!: [BUG] If the last tab is active and gets closed, the active tab will be stuck at
         // !!!: the last tab. Also, it shifts the active tab over by one if a tab to the left is
         // !!!: closed. NEEDSFIX
-        console.log(activeTab)
+        //console.log(activeTab)
         if (newOpenTabs.length == 0) {
             //console.log("No tabs left")
             setActiveTab(-1)

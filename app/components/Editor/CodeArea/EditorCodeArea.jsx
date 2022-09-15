@@ -20,6 +20,7 @@ export default function EditorCodeArea({
     useEffect(() => {
         ;(async () => {
             let tab = openCodeTabs[activeCodeTab]
+            if (!tab) return
             let mime = getType(tab.path)
             setValue(await fs.readFile({ filePath: tab.path }))
             for (let l in supportedLanguages) {
