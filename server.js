@@ -9,5 +9,8 @@ const handleRequest = createPagesFunctionHandler({
 
 export function onRequest(context) {
     global.env = context.env
+    if (!global.env) {
+        console.error(new Error("Global env is not set"))
+    }
     return handleRequest(context)
 }
