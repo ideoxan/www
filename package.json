@@ -13,8 +13,8 @@
         "dev": "remix build && run-p \"dev:*\"",
         "dev:css": "npm run generate:css -- -w ",
         "dev:wrangler": "cross-env NODE_ENV=development wrangler pages dev ./public",
-        "generate:css": "npx tailwindcss -i ./app/styles/tailwind.css -o app/styles/app.css  -c ./tailwind.config.cjs",
-        "format": "npx prettier --write ."
+        "generate:css": "tailwindcss -i ./app/styles/tailwind.css -o app/styles/app.css  -c ./tailwind.config.cjs",
+        "format": "prettier --write ."
     },
     "dependencies": {
         "@icons-pack/react-simple-icons": "^5.5.0",
