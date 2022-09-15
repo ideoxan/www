@@ -5,17 +5,10 @@ let dbKey = null
 
 if (!window) throw new Error("Window is not defined")
 
-if (window.env.WORKER_ENV === "production") {
-    if (!window.env.SUPABASE_URL) throw new Error("Supabase URL is not set")
-    if (!window.env.SUPABASE_ANON_KEY) throw new Error("Supabase key is not set")
-    dbURL = window.env.SUPABASE_URL
-    dbKey = window.env.SUPABASE_ANON_KEY
-} else {
-    if (!window.env.SUPABASE_URL_DEV) throw new Error("Supabase URL is not set")
-    if (!window.env.SUPABASE_ANON_KEY_DEV) throw new Error("Supabase key is not set")
-    dbURL = window.env.SUPABASE_URL_DEV
-    dbKey = window.env.SUPABASE_ANON_KEY_DEV
-}
+if (!window.env.SUPABASE_URL) throw new Error("Supabase URL is not set")
+if (!window.env.SUPABASE_ANON_KEY) throw new Error("Supabase key is not set")
+dbURL = window.env.SUPABASE_URL
+dbKey = window.env.SUPABASE_ANON_KEY
 
 const supabaseClient = createClient(dbURL, dbKey, {
     autoRefreshToken: false,

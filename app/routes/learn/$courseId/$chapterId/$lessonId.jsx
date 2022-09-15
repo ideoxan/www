@@ -81,9 +81,7 @@ export default function Editor() {
             setLoadingScreen(true)
             let _meta = {}
             // URLs we use to get the course and lesson data
-            const storageURL = `${
-                window.env.SUPABASE_URL || window.env.SUPABASE_URL_DEV
-            }/storage/v1/object/public/course-content`
+            const storageURL = `${window.env.SUPABASE_URL}/storage/v1/object/public/course-content`
 
             const paddedChapterId = params.chapterId.padStart(2, "0")
             const paddedLessonId = params.lessonId.padStart(2, "0")

@@ -21,9 +21,7 @@ export const loader = async ({ request, context }) => {
         throw new Error("Could not load courses")
     }
 
-    const storageURL = `${
-        context.SUPABASE_URL || context.SUPABASE_URL_DEV
-    }/storage/v1/object/public/course-content`
+    const storageURL = `${context.SUPABASE_URL}/storage/v1/object/public/course-content`
 
     const courses = []
 

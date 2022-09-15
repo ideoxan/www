@@ -44,25 +44,14 @@ export function links() {
 
 export async function loader() {
     // This injects the env vars into the browser
-    if (global.env.WORKER_ENV === "production") {
-        return json({
-            ENV: {
-                SUPABASE_URL: global.env.SUPABASE_URL,
-                SUPABASE_ANON_KEY: global.env.SUPABASE_ANON_KEY,
-                WORKER_ENV: global.env.WORKER_ENV,
-                TESSERACT_URL: global.env.TESSERACT_URL,
-            },
-        })
-    } else {
-        return json({
-            ENV: {
-                SUPABASE_URL_DEV: global.env.SUPABASE_URL_DEV,
-                SUPABASE_ANON_KEY_DEV: global.env.SUPABASE_ANON_KEY_DEV,
-                WORKER_ENV: global.env.WORKER_ENV,
-                TESSERACT_URL: global.env.TESSERACT_URL,
-            },
-        })
-    }
+    return json({
+        ENV: {
+            SUPABASE_URL: global.env.SUPABASE_URL,
+            SUPABASE_ANON_KEY: global.env.SUPABASE_ANON_KEY,
+            WORKER_ENV: global.env.WORKER_ENV,
+            TESSERACT_URL: global.env.TESSERACT_URL,
+        },
+    })
 }
 
 export function CatchBoundary() {
