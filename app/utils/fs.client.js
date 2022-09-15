@@ -7,9 +7,9 @@ const FS_DB_VERSION = 1
 const FS_DB_TABLE_NAME = "files"
 
 let db = null
-fillIfVoid()
+createIfNull()
 
-function fillIfVoid() {
+function createIfNull() {
     if (
         db == null ||
         !(db instanceof Dexie) ||
@@ -29,7 +29,7 @@ function fillIfVoid() {
             console.log(`[FileSystem] Warn: Discarding old FileSystem data in favor of new one.`)
             console.log(`[FileSystem] Warn: This process is irreversible!`)
             await db.table(FS_DB_TABLE_NAME).clear()
-            return fillIfVoid()
+            return createIfNull()
         })
 
         // Create a table for the files
@@ -45,7 +45,7 @@ export default class FileSystem {
     static async writeFile({ filePath, content }) {
         // Set the contents of the file
         try {
-            fillIfVoid()
+            createIfNull()
             console.log(`[FileSystem] Info: Writing file: ${filePath}`)
             if (await db.table(FS_DB_TABLE_NAME).get({ path: filePath })) {
                 await db.table(FS_DB_TABLE_NAME).update(filePath, {
@@ -75,7 +75,7 @@ export default class FileSystem {
     // Remove a file from the filesystem
     static async removeFile({ filePath }) {
         try {
-            fillIfVoid()
+            createIfNull()
             console.log(`[FileSystem] Info: Removing file: ${filePath}`)
             await db.table(FS_DB_TABLE_NAME).delete(filePath)
         } catch (e) {
@@ -87,7 +87,7 @@ export default class FileSystem {
     // Read a file from the filesystem
     static async readFile({ filePath }) {
         try {
-            fillIfVoid()
+            createIfNull()
             console.log(`[FileSystem] Info: Reading file: ${filePath}`)
             const file = await db.table(FS_DB_TABLE_NAME).get({ path: filePath })
             return file.content
@@ -100,7 +100,7 @@ export default class FileSystem {
     // Get file info from the filesystem
     static async stat({ filePath }) {
         try {
-            fillIfVoid()
+            createIfNull()
             console.log(`[FileSystem] Info: Stating file: ${filePath}`)
             const { object_id, path, mime, type, modified } = await db
                 .table(FS_DB_TABLE_NAME)
@@ -120,7 +120,7 @@ export default class FileSystem {
 
     // Get a list of files from the filesystem
     static async ls({ dirPath }) {
-        fillIfVoid()
+        createIfNull()
         if (db.table(FS_DB_TABLE_NAME).get({ path: dirPath })) {
             console.log(`[FileSystem] Info: Listing direcotry: ${dirPath}`)
             let pathSplitCount = dirPath.split("/").length
@@ -150,7 +150,7 @@ export default class FileSystem {
 
     // Create new directory in the filesystem
     static async mkdir({ dirPath }) {
-        fillIfVoid()
+        createIfNull()
         let folders = dirPath.split("/")
         // mkdir operation
         let currentPath = ""
@@ -172,7 +172,7 @@ export default class FileSystem {
 
     // Tree method that generates a JSON tree of the filesystem recursively
     static async tree({ dirPath }) {
-        fillIfVoid()
+        createIfNull()
         let tree = await this.stat({ filePath: dirPath })
         let files = await this.ls({ dirPath })
         if (tree.type === "directory") {
@@ -186,7 +186,7 @@ export default class FileSystem {
 
     // TODO: JSON tree to tarball conversion
     static async packfs({ dirPath }) {
-        fillIfVoid()
+        createIfNull()
         console.log(`[FileSystem] Warn: pack fs operation not implemented.`)
         return null
     }
