@@ -13,7 +13,7 @@ let supabaseAdmin = () => {
         dbURL = global.env.SUPABASE_URL_DEV
         dbKey = global.env.SUPABASE_SECRET_KEY_DEV
     }
-
+    if (!global.env) throw new Error("Environment is not defined")
     if (!dbURL) throw new Error("Supabase URL is not set")
     if (!dbKey) throw new Error("Supabase key is not set")
 
