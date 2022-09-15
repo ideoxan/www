@@ -42,24 +42,24 @@ export function links() {
     return [{ rel: "stylesheet", href: styles }]
 }
 
-export async function loader({ context }) {
+export async function loader() {
     // This injects the env vars into the browser
-    if (context.WORKER_ENV === "production") {
+    if (global.env.WORKER_ENV === "production") {
         return json({
             ENV: {
-                SUPABASE_URL: context.SUPABASE_URL,
-                SUPABASE_ANON_KEY: context.SUPABASE_ANON_KEY,
-                WORKER_ENV: context.WORKER_ENV,
-                TESSERACT_URL: context.TESSERACT_URL,
+                SUPABASE_URL: global.env.SUPABASE_URL,
+                SUPABASE_ANON_KEY: global.env.SUPABASE_ANON_KEY,
+                WORKER_ENV: global.env.WORKER_ENV,
+                TESSERACT_URL: global.env.TESSERACT_URL,
             },
         })
     } else {
         return json({
             ENV: {
-                SUPABASE_URL_DEV: context.SUPABASE_URL_DEV,
-                SUPABASE_ANON_KEY_DEV: context.SUPABASE_ANON_KEY_DEV,
-                WORKER_ENV: context.WORKER_ENV,
-                TESSERACT_URL: context.TESSERACT_URL,
+                SUPABASE_URL_DEV: global.env.SUPABASE_URL_DEV,
+                SUPABASE_ANON_KEY_DEV: global.env.SUPABASE_ANON_KEY_DEV,
+                WORKER_ENV: global.env.WORKER_ENV,
+                TESSERACT_URL: global.env.TESSERACT_URL,
             },
         })
     }
