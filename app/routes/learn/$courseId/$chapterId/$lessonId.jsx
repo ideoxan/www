@@ -21,9 +21,10 @@ import { supabaseAdmin } from "app/utils/db.server.js"
 import prodBlockServer from "app/utils/prodBlock.server"
 
 import termStyles from "app/styles/xterm.css"
+import { supabaseClient } from "app/utils/db.client"
 export const links = () => [{ rel: "stylesheet", href: termStyles }]
 
-export const loader = async ({ params, request, context }) => {
+export const loader = async ({ params, request }) => {
     prodBlockServer()
     // It slows down the website a lot if we start loading the data from the server
     // At least if we handle it manually in the component, we can show a loading splash screen.
@@ -79,84 +80,79 @@ export default function Editor() {
         async function fetchData() {
             setLoading(true)
             setLoadingScreen(true)
-            let _meta = {}
             // URLs we use to get the course and lesson data
-            const storageURL = `${window.env.SUPABASE_URL}/storage/v1/object/public/course-content`
-
+            const storageURL = `${window.env.SUPABASE_URL}/storage/v1/object/public/`
             const paddedChapterId = params.chapterId.padStart(2, "0")
             const paddedLessonId = params.lessonId.padStart(2, "0")
 
-            // Get the lesson metadata (this is first since if there is no lesson, we can't get the
-            // compiled course metadata)
             try {
-                // Append the course metadata to the metadata object
-                let data = await fetch(
-                    `${storageURL}/${params.courseId}/${paddedChapterId}/${paddedLessonId}/lesson.json`
-                )
-                if (!data.ok) throw new Error(JSON.stringify(await data.json()))
-                _meta.lesson = await data.json()
-                _meta.lesson.index = parseInt(params.lessonId)
+                let metadata = {}
+                let { data: courseData, error: courseDataQueryError } = await supabaseClient
+                    .from("courses")
+                    .select()
+                    .eq("id", params.courseId)
+                    .single()
+                let { data: chapterData, error: chapterDataQueryError } = await supabaseClient
+                    .from("chapters")
+                    .select()
+                    .eq("course", params.courseId)
+                    .eq("index", params.chapterId)
+                    .single()
+                let { data: lessonData, error: lessonDataQueryError } = await supabaseClient
+                    .from("lessons")
+                    .select()
+                    .eq("chapter", chapterData.id)
+                    .eq("index", params.lessonId)
+                    .single()
+
+                if (courseDataQueryError || chapterDataQueryError || lessonDataQueryError)
+                    throw new Error(
+                        courseDataQueryError || chapterDataQueryError || lessonDataQueryError
+                    )
+
+                metadata.course = courseData
+                metadata.chapter = chapterData
+                delete metadata.chapter.course
+                metadata.lesson = lessonData
+                delete metadata.lesson.course
+
+                // Set navigation properties
+                metadata.lesson.navigation = {
+                    next: null,
+                    previous: null,
+                }
+
+                // Change UI states
+                let _starterPreviewTabs = []
+                if (metadata.lesson.environment.viewport)
+                    _starterPreviewTabs.push({
+                        name: "Preview",
+                    })
+                if (metadata.lesson.environment.console)
+                    _starterPreviewTabs.push({
+                        name: "Console",
+                    })
+                setOpenPreviewTabs(_starterPreviewTabs)
+
+                // Construct filesystem
+                // Go through the lesson metadata and add the files to the filesystem
+                let tarball = await (
+                    await fetch(`${storageURL}${metadata.lesson.workspace}`)
+                ).arrayBuffer()
+                await FileSystem.unpack({
+                    dirPath: "/",
+                    tarFile: tarball,
+                })
+
+                // Get the lesson guide
+                metadata.lesson.guide = await (
+                    await fetch(`${storageURL}${metadata.lesson.guide}`)
+                ).text()
+
+                setMetadata(metadata)
             } catch (error) {
                 if (window.env.WORKER_ENV !== "production") console.log(error)
                 window.location = window.location.toString() + "/404"
-            }
-
-            // Get the chapter metadata
-            try {
-                // Append the course metadata to the metadata object
-                let data = await fetch(
-                    `${storageURL}/${params.courseId}/${paddedChapterId}/chapter.json`
-                )
-                if (!data.ok) throw new Error(JSON.stringify(await data.json()))
-                _meta.chapter = await data.json()
-                _meta.chapter.index = parseInt(params.chapterId)
-            } catch (error) {
-                if (window.env.WORKER_ENV !== "production") console.log(error)
-                window.location = window.location.toString() + "/404"
-            }
-
-            // Get the course metadata
-            try {
-                // Append the course metadata to the metadata object
-                let data = await fetch(`${storageURL}/${params.courseId}/course.json`)
-                if (!data.ok) throw new Error(JSON.stringify(await data.json()))
-                _meta.course = await data.json()
-            } catch (error) {
-                if (window.env.WORKER_ENV !== "production") console.log(error)
-                window.location = window.location.toString() + "/404"
-            }
-
-            // Set navigation properties
-            _meta.lesson.navigation = {
-                next: null,
-                previous: null,
-            }
-
-            if (_meta?.error)
-                throw new Response(JSON.stringify(_meta), {
-                    status: 500,
-                })
-            setMetadata(_meta)
-
-            // Change UI states
-            let _starterPreviewTabs = []
-            if (_meta.lesson.environment.viewport)
-                _starterPreviewTabs.push({
-                    name: "Preview",
-                })
-            if (_meta.lesson.environment.console)
-                _starterPreviewTabs.push({
-                    name: "Console",
-                })
-            setOpenPreviewTabs(_starterPreviewTabs)
-
-            // Construct filesystem
-            // Go through the lesson metadata and add the files to the filesystem
-            for (let file of Object.keys(_meta.lesson.content.workspace)) {
-                await FileSystem.writeFile({
-                    filePath: file,
-                    content: _meta.lesson.content.workspace[file],
-                })
             }
 
             setLoading(false)
@@ -280,9 +276,7 @@ export default function Editor() {
                                         <div
                                             className="react-markdown mb-6 w-full flex-shrink"
                                             dangerouslySetInnerHTML={{
-                                                __html: marked.parse(
-                                                    metadata?.lesson?.content?.guide
-                                                ),
+                                                __html: marked.parse(metadata?.lesson?.guide),
                                             }}
                                         />
                                     </div>
