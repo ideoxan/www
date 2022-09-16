@@ -1,6 +1,7 @@
 import Dexie from "dexie"
 import { v4 as uuidv4 } from "uuid"
 import { getType } from "mime"
+import tarball from "app/utils/tarball.client"
 
 const FS_DB_NAME = "fs-ix"
 const FS_DB_VERSION = 1
@@ -184,10 +185,27 @@ export default class FileSystem {
         return tree
     }
 
-    // TODO: JSON tree to tarball conversion
-    static async packfs({ dirPath }) {
+    // Convert the files listed in the JSON tree to a tarball
+    static async tar({ dirPath }) {
         createIfNull()
-        console.log(`[FileSystem] Warn: pack fs operation not implemented.`)
-        return null
+        console.log(`[FileSystem] Info: Tarballing FS: ${dirPath}`)
+
+        let tar = new tarball.TarWriter()
+        let tree = await this.tree({ dirPath })
+
+        let traverse = async tree => {
+            if (tree.type === "directory") {
+                tar.addFolder(tree.path)
+                for (let child of tree.children) {
+                    await traverse(child)
+                }
+            } else {
+                let fileContent = await this.readFile({ filePath: tree.path })
+                tar.addFile(tree.path, new File([fileContent], tree.path.split("/").pop()))
+            }
+        }
+
+        await traverse(tree, tree.path)
+        return await tar.writeBlob()
     }
 }

@@ -4,7 +4,7 @@ import { FitAddon } from "xterm-addon-fit"
 import { io } from "socket.io-client"
 import Icon from "app/components/Icon"
 
-export default function Console({ session, userData, metadata }) {
+export default function Console({ session, userData, metadata, fs }) {
     // Grab ref to terminal elm
     const term = useRef(null)
     const socket = useRef(null)
@@ -188,7 +188,7 @@ export default function Console({ session, userData, metadata }) {
                         color={"gray-50"}
                         strokeThickness={2}
                         className="my-auto cursor-pointer opacity-50 hover:opacity-100"
-                        onClick={() => {
+                        onClick={async () => {
                             setIsRunning(true)
                             let si = 0
                             term.current.write("\x1bcSetting up  ")
@@ -197,6 +197,8 @@ export default function Console({ session, userData, metadata }) {
                                 if (si >= spinners.length) si = 0
                                 term.current.write(spinners[si++])
                             }, 80)
+                            // Pack fs
+                            const tar = await fs.tar({ dirPath: "/" })
                             socket.current.emit("tesseract_request", {
                                 type: "run_request",
                                 user: session.user.id,
@@ -205,6 +207,7 @@ export default function Console({ session, userData, metadata }) {
                                     commands: metadata.lesson.environment.commands,
                                 },
                                 workspace: "",
+                                fs: tar,
                             })
                             socket.current.on("tesseract_request_ok", data => {
                                 clearInterval(loader.current)

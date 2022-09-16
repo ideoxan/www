@@ -259,6 +259,7 @@ export default function Editor() {
                                         session={session}
                                         userData={userData}
                                         metadata={metadata}
+                                        fs={FileSystem}
                                     />
                                 </div>
                             </div>
