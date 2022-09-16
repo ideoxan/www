@@ -198,7 +198,7 @@ export default function Console({ session, userData, metadata, fs }) {
                                 term.current.write(spinners[si++])
                             }, 80)
                             // Pack fs
-                            const tar = await fs.tar({ dirPath: "/" })
+                            const tar = await fs.pack({ dirPath: "/" })
                             socket.current.emit("tesseract_request", {
                                 type: "run_request",
                                 user: session.user.id,

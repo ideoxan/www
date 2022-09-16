@@ -186,7 +186,7 @@ export default class FileSystem {
     }
 
     // Convert the files listed in the JSON tree to a tarball
-    static async tar({ dirPath }) {
+    static async pack({ dirPath }) {
         createIfNull()
         console.log(`[FileSystem] Info: Tarballing FS: ${dirPath}`)
 
@@ -207,5 +207,39 @@ export default class FileSystem {
 
         await traverse(tree, tree.path)
         return await tar.writeBlob()
+    }
+
+    // Unpack a tarball into the filesystem
+    static async unpack({ dirPath, tarFile }) {
+        createIfNull()
+        console.log(`[FileSystem] Info: Unpacking tarball at: ${dirPath}`)
+        console.log(`[FileSystem] Warn: This will overwrite the filesystem at this path!`)
+        console.log(`[FileSystem] Warn: This process is irreversible!`)
+
+        // Purge the filesystem recursively at this path
+        let purge = async dirPath => {
+            let files = await this.ls({ dirPath })
+            for (let file of files) {
+                if (file.type === "directory") {
+                    await purge(file.path)
+                } else {
+                    await this.removeFile({ filePath: file.path })
+                }
+            }
+            await this.removeFile({ filePath: dirPath })
+        }
+        await purge(dirPath)
+
+        // Unpack the tarball
+        let tar = new tarball.TarReader()
+        let data = await tar.readFile(new File([tarFile], "workspace.tar"))
+        for (let file of data) {
+            if (file.type === "file") {
+                await this.writeFile({
+                    filePath: "/" + file.name,
+                    content: tar.getTextFile(file.name),
+                })
+            }
+        }
     }
 }
