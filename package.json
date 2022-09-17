@@ -48,7 +48,7 @@
         "@remix-run/dev": "^1.7.0",
         "@remix-run/eslint-config": "^1.7.0",
         "@remix-run/serve": "^1.7.0",
-        "autoprefixer": "^10.4.10",
+        "autoprefixer": "^10.4.11",
         "concurrent": "^0.3.2",
         "eslint": "^8.23.1",
         "npm-run-all": "^4.1.5",
