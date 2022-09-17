@@ -17,6 +17,6 @@
         "isolatedModules": true,
         "types": ["@cloudflare/workers-types"]
     },
-    "exclude": ["node_modules", "**/*.d.ts"],
-    "include": ["remix.env.d.ts", "**/*.js", "**/*.jsx"]
+    "include": ["remix.env.d.ts", "**/*.js", "**/*.jsx"],
+    "exclude": ["node_modules/*", "**/*.d.ts"]
 }
