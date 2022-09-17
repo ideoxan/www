@@ -32,7 +32,7 @@ export default function EditorNavigationBar({ metadata }) {
                     <a
                         href={
                             "/learn/" +
-                            metadata.course.uuid +
+                            metadata.course.id +
                             "/" +
                             metadata.lesson.navigation.previous[0] +
                             "/" +
@@ -50,7 +50,7 @@ export default function EditorNavigationBar({ metadata }) {
                 )}
 
                 {/* Courses Page */}
-                <a href={"/courses/#" + metadata.course.uuid}>
+                <a href={"/courses/#" + metadata.course.id}>
                     <Icon
                         name="Library"
                         width={navIcons.size}
@@ -66,7 +66,7 @@ export default function EditorNavigationBar({ metadata }) {
                     <a
                         href={
                             "/learn/" +
-                            metadata.course.uuid +
+                            metadata.course.id +
                             "/" +
                             metadata.lesson.navigation.next[0] +
                             "/" +
