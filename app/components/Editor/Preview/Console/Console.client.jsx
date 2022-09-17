@@ -205,6 +205,7 @@ export default function Console({ session, userData, metadata, fs }) {
                                 environment: {
                                     on: metadata.lesson.environment.on,
                                     commands: metadata.lesson.environment.commands,
+                                    workingDirectory: metadata.lesson.environment.working_directory,
                                 },
                                 workspace: "",
                                 fs: tar,
