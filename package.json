@@ -22,7 +22,7 @@
         "@monaco-editor/react": "^4.4.5",
         "@remix-run/cloudflare": "^1.7.0",
         "@remix-run/cloudflare-pages": "^1.7.0",
-        "@remix-run/react": "^1.7.0",
+        "@remix-run/react": "^1.7.1",
         "@supabase/supabase-js": "^1.35.6",
         "cross-env": "^7.0.3",
         "dexie": "^3.2.2",
