@@ -21,7 +21,7 @@
         "@mapbox/rehype-prism": "0.7.0",
         "@monaco-editor/react": "^4.4.5",
         "@remix-run/cloudflare": "^1.7.0",
-        "@remix-run/cloudflare-pages": "^1.7.1",
+        "@remix-run/cloudflare-pages": "^1.7.2",
         "@remix-run/react": "^1.7.1",
         "@supabase/supabase-js": "^1.35.6",
         "cross-env": "^7.0.3",
