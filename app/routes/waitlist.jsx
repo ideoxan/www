@@ -27,8 +27,6 @@ export async function action({ request }) {
     let email = form.get("email")
     let name = form.get("name") || email?.split("@")[0]
 
-    console.log(email)
-
     try {
         const urlEncodeObject = o =>
             Object.keys(o)
