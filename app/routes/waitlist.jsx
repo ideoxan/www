@@ -59,6 +59,7 @@ export async function action({ request }) {
             to: email,
             subject: "Welcome to Ideoxan!",
             template: "mailing-list-welcome",
+            "o:tag": "mailing-list-welcome",
         })
 
         const welcomeEmail = await fetch(global.env.MAILGUN_DOMAIN_ENDPOINT + "/messages", {
