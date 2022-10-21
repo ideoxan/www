@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.1.8 | MIT License | https://tailwindcss.com
+! tailwindcss v3.2.1 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -410,54 +410,13 @@ video {
   height: auto;
 }
 
-*, ::before, ::after {
-  --tw-border-spacing-x: 0;
-  --tw-border-spacing-y: 0;
-  --tw-translate-x: 0;
-  --tw-translate-y: 0;
-  --tw-rotate: 0;
-  --tw-skew-x: 0;
-  --tw-skew-y: 0;
-  --tw-scale-x: 1;
-  --tw-scale-y: 1;
-  --tw-pan-x:  ;
-  --tw-pan-y:  ;
-  --tw-pinch-zoom:  ;
-  --tw-scroll-snap-strictness: proximity;
-  --tw-ordinal:  ;
-  --tw-slashed-zero:  ;
-  --tw-numeric-figure:  ;
-  --tw-numeric-spacing:  ;
-  --tw-numeric-fraction:  ;
-  --tw-ring-inset:  ;
-  --tw-ring-offset-width: 0px;
-  --tw-ring-offset-color: #fff;
-  --tw-ring-color: rgb(59 130 246 / 0.5);
-  --tw-ring-offset-shadow: 0 0 #0000;
-  --tw-ring-shadow: 0 0 #0000;
-  --tw-shadow: 0 0 #0000;
-  --tw-shadow-colored: 0 0 #0000;
-  --tw-blur:  ;
-  --tw-brightness:  ;
-  --tw-contrast:  ;
-  --tw-grayscale:  ;
-  --tw-hue-rotate:  ;
-  --tw-invert:  ;
-  --tw-saturate:  ;
-  --tw-sepia:  ;
-  --tw-drop-shadow:  ;
-  --tw-backdrop-blur:  ;
-  --tw-backdrop-brightness:  ;
-  --tw-backdrop-contrast:  ;
-  --tw-backdrop-grayscale:  ;
-  --tw-backdrop-hue-rotate:  ;
-  --tw-backdrop-invert:  ;
-  --tw-backdrop-opacity:  ;
-  --tw-backdrop-saturate:  ;
-  --tw-backdrop-sepia:  ;
+/* Make elements with the HTML hidden attribute stay hidden by default */
+
+[hidden] {
+  display: none;
 }
 
-::-webkit-backdrop {
+*, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
   --tw-translate-x: 0;
@@ -1390,7 +1349,6 @@ input::placeholder {
 }
 
 .h-max {
-  height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
 }
@@ -1444,7 +1402,6 @@ input::placeholder {
 }
 
 .w-max {
-  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
 }
@@ -1533,18 +1490,6 @@ input::placeholder {
   flex-grow: 1;
 }
 
-@-webkit-keyframes fade-in-down {
-  0% {
-    opacity: 0;
-    transform: translateY(-18px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @keyframes fade-in-down {
   0% {
     opacity: 0;
@@ -1558,20 +1503,7 @@ input::placeholder {
 }
 
 .animate-fade-in-down {
-  -webkit-animation: fade-in-down 700ms ease-in-out 300ms forwards;
-          animation: fade-in-down 700ms ease-in-out 300ms forwards;
-}
-
-@-webkit-keyframes fade-in-left {
-  0% {
-    opacity: 0;
-    transform: translateX(-24px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  animation: fade-in-down 700ms ease-in-out 300ms forwards;
 }
 
 @keyframes fade-in-left {
@@ -1587,20 +1519,7 @@ input::placeholder {
 }
 
 .animate-fade-in-left {
-  -webkit-animation: fade-in-left 700ms ease-in-out 300ms forwards;
-          animation: fade-in-left 700ms ease-in-out 300ms forwards;
-}
-
-@-webkit-keyframes fade-in-right {
-  0% {
-    opacity: 0;
-    transform: translateX(24px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  animation: fade-in-left 700ms ease-in-out 300ms forwards;
 }
 
 @keyframes fade-in-right {
@@ -1616,20 +1535,7 @@ input::placeholder {
 }
 
 .animate-fade-in-right {
-  -webkit-animation: fade-in-right 700ms ease-in-out 300ms forwards;
-          animation: fade-in-right 700ms ease-in-out 300ms forwards;
-}
-
-@-webkit-keyframes fade-in-up {
-  0% {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  animation: fade-in-right 700ms ease-in-out 300ms forwards;
 }
 
 @keyframes fade-in-up {
@@ -1645,18 +1551,7 @@ input::placeholder {
 }
 
 .animate-fade-in-up {
-  -webkit-animation: fade-in-up 700ms ease-in-out 300ms forwards;
-          animation: fade-in-up 700ms ease-in-out 300ms forwards;
-}
-
-@-webkit-keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
+  animation: fade-in-up 700ms ease-in-out 300ms forwards;
 }
 
 @keyframes fade-in {
@@ -1670,8 +1565,7 @@ input::placeholder {
 }
 
 .animate-fade-in {
-  -webkit-animation: fade-in 700ms ease-in-out 300ms forwards;
-          animation: fade-in 700ms ease-in-out 300ms forwards;
+  animation: fade-in 700ms ease-in-out 300ms forwards;
 }
 
 .cursor-pointer {
@@ -2550,7 +2444,6 @@ input::placeholder {
   }
 
   .md\:w-max {
-    width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
   }
