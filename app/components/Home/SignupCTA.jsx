@@ -29,13 +29,13 @@ export default function SignupCTA() {
                         {(global || window)?.env?.WORKER_ENV === "production" ? (
                             <a
                                 href="/waitlist"
-                                className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover bttn-gradient-arrow mt-12 sm:mx-auto">
+                                className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover bttn-gradient-arrow mx-auto my-auto">
                                 Join the Waitlist
                             </a>
                         ) : (
                             <a
                                 href="/signup"
-                                className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover bttn-gradient-arrow mt-12 sm:mx-auto">
+                                className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover bttn-gradient-arrow mx-auto my-auto">
                                 Get Started
                             </a>
                         )}
