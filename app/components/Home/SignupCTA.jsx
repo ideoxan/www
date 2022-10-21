@@ -26,11 +26,19 @@ export default function SignupCTA() {
 
                     {/* Signup Button */}
                     <div className="mx-auto flex px-6 pb-6 md:my-auto md:py-6 lg:w-1/4">
-                        <a
-                            href="/signup"
-                            className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover bttn-gradient-arrow mx-auto my-auto">
-                            Join the Waitlist
-                        </a>
+                        {(global || window)?.env?.WORKER_ENV === "production" ? (
+                            <a
+                                href="/waitlist"
+                                className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover bttn-gradient-arrow mt-12 sm:mx-auto">
+                                Join the Waitlist
+                            </a>
+                        ) : (
+                            <a
+                                href="/signup"
+                                className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover bttn-gradient-arrow mt-12 sm:mx-auto">
+                                Get Started
+                            </a>
+                        )}
                     </div>
                 </div>
             </section>

@@ -27,6 +27,7 @@
         "cross-env": "^7.0.3",
         "dexie": "^3.2.2",
         "lucide-react": "^0.89.0",
+        "mailgun.js": "^8.0.1",
         "marked": "^4.1.0",
         "mime": "^3.0.0",
         "monaco-themes": "^0.4.2",

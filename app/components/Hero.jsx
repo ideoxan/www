@@ -15,17 +15,17 @@ export default function HeroSection({ session }) {
                         Ideoxan is empowering the next generation of programmers, makers, and
                         inventors.
                     </h2>
-                    {session?.user ? (
-                        <button
-                            disabled={true}
-                            className="bttn bttn-round bttn-normal bttn-gradient bttn-disabled mt-12 sm:mx-auto">
-                            You are already on the Waitlist
-                        </button>
+                    {(global || window)?.env?.WORKER_ENV === "production" ? (
+                        <a
+                            href="/waitlist"
+                            className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover bttn-gradient-arrow mt-12 sm:mx-auto">
+                            Join the Waitlist
+                        </a>
                     ) : (
                         <a
                             href="/signup"
                             className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover bttn-gradient-arrow mt-12 sm:mx-auto">
-                            Join the Waitlist
+                            Get Started
                         </a>
                     )}
                 </div>
