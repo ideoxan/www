@@ -71,6 +71,8 @@ export async function action({ request }) {
             },
             body: welcomeEmailEncoded,
         })
+
+        if (!welcomeEmail.ok) throw new Error("Error adding to mailing list")
     } catch (error) {
         if (global.env.WORKER_ENV !== "production") console.log(error)
         return { error: { message: "There was an error adding you to the mailing list." } }
