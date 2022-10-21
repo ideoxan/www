@@ -52,7 +52,7 @@ const teamData = [
     },
 ]
 
-export const loader = async ({ request, context }) => {
+export const loader = async ({ request }) => {
     // Check user auth
     let session = await supabaseLocalStrategy().checkSession(request)
 

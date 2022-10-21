@@ -5,7 +5,7 @@ import { authenticator } from "app/utils/auth.server.js"
 import { supabaseClient } from "app/utils/db.client"
 import AuthSplash from "app/components/Auth/AuthSplash"
 
-export async function action({ request, context }) {
+export async function action({ request }) {
     let session = await authenticator().authenticate("oauth", request, {
         successRedirect: "/dashboard",
         failureRedirect: "/login",
@@ -18,7 +18,7 @@ export async function action({ request, context }) {
     if (!user || !user.id) throw redirect("/login")
 }
 
-export async function loader({ request, context }) {
+export async function loader({ request }) {
     await authenticator().isAuthenticated(request, {
         successRedirect: "/dashboard",
     })

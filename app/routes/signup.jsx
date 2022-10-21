@@ -12,7 +12,7 @@ export function meta() {
     }
 }
 
-export async function loader({ request, context }) {
+export async function loader({ request }) {
     prodBlockServer()
 
     await supabaseLocalStrategy().checkSession(request, {
@@ -24,7 +24,7 @@ export async function loader({ request, context }) {
     return json({ error })
 }
 
-export async function action({ request, context }) {
+export async function action({ request }) {
     // Get form data
     let form = await request.formData()
     let email = form.get("email")
@@ -60,7 +60,7 @@ export async function action({ request, context }) {
     throw redirect("/dashboard")
 }
 
-export default function Signup({ request }) {
+export default function Signup() {
     let { error } = useActionData() || {}
 
     return (
