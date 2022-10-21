@@ -8,8 +8,11 @@ import posts from "app/components/Blog/posts.jsx"
 import BlogCard from "app/components/Blog/BlogCard"
 import FadeInSection from "app/components/FadeInSection"
 import Header from "app/components/Header"
+import prodBlockServer from "app/utils/prodBlock.server"
 
-export const loader = async ({ request, context }) => {
+export const loader = async ({ request }) => {
+    prodBlockServer()
+
     // Check user auth
     let session = await supabaseLocalStrategy().checkSession(request)
 
