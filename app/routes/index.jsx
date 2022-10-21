@@ -22,17 +22,8 @@ export const loader = async ({ request, context }) => {
         let { user } = session
         if (!user || !user.id) throw redirect("/login")
 
-        // If the user is authenticated, get the user's data from the database
-        let { data: userData, error } = await supabaseAdmin()
-            .from("user_data")
-            .select()
-            .eq("id", user.id)
-
-        if (error) return json({ session: null, userData: null, error })
-
-        if (userData) {
-            return json({ session, userData: userData[0] })
-        }
+        // If the user is authenticated, redirect to the dashboard
+        throw redirect("/dashboard")
     }
 
     return json({ session: null, userData: null })
