@@ -71,12 +71,12 @@ export async function action({ request }) {
         })
 
         if (!welcomeEmail.ok) throw new Error("Error adding to mailing list")
+
+        return redirect("/waitlist/success")
     } catch (error) {
         if (global.env.WORKER_ENV !== "production") console.log(error)
         return { error: { message: "There was an error adding you to the mailing list." } }
     }
-
-    return { error: null }
 }
 
 export default function Signup() {
@@ -87,7 +87,7 @@ export default function Signup() {
             <h1 className="bg-gradient-white mx-auto bg-clip-text text-center font-sans text-2xl font-extrabold tracking-tight text-transparent">
                 Join the Waitlist
             </h1>
-            <p className="mx-auto mt-1 text-center font-sans text-sm font-medium text-gray-50 opacity-50 hover:underline">
+            <p className="mx-auto mt-1 text-center font-sans text-sm font-medium text-gray-50 opacity-50">
                 Enter your email below to get notified when we launch.
             </p>
 
