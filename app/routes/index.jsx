@@ -11,7 +11,6 @@ import Footer from "app/components/Footer"
 import { json, redirect } from "@remix-run/cloudflare"
 import { useLoaderData } from "@remix-run/react"
 import { supabaseLocalStrategy } from "app/utils/auth.server.js"
-import { supabaseAdmin } from "app/utils/db.server.js"
 
 export const loader = async ({ request, context }) => {
     // Check user auth

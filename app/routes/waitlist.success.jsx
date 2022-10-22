@@ -1,4 +1,4 @@
-import { Form, useActionData } from "@remix-run/react"
+import { useActionData } from "@remix-run/react"
 import { json } from "@remix-run/cloudflare"
 import { authenticator, sessionStorage, supabaseLocalStrategy } from "app/utils/auth.server"
 import AuthSplash from "app/components/Auth/AuthSplash"
