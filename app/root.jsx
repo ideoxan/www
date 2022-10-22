@@ -101,7 +101,7 @@ export function CatchBoundary() {
                         }}
                     />
                     <Scripts />
-                    <LiveReload />
+                    {/* <LiveReload /> */}
                 </body>
             </html>
         )
@@ -149,7 +149,7 @@ export function CatchBoundary() {
                         }}
                     />
                     <Scripts />
-                    <LiveReload />
+                    {/* <LiveReload /> */}
                 </body>
             </html>
         )
@@ -179,7 +179,7 @@ export default function App() {
                     }}
                 />
                 <Scripts />
-                <LiveReload />
+                {/* <LiveReload /> */}
             </body>
         </html>
     )
