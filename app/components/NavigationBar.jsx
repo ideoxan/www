@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Icon from "app/components/Icon"
 import { Link } from "@remix-run/react"
+import FadeInSection from "app/components/FadeInSection"
 
 export default function NavigationBar({ session, userData }) {
     const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
@@ -13,7 +14,7 @@ export default function NavigationBar({ session, userData }) {
         <>
             <nav
                 id="nav"
-                className="flex w-full min-w-full flex-row bg-gray-900 py-6 px-4 sm:px-12">
+                className="absolute top-0 left-0 z-40 flex w-full min-w-full flex-row bg-transparent py-6 px-4 sm:px-12">
                 {/* Mobile Menu */}
                 <div id="mobile-nav-menu-icon" className="flex md:hidden">
                     <button onClick={toggleMobileNavMenu}>
@@ -46,9 +47,9 @@ export default function NavigationBar({ session, userData }) {
                     <li className="nav-link hidden md:flex">
                         <Link to="/courses">Courses</Link>
                     </li>
-                    {/* <li className="hidden md:flex nav-link">
+                    <li className="nav-link hidden md:flex">
                         <Link to="/solutions">Solutions</Link>
-                    </li> */}
+                    </li>
                     <li className="nav-link hidden md:flex">
                         <Link to="/blog">Blog</Link>
                     </li>
@@ -88,44 +89,48 @@ export default function NavigationBar({ session, userData }) {
             </nav>
 
             {/* Mobile Nav Menu Drop Down */}
-            <div
-                id="mobile-nav-menu"
-                className="mt-6 hidden w-full flex-col bg-gray-800 px-4 py-12">
-                <ul className="mx-8 flex flex-col space-y-4 text-left font-sans text-sm font-medium text-gray-50">
-                    <li className="nav-link">
-                        <Link to="/courses">Courses</Link>
-                    </li>
-                    {/* <li className="nav-link">
-                        <Link to="/solutions">Solutions</Link>
-                    </li> */}
-                    <li className="nav-link hidden md:flex">
-                        <Link to="/blog">Blog</Link>
-                    </li>
-                    <li className="nav-link">
-                        <Link to="/about">About</Link>
-                    </li>
-                    {session && userData && (
-                        <li className="nav-link flex">
-                            <Link to="/dashboard">Dashboard</Link>=
+            {isMobileNavOpen && (
+                <FadeInSection
+                    direction="up"
+                    threshold={0}
+                    id="mobile-nav-menu"
+                    className="flex w-full flex-col bg-gray-800 px-4 pt-16 pb-8">
+                    <ul className="mx-8 flex flex-col space-y-4 text-left font-sans text-sm font-medium text-gray-50">
+                        <li className="nav-link">
+                            <Link to="/courses">Courses</Link>
                         </li>
-                    )}
-                    {session && userData && (
-                        <li className="nav-link flex">
-                            <Link to="/logout">Logout</Link>=
+                        <li className="nav-link">
+                            <Link to="/solutions">Solutions</Link>
                         </li>
-                    )}
-                    {!session && (
-                        <li className="nav-link flex">
-                            <Link to="/login">Login</Link>
+                        <li className="nav-link hidden md:flex">
+                            <Link to="/blog">Blog</Link>
                         </li>
-                    )}
-                    {!session && (
-                        <li className="nav-link flex">
-                            <Link to="/signup">Sign Up</Link>
+                        <li className="nav-link">
+                            <Link to="/about">About</Link>
                         </li>
-                    )}
-                </ul>
-            </div>
+                        {session && userData && (
+                            <li className="nav-link flex">
+                                <Link to="/dashboard">Dashboard</Link>=
+                            </li>
+                        )}
+                        {session && userData && (
+                            <li className="nav-link flex">
+                                <Link to="/logout">Logout</Link>=
+                            </li>
+                        )}
+                        {!session && (
+                            <li className="nav-link flex">
+                                <Link to="/login">Login</Link>
+                            </li>
+                        )}
+                        {!session && (
+                            <li className="nav-link flex">
+                                <Link to="/signup">Sign Up</Link>
+                            </li>
+                        )}
+                    </ul>
+                </FadeInSection>
+            )}
         </>
     )
 }
