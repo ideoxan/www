@@ -52,6 +52,12 @@ const teamData = [
     },
 ]
 
+export const meta = () => {
+    return {
+        title: "About | Ideoxan",
+    }
+}
+
 export const loader = async ({ request }) => {
     // Check user auth
     let session = await supabaseLocalStrategy().checkSession(request)

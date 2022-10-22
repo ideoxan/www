@@ -4,6 +4,12 @@ import { supabaseLocalStrategy } from "app/utils/auth.server.js"
 import { supabaseAdmin } from "app/utils/db.server.js"
 import NavigationBar from "app/components/NavigationBar"
 
+export const meta = () => {
+    return {
+        title: "Dashboard | Ideoxan",
+    }
+}
+
 export async function loader({ request, context }) {
     // Check user auth
     let session = await supabaseLocalStrategy().checkSession(request)

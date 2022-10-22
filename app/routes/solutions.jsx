@@ -1,5 +1,11 @@
 import { useLoaderData } from "@remix-run/react"
 
+export const meta = () => {
+    return {
+        title: "Solutions | Ideoxan",
+    }
+}
+
 export const loader = async () => {
     throw new Response("Not Found", {
         status: 404,

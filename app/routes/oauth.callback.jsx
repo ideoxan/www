@@ -5,6 +5,12 @@ import { authenticator } from "app/utils/auth.server.js"
 import { supabaseClient } from "app/utils/db.client"
 import AuthSplash from "app/components/Auth/AuthSplash"
 
+export const meta = () => {
+    return {
+        title: "Logging in... | Ideoxan",
+    }
+}
+
 export async function action({ request }) {
     let session = await authenticator().authenticate("oauth", request, {
         successRedirect: "/dashboard",

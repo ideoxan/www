@@ -8,6 +8,12 @@ import Header from "app/components/Header"
 import FadeInSection from "app/components/FadeInSection"
 import SignupCTA from "app/components/Home/SignupCTA"
 
+export const meta = () => {
+    return {
+        title: "Courses | Ideoxan",
+    }
+}
+
 export const loader = async ({ request, context }) => {
     // Get list of courses
     const { data: folders, error: lsError } = await supabaseAdmin()
