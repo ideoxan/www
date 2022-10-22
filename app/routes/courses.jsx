@@ -66,7 +66,7 @@ export const loader = async ({ request, context }) => {
     return json({ session: null, userData: null, courses })
 }
 
-export default function Index() {
+export default function Courses() {
     let { session, userData, courses } = useLoaderData()
 
     return (

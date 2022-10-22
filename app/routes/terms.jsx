@@ -13,7 +13,7 @@ export const loader = async () => {
     })
 }
 
-export default function Privacy() {
+export default function Terms() {
     const data = useLoaderData()
 
     return null

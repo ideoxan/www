@@ -83,7 +83,7 @@ export const loader = async ({ request }) => {
     return json({ session: null, userData: null })
 }
 
-export default function BlogIndex() {
+export default function About() {
     let { session, userData } = useLoaderData()
 
     return (

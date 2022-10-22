@@ -79,7 +79,7 @@ export async function action({ request }) {
     }
 }
 
-export default function Signup() {
+export default function Waitlist() {
     let { error } = useActionData() || {}
 
     return (

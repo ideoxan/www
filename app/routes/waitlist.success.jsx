@@ -21,7 +21,7 @@ export async function loader({ request }) {
     return json({ error })
 }
 
-export default function Signup() {
+export default function WaitlistSuccess() {
     let { error } = useActionData() || {}
 
     return (
