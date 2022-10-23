@@ -128,6 +128,9 @@ module.exports = {
                 "2xs": "0.6rem",
                 "3xs": "0.5rem",
             },
+            borderWidth: {
+                1: "1px",
+            },
         },
     },
     plugins: [],
