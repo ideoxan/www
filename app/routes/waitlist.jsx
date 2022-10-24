@@ -103,14 +103,14 @@ export default function Waitlist() {
                     type="name"
                     name="name"
                     autoComplete="on"
-                    className="focus:border-1 mt-4 block w-full appearance-none rounded-lg border border-gray-500 border-opacity-50 bg-gray-800 px-5 py-3 font-sans text-xs font-medium text-gray-50 text-opacity-70 outline-offset-0 focus:border-primary focus:text-opacity-100 focus:outline-none"
+                    className="mt-4 block w-full appearance-none rounded-lg border border-gray-500 border-opacity-50 bg-gray-800 px-5 py-3 font-sans text-xs font-medium text-gray-50 text-opacity-70 outline-offset-0 focus:border-1 focus:border-primary focus:text-opacity-100 focus:outline-none"
                     placeholder="First Name"
                 />
                 <input
                     type="email"
                     name="email"
                     autoComplete="on"
-                    className="focus:border-1 mt-4 block w-full appearance-none rounded-lg border border-gray-500 border-opacity-50 bg-gray-800 px-5 py-3 font-sans text-xs font-medium text-gray-50 text-opacity-70 outline-offset-0 focus:border-primary focus:text-opacity-100 focus:outline-none"
+                    className="mt-4 block w-full appearance-none rounded-lg border border-gray-500 border-opacity-50 bg-gray-800 px-5 py-3 font-sans text-xs font-medium text-gray-50 text-opacity-70 outline-offset-0 focus:border-1 focus:border-primary focus:text-opacity-100 focus:outline-none"
                     placeholder="Email"
                     required
                 />
