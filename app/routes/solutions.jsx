@@ -128,8 +128,8 @@ export default function Solutions() {
                         <h2 className="section-header mx-auto text-center">
                             Find a plan that works for you
                         </h2>
-                        <div className="mx-auto mt-16 flex w-full flex-row">
-                            <div className="flex w-1/3 flex-col rounded-2xl bg-gray-700 py-8 px-10 shadow-lg ring-1 ring-gray-500 ring-opacity-50">
+                        <div className="mx-auto mt-16 flex w-full max-w-full flex-col px-8 sm:mx-auto sm:max-w-lg lg:max-w-7xl lg:flex-row">
+                            <div className="mx-auto flex w-full flex-col rounded-2xl bg-gray-700 px-10 pt-8 pb-16 shadow-lg ring-1 ring-gray-500 ring-opacity-50 lg:w-1/3 lg:pb-8">
                                 <div className="mx-auto font-sans text-xs font-bold uppercase text-secondary">
                                     Individual
                                 </div>
@@ -168,7 +168,7 @@ export default function Solutions() {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="relative z-10 flex w-1/3 scale-110 transform flex-col rounded-3xl border-2 border-primary bg-gray-700 px-10 pb-8 shadow-2xl ring-1 ring-gray-500 ring-opacity-50">
+                            <div className="relative z-10 mx-auto flex w-full scale-110 transform flex-col rounded-3xl border-2 border-primary bg-gray-700 px-10 pb-8 shadow-2xl ring-1 ring-gray-500 ring-opacity-50 lg:mx-0 lg:w-1/3">
                                 <div className="relative top-0 mx-auto mb-3 -translate-y-1/2 transform rounded-full bg-gradient-to-tr from-primary to-secondary px-3 pt-1 pb-1.5 text-xs font-bold uppercase text-gray-50">
                                     Popular
                                 </div>
@@ -217,7 +217,7 @@ export default function Solutions() {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="flex w-1/3 flex-col rounded-2xl bg-gray-700 py-8 px-10 shadow-lg ring-1 ring-gray-500 ring-opacity-50">
+                            <div className="mx-auto flex w-full flex-col rounded-2xl bg-gray-700 px-10 pb-8 pt-16 shadow-lg ring-1 ring-gray-500 ring-opacity-50 md:mx-0 lg:w-1/3 lg:pt-8">
                                 <div className="mx-auto font-sans text-xs font-bold uppercase text-secondary">
                                     Enterprise (Coming Soon)
                                 </div>
