@@ -543,6 +543,22 @@ body {
   }
 }
 
+.bg-gradient-multi {
+  background: linear-gradient(
+                to top right,
+                rgb(238 47 255 / 50%),
+                rgb(248 245 255 / 0%),
+                #F8F5FF
+            ),
+            linear-gradient(
+                to top left,
+                rgb(110 47 255 / 50%),
+                #F8F5FF,
+                #F8F5FF
+            ),
+            #F8F5FF;
+}
+
 .bg-gradient-white {
   background: linear-gradient(
                 to top right,
@@ -1793,6 +1809,12 @@ input::placeholder {
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
 }
 
+.space-y-5 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
+}
+
 .divide-x-1 > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-x-reverse: 0;
   border-right-width: calc(1px * var(--tw-divide-x-reverse));
@@ -2206,6 +2228,14 @@ input::placeholder {
 
 .pl-2 {
   padding-left: 0.5rem;
+}
+
+.pt-20 {
+  padding-top: 5rem;
+}
+
+.pb-10 {
+  padding-bottom: 2.5rem;
 }
 
 .text-left {

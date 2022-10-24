@@ -56,34 +56,42 @@ export default function NavigationBar({ session, userData }) {
                     <li className="nav-link hidden md:flex">
                         <Link to="/about">About</Link>
                     </li>
-                    {session && userData && (
-                        <li className="nav-link hidden md:flex">
-                            <Link to="/dashboard">Dashboard</Link>
-                            {/* <button>
-                                <Icon
-                                    name="User"
-                                    width={4}
-                                    height={4}
-                                    color="gray-50"
-                                    strokeThickness={2}
-                                />
-                            </button> */}
+                    {(global || window)?.env?.WORKER_ENV === "production" ? (
+                        <li className="nav-link bg-gradient-multi glow-text-white bttn-gradient-arrow hidden bg-clip-text text-gray-50 text-transparent opacity-100 md:flex">
+                            <Link to="/waitlist">Join the Waitlist</Link>
                         </li>
-                    )}
-                    {session && userData && (
-                        <li className="nav-link hidden md:flex">
-                            <Link to="/logout">Logout</Link>
-                        </li>
-                    )}
-                    {!session && (
-                        <li className="nav-link hidden md:flex">
-                            <Link to="/login">Login</Link>
-                        </li>
-                    )}
-                    {!session && (
-                        <li className="nav-link hidden md:flex">
-                            <Link to="/signup">Sign Up</Link>
-                        </li>
+                    ) : (
+                        <>
+                            {session && userData && (
+                                <li className="nav-link hidden md:flex">
+                                    <Link to="/dashboard">Dashboard</Link>
+                                    {/* <button>
+                                        <Icon
+                                            name="User"
+                                            width={4}
+                                            height={4}
+                                            color="gray-50"
+                                            strokeThickness={2}
+                                        />
+                                    </button> */}
+                                </li>
+                            )}
+                            {session && userData && (
+                                <li className="nav-link hidden md:flex">
+                                    <Link to="/logout">Logout</Link>
+                                </li>
+                            )}
+                            {!session && (
+                                <li className="nav-link hidden md:flex">
+                                    <Link to="/login">Login</Link>
+                                </li>
+                            )}
+                            {!session && (
+                                <li className="nav-link hidden md:flex">
+                                    <Link to="/signup">Sign Up</Link>
+                                </li>
+                            )}
+                        </>
                     )}
                 </ul>
             </nav>
@@ -94,8 +102,8 @@ export default function NavigationBar({ session, userData }) {
                     direction="up"
                     threshold={0}
                     id="mobile-nav-menu"
-                    className="flex w-full flex-col bg-gray-800 px-4 pt-16 pb-8">
-                    <ul className="mx-8 flex flex-col space-y-4 text-left font-sans text-sm font-medium text-gray-50">
+                    className="flex w-full flex-col bg-gray-800 px-4 pt-20 pb-10">
+                    <ul className="mx-8 flex flex-col space-y-5 text-left font-sans text-sm font-medium text-gray-50">
                         <li className="nav-link">
                             <Link to="/courses">Courses</Link>
                         </li>
@@ -108,25 +116,42 @@ export default function NavigationBar({ session, userData }) {
                         <li className="nav-link">
                             <Link to="/about">About</Link>
                         </li>
-                        {session && userData && (
-                            <li className="nav-link flex">
-                                <Link to="/dashboard">Dashboard</Link>=
+                        {(global || window)?.env?.WORKER_ENV === "production" ? (
+                            <li className="nav-link bg-gradient-multi glow-text-white bttn-gradient-arrow flex bg-clip-text text-gray-50 text-transparent opacity-100">
+                                <Link to="/waitlist">Join the Waitlist</Link>
                             </li>
-                        )}
-                        {session && userData && (
-                            <li className="nav-link flex">
-                                <Link to="/logout">Logout</Link>=
-                            </li>
-                        )}
-                        {!session && (
-                            <li className="nav-link flex">
-                                <Link to="/login">Login</Link>
-                            </li>
-                        )}
-                        {!session && (
-                            <li className="nav-link flex">
-                                <Link to="/signup">Sign Up</Link>
-                            </li>
+                        ) : (
+                            <>
+                                {session && userData && (
+                                    <li className="nav-link hidden md:flex">
+                                        <Link to="/dashboard">Dashboard</Link>
+                                        {/* <button>
+                                        <Icon
+                                            name="User"
+                                            width={4}
+                                            height={4}
+                                            color="gray-50"
+                                            strokeThickness={2}
+                                        />
+                                    </button> */}
+                                    </li>
+                                )}
+                                {session && userData && (
+                                    <li className="nav-link flex">
+                                        <Link to="/logout">Logout</Link>
+                                    </li>
+                                )}
+                                {!session && (
+                                    <li className="nav-link flex">
+                                        <Link to="/login">Login</Link>
+                                    </li>
+                                )}
+                                {!session && (
+                                    <li className="nav-link flex">
+                                        <Link to="/signup">Sign Up</Link>
+                                    </li>
+                                )}
+                            </>
                         )}
                     </ul>
                 </FadeInSection>
