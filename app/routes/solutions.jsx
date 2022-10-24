@@ -8,6 +8,12 @@ import FadeInSection from "app/components/FadeInSection"
 import { Discord, Github, Twitter } from "@icons-pack/react-simple-icons"
 import Icon from "app/components/Icon"
 import ProductsItem from "app/components/Solutions/ProductsItem"
+import PricingTableHeader from "app/components/Solutions/PricingTableHeader"
+import PricingTableCell from "app/components/Solutions/PricingTableCell"
+import PricingTableRowHeader from "app/components/Solutions/PricingTableRowHeader"
+import PricingTableFeatureIncluded from "app/components/Solutions/PricingTableFeatureIncluded"
+import PricingTableFeatureExcluded from "app/components/Solutions/PricingTableFeatureExcluded"
+import PricingTableRow from "app/components/Solutions/PricingTableRow"
 
 export const meta = () => {
     return {
@@ -256,6 +262,263 @@ export default function Solutions() {
                                 </ul>
                             </div>
                         </div>
+                    </div>
+                </section>
+            </FadeInSection>
+
+            {/* Extended Pricing Table */}
+            <FadeInSection threshold={0.2}>
+                <section className="flex w-full flex-col overflow-hidden py-12 md:py-24">
+                    <div className="mx-auto flex w-full max-w-7xl flex-col">
+                        <table className="mx-8 block w-full max-w-fit shrink-0 table-fixed border-collapse border-spacing-0 overflow-x-auto whitespace-nowrap text-gray-50 text-opacity-100 md:mx-auto md:table md:max-w-full md:overflow-x-auto md:whitespace-normal">
+                            <thead>
+                                <PricingTableRow
+                                    header={true}
+                                    bottomBorder={false}
+                                    innerDivider={false}>
+                                    <PricingTableCell>Plans</PricingTableCell>
+                                    <PricingTableCell>Individual</PricingTableCell>
+                                    <PricingTableCell>EDU</PricingTableCell>
+                                    <PricingTableCell>Enterprise (Coming Soon)</PricingTableCell>
+                                </PricingTableRow>
+                            </thead>
+                            <tbody>
+                                <PricingTableRow bottomBorder={false}>
+                                    <PricingTableRowHeader>Price</PricingTableRowHeader>
+                                    <PricingTableCell>$0/mo.</PricingTableCell>
+                                    <PricingTableCell>
+                                        USD $0.00/mo. per student<sup>*</sup>
+                                    </PricingTableCell>
+                                    <PricingTableCell>Quote</PricingTableCell>
+                                </PricingTableRow>
+                                <PricingTableHeader icon="Box" title="Core Features" />
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>
+                                        Open Source Lessons
+                                    </PricingTableRowHeader>
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>
+                                        Knowledge Checkpoints (Quizzes)
+                                    </PricingTableRowHeader>
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>
+                                        Supplemental Articles
+                                    </PricingTableRowHeader>
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow bottomBorder={false}>
+                                    <PricingTableRowHeader>
+                                        Additional Learning Resources
+                                    </PricingTableRowHeader>
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableHeader icon="Lock" title="Authentication" />
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>
+                                        Traditional Sign-On
+                                    </PricingTableRowHeader>
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>Third-Party OAuth</PricingTableRowHeader>
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>Clever SSO</PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow bottomBorder={false}>
+                                    <PricingTableRowHeader>
+                                        Custom OAuth/SSO/SAML
+                                    </PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableCell>Coming Soon</PricingTableCell>
+                                </PricingTableRow>
+                                <PricingTableHeader
+                                    icon="Gauge"
+                                    title="Learning Management System (LMS)"
+                                />
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>
+                                        Maximum Number of Students<sup>*</sup>
+                                    </PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableCell>Unlimited</PricingTableCell>
+                                    <PricingTableCell>Unlimited</PricingTableCell>
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>
+                                        Maximum Number of Teachers<sup>†</sup>
+                                    </PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableCell>5</PricingTableCell>
+                                    <PricingTableCell>Unlimited</PricingTableCell>
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>
+                                        Maximum Number of Support Staff<sup>†</sup>
+                                    </PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableCell>Unlimited</PricingTableCell>
+                                    <PricingTableCell>Unlimited</PricingTableCell>
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>
+                                        Individual Progress Tracking
+                                    </PricingTableRowHeader>
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>Auto Grading</PricingTableRowHeader>
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>Assigned Lessons</PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>Assigned Quizzes</PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>Assigned Readings</PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>
+                                        Custom Assignments
+                                    </PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableCell>Add-On</PricingTableCell>
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>Custom Quizzes</PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableCell>Add-On</PricingTableCell>
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>
+                                        Overall Class Performance Metrics
+                                    </PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>
+                                        Individual Student Performance Metrics
+                                    </PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>
+                                        Canvas Grades Sync
+                                    </PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>
+                                        AI-Powered Student Recommendations
+                                    </PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow bottomBorder={false}>
+                                    <PricingTableRowHeader>
+                                        On-Demand Course Specific Materials
+                                    </PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableHeader icon="Terminal" title="Code Runner" />
+                                <PricingTableRow bottomBorder={false}>
+                                    <PricingTableRowHeader>
+                                        Maximum Invocations Per Day
+                                    </PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableCell>
+                                        1,000 included, then $0.04 per invocation
+                                    </PricingTableCell>
+                                    <PricingTableCell>Unlimited</PricingTableCell>
+                                </PricingTableRow>
+                                <PricingTableHeader icon="LifeBuoy" title="Support" />
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>Community Support</PricingTableRowHeader>
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>Email Support</PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>Phone Support</PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>Dedicated Support</PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>99% SLA</PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                                <PricingTableRow>
+                                    <PricingTableRowHeader>
+                                        Onboarding Support
+                                    </PricingTableRowHeader>
+                                    <PricingTableFeatureExcluded />
+                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureIncluded />
+                                </PricingTableRow>
+                            </tbody>
+                        </table>
                         <div className="mt-16 w-full">
                             <p className="mx-auto text-center text-2xs text-gray-50 text-opacity-20">
                                 <sup>*</sup> Members under an organization are considered students
@@ -276,169 +539,6 @@ export default function Solutions() {
                                 billed as active.
                             </p>
                         </div>
-                        <table className="mt-16 table w-full table-fixed border-collapse border-spacing-0">
-                            <thead>
-                                <tr className="bg-gray-700 text-left text-xs font-bold text-gray-50 text-opacity-50">
-                                    <th className="px-8 py-4">Plans</th>
-                                    <th className="px-8 py-4">Individual</th>
-                                    <th className="px-8 py-4">EDU</th>
-                                    <th className="px-8 py-4">Enterprise (Coming Soon)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr className="divide-x divide-gray-500 divide-opacity-50 border-b-0 border-gray-500 border-opacity-50 text-left text-sm font-medium text-gray-50 text-opacity-90">
-                                    <td className="px-8 py-4 font-bold opacity-70">Price</td>
-                                    <td className="px-8 py-4">$0/mo.</td>
-                                    <td className="px-8 py-4">USD $0.00/student/mo.</td>
-                                    <td className="px-8 py-4">Quote</td>
-                                </tr>
-                                <tr className="bg-gray-700 text-left text-sm font-bold text-gray-50 text-opacity-90">
-                                    <th className="col-span-4 px-8 py-4">
-                                        <div className="flex flex-row">
-                                            <div className="mr-3 flex h-6 w-6 flex-shrink-0 flex-col rounded-md bg-gradient-to-tr from-primary to-secondary">
-                                                <Icon name="Box" className="m-auto text-gray-50" />
-                                            </div>
-                                            <span className="my-auto">Core Features</span>
-                                        </div>
-                                    </th>
-                                    <td className="col-span-4 px-8 py-4"></td>
-                                    <td className="col-span-4 px-8 py-4"></td>
-                                    <td className="col-span-4 px-8 py-4"></td>
-                                </tr>
-                                <tr className="divide-x divide-gray-500 divide-opacity-50 border-b-1 border-gray-500 border-opacity-50 text-left text-sm font-medium text-gray-50 text-opacity-90">
-                                    <td className="px-8 py-4 font-bold opacity-70">
-                                        Open Source Lessons
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                </tr>
-                                <tr className="divide-x divide-gray-500 divide-opacity-50 border-b-1 border-gray-500 border-opacity-50 text-left text-sm font-medium text-gray-50 text-opacity-90">
-                                    <td className="px-8 py-4 font-bold opacity-70">
-                                        Knowledge Checkpoints (Quizzes)
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                </tr>
-                                <tr className="divide-x divide-gray-500 divide-opacity-50 border-b-1 border-gray-500 border-opacity-50 text-left text-sm font-medium text-gray-50 text-opacity-90">
-                                    <td className="px-8 py-4 font-bold opacity-70">
-                                        Supplemental Articles
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                </tr>
-                                <tr className="divide-x divide-gray-500 divide-opacity-50 border-b-0 border-gray-500 border-opacity-50 text-left text-sm font-medium text-gray-50 text-opacity-90">
-                                    <td className="px-8 py-4 font-bold opacity-70">
-                                        Supplemental Resources
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                </tr>
-                                <tr className="bg-gray-700 text-left text-sm font-bold text-gray-50 text-opacity-90">
-                                    <th className="col-span-4 px-8 py-4">
-                                        <div className="flex flex-row">
-                                            <div className="mr-3 flex h-6 w-6 flex-shrink-0 flex-col rounded-md bg-gradient-to-tr from-primary to-secondary">
-                                                <Icon name="Lock" className="m-auto text-gray-50" />
-                                            </div>
-                                            <span className="my-auto">Authentication</span>
-                                        </div>
-                                    </th>
-                                    <td className="col-span-4 px-8 py-4"></td>
-                                    <td className="col-span-4 px-8 py-4"></td>
-                                    <td className="col-span-4 px-8 py-4"></td>
-                                </tr>
-                                <tr className="divide-x divide-gray-500 divide-opacity-50 border-b-1 border-gray-500 border-opacity-50 text-left text-sm font-medium text-gray-50 text-opacity-90">
-                                    <td className="px-8 py-4 font-bold opacity-70">
-                                        Traditional Sign-On
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                </tr>
-                                <tr className="divide-x divide-gray-500 divide-opacity-50 border-b-1 border-gray-500 border-opacity-50 text-left text-sm font-medium text-gray-50 text-opacity-90">
-                                    <td className="px-8 py-4 font-bold opacity-70">
-                                        Third Party OAuth
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                </tr>
-                                <tr className="divide-x divide-gray-500 divide-opacity-50 border-b-1 border-gray-500 border-opacity-50 text-left text-sm font-medium text-gray-50 text-opacity-90">
-                                    <td className="px-8 py-4 font-bold opacity-70">Clever SSO</td>
-                                    <td className="px-8 py-4">
-                                        <Icon
-                                            name="Minus"
-                                            className="mr-2 text-gray-50 opacity-50"
-                                        />
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon name="Check" className="mr-2 text-secondary" />
-                                    </td>
-                                </tr>
-                                <tr className="divide-x divide-gray-500 divide-opacity-50 border-b-1 border-gray-500 border-opacity-50 text-left text-sm font-medium text-gray-50 text-opacity-90">
-                                    <td className="px-8 py-4 font-bold opacity-70">
-                                        Custom OAuth/SSO/SAML
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon
-                                            name="Minus"
-                                            className="mr-2 text-gray-50 opacity-50"
-                                        />
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <Icon
-                                            name="Minus"
-                                            className="mr-2 text-gray-50 opacity-50"
-                                        />
-                                    </td>
-                                    <td className="px-8 py-4">
-                                        <span className="opacity-60">Coming Soon</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </section>
             </FadeInSection>

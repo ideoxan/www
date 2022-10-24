@@ -1288,10 +1288,6 @@ input::placeholder {
   margin-bottom: 0.75rem;
 }
 
-.mr-3 {
-  margin-right: 0.75rem;
-}
-
 .mt-3 {
   margin-top: 0.75rem;
 }
@@ -1306,6 +1302,10 @@ input::placeholder {
 
 .ml-3 {
   margin-left: 0.75rem;
+}
+
+.mr-3 {
+  margin-right: 0.75rem;
 }
 
 .mb-1 {
@@ -1401,6 +1401,11 @@ input::placeholder {
   height: 60%;
 }
 
+.h-min {
+  height: -moz-min-content;
+  height: min-content;
+}
+
 .max-h-full {
   max-height: 100%;
 }
@@ -1438,10 +1443,6 @@ input::placeholder {
   width: 33.333333%;
 }
 
-.w-6 {
-  width: 1.5rem;
-}
-
 .w-screen {
   width: 100vw;
 }
@@ -1470,6 +1471,10 @@ input::placeholder {
   width: 0px;
 }
 
+.w-6 {
+  width: 1.5rem;
+}
+
 .w-1\/6 {
   width: 16.666667%;
 }
@@ -1484,6 +1489,20 @@ input::placeholder {
 
 .min-w-full {
   min-width: 100%;
+}
+
+.min-w-fit {
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+}
+
+.min-w-\[220px\] {
+  min-width: 220px;
+}
+
+.min-w-max {
+  min-width: -moz-max-content;
+  min-width: max-content;
 }
 
 .max-w-3xl {
@@ -1506,6 +1525,16 @@ input::placeholder {
   max-width: 100%;
 }
 
+.max-w-fit {
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+
+.max-w-max {
+  max-width: -moz-max-content;
+  max-width: max-content;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -1515,6 +1544,10 @@ input::placeholder {
 }
 
 .flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.shrink-0 {
   flex-shrink: 0;
 }
 
@@ -1760,10 +1793,16 @@ input::placeholder {
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
 }
 
-.divide-x > :not([hidden]) ~ :not([hidden]) {
+.divide-x-1 > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-x-reverse: 0;
   border-right-width: calc(1px * var(--tw-divide-x-reverse));
   border-left-width: calc(1px * calc(1 - var(--tw-divide-x-reverse)));
+}
+
+.divide-x-0 > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-x-reverse: 0;
+  border-right-width: calc(0px * var(--tw-divide-x-reverse));
+  border-left-width: calc(0px * calc(1 - var(--tw-divide-x-reverse)));
 }
 
 .divide-gray-500 > :not([hidden]) ~ :not([hidden]) {
@@ -1805,6 +1844,10 @@ input::placeholder {
   white-space: nowrap;
 }
 
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+
 .rounded-lg {
   border-radius: 0.5rem;
 }
@@ -1838,20 +1881,20 @@ input::placeholder {
   border-width: 2px;
 }
 
-.border-b-0 {
-  border-bottom-width: 0px;
-}
-
-.border-b-1 {
-  border-bottom-width: 1px;
-}
-
 .border-b {
   border-bottom-width: 1px;
 }
 
 .border-t {
   border-top-width: 1px;
+}
+
+.border-b-1 {
+  border-bottom-width: 1px;
+}
+
+.border-b-0 {
+  border-bottom-width: 0px;
 }
 
 .border-r {
@@ -2073,11 +2116,6 @@ input::placeholder {
   padding-right: 0.75rem;
 }
 
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
 .px-12 {
   padding-left: 3rem;
   padding-right: 3rem;
@@ -2091,6 +2129,11 @@ input::placeholder {
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .pb-2 {
@@ -2294,6 +2337,11 @@ input::placeholder {
   color: rgb(238 47 255 / var(--tw-text-opacity));
 }
 
+.text-gray-900 {
+  --tw-text-opacity: 1;
+  color: rgb(9 0 31 / var(--tw-text-opacity));
+}
+
 .text-opacity-70 {
   --tw-text-opacity: 0.7;
 }
@@ -2308,6 +2356,14 @@ input::placeholder {
 
 .text-opacity-20 {
   --tw-text-opacity: 0.2;
+}
+
+.text-opacity-100 {
+  --tw-text-opacity: 1;
+}
+
+.text-opacity-60 {
+  --tw-text-opacity: 0.6;
 }
 
 .text-opacity-80 {
@@ -2340,10 +2396,6 @@ input::placeholder {
 
 .opacity-70 {
   opacity: 0.7;
-}
-
-.opacity-60 {
-  opacity: 0.6;
 }
 
 .opacity-30 {
@@ -2611,6 +2663,10 @@ input::placeholder {
     display: flex;
   }
 
+  .md\:table {
+    display: table;
+  }
+
   .md\:hidden {
     display: none;
   }
@@ -2648,6 +2704,11 @@ input::placeholder {
     max-width: 80rem;
   }
 
+  .md\:max-w-fit {
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+  }
+
   .md\:grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
@@ -2672,6 +2733,14 @@ input::placeholder {
     --tw-space-x-reverse: 0;
     margin-right: calc(1.5rem * var(--tw-space-x-reverse));
     margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .md\:overflow-x-auto {
+    overflow-x: auto;
+  }
+
+  .md\:whitespace-normal {
+    white-space: normal;
   }
 
   .md\:rounded-lg {
@@ -2700,6 +2769,11 @@ input::placeholder {
   .md\:py-6 {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
+  }
+
+  .md\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .md\:text-left {
