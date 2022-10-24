@@ -2,7 +2,7 @@ import Icon from "app/components/Icon"
 
 export default function ProductsItem({ icon, title, description }) {
     return (
-        <li className="flex flex-col p-8">
+        <li className="flex flex-col p-8 lg:w-1/3">
             <div className="mx-auto flex h-10 w-10 flex-shrink-0 flex-col rounded-lg bg-gradient-to-tr from-primary to-secondary">
                 <Icon
                     name={icon}

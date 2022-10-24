@@ -100,7 +100,7 @@ export default function Solutions() {
                         <h2 className="section-header mx-auto text-center">
                             A full suite of classroom tools
                         </h2>
-                        <ul className="mx-auto mt-8 mb-4 grid w-full grid-flow-col grid-cols-3 gap-x-12 gap-y-12 md:mb-6">
+                        <ul className="mx-auto mt-6 mb-4 flex w-full max-w-full flex-col space-y-6 sm:max-w-lg md:mt-8 md:mb-6 lg:max-w-7xl lg:flex-row lg:space-x-12 lg:space-y-0">
                             <ProductsItem
                                 icon="Landmark"
                                 title="Classroom Management"
