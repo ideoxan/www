@@ -20,11 +20,11 @@ export default function SolutionsCTA() {
                             Need to supercharge learning in your classroom? Find a new way to
                             educate with <b>IX/EDU</b>
                         </p>
-                        <button
-                            disabled={true}
-                            className="bttn bttn-round bttn-normal bttn-gradient bttn-disabled mx-auto mt-6">
-                            Coming Soon
-                        </button>
+                        <a
+                            href="/solutions"
+                            className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover bttn-gradient-arrow mx-auto mt-6">
+                            Learn More
+                        </a>
                     </div>
                 </div>
             </section>
