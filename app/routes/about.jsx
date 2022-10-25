@@ -6,7 +6,7 @@ import { supabaseLocalStrategy } from "app/utils/auth.server.js"
 import { supabaseAdmin } from "app/utils/db.server.js"
 import FadeInSection from "app/components/FadeInSection"
 import { Github, Twitter } from "@icons-pack/react-simple-icons"
-import OpenSourceSection from "app/components/Home/OpenSourceSection"
+import OpenSourceSection from "app/components/Shared/OpenSourceSection"
 import Header from "app/components/Header"
 import ContactSection from "app/components/Shared/ContactSection"
 
