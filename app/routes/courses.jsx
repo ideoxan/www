@@ -6,7 +6,7 @@ import { supabaseLocalStrategy } from "app/utils/auth.server.js"
 import { supabaseAdmin } from "app/utils/db.server.js"
 import Header from "app/components/Header"
 import FadeInSection from "app/components/FadeInSection"
-import SignupCTA from "app/components/Home/SignupCTA"
+import SignupCTA from "app/components/Shared/SignupCTA"
 
 export const meta = () => {
     return {

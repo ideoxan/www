@@ -1,7 +1,7 @@
 import { Form, useActionData } from "@remix-run/react"
 import { json, redirect } from "@remix-run/cloudflare"
 import { authenticator, sessionStorage, supabaseLocalStrategy } from "app/utils/auth.server"
-import AuthSplash from "app/components/Auth/AuthSplash"
+import CenterSplashScreen from "app/components/Home/CenterSplashScreen"
 
 export function meta() {
     return {
@@ -83,7 +83,7 @@ export default function Waitlist() {
     let { error } = useActionData() || {}
 
     return (
-        <AuthSplash>
+        <CenterSplashScreen>
             <h1 className="bg-gradient-white mx-auto bg-clip-text text-center font-sans text-2xl font-extrabold tracking-tight text-transparent">
                 Join the Waitlist
             </h1>
@@ -123,6 +123,6 @@ export default function Waitlist() {
                     </button>
                 </div>
             </Form>
-        </AuthSplash>
+        </CenterSplashScreen>
     )
 }

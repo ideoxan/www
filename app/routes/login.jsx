@@ -1,7 +1,7 @@
 import { Link, Form, useLoaderData } from "@remix-run/react"
 import { json } from "@remix-run/cloudflare"
 import { authenticator, sessionStorage, supabaseLocalStrategy } from "app/utils/auth.server"
-import AuthSplash from "app/components/Auth/AuthSplash"
+import CenterSplashScreen from "app/components/Home/CenterSplashScreen"
 import AuthOAuth from "app/components/Auth/AuthOAuth"
 import prodBlockServer from "app/utils/prodBlock.server"
 
@@ -34,7 +34,7 @@ export default function LogIn() {
     const { error } = useLoaderData()
 
     return (
-        <AuthSplash>
+        <CenterSplashScreen>
             <h1 className="section-header bg-gradient-white mx-auto bg-clip-text text-center font-sans text-2xl font-extrabold tracking-tight text-transparent">
                 Log into an existing account
             </h1>
@@ -94,6 +94,6 @@ export default function LogIn() {
             </div>
 
             <AuthOAuth />
-        </AuthSplash>
+        </CenterSplashScreen>
     )
 }

@@ -1,6 +1,6 @@
 import { Link } from "@remix-run/react"
 
-export default function AuthSplash({ children, ...props }) {
+export default function CenterSplashScreen({ children, ...props }) {
     return (
         <main className="h-screen w-screen overflow-hidden bg-gray-900 md:bg-black" {...props}>
             {/* Splash image */}

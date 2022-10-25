@@ -18,5 +18,13 @@
         "types": ["@cloudflare/workers-types"]
     },
     "include": ["remix.env.d.ts", "**/*.js", "**/*.jsx"],
-    "exclude": ["node_modules/*", "**/*.d.ts"]
+    "exclude": [
+        "node_modules/*",
+        "**/*.d.ts",
+        ".git/*",
+        ".cache/*",
+        "api/*",
+        "functions/*",
+        "public/build/*"
+    ]
 }
