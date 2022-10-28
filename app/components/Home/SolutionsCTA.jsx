@@ -22,7 +22,7 @@ export default function SolutionsCTA() {
                         </p>
                         <a
                             href="/solutions"
-                            className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover bttn-gradient-arrow mx-auto mt-6">
+                            className="bttn bttn-round bttn-normal bttn-gradient box-glow-hover bttn-gradient-arrow mx-auto mt-6 mb-6">
                             Learn More
                         </a>
                     </div>
