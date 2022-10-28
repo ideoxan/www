@@ -30,7 +30,7 @@ export default function OpenSourceSection() {
                     <div className="hidden w-1/2 flex-shrink flex-grow-0 flex-col p-6 md:flex">
                         <img
                             src="/images/oss2.png"
-                            className="mx-auto my-auto w-auto flex-shrink rounded-lg shadow-2xl ring-1 ring-gray-500 ring-opacity-50"
+                            className="mx-auto my-auto w-auto flex-shrink rounded-lg shadow-2xl ring-1 ring-black ring-opacity-50"
                             alt="Screenshot of Ideoxan's GitHub organization page."
                         />
                     </div>
