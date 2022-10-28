@@ -1988,10 +1988,6 @@ input::placeholder {
   background-image: url('/images/signup_splash_edit.png');
 }
 
-.bg-\[url\(\'\/images\/cta_signup\.png\'\)\] {
-  background-image: url('/images/cta_signup.png');
-}
-
 .from-primary {
   --tw-gradient-from: #6E2FFF;
   --tw-gradient-to: rgb(110 47 255 / 0);
@@ -2903,15 +2899,6 @@ input::placeholder {
     --tw-space-y-reverse: 0;
     margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
     margin-bottom: calc(0px * var(--tw-space-y-reverse));
-  }
-
-  .lg\:bg-\[url\(\'\/images\/cta_signup\.png\'\)\] {
-    background-image: url('/images/cta_signup.png');
-  }
-
-  .lg\:py-8 {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
   }
 
   .lg\:pb-8 {

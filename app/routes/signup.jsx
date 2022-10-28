@@ -2,7 +2,7 @@ import { Link, Form, useActionData } from "@remix-run/react"
 import { json, redirect } from "@remix-run/cloudflare"
 import { authenticator, sessionStorage, supabaseLocalStrategy } from "app/utils/auth.server"
 import { supabaseAdmin } from "app/utils/db.server"
-import CenterSplashScreen from "app/components/Home/CenterSplashScreen"
+import CenterSplashScreen from "app/components/Shared/CenterSplashScreen"
 import AuthOAuth from "app/components/Auth/AuthOAuth"
 import prodBlockServer from "app/utils/prodBlock.server"
 

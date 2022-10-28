@@ -1,7 +1,7 @@
 import { Form, useActionData } from "@remix-run/react"
 import { json, redirect } from "@remix-run/cloudflare"
 import { authenticator, sessionStorage, supabaseLocalStrategy } from "app/utils/auth.server"
-import CenterSplashScreen from "app/components/Home/CenterSplashScreen"
+import CenterSplashScreen from "app/components/Shared/CenterSplashScreen"
 
 export function meta() {
     return {
