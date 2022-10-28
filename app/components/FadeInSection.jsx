@@ -41,7 +41,10 @@ export default function FadeInSection({
         case "right":
             animationToUse = "animate-fade-in-right"
             break
-        default:
+        case "center":
+            animationToUse = "animate-fade-in"
+            break
+        default: // Backwards compatibility
             animationToUse = "animate-fade-in-up"
             break
     }
