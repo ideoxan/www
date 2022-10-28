@@ -43,7 +43,6 @@ module.exports = {
         extend: {
             backgroundImage: {
                 "img-hero": 'url("/images/heroBgBlur.png")',
-                "auth-splash": "url('/images/signup_splash_edit.png')",
             },
             keyframes: {
                 "fade-in-up": {

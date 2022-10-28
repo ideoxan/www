@@ -1984,7 +1984,7 @@ input::placeholder {
   background-image: linear-gradient(to top right, var(--tw-gradient-stops));
 }
 
-.bg-auth-splash {
+.bg-\[url\(\'\/images\/signup_splash_edit\.png\'\)\] {
   background-image: url('/images/signup_splash_edit.png');
 }
 
@@ -2113,14 +2113,14 @@ input::placeholder {
   padding-right: 0.75rem;
 }
 
-.px-12 {
-  padding-left: 3rem;
-  padding-right: 3rem;
-}
-
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.px-12 {
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .pb-2 {
@@ -2334,6 +2334,16 @@ input::placeholder {
 .text-gray-100 {
   --tw-text-opacity: 1;
   color: rgb(202 188 235 / var(--tw-text-opacity));
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-blue-500 {
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity));
 }
 
 .text-opacity-70 {
