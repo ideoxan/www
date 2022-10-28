@@ -5,14 +5,15 @@ export default function SignupCTA() {
         <FadeInSection>
             <section id="solutions" className="section flex-col px-8">
                 {/* IX Solutions Section */}
-                <div className="section-container flex-col overflow-clip rounded-2xl bg-gray-700 shadow-2xl ring-1 ring-gray-500 ring-opacity-50 md:flex-row">
+                <div className="section-container flex-col overflow-clip rounded-2xl bg-gray-700 bg-left bg-no-repeat shadow-2xl ring-1 ring-gray-500 ring-opacity-50 md:flex-row xl:bg-[url('/images/cta_signup.png')] xl:py-8">
                     {/* Image */}
-                    <img
+                    <div className="h-auto w-0 flex-shrink-0 lg:w-1/4"></div>
+                    {/* <img
                         src="/images/cta_signup.png"
                         className="h-auto w-0 flex-shrink-0 lg:w-1/4"
                         aria-hidden="true"
                         alt=""
-                    />
+                    /> */}
 
                     {/* Text */}
                     <div className="my-auto flex w-full flex-col p-6 md:w-max lg:w-1/2">
