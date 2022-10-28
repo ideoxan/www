@@ -514,7 +514,7 @@ export default function Solutions() {
                                         Onboarding Support
                                     </PricingTableRowHeader>
                                     <PricingTableFeatureExcluded />
-                                    <PricingTableFeatureIncluded />
+                                    <PricingTableFeatureExcluded />
                                     <PricingTableFeatureIncluded />
                                 </PricingTableRow>
                             </tbody>
