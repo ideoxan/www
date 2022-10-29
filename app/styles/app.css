@@ -1762,10 +1762,10 @@ input::placeholder {
   margin-left: calc(2rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
-.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+.space-y-3 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
-  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+  margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
 }
 
 .space-y-8 > :not([hidden]) ~ :not([hidden]) {
@@ -1780,10 +1780,10 @@ input::placeholder {
   margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 }
 
-.space-y-3 > :not([hidden]) ~ :not([hidden]) {
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
-  margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 
 .divide-x-1 > :not([hidden]) ~ :not([hidden]) {
@@ -1954,13 +1954,17 @@ input::placeholder {
   background-color: rgb(21 9 49 / var(--tw-bg-opacity));
 }
 
-.bg-primary\/50 {
-  background-color: rgb(110 47 255 / 0.5);
-}
-
 .bg-tertiary {
   --tw-bg-opacity: 1;
   background-color: rgb(238 47 255 / var(--tw-bg-opacity));
+}
+
+.bg-gray-500\/40 {
+  background-color: rgb(61 36 117 / 0.4);
+}
+
+.bg-gray-500\/0 {
+  background-color: rgb(61 36 117 / 0);
 }
 
 .bg-secondary {
@@ -1980,39 +1984,6 @@ input::placeholder {
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-
-.bg-primary\/20 {
-  background-color: rgb(110 47 255 / 0.2);
-}
-
-.bg-gray-500\/20 {
-  background-color: rgb(61 36 117 / 0.2);
-}
-
-.bg-gray-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(61 36 117 / var(--tw-bg-opacity));
-}
-
-.bg-gray-500\/40 {
-  background-color: rgb(61 36 117 / 0.4);
-}
-
-.bg-gray-500\/0 {
-  background-color: rgb(61 36 117 / 0);
-}
-
-.bg-primary\/40 {
-  background-color: rgb(110 47 255 / 0.4);
-}
-
-.bg-primary\/10 {
-  background-color: rgb(110 47 255 / 0.1);
-}
-
-.bg-primary\/30 {
-  background-color: rgb(110 47 255 / 0.3);
 }
 
 .bg-opacity-25 {
@@ -2194,6 +2165,10 @@ input::placeholder {
   padding-top: 0.5rem;
 }
 
+.pt-24 {
+  padding-top: 6rem;
+}
+
 .pt-8 {
   padding-top: 2rem;
 }
@@ -2368,10 +2343,6 @@ input::placeholder {
   color: rgb(167 129 254 / var(--tw-text-opacity));
 }
 
-.text-gray-50\/100 {
-  color: rgb(248 245 255 / 1);
-}
-
 .text-tertiary {
   --tw-text-opacity: 1;
   color: rgb(238 47 255 / var(--tw-text-opacity));
@@ -2385,44 +2356,6 @@ input::placeholder {
 .text-red-50 {
   --tw-text-opacity: 1;
   color: rgb(254 242 242 / var(--tw-text-opacity));
-}
-
-.text-primary\/100 {
-  color: rgb(110 47 255 / 1);
-}
-
-.text-secondary\/100 {
-  color: rgb(167 129 254 / 1);
-}
-
-.text-gray-500\/100 {
-  color: rgb(61 36 117 / 1);
-}
-
-.text-gray-50\/80 {
-  color: rgb(248 245 255 / 0.8);
-}
-
-.text-gray-50\/50 {
-  color: rgb(248 245 255 / 0.5);
-}
-
-.text-gray-500 {
-  --tw-text-opacity: 1;
-  color: rgb(61 36 117 / var(--tw-text-opacity));
-}
-
-.text-gray-300 {
-  --tw-text-opacity: 1;
-  color: rgb(118 83 194 / var(--tw-text-opacity));
-}
-
-.text-primary\/80 {
-  color: rgb(110 47 255 / 0.8);
-}
-
-.text-secondary\/80 {
-  color: rgb(167 129 254 / 0.8);
 }
 
 .text-opacity-50 {

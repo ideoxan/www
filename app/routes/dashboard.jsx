@@ -57,12 +57,17 @@ export default function Dashboard() {
             label: "Courses",
             link: "/dashboard/courses",
         },
+        {
+            icon: "Settings2",
+            label: "Settings",
+            link: "/dashboard/settings",
+        },
     ]
 
     return (
         <>
             <NavigationBar session={session} userData={userData} />
-            <div className="mt-24 flex h-full w-full flex-row">
+            <div className="flex w-full flex-row pt-24">
                 <div className="flex w-1/5 flex-col space-y-3 px-12">
                     {tabs.map((tab, index) => (
                         <DashboardSidebarTab
