@@ -1,8 +1,10 @@
 import { json, redirect } from "@remix-run/cloudflare"
-import { useLoaderData } from "@remix-run/react"
+import { Outlet, useLoaderData } from "@remix-run/react"
 import { supabaseLocalStrategy } from "app/utils/auth.server.js"
 import { supabaseAdmin } from "app/utils/db.server.js"
 import NavigationBar from "app/components/NavigationBar"
+import DashboardSidebarTab from "app/components/Dashboard/DashboardSidebarTab"
+import { useState } from "react"
 
 export const meta = () => {
     return {
@@ -38,5 +40,43 @@ export async function loader({ request, context }) {
 export default function Dashboard() {
     let { session, userData } = useLoaderData()
 
-    return <NavigationBar session={session} userData={userData} />
+    const [activeTab, setActiveTab] = useState(0)
+    let tabs = [
+        {
+            icon: "Component",
+            label: "Overview",
+            link: "/dashboard/overview",
+        },
+        {
+            icon: "User",
+            label: "Profile",
+            link: "/dashboard/profile",
+        },
+        {
+            icon: "BookOpen",
+            label: "Courses",
+            link: "/dashboard/courses",
+        },
+    ]
+
+    return (
+        <>
+            <NavigationBar session={session} userData={userData} />
+            <div className="mt-24 flex h-full w-full flex-row">
+                <div className="flex w-1/5 flex-col space-y-3 px-12">
+                    {tabs.map((tab, index) => (
+                        <DashboardSidebarTab
+                            key={index}
+                            icon={tab.icon}
+                            label={tab.label}
+                            link={tab.link}
+                            active={activeTab === index}
+                            onClick={() => setActiveTab(index)}
+                        />
+                    ))}
+                </div>
+                <Outlet />
+            </div>
+        </>
+    )
 }
