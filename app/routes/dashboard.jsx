@@ -1,5 +1,5 @@
 import { json, redirect } from "@remix-run/cloudflare"
-import { Outlet, useLoaderData } from "@remix-run/react"
+import { Outlet, useLoaderData, useMatches } from "@remix-run/react"
 import { supabaseLocalStrategy } from "app/utils/auth.server.js"
 import { supabaseAdmin } from "app/utils/db.server.js"
 import NavigationBar from "app/components/NavigationBar"
@@ -40,7 +40,7 @@ export async function loader({ request, context }) {
 export default function Dashboard() {
     let { session, userData } = useLoaderData()
 
-    const [activeTab, setActiveTab] = useState(0)
+    const [activeTab, setActiveTab] = useState(useMatches()[2]?.pathname || "/dashboard/overview")
     let tabs = [
         {
             icon: "Component",
@@ -70,8 +70,8 @@ export default function Dashboard() {
                             icon={tab.icon}
                             label={tab.label}
                             link={tab.link}
-                            active={activeTab === index}
-                            onClick={() => setActiveTab(index)}
+                            active={activeTab === tab.link}
+                            onClick={() => setActiveTab(tab.link)}
                         />
                     ))}
                 </div>
