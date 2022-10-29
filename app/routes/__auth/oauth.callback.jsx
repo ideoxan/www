@@ -3,7 +3,6 @@ import { useFetcher, useLoaderData } from "@remix-run/react"
 import { json, redirect } from "@remix-run/cloudflare"
 import { authenticator } from "app/utils/auth.server.js"
 import { supabaseClient } from "app/utils/db.client"
-import CenterSplashScreen from "app/components/Shared/CenterSplashScreen"
 
 export const meta = () => {
     return {
@@ -61,7 +60,7 @@ export default function OAuthCallback() {
     }, [fetcher])
 
     return (
-        <CenterSplashScreen>
+        <>
             {loaderData?.error ? (
                 <>
                     <h1 className="mx-auto text-center font-sans text-2xl font-extrabold tracking-tight text-gray-50">
@@ -81,6 +80,6 @@ export default function OAuthCallback() {
                     </p>
                 </>
             )}
-        </CenterSplashScreen>
+        </>
     )
 }
