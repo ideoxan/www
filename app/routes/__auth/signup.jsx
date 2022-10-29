@@ -2,7 +2,6 @@ import { Link, Form, useActionData } from "@remix-run/react"
 import { json, redirect } from "@remix-run/cloudflare"
 import { authenticator, sessionStorage, supabaseLocalStrategy } from "app/utils/auth.server"
 import { supabaseAdmin } from "app/utils/db.server"
-import CenterSplashScreen from "app/components/Shared/CenterSplashScreen"
 import AuthOAuth from "app/components/Auth/AuthOAuth"
 import prodBlockServer from "app/utils/prodBlock.server"
 
@@ -64,7 +63,7 @@ export default function Signup() {
     let { error } = useActionData() || {}
 
     return (
-        <CenterSplashScreen>
+        <>
             <h1 className="bg-gradient-white mx-auto bg-clip-text text-center font-sans text-2xl font-extrabold tracking-tight text-transparent">
                 Register for a new account
             </h1>
@@ -129,6 +128,6 @@ export default function Signup() {
             </div>
 
             <AuthOAuth />
-        </CenterSplashScreen>
+        </>
     )
 }
