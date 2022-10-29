@@ -1,7 +1,6 @@
 import { useActionData } from "@remix-run/react"
 import { json } from "@remix-run/cloudflare"
 import { authenticator, sessionStorage, supabaseLocalStrategy } from "app/utils/auth.server"
-import CenterSplashScreen from "app/components/Shared/CenterSplashScreen"
 
 export function meta() {
     return {
@@ -25,7 +24,7 @@ export default function WaitlistSuccess() {
     let { error } = useActionData() || {}
 
     return (
-        <CenterSplashScreen>
+        <>
             <h1 className="bg-gradient-white mx-auto bg-clip-text text-center font-sans text-2xl font-extrabold tracking-tight text-transparent">
                 Check your inbox!
             </h1>
@@ -38,6 +37,6 @@ export default function WaitlistSuccess() {
                     {error?.message}
                 </p>
             )}
-        </CenterSplashScreen>
+        </>
     )
 }
