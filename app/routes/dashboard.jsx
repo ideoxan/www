@@ -40,12 +40,12 @@ export async function loader({ request, context }) {
 export default function Dashboard() {
     let { session, userData } = useLoaderData()
 
-    const [activeTab, setActiveTab] = useState(useMatches()[2]?.pathname || "/dashboard/overview")
+    const [activeTab, setActiveTab] = useState(useMatches()[2]?.pathname || "/dashboard/")
     let tabs = [
         {
             icon: "Component",
             label: "Overview",
-            link: "/dashboard/overview",
+            link: "/dashboard/",
         },
         {
             icon: "User",
@@ -67,7 +67,7 @@ export default function Dashboard() {
     return (
         <>
             <NavigationBar session={session} userData={userData} />
-            <div className="flex w-full flex-row pt-24">
+            <div className="flex h-full w-full flex-row pt-24">
                 <div className="flex w-1/5 flex-col space-y-3 px-12">
                     {tabs.map((tab, index) => (
                         <DashboardSidebarTab
@@ -80,7 +80,9 @@ export default function Dashboard() {
                         />
                     ))}
                 </div>
-                <Outlet />
+                <div className="flex w-4/5 flex-col">
+                    <Outlet />
+                </div>
             </div>
         </>
     )
