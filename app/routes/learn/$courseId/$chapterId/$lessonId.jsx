@@ -152,7 +152,9 @@ export default function Editor() {
                 setMetadata(metadata)
             } catch (error) {
                 if (window.env.WORKER_ENV !== "production") console.log(error)
-                window.location = window.location.toString() + "/404"
+                setLoading(false)
+                setLoadingScreen(false)
+                window.location.href = "/404"
             }
 
             setLoading(false)

@@ -1624,6 +1624,20 @@ input::placeholder {
   animation: fade-in-right 700ms ease-in-out 300ms forwards;
 }
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 700ms ease-in-out 300ms forwards;
+}
+
 @keyframes fade-in-up {
   0% {
     opacity: 0;
@@ -1638,20 +1652,6 @@ input::placeholder {
 
 .animate-fade-in-up {
   animation: fade-in-up 700ms ease-in-out 300ms forwards;
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 700ms ease-in-out 300ms forwards;
 }
 
 .cursor-pointer {
