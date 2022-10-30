@@ -21,7 +21,7 @@ export default function DashboardSidebarTab({ icon, label, active, link, onClick
                 </button>
             ) : (
                 <button
-                    className="flex flex-row rounded-full bg-gray-500/0 px-4 py-3 font-sans text-sm font-semibold text-gray-50 opacity-30"
+                    className="flex flex-row rounded-full bg-gray-500/0 px-4 py-3 font-sans text-sm font-semibold text-gray-50 opacity-50"
                     onClick={() => {
                         if (onClick) onClick()
                         window.location.replace(link)
