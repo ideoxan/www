@@ -80,7 +80,7 @@ export default function Dashboard() {
                         />
                     ))}
                 </div>
-                <div className="flex w-4/5 flex-col">
+                <div className="flex w-4/5 flex-col pr-12">
                     <Outlet />
                 </div>
             </div>
