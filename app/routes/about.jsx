@@ -255,7 +255,7 @@ export default function About() {
                                         alt=""
                                     />
                                     <img
-                                        src="/images/ix_webvm_white_trans_247x37.png"
+                                        src="/images/ix_webemu_white_trans_247x37.png"
                                         className="h-full w-auto"
                                         alt=""
                                     />

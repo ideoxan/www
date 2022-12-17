@@ -51,8 +51,8 @@ export default function CoursesSection() {
                                 seconds and start coding in any browser.
                             </p>
                             <img
-                                src="/images/tesseract_50.png"
-                                className="mt-8 h-auto w-48"
+                                src="/images/ix_webemu_poweredby_white_trans_288x63.png"
+                                className="mt-8 h-auto w-48 opacity-40"
                                 aria-hidden="true"
                                 alt=""
                             />

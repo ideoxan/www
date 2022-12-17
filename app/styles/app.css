@@ -1531,10 +1531,6 @@ input::placeholder {
   max-width: fit-content;
 }
 
-.max-w-md {
-  max-width: 28rem;
-}
-
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -2134,6 +2130,11 @@ input::placeholder {
   padding-right: 0.75rem;
 }
 
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -2142,11 +2143,6 @@ input::placeholder {
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
-}
-
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
 }
 
 .pb-2 {
@@ -2175,6 +2171,10 @@ input::placeholder {
 
 .pt-24 {
   padding-top: 6rem;
+}
+
+.pr-12 {
+  padding-right: 3rem;
 }
 
 .pt-8 {
@@ -2235,10 +2235,6 @@ input::placeholder {
 
 .pl-2 {
   padding-left: 0.5rem;
-}
-
-.pr-12 {
-  padding-right: 3rem;
 }
 
 .text-left {
@@ -2365,17 +2361,17 @@ input::placeholder {
   color: rgb(202 188 235 / var(--tw-text-opacity));
 }
 
-.text-red-50 {
-  --tw-text-opacity: 1;
-  color: rgb(254 242 242 / var(--tw-text-opacity));
-}
-
 .text-gray-50\/50 {
   color: rgb(248 245 255 / 0.5);
 }
 
 .text-gray-50\/80 {
   color: rgb(248 245 255 / 0.8);
+}
+
+.text-red-50 {
+  --tw-text-opacity: 1;
+  color: rgb(254 242 242 / var(--tw-text-opacity));
 }
 
 .text-opacity-50 {
@@ -2440,6 +2436,10 @@ input::placeholder {
 
 .opacity-5 {
   opacity: 0.05;
+}
+
+.opacity-40 {
+  opacity: 0.4;
 }
 
 .shadow-2xl {
@@ -2552,10 +2552,6 @@ input::placeholder {
   background-color: rgb(14 4 38 / var(--tw-bg-opacity));
 }
 
-.hover\:text-gray-50\/80:hover {
-  color: rgb(248 245 255 / 0.8);
-}
-
 .hover\:underline:hover {
   text-decoration-line: underline;
 }
@@ -2611,12 +2607,12 @@ input::placeholder {
   text-decoration-line: underline;
 }
 
-.group:hover .group-hover\:opacity-100 {
-  opacity: 1;
-}
-
 .group:hover .group-hover\:opacity-80 {
   opacity: 0.8;
+}
+
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
 }
 
 @media (min-width: 640px) {
