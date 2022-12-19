@@ -9,6 +9,7 @@ import {
     useLoaderData,
     useCatch,
 } from "@remix-run/react"
+import GTag from "app/components/Shared/GTag"
 
 import styles from "app/styles/app.css"
 
@@ -50,6 +51,7 @@ export async function loader() {
             SUPABASE_ANON_KEY: global.env.SUPABASE_ANON_KEY,
             WORKER_ENV: global.env.WORKER_ENV,
             TESSERACT_URL: global.env.TESSERACT_URL,
+            GA_TRACKING_ID: global.env.GA_TRACKING_ID,
         },
     })
 }
@@ -79,6 +81,7 @@ export function CatchBoundary() {
                         href="/favicon-16x16.png"></link>
                     <link rel="manifest" href="/site.webmanifest"></link>
                     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#6f2bff"></link>
+                    <GTag />
                 </head>
                 <body className="flex h-full w-full flex-col">
                     <div className="m-auto flex flex-col">
@@ -127,6 +130,7 @@ export function CatchBoundary() {
                         href="/favicon-16x16.png"></link>
                     <link rel="manifest" href="/site.webmanifest"></link>
                     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#6f2bff"></link>
+                    <GTag />
                 </head>
                 <body className="flex h-full w-full flex-col">
                     <div className="m-auto flex flex-col">
@@ -169,6 +173,7 @@ export default function App() {
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"></link>
                 <link rel="manifest" href="/site.webmanifest"></link>
                 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#6f2bff"></link>
+                <GTag />
             </head>
             <body className="h-full w-full">
                 <Outlet />
