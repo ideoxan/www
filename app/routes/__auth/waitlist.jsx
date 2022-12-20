@@ -1,6 +1,7 @@
 import { Form, useActionData } from "@remix-run/react"
 import { json, redirect } from "@remix-run/cloudflare"
 import { authenticator, sessionStorage, supabaseLocalStrategy } from "app/utils/auth.server"
+import { event } from "app/utils/gtag.client"
 
 export function meta() {
     return {
@@ -97,7 +98,15 @@ export default function Waitlist() {
             )}
 
             {/* Signup form */}
-            <Form method="post" autoComplete="off" className="mt-6 flex w-full flex-col">
+            <Form
+                method="post"
+                autoComplete="off"
+                className="mt-6 flex w-full flex-col"
+                onSubmit={() => {
+                    event({
+                        name: "mailinglist_signup",
+                    })
+                }}>
                 <input
                     type="name"
                     name="name"

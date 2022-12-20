@@ -1,14 +1,10 @@
-export const event = ({ action, category, label, value }) => {
+export const event = ({ name, parameters = {} }) => {
     if (!window.gtag) {
         console.warn("Google Analytics not loaded.")
         return
     }
 
-    window.gtag("event", action, {
-        event_category: category,
-        event_label: label,
-        value: value,
-    })
+    window.gtag("event", name, parameters)
 }
 
 export const pageView = (url, gaTrackingId) => {
