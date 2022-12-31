@@ -10,6 +10,10 @@ import { useLoaderData } from "@remix-run/react"
 import { supabaseLocalStrategy } from "app/utils/auth.server.js"
 import FadeInSection from "app/components/FadeInSection"
 
+export const meta = () => ({
+    title: "Learn computer science for free | Ideoxan",
+})
+
 export const loader = async ({ request }) => {
     // Check user auth
     let session = await supabaseLocalStrategy().checkSession(request)
