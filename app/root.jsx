@@ -10,6 +10,7 @@ import {
     useCatch,
 } from "@remix-run/react"
 import GTag from "app/components/Shared/GTag"
+import SchemaJSONLD from "app/components/Shared/SchemaJSONLD"
 
 import styles from "app/styles/app.css"
 
@@ -20,19 +21,23 @@ export const meta = () => ({
 
     // SEO
     title: "Ideoxan",
-    description: "Ideoxan is a free to use online tool to learn programming.",
-    keywords: "programming, learn how to code, free, coding, software, developer",
+    description:
+        "Empower your future. Get started today with interactive programming lessons. Learn at your own pace at zero cost.",
+    keywords:
+        "programming,learn how to code,free,coding,software,developer,coding bootcamp,coding for kids,coding boot camps,scratch coding,what is coding,python coding,cracking the coding interview,coding classes,coding games,coding languages,coding jobs,ninja coding,kids coding languages,coding computers,free coding camp,best coding bootcamps,coding websites,coding for websites,coding classes for kids,minecraft coding,coding games for kids,coding for beginners,learn coding,free coding classes,computer coding,how to learn coding,object oriented programming,dynamic programming,rust programming language,computer programming,programming languages,c++ programming,c programming,lms,lms schoology,canvas lms,lms login,lms for schools,lms schools,website coding classroom plan,c programming tutorial,java programming tutorial,dynamic programming tutorial,java programming tutorial for beginners",
 
     // OG and Twitter
     "twitter:card": "summary_large_image",
     "twitter:url": "https://ideoxan.com",
     "twitter:title": "Ideoxan",
-    "twitter:description": "Ideoxan is a free to use online tool to learn programming.",
+    "twitter:description":
+        "Empower your future. Get started today with interactive programming lessons. Learn at your own pace at zero cost.",
     "twitter:image": "/images/ix_og_embed_1200x628.png",
     "og:type": "website",
     "og:url": "https://ideoxan.com",
     "og:title": "Ideoxan",
-    "og:description": "Ideoxan is a free to use online tool to learn programming.",
+    "og:description":
+        "Empower your future. Get started today with interactive programming lessons. Learn at your own pace at zero cost.",
     "og:image": "/images/ix_og_embed_1200x628.png",
     image: "/images/ix_og_embed_1200x628.png",
     "msapplication-TileColor": "#6e2fff",
@@ -81,7 +86,9 @@ export function CatchBoundary() {
                         href="/favicon-16x16.png"></link>
                     <link rel="manifest" href="/site.webmanifest"></link>
                     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#6f2bff"></link>
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
                     <GTag />
+                    <SchemaJSONLD />
                 </head>
                 <body className="flex h-full w-full flex-col">
                     <div className="m-auto flex flex-col">
@@ -130,7 +137,9 @@ export function CatchBoundary() {
                         href="/favicon-16x16.png"></link>
                     <link rel="manifest" href="/site.webmanifest"></link>
                     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#6f2bff"></link>
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
                     <GTag />
+                    <SchemaJSONLD />
                 </head>
                 <body className="flex h-full w-full flex-col">
                     <div className="m-auto flex flex-col">
@@ -173,7 +182,9 @@ export default function App() {
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"></link>
                 <link rel="manifest" href="/site.webmanifest"></link>
                 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#6f2bff"></link>
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <GTag />
+                <SchemaJSONLD />
             </head>
             <body className="h-full w-full">
                 <Outlet />
