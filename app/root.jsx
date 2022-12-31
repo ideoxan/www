@@ -17,7 +17,7 @@ import styles from "app/styles/app.css"
 export const meta = () => ({
     charset: "utf-8",
     lang: "en",
-    viewport: "width=device-width,initial-scale=1",
+    viewport: "width=device-width, initial-scale=1",
 
     // SEO
     title: "Ideoxan",
@@ -86,7 +86,6 @@ export function CatchBoundary() {
                         href="/favicon-16x16.png"></link>
                     <link rel="manifest" href="/site.webmanifest"></link>
                     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#6f2bff"></link>
-                    <meta name="viewport" content="width=device-width, initial-scale=1" />
                     <GTag />
                     <SchemaJSONLD />
                 </head>
@@ -137,7 +136,6 @@ export function CatchBoundary() {
                         href="/favicon-16x16.png"></link>
                     <link rel="manifest" href="/site.webmanifest"></link>
                     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#6f2bff"></link>
-                    <meta name="viewport" content="width=device-width, initial-scale=1" />
                     <GTag />
                     <SchemaJSONLD />
                 </head>
@@ -182,7 +180,6 @@ export default function App() {
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"></link>
                 <link rel="manifest" href="/site.webmanifest"></link>
                 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#6f2bff"></link>
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <GTag />
                 <SchemaJSONLD />
             </head>
