@@ -30,14 +30,21 @@ export const meta = ({ data }) => {
             data?.metadata?.lesson?.name
         } | ${data?.metadata?.course?.name} | Ideoxan`
         let description = `Empower your future. Learn computer science for free. Get started on your first "${data?.metadata?.course?.name}" lesson by creating an account on Ideoxan.`
+        let image = `https://og-image.ideoxan.com/?ns=ix&cname=${encodeURIComponent(
+            data?.metadata?.course?.name
+        )}&lname=${encodeURIComponent(data?.metadata?.lesson?.name)}`
+
         return {
             title,
             description,
+            image,
             // OG and Twitter
             "twitter:title": title,
             "twitter:description": description,
+            "twitter:image": image,
             "og:title": title,
             "og:description": description,
+            "og:image": image,
         }
     }
 }
