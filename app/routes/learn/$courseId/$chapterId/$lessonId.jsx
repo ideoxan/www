@@ -1,6 +1,6 @@
 // General
 import { json, redirect } from "@remix-run/cloudflare"
-import { useLoaderData } from "@remix-run/react"
+import { useLoaderData, useParams } from "@remix-run/react"
 import { useEffect, useState } from "react"
 // Navigation
 import EditorNavigationBar from "app/components/Editor/EditorNavigationBar"
@@ -21,14 +21,51 @@ import { supabaseAdmin } from "app/utils/db.server.js"
 import prodBlockServer from "app/utils/prodBlock.server"
 
 import termStyles from "app/styles/xterm.css"
-import { supabaseClient } from "app/utils/db.client"
+
 export const links = () => [{ rel: "stylesheet", href: termStyles }]
 
 export const loader = async ({ params, request }) => {
     prodBlockServer()
-    // It slows down the website a lot if we start loading the data from the server
-    // At least if we handle it manually in the component, we can show a loading splash screen.
-    //??: Would a graphql query be more efficient?
+
+    // Load basic metadata (don't pull any files yet so we can still load the page quick)
+    let metadata = {}
+    try {
+        let { data: courseData, error: courseDataQueryError } = await supabaseAdmin()
+            .from("courses")
+            .select()
+            .eq("id", params.courseId)
+            .single()
+        let { data: chapterData, error: chapterDataQueryError } = await supabaseAdmin()
+            .from("chapters")
+            .select()
+            .eq("course", params.courseId)
+            .eq("index", params.chapterId)
+            .single()
+        let { data: lessonData, error: lessonDataQueryError } = await supabaseAdmin()
+            .from("lessons")
+            .select()
+            .eq("chapter", chapterData.id)
+            .eq("index", params.lessonId)
+            .single()
+
+        if (courseDataQueryError || chapterDataQueryError || lessonDataQueryError)
+            throw new Error(courseDataQueryError || chapterDataQueryError || lessonDataQueryError)
+
+        // Move some objects around
+        metadata.course = courseData
+        metadata.chapter = chapterData
+        metadata.lesson = lessonData
+        delete metadata.chapter.course
+        delete metadata.lesson.course
+    } catch (err) {
+        if (global.env.WORKER_ENV !== "production") console.log(err)
+        // 404 if not found (or if there is an actual error in prod)
+        throw new Response("Not Found", {
+            status: 404,
+            statusText: "Not Found",
+        })
+    }
+
     // Check user auth
     let session = await supabaseLocalStrategy().checkSession(request)
 
@@ -43,23 +80,22 @@ export const loader = async ({ params, request }) => {
             .select()
             .eq("id", user.id)
 
-        if (error) return json({ params, session: null, userData: null, error })
+        if (error) return json({ metadata, params, session: null, userData: null, error })
 
-        return json({ params, session, userData: userData[0] })
+        return json({ metadata, params, session, userData: userData[0] })
     }
 
-    return json({ params, session: null, userData: null })
+    return json({ metadata, params, session: null, userData: null })
 }
 
 export default function Editor() {
     // Lets load in the course metadata. If there is an error returned, our children must be
     // resilient against a lack of properly formatted metadata
-    let data = useLoaderData()
-    let { params, session, userData } = data
+    let { session, userData, metadata, error: loaderError } = useLoaderData() || {}
+    if (loaderError || !metadata) throw new Error("loaderError")
+    let params = useParams()
 
     // States
-    // - Metadata
-    const [metadata, setMetadata] = useState({})
     // - Loading
     const [loading, setLoading] = useState(true)
     const [loadingScreen, setLoadingScreen] = useState(true)
@@ -86,36 +122,6 @@ export default function Editor() {
             const paddedLessonId = params.lessonId.padStart(2, "0")
 
             try {
-                let metadata = {}
-                let { data: courseData, error: courseDataQueryError } = await supabaseClient
-                    .from("courses")
-                    .select()
-                    .eq("id", params.courseId)
-                    .single()
-                let { data: chapterData, error: chapterDataQueryError } = await supabaseClient
-                    .from("chapters")
-                    .select()
-                    .eq("course", params.courseId)
-                    .eq("index", params.chapterId)
-                    .single()
-                let { data: lessonData, error: lessonDataQueryError } = await supabaseClient
-                    .from("lessons")
-                    .select()
-                    .eq("chapter", chapterData.id)
-                    .eq("index", params.lessonId)
-                    .single()
-
-                if (courseDataQueryError || chapterDataQueryError || lessonDataQueryError)
-                    throw new Error(
-                        courseDataQueryError || chapterDataQueryError || lessonDataQueryError
-                    )
-
-                metadata.course = courseData
-                metadata.chapter = chapterData
-                delete metadata.chapter.course
-                metadata.lesson = lessonData
-                delete metadata.lesson.course
-
                 // Change UI states
                 let _starterPreviewTabs = []
                 if (metadata.lesson.environment.viewport)
@@ -142,8 +148,6 @@ export default function Editor() {
                 metadata.lesson.guide = await (
                     await fetch(`${storageURL}${metadata.lesson.guide}`)
                 ).text()
-
-                setMetadata(metadata)
             } catch (error) {
                 if (window.env.WORKER_ENV !== "production") console.log(error)
                 setLoading(false)
@@ -157,8 +161,7 @@ export default function Editor() {
                 setLoadingScreen(false)
             }, 1000)
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [metadata, params])
 
     // Render
     return (
