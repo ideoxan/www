@@ -4,7 +4,7 @@ import { pageView } from "app/utils/gtag.client"
 
 export default function GTag() {
     const location = useLocation()
-    const gaTrackingId = (global || window).env.GA_TRACKING_ID
+    const gaTrackingId = (global || window)?.env?.GA_TRACKING_ID
 
     useEffect(() => {
         // Record page view (since react router doesn't do it for us)
