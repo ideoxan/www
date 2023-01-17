@@ -18,6 +18,8 @@ export const meta = () => {
     let title = "Ideoxan"
     let description =
         "Empower your future. Get started today with interactive programming lessons. Learn at your own pace at zero cost."
+    let image = "/images/ix_og_embed_1200x628.png"
+
     return {
         charset: "utf-8",
         lang: "en",
@@ -26,6 +28,7 @@ export const meta = () => {
         // SEO
         title: "Ideoxan",
         description,
+        image,
         keywords:
             "programming,learn how to code,free,coding,software,developer,coding bootcamp,coding for kids,coding boot camps,scratch coding,what is coding,python coding,cracking the coding interview,coding classes,coding games,coding languages,coding jobs,ninja coding,kids coding languages,coding computers,free coding camp,best coding bootcamps,coding websites,coding for websites,coding classes for kids,minecraft coding,coding games for kids,coding for beginners,learn coding,free coding classes,computer coding,how to learn coding,object oriented programming,dynamic programming,rust programming language,computer programming,programming languages,c++ programming,c programming,lms,lms schoology,canvas lms,lms login,lms for schools,lms schools,website coding classroom plan,c programming tutorial,java programming tutorial,dynamic programming tutorial,java programming tutorial for beginners",
 
@@ -34,13 +37,12 @@ export const meta = () => {
         "twitter:url": "https://ideoxan.com",
         "twitter:title": title,
         "twitter:description": description,
-        "twitter:image": "/images/ix_og_embed_1200x628.png",
+        "twitter:image": image,
         "og:type": "website",
         "og:url": "https://ideoxan.com",
         "og:title": title,
         "og:description": description,
-        "og:image": "/images/ix_og_embed_1200x628.png",
-        image: "/images/ix_og_embed_1200x628.png",
+        "og:image": image,
         "msapplication-TileColor": "#6e2fff",
         "theme-color": "#6e2fff",
     }
