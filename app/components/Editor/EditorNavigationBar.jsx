@@ -28,16 +28,8 @@ export default function EditorNavigationBar({ metadata }) {
             {/* Navigation Buttons */}
             <div className="my-auto flex w-1/4 flex-row justify-end space-x-4">
                 {/* Previous Lesson */}
-                {metadata.lesson.navigation.previous && (
-                    <a
-                        href={
-                            "/learn/" +
-                            metadata.course.id +
-                            "/" +
-                            metadata.lesson.navigation.previous[0] +
-                            "/" +
-                            metadata.lesson.navigation.previous[1]
-                        }>
+                {metadata.lesson.previous && (
+                    <a href={"/learn/" + metadata.lesson.previous}>
                         <Icon
                             name="ArrowLeft"
                             width={navIcons.size}
@@ -62,16 +54,8 @@ export default function EditorNavigationBar({ metadata }) {
                 </a>
 
                 {/* Next Lesson */}
-                {metadata.lesson.navigation.next && (
-                    <a
-                        href={
-                            "/learn/" +
-                            metadata.course.id +
-                            "/" +
-                            metadata.lesson.navigation.next[0] +
-                            "/" +
-                            metadata.lesson.navigation.next[1]
-                        }>
+                {metadata.lesson.next && (
+                    <a href={"/learn/" + metadata.lesson.next}>
                         <Icon
                             name="ArrowRight"
                             width={navIcons.size}

@@ -116,12 +116,6 @@ export default function Editor() {
                 metadata.lesson = lessonData
                 delete metadata.lesson.course
 
-                // Set navigation properties
-                metadata.lesson.navigation = {
-                    next: null,
-                    previous: null,
-                }
-
                 // Change UI states
                 let _starterPreviewTabs = []
                 if (metadata.lesson.environment.viewport)
