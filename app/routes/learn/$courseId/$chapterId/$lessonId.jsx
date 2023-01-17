@@ -24,6 +24,24 @@ import termStyles from "app/styles/xterm.css"
 
 export const links = () => [{ rel: "stylesheet", href: termStyles }]
 
+export const meta = ({ data }) => {
+    if (data) {
+        let title = `Lesson ${data?.metadata?.lesson?.index + 1}: ${
+            data?.metadata?.lesson?.name
+        } | ${data?.metadata?.course?.name} | Ideoxan`
+        let description = `Empower your future. Learn computer science for free. Get started on your first "${data?.metadata?.course?.name}" lesson by creating an account on Ideoxan.`
+        return {
+            title,
+            description,
+            // OG and Twitter
+            "twitter:title": title,
+            "twitter:description": description,
+            "og:title": title,
+            "og:description": description,
+        }
+    }
+}
+
 export const loader = async ({ params, request }) => {
     prodBlockServer()
 
