@@ -9,7 +9,7 @@ export default function EditorNavigationBar({ metadata }) {
     }
 
     return (
-        <nav className="flex w-full flex-row border-b border-b-gray-500 border-opacity-20 bg-gray-700 py-3 px-4">
+        <nav className="flex w-full flex-shrink-0 flex-row border-b border-b-gray-500 border-opacity-20 bg-gray-700 py-3 px-4">
             {/* Ideoxan Logo */}
             <Link to="/" className="my-auto flex w-1/4">
                 <img

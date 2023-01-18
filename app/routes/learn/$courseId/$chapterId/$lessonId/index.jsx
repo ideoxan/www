@@ -190,7 +190,7 @@ export default function Editor() {
 
     // Render
     return (
-        <div className="flex h-full max-h-full min-h-full flex-col overflow-hidden">
+        <div className="flex h-full max-h-screen min-h-full flex-col overflow-hidden">
             {/* Loading Splash */}
             {loadingScreen && (
                 <div className="absolute top-0 left-0 z-40 flex h-full w-full flex-col bg-gray-900">
@@ -207,14 +207,14 @@ export default function Editor() {
                     {/* Navigation Bar */}
                     <EditorNavigationBar metadata={metadata} />
 
-                    <main className="flex w-full flex-grow flex-row">
-                        <div className="flex h-full w-1/6 flex-row">
+                    <main className="flex max-h-full w-full flex-grow flex-row overflow-hidden">
+                        <div className="flex h-full max-h-full w-1/6 flex-row overflow-hidden">
                             {/* Activities Bar */}
                             <EditorActivitiesBar activity={activity} setActivity={setActivity} />
 
                             {/* Left Sidebar */}
-                            <div className="flex h-full w-full flex-col border-r border-r-gray-500 border-opacity-20 bg-gray-700 px-3 py-3">
-                                <div hidden={activity !== 0}>
+                            <div className="flex h-full max-h-full w-full flex-col overflow-scroll border-r border-r-gray-500 border-opacity-20 bg-gray-700 px-3 py-3">
+                                <div hidden={activity !== 0} className="h-full max-h-full w-full">
                                     <EditorActivityWorkspace
                                         metadata={metadata}
                                         fs={FileSystem}

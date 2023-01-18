@@ -22,7 +22,7 @@ export default function EditorActivityWorkspace({
     return (
         <>
             <h2 className="text-left font-sans text-xs font-bold text-gray-50">Workspace</h2>
-            <ul className="mt-3 flex flex-col">
+            <ul className="my-3 flex flex-col">
                 {files.map(file => {
                     if (file.type === "file") {
                         return (

@@ -1218,6 +1218,11 @@ input::placeholder {
   margin-bottom: 1.5rem;
 }
 
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -1422,6 +1427,10 @@ input::placeholder {
 
 .max-h-full {
   max-height: 100%;
+}
+
+.max-h-screen {
+  max-height: 100vh;
 }
 
 .min-h-full {
@@ -1820,6 +1829,10 @@ input::placeholder {
 
 .overflow-clip {
   overflow: clip;
+}
+
+.overflow-scroll {
+  overflow: scroll;
 }
 
 .overflow-x-auto {

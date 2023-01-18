@@ -1,6 +1,6 @@
 export default function EditorStatusBar() {
     return (
-        <footer className="flex w-full flex-row border-t border-t-gray-500 border-opacity-20 bg-gray-700 py-1 px-6">
+        <footer className="flex w-full flex-shrink-0 flex-row border-t border-t-gray-500 border-opacity-20 bg-gray-700 py-1 px-6">
             <div className="mr-auto flex flex-row space-x-8">
                 {/* Connection Status */}
                 <div className="flex w-max flex-row">
