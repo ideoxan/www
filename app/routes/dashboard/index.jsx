@@ -5,7 +5,7 @@ const times = [
     [22, "night"],
     [18, "evening"],
     [12, "afternoon"],
-    [5, "morning"],
+    [6, "morning"],
     [0, "night"],
 ]
 
