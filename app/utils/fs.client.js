@@ -6,6 +6,11 @@ import tarball from "app/utils/tarball.client"
 const FS_DB_NAME = "fs-ix"
 const FS_DB_VERSION = 1
 const FS_DB_TABLE_NAME = "files"
+// -1 = No logging
+// 0 = Errors only
+// 1 = Errors and warnings
+// 2 = Errors, warnings, and info
+const FS_DEBUG_LOGLEVEL = 0
 
 let db = null
 createIfNull()
@@ -22,13 +27,13 @@ function createIfNull() {
 
         // Listen for events
         db.on("ready", () => {
-            console.log("[FileSystem] Info: Online. Ready.")
+            debugLog(2, "[FileSystem] Info: Online. Ready.")
         })
         db.on("versionchange", async e => {
             e.preventDefault()
-            console.log(`[FileSystem] Warn: Version differs (${e.oldVersion} vs ${e.newVersion}).`)
-            console.log(`[FileSystem] Warn: Discarding old FileSystem data in favor of new one.`)
-            console.log(`[FileSystem] Warn: This process is irreversible!`)
+            debugLog(1, `[FileSystem] Warn: Version differs (${e.oldVersion} vs ${e.newVersion}).`)
+            debugLog(1, `[FileSystem] Warn: Discarding old FileSystem data in favor of new one.`)
+            debugLog(1, `[FileSystem] Warn: This process is irreversible!`)
             await db.table(FS_DB_TABLE_NAME).clear()
             return createIfNull()
         })
@@ -40,6 +45,10 @@ function createIfNull() {
     }
 }
 
+function debugLog(level, message) {
+    if (FS_DEBUG_LOGLEVEL >= level) console.log(message)
+}
+
 export default class FileSystem {
     // TODO: export path helper class
     // Write a file to the filesystem
@@ -47,7 +56,7 @@ export default class FileSystem {
         // Set the contents of the file
         try {
             createIfNull()
-            console.log(`[FileSystem] Info: Writing file: ${filePath}`)
+            debugLog(2, `[FileSystem] Info: Writing file: ${filePath}`)
             if (await db.table(FS_DB_TABLE_NAME).get({ path: filePath })) {
                 await db.table(FS_DB_TABLE_NAME).update(filePath, {
                     content: content,
@@ -77,7 +86,7 @@ export default class FileSystem {
     static async removeFile({ filePath }) {
         try {
             createIfNull()
-            console.log(`[FileSystem] Info: Removing file: ${filePath}`)
+            debugLog(2, `[FileSystem] Info: Removing file: ${filePath}`)
             await db.table(FS_DB_TABLE_NAME).delete(filePath)
         } catch (e) {
             console.error(`[FileSystem] Error: Failed to remove file: ${filePath}`)
@@ -89,7 +98,7 @@ export default class FileSystem {
     static async readFile({ filePath }) {
         try {
             createIfNull()
-            console.log(`[FileSystem] Info: Reading file: ${filePath}`)
+            debugLog(2, `[FileSystem] Info: Reading file: ${filePath}`)
             const file = await db.table(FS_DB_TABLE_NAME).get({ path: filePath })
             return file.content
         } catch (e) {
@@ -102,7 +111,7 @@ export default class FileSystem {
     static async stat({ filePath }) {
         try {
             createIfNull()
-            console.log(`[FileSystem] Info: Stating file: ${filePath}`)
+            debugLog(2, `[FileSystem] Info: Stating file: ${filePath}`)
             const { object_id, path, mime, type, modified } = await db
                 .table(FS_DB_TABLE_NAME)
                 .get({ path: filePath })
@@ -123,7 +132,7 @@ export default class FileSystem {
     static async ls({ dirPath }) {
         createIfNull()
         if (db.table(FS_DB_TABLE_NAME).get({ path: dirPath })) {
-            console.log(`[FileSystem] Info: Listing direcotry: ${dirPath}`)
+            debugLog(2, `[FileSystem] Info: Listing direcotry: ${dirPath}`)
             let pathSplitCount = dirPath.split("/").length
             return (
                 db
@@ -158,7 +167,7 @@ export default class FileSystem {
         for (let i = 0; i < folders.length; i++) {
             currentPath += folders[i] + "/"
             if (!(await db.table(FS_DB_TABLE_NAME).get({ path: currentPath }))) {
-                console.log(`[FileSystem] Info: Creating direcotry: ${currentPath}`)
+                debugLog(2, `[FileSystem] Info: Creating direcotry: ${currentPath}`)
                 await db.table(FS_DB_TABLE_NAME).add({
                     object_id: uuidv4(),
                     path: currentPath,
@@ -188,7 +197,7 @@ export default class FileSystem {
     // Convert the files listed in the JSON tree to a tarball
     static async pack({ dirPath }) {
         createIfNull()
-        console.log(`[FileSystem] Info: Tarballing FS: ${dirPath}`)
+        debugLog(2, `[FileSystem] Info: Tarballing FS: ${dirPath}`)
 
         let tar = new tarball.TarWriter()
         let tree = await this.tree({ dirPath })
@@ -212,9 +221,9 @@ export default class FileSystem {
     // Unpack a tarball into the filesystem
     static async unpack({ dirPath, tarFile }) {
         createIfNull()
-        console.log(`[FileSystem] Info: Unpacking tarball at: ${dirPath}`)
-        console.log(`[FileSystem] Warn: This will overwrite the filesystem at this path!`)
-        console.log(`[FileSystem] Warn: This process is irreversible!`)
+        debugLog(1, `[FileSystem] Info: Unpacking tarball at: ${dirPath}`)
+        debugLog(1, `[FileSystem] Warn: This will overwrite the filesystem at this path!`)
+        debugLog(1, `[FileSystem] Warn: This process is irreversible!`)
 
         // Purge the filesystem recursively at this path
         let purge = async dirPath => {
