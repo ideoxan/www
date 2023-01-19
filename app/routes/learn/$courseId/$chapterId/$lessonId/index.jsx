@@ -1,7 +1,7 @@
 // General
 import { json, redirect } from "@remix-run/cloudflare"
 import { useLoaderData, useParams } from "@remix-run/react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { BarLoader } from "react-spinners"
 import { supabaseLocalStrategy } from "app/utils/auth.server.js"
 import { supabaseAdmin } from "app/utils/db.server.js"
@@ -42,42 +42,30 @@ export const loader = async ({ params, request }) => {
 
     // Load basic metadata (don't pull any files yet so we can still load the page quick)
     let metadata = {}
-    try {
-        let { data: courseData, error: courseDataQueryError } = await supabaseAdmin()
-            .from("courses")
-            .select()
-            .eq("id", params.courseId)
-            .single()
-        let { data: chapterData, error: chapterDataQueryError } = await supabaseAdmin()
-            .from("chapters")
-            .select()
-            .eq("course", params.courseId)
-            .eq("index", params.chapterId)
-            .single()
-        let { data: lessonData, error: lessonDataQueryError } = await supabaseAdmin()
-            .from("lessons")
-            .select()
-            .eq("chapter", chapterData.id)
-            .eq("index", params.lessonId)
-            .single()
+    let { data: lessonData, error: lessonDataQueryError } = await supabaseAdmin()
+        .from("lessons")
+        .select(
+            "id, chapter(id, course(id, name, description, tags, authors), name, index), name, environment, guide, workspace, index, previous, next, description"
+        )
+        .eq("chapter.course.id", params.courseId)
+        .eq("chapter.index", params.chapterId)
+        .eq("index", params.lessonId)
+        .maybeSingle()
 
-        if (courseDataQueryError || chapterDataQueryError || lessonDataQueryError)
-            throw new Error(courseDataQueryError || chapterDataQueryError || lessonDataQueryError)
-
-        // Move some objects around
-        metadata.course = courseData
-        metadata.chapter = chapterData
-        metadata.lesson = lessonData
-        delete metadata.chapter.course
-        delete metadata.lesson.course
-    } catch (err) {
-        if (global.env.WORKER_ENV !== "production") console.log(err)
-        // 404 if not found (or if there is an actual error in prod)
-        throw new Response("Not Found", {
-            status: 404,
-            statusText: "Not Found",
+    if (!lessonData) throw new Response("Not Found", { status: 404, statusText: "Not Found" })
+    if (lessonDataQueryError) {
+        if (global.env.WORKER_ENV !== "production") console.log(lessonDataQueryError)
+        throw new Response("Internal Server Error", {
+            status: 500,
+            statusText: "Internal Server Error",
         })
     }
+
+    // Move some objects around
+    metadata.course = { ...metadata?.lesson?.chapter?.course } // Clone
+    metadata.chapter = { ...metadata?.lesson?.chapter } // Clone
+    metadata.lesson = lessonData
+    delete metadata?.lesson?.chapter
 
     // Check user auth
     let session = await supabaseLocalStrategy().checkSession(request)
