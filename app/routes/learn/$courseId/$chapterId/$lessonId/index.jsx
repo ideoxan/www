@@ -1,7 +1,6 @@
-// General
 import { json, redirect } from "@remix-run/cloudflare"
 import { useLoaderData, useParams } from "@remix-run/react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { BarLoader } from "react-spinners"
 import { supabaseLocalStrategy } from "app/utils/auth.server.js"
 import { supabaseAdmin } from "app/utils/db.server.js"
@@ -101,6 +100,12 @@ export default function LearnApplication() {
     const [loading, setLoading] = useState(true)
     const [loadingScreen, setLoadingScreen] = useState(true)
 
+    // Side Effects
+    // - Loading
+    useEffect(() => {
+        if (!loading) setTimeout(() => setLoadingScreen(false), 1000)
+    }, [loading])
+
     // Render
     return (
         <div className="flex h-full max-h-screen min-h-full flex-col overflow-hidden">
@@ -119,7 +124,6 @@ export default function LearnApplication() {
                 <Editor
                     metadata={metadata}
                     setLoading={setLoading}
-                    setLoadingScreen={setLoadingScreen}
                     params={params}
                     session={session}
                     userData={userData}

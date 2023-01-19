@@ -16,7 +16,6 @@ import { useEffect, useState } from "react"
 export default function Editor({
     metadata,
     setLoading,
-    setLoadingScreen,
     params,
     session,
     userData,
@@ -40,7 +39,6 @@ export default function Editor({
 
         async function fetchData() {
             setLoading(true)
-            setLoadingScreen(true)
             // URLs we use to get the course and lesson data
             const storageURL = `${window.env.SUPABASE_URL}/storage/v1/object/public/`
             const paddedChapterId = params.chapterId.padStart(2, "0")
@@ -76,19 +74,15 @@ export default function Editor({
             } catch (error) {
                 if (window.env.WORKER_ENV !== "production") console.log(error)
                 setLoading(false)
-                setLoadingScreen(false)
                 window.location.href = "/404"
             }
 
             setLoading(false)
-
-            setTimeout(() => {
-                setLoadingScreen(false)
-            }, 1000)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [metadata, params])
 
+    // Render
     return (
         !loading && (
             <>
