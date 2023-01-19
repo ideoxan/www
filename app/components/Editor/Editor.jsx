@@ -149,14 +149,14 @@ export default function Editor({
                         {/* Editor Preview Area */}
                         <div className="flex h-2/5 w-full flex-col">
                             {/* Editor Preview Tabs */}
-                            <EditorTabContainer
+                            {/* <EditorTabContainer
                                 openTabs={openPreviewTabs}
                                 setOpenTabs={setOpenPreviewTabs}
                                 activeTab={activePreviewTab}
                                 setActiveTab={setActivePreviewTab}
-                            />
+                            /> */}
                             {/* Editor Preview Area */}
-                            <div className="flex h-full w-full flex-col pr-2 pb-2">
+                            <div className="flex max-h-full w-full flex-shrink flex-grow flex-col py-2 pr-2">
                                 <Console
                                     session={session}
                                     userData={userData}

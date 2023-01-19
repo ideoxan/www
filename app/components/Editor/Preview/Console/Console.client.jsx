@@ -13,26 +13,6 @@ export default function Console({ session, userData, metadata, fs }) {
 
     let spinners = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
 
-    function handleResize(e) {
-        // Styles
-        let s = window.getComputedStyle(e)
-        // Take padding into consideration
-        let px = parseFloat(s.paddingLeft.split("px")[0]),
-            py = parseFloat(s.paddingTop.split("px")[0])
-        // True values
-        let iw = e.clientWidth - px,
-            ih = e.clientHeight - py
-        // Find out how big a character actually is
-        let cw = 7.166666666666667,
-            ch = 16 * 1.0
-        // Calculate terminal size
-        let c = Math.floor(iw / cw)
-        let r = Math.floor(ih / ch)
-        // Set terminal size
-        term.current.resize(c, r)
-        //console.log(px, px, iw, ih, cw, ch, c, r)
-    }
-
     // Setup terminal
     useEffect(() => {
         ;(async () => {
@@ -43,7 +23,7 @@ export default function Console({ session, userData, metadata, fs }) {
                 bellSound: null,
                 bellStyle: "none",
                 cursorStyle: "block",
-                fontFamily: "Cascadia Code",
+                //fontFamily: "Cascadia Code", // !: Cascadia seems to break a lot...
                 fontSize: 12,
                 fontWeight: "normal",
                 lineHeight: 1.1,
@@ -59,10 +39,8 @@ export default function Console({ session, userData, metadata, fs }) {
             term.current.open(document.querySelector("#terminal"))
 
             // Resize terminal on window resize
-            window.addEventListener("resize", () =>
-                handleResize(document.querySelector("#terminal"))
-            )
-            handleResize(document.querySelector("#terminal"))
+            window.addEventListener("resize", () => fitAddon.fit())
+            fitAddon.fit()
 
             // Inform of impending loading
             console.log("[Terminal] Loading...")
@@ -169,16 +147,11 @@ export default function Console({ session, userData, metadata, fs }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    // Resizing
-    useEffect(() => {
-        handleResize(document.querySelector("#terminal"))
-    })
-
     return (
-        <div className="flex h-full w-full flex-col rounded-lg bg-black shadow-xl ring-1 ring-gray-500 ring-opacity-20">
+        <div className="flex h-full w-full flex-shrink flex-grow flex-col overflow-hidden rounded-lg bg-black shadow-xl ring-1 ring-gray-500 ring-opacity-20">
             <div
                 id="terminal"
-                className="flex h-full w-full flex-shrink flex-col pl-3 pr-2 pt-3"></div>
+                className="flex h-full w-full flex-shrink flex-grow flex-col overflow-hidden py-3 pl-3 pr-2"></div>
             <div className="relative bottom-0 z-10 mx-auto flex flex-row py-3 px-3">
                 {socket?.current && session && userData && !isRunning && (
                     <Icon

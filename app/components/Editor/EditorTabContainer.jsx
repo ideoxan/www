@@ -64,7 +64,7 @@ export default function EditorTabContainer({
     return (
         <div
             className={
-                "flex w-full flex-shrink-0 flex-row flex-nowrap overflow-x-auto overflow-y-hidden py-2 pr-2 " +
+                "flex h-min w-full flex-shrink-0 flex-grow-0 flex-row flex-nowrap overflow-x-auto overflow-y-hidden py-2 pr-2 " +
                 className
             }>
             {openTabs.map((tab, index) => {
