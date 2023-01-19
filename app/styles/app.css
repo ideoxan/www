@@ -1315,12 +1315,12 @@ input::placeholder {
   margin-top: 0px;
 }
 
-.ml-3 {
-  margin-left: 0.75rem;
-}
-
 .mb-6 {
   margin-bottom: 1.5rem;
+}
+
+.ml-3 {
+  margin-left: 0.75rem;
 }
 
 .mr-3 {
@@ -1400,6 +1400,14 @@ input::placeholder {
   height: 2rem;
 }
 
+.h-2\/5 {
+  height: 40%;
+}
+
+.h-3\/5 {
+  height: 60%;
+}
+
 .h-10 {
   height: 2.5rem;
 }
@@ -1415,14 +1423,6 @@ input::placeholder {
 
 .h-px {
   height: 1px;
-}
-
-.h-2\/5 {
-  height: 40%;
-}
-
-.h-3\/5 {
-  height: 60%;
 }
 
 .max-h-full {
@@ -1478,16 +1478,28 @@ input::placeholder {
   width: 2rem;
 }
 
+.w-1\/6 {
+  width: 16.666667%;
+}
+
+.w-3\/6 {
+  width: 50%;
+}
+
+.w-48 {
+  width: 12rem;
+}
+
+.w-2\/6 {
+  width: 33.333333%;
+}
+
 .w-10 {
   width: 2.5rem;
 }
 
 .w-1\/4 {
   width: 25%;
-}
-
-.w-48 {
-  width: 12rem;
 }
 
 .w-3 {
@@ -1500,18 +1512,6 @@ input::placeholder {
 
 .w-6 {
   width: 1.5rem;
-}
-
-.w-1\/6 {
-  width: 16.666667%;
-}
-
-.w-3\/6 {
-  width: 50%;
-}
-
-.w-2\/6 {
-  width: 33.333333%;
 }
 
 .min-w-full {
@@ -1894,6 +1894,10 @@ input::placeholder {
   border-width: 1px;
 }
 
+.border-r {
+  border-right-width: 1px;
+}
+
 .border-b {
   border-bottom-width: 1px;
 }
@@ -1910,10 +1914,6 @@ input::placeholder {
   border-bottom-width: 0px;
 }
 
-.border-r {
-  border-right-width: 1px;
-}
-
 .border-primary {
   --tw-border-opacity: 1;
   border-color: rgb(110 47 255 / var(--tw-border-opacity));
@@ -1924,6 +1924,11 @@ input::placeholder {
   border-color: rgb(61 36 117 / var(--tw-border-opacity));
 }
 
+.border-r-gray-500 {
+  --tw-border-opacity: 1;
+  border-right-color: rgb(61 36 117 / var(--tw-border-opacity));
+}
+
 .border-b-gray-500 {
   --tw-border-opacity: 1;
   border-bottom-color: rgb(61 36 117 / var(--tw-border-opacity));
@@ -1932,11 +1937,6 @@ input::placeholder {
 .border-t-gray-500 {
   --tw-border-opacity: 1;
   border-top-color: rgb(61 36 117 / var(--tw-border-opacity));
-}
-
-.border-r-gray-500 {
-  --tw-border-opacity: 1;
-  border-right-color: rgb(61 36 117 / var(--tw-border-opacity));
 }
 
 .border-opacity-20 {
@@ -2221,12 +2221,16 @@ input::placeholder {
   padding-top: 4rem;
 }
 
-.pl-4 {
-  padding-left: 1rem;
+.pl-2 {
+  padding-left: 0.5rem;
 }
 
 .pr-2 {
   padding-right: 0.5rem;
+}
+
+.pl-4 {
+  padding-left: 1rem;
 }
 
 .pr-6 {
@@ -2247,10 +2251,6 @@ input::placeholder {
 
 .pt-3 {
   padding-top: 0.75rem;
-}
-
-.pl-2 {
-  padding-left: 0.5rem;
 }
 
 .text-left {
@@ -2450,12 +2450,12 @@ input::placeholder {
   opacity: 0.7;
 }
 
-.opacity-40 {
-  opacity: 0.4;
-}
-
 .opacity-5 {
   opacity: 0.05;
+}
+
+.opacity-40 {
+  opacity: 0.4;
 }
 
 .shadow-2xl {
