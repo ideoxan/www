@@ -154,3 +154,51 @@ const updateInfoOnAuth = async ({ user }) => {
     if (userDataError)
         throw new AuthorizationError(userDataError?.message || "An unknown error occurred")
 }
+
+// Util methods
+/**
+ * Returns authentication data from Supabase (session and user data). JSON return is guaranteed
+ * and errors are bubbled up. The session field returned is the current user's session (null if
+ * not authenticated). The data field returned is the current user's data (null if not
+ * authenticated). The error field returned is the error encountered (null if no error)
+ * (invalid_session or supabaseError).
+ *
+ * @param {Request} req
+ * @returns Promise<{ session: any, data: any, error: any }>
+ * @example
+ * export async function loader({ request }) {
+ *      let { session, data, error } = await getAuthData(request)
+ *      if (error == "invalid_session")
+ *          return redirect("/login", { headers: { "Set-Cookie": "" } })
+ *      return json({ session, data, error })
+ * }
+ *
+ */
+export async function getAuthData(req) {
+    // Check user auth
+    let session = await supabaseLocalStrategy().checkSession(req)
+
+    if (session) {
+        let { user } = session
+
+        // If the user session is bad, redirect to the login page
+        if (!user?.id) return { session: null, data: null, error: "invalid_session" }
+
+        // If the user is authenticated, get the user's data from the database
+        let { data, error } = await supabaseAdmin()
+            .from("user_data")
+            .select()
+            .eq("id", user.id)
+            .maybeSingle()
+
+        if (error) return { session: null, data: null, error }
+
+        if (data) {
+            // If the user data exists, return it
+            return { session, data, error: null }
+        }
+    }
+
+    // If there is no session or no user data, return null (not authenticated)
+    return { session: null, data: null, error: null }
+}
