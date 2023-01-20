@@ -2,7 +2,7 @@ import { json, redirect } from "@remix-run/cloudflare"
 import { useLoaderData, useParams } from "@remix-run/react"
 import { useEffect, useState } from "react"
 import { BarLoader } from "react-spinners"
-import { supabaseLocalStrategy } from "app/utils/auth.server.js"
+import { getAuthData } from "app/utils/auth.server.js"
 import { supabaseAdmin } from "app/utils/db.server.js"
 import prodBlockServer from "app/utils/prodBlock.server"
 
@@ -40,7 +40,6 @@ export const loader = async ({ params, request }) => {
     prodBlockServer()
 
     // Load basic metadata (don't pull any files yet so we can still load the page quick)
-    let metadata = {}
     let { data: lessonData, error: lessonDataQueryError } = await supabaseAdmin()
         .from("lessons")
         .select(
@@ -61,32 +60,19 @@ export const loader = async ({ params, request }) => {
     }
 
     // Move some objects around
-    metadata.lesson = lessonData
-    metadata.chapter = { ...metadata?.lesson?.chapter } // Clone
-    metadata.course = { ...metadata?.lesson?.chapter?.course } // Clone
-    delete metadata?.lesson?.chapter
-    console.log(metadata)
-
-    // Check user auth
-    let session = await supabaseLocalStrategy().checkSession(request)
-
-    // If the user session is bad, redirect to the login page
-    if (session) {
-        let { user } = session
-        if (!user || !user.id) throw redirect("/login")
-
-        // If the user is authenticated, get the user's data from the database
-        let { data: userData, error } = await supabaseAdmin()
-            .from("user_data")
-            .select()
-            .eq("id", user.id)
-
-        if (error) return json({ metadata, params, session: null, userData: null, error })
-
-        return json({ metadata, params, session, userData: userData[0] })
+    let metadata = {
+        lesson: lessonData,
+        chapter: { ...lessonData?.chapter }, // Clone
+        course: { ...lessonData?.chapter?.course }, // Clone
     }
+    delete metadata?.lesson?.chapter
 
-    return json({ metadata, params, session: null, userData: null })
+    // Load the user data and session
+    let { session, data: userData, error } = await getAuthData(request)
+    // Redirect to login if invalid session
+    if (error == "invalid_session") return redirect("/login", { headers: { "Set-Cookie": "" } })
+
+    return json({ metadata, params, session, userData, error })
 }
 
 export default function LearnApplication() {
