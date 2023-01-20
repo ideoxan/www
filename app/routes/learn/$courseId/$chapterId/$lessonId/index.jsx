@@ -12,7 +12,7 @@ import Editor from "app/components/Editor/Editor"
 export const links = () => [{ rel: "stylesheet", href: termStyles }]
 
 export const meta = ({ data }) => {
-    if (data) {
+    if (data?.metadata) {
         let title = `Lesson ${data?.metadata?.lesson?.index + 1}: ${
             data?.metadata?.lesson?.name
         } | ${data?.metadata?.course?.name} | Ideoxan`
@@ -61,10 +61,11 @@ export const loader = async ({ params, request }) => {
     }
 
     // Move some objects around
-    metadata.course = { ...metadata?.lesson?.chapter?.course } // Clone
-    metadata.chapter = { ...metadata?.lesson?.chapter } // Clone
     metadata.lesson = lessonData
+    metadata.chapter = { ...metadata?.lesson?.chapter } // Clone
+    metadata.course = { ...metadata?.lesson?.chapter?.course } // Clone
     delete metadata?.lesson?.chapter
+    console.log(metadata)
 
     // Check user auth
     let session = await supabaseLocalStrategy().checkSession(request)
