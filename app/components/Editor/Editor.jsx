@@ -1,10 +1,6 @@
-// Navigation
 import EditorNavigationBar from "app/components/Editor/EditorNavigationBar"
-// Activities
 import EditorActivitiesBar from "app/components/Editor/Activities/EditorActivitiesBar"
-// Status Bar
 import EditorStatusBar from "app/components/Editor/EditorStatusBar"
-// Code Editor
 import EditorCodeArea from "app/components/Editor/CodeArea/EditorCodeArea"
 import EditorTabContainer from "app/components/Editor/EditorTabContainer"
 import { marked } from "marked"
@@ -41,8 +37,13 @@ export default function Editor({
             setLoading(true)
             // URLs we use to get the course and lesson data
             const storageURL = `${window.env.SUPABASE_URL}/storage/v1/object/public/`
-            const paddedChapterId = params.chapterId.padStart(2, "0")
-            const paddedLessonId = params.lessonId.padStart(2, "0")
+            const paddedChapterId = params?.chapterId?.padStart(2, "0")
+            const paddedLessonId = params?.lessonId?.padStart(2, "0")
+
+            if (!paddedChapterId || !paddedLessonId) {
+                setLoading(false)
+                window.location.href = "/404"
+            }
 
             try {
                 // Change UI states

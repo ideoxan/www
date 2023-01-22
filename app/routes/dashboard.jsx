@@ -13,11 +13,11 @@ export const meta = () => {
 
 export async function loader({ request }) {
     // Load the user data and session
-    let { session, data, error } = await getAuthData(request)
+    let { session, data: userData, error } = await getAuthData(request)
     // Redirect to login if invalid session
     if (error == "invalid_session") return redirect("/login", { headers: { "Set-Cookie": "" } })
 
-    return json({ session, data, error })
+    return json({ session, userData, error })
 }
 
 export default function Dashboard() {
