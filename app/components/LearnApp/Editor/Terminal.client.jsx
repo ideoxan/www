@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react"
-import { Terminal } from "xterm"
+import { Terminal as Xterm } from "xterm"
 import { FitAddon } from "xterm-addon-fit"
 import { io } from "socket.io-client"
 import Icon from "app/components/Icon"
 
-export default function Console({ session, userData, metadata, fs }) {
+export default function Terminal({ session, userData, metadata, fs }) {
     // Grab ref to terminal elm
     const term = useRef(null)
     const socket = useRef(null)
@@ -18,7 +18,7 @@ export default function Console({ session, userData, metadata, fs }) {
         ;(async () => {
             // Create terminal
             console.log("[Terminal] Creating terminal...")
-            term.current = new Terminal({
+            term.current = new Xterm({
                 cursorBlink: true,
                 bellSound: null,
                 bellStyle: "none",

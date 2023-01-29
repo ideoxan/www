@@ -1,7 +1,7 @@
 import Icon from "app/components/Icon"
 import { Link } from "@remix-run/react"
 
-export default function EditorNavigationBar({ metadata }) {
+export default function LearnAppNavigationBar({ metadata }) {
     let navIcons = {
         size: 4,
         stroke: 2,

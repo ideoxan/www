@@ -1,21 +1,23 @@
 import Monaco from "@monaco-editor/react"
 import { useState, useEffect } from "react"
 import { getType } from "mime"
-import supportedLanguages from "app/components/Editor/Activities/supportedLanguages"
+import supportedLanguages from "app/components/LearnApp/Editor/supportedLanguages"
 
-export default function EditorCodeArea({
+export default function CodeEditor({
     onChange,
     openCodeTabs,
     activeCodeTab,
     fs,
-    language,
+    lang,
+    setLang,
     code,
+    editorRef,
+    monacoRef,
     theme,
     hidden,
     ...props
 }) {
     const [value, setValue] = useState(code || "")
-    const [lang, setLang] = useState(language || "javascript")
 
     useEffect(() => {
         ;(async () => {
@@ -30,6 +32,7 @@ export default function EditorCodeArea({
                 }
             }
         })()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [openCodeTabs, activeCodeTab, fs])
 
     return (
@@ -69,12 +72,16 @@ export default function EditorCodeArea({
                     },
                     showUnused: false,
                     wordWrap: "on",
+                    insertSpaces: true,
+                    detectIndentation: false,
                 }}
-                onChange={newValue => {
+                onChange={(newValue, event) => {
                     setValue(newValue)
                     onChange(newValue)
                 }}
                 onMount={(editor, m) => {
+                    editorRef.current = editor
+                    monacoRef.current = m
                     import("app/styles/Galileo.tmTheme.json").then(theme => {
                         m.editor.defineTheme("galileo", theme)
                         m.editor.setTheme("galileo")

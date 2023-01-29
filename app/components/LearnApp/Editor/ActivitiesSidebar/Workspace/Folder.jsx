@@ -1,4 +1,4 @@
-import File from "app/components/Editor/Activities/Workspace/File.jsx"
+import File from "app/components/LearnApp/Editor/ActivitiesSidebar/Workspace/File"
 import Icon from "app/components/Icon"
 import { useState } from "react"
 

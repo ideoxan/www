@@ -7,7 +7,7 @@ import { supabaseAdmin } from "app/utils/db.server.js"
 import prodBlockServer from "app/utils/prodBlock.server"
 
 import termStyles from "app/styles/xterm.css"
-import Editor from "app/components/Editor/Editor"
+import Editor from "app/components/LearnApp/Editor"
 
 export const links = () => [{ rel: "stylesheet", href: termStyles }]
 

@@ -1,5 +1,5 @@
 import Icon from "app/components/Icon"
-import languages from "app/components/Editor/Activities/supportedLanguages"
+import languages from "app/components/LearnApp/Editor/supportedLanguages"
 
 export default function File({
     file,

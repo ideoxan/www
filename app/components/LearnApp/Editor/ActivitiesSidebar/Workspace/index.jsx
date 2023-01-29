@@ -1,8 +1,8 @@
-import File from "app/components/Editor/Activities/Workspace/File.jsx"
-import Folder from "app/components/Editor/Activities/Workspace/Folder.jsx"
+import File from "app/components/LearnApp/Editor/ActivitiesSidebar/Workspace/File"
+import Folder from "app/components/LearnApp/Editor/ActivitiesSidebar/Workspace/Folder"
 import { useEffect, useState } from "react"
 
-export default function EditorActivityWorkspace({
+export default function Workspace({
     metadata,
     fs,
     openCodeTabs,
