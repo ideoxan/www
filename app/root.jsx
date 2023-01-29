@@ -61,6 +61,8 @@ export async function loader() {
             WORKER_ENV: global.env.WORKER_ENV,
             TESSERACT_URL: global.env.TESSERACT_URL,
             GA_TRACKING_ID: global.env.GA_TRACKING_ID,
+            CF_PAGES_COMMIT_SHA: global.env.CF_PAGES_COMMIT_SHA,
+            CF_PAGES_BRANCH: global.env.CF_PAGES_BRANCH,
         },
     })
 }
