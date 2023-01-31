@@ -1,0 +1,5 @@
+version: STSv1
+mode: enforce
+mx: mxa.mailgun.org
+mx: mxb.mailgun.org
+max_age: 604800
