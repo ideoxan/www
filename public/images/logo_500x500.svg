@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="500" height="500" version="1.2" baseProfile="tiny-ps" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>Ideoxan</title>
+ <defs>
+  <linearGradient id="linearGradient55031" x1="6627" x2="6627" y1="2530" y2="2430" gradientTransform="matrix(2.4951 0 0 2.4951 -16410 -5938)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient3915"/>
+  <linearGradient id="linearGradient3915">
+   <stop stop-color="#af99f2" offset="0"/>
+   <stop stop-color="#e4d9fe" offset=".5"/>
+   <stop stop-color="#f8f5ff" offset="1"/>
+  </linearGradient>
+  <linearGradient id="linearGradient55033" x1="6723.9" x2="6723.9" y1="2433.3" y2="2528.2" gradientTransform="matrix(2.6302 0 0 2.6302 -17311 -6275)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient3915"/>
+ </defs>
+ <g>
+  <rect width="500" height="500" fill="#6e2fff" style="paint-order:markers fill stroke"/>
+  <path d="m186.26 137.72-57.899 99.806a24.862 24.862 90 0 0 0 24.952l60.943 105.05a14.51 14.51 29.941 0 0 12.551 7.229h60.793a8.3072 8.3072 119.94 0 0 7.1856-12.476l-57.899-99.806a24.862 24.862 90 0 1 0-24.952l60.943-105.05a4.8135 4.8135 60.059 0 0-4.1636-7.229h-60.793a25.041 25.041 150.06 0 0-21.66 12.476z" fill="url(#linearGradient55031)"/>
+  <path d="m371.49 261.13-63.882 111.28a4.6895 4.6895 180 0 1-8.1339 1e-5l-33.12-57.691a12.186 12.186 90 0 1-5e-5 -12.134l27.863-48.536a12.186 12.186 90 0 0 2e-5 -12.134l-27.28-47.519a14.229 14.229 90 0 1 9e-5 -14.168l29.053-50.606a8.7056 8.7056 7.0255e-5 0 1 15.1 2e-5l60.399 105.21a26.415 26.415 90 0 1-2e-5 26.302z" fill="url(#linearGradient55033)"/>
+ </g>
+</svg>
