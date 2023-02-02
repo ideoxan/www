@@ -47,6 +47,7 @@ export default function Quiz({
     }, [currentQuestion])
 
     function handleSubmit(e, question) {
+        if (loading || !question || !allowSubmit) return
         e.preventDefault()
 
         // Get all the answers
@@ -100,61 +101,80 @@ export default function Quiz({
     return (
         !loading && (
             <main className="flex max-h-full w-full flex-grow flex-row overflow-hidden">
-                <div className="mx-auto my-auto flex w-full max-w-2xl flex-grow flex-col rounded-md bg-gray-700 px-8 py-4">
+                <div className="mx-auto my-auto flex w-full max-w-3xl flex-grow flex-col rounded-lg border-1 border-gray-500/20 bg-gray-700 px-10 py-8 shadow-lg">
                     {currentQuestion < questions?.length &&
                         questions?.map((question, index) => {
                             // Check if the question has multiple correct answers
                             const multipleCorrect =
                                 question?.options?.filter(option => option?.correct)?.length > 1
+                            let questionTypeString = ""
+                            if (question?.type == "multiple_choice") {
+                                if (multipleCorrect) questionTypeString = "Multiple Choice"
+                                else if (
+                                    question?.options[0] == "true" &&
+                                    question?.options[1] == "false"
+                                )
+                                    questionTypeString = "True or False"
+                                else questionTypeString = "Single Choice"
+                            } else if (question?.type == "dropdown") {
+                                questionTypeString = "Dropdown"
+                            } else if (question?.type == "fill_in") {
+                                questionTypeString = "Fill in the Blank"
+                            }
 
                             return (
                                 <Form
                                     key={index}
-                                    className=""
-                                    hidden={index != currentQuestion}
+                                    className={
+                                        (index == currentQuestion ? "flex " : "hidden ") +
+                                        "flex-col"
+                                    }
                                     onSubmit={e => handleSubmit(e, question)}>
-                                    <div className="flex flex-row justify-between">
+                                    <div className="mb-2 flex flex-row justify-between font-sans text-xs font-bold tracking-tight text-gray-50/60">
                                         <div className="flex flex-row">
-                                            Question {index + 1} of {questions?.length}
+                                            Question {index + 1} / {questions?.length}
                                         </div>
                                         <div className="flex flex-row">
+                                            Score:{" "}
                                             {Math.floor((numCorrect / questions?.length) * 100)}%
                                         </div>
                                     </div>
-                                    <h1> {question?.title} </h1>
-                                    <p> {question?.content} </p>
-                                    {formError && (
-                                        <div className="rounded-md bg-red-500 p-2 text-white">
-                                            {formError}
-                                        </div>
-                                    )}
-                                    {formSuccess && (
-                                        <div className="rounded-md bg-green-500 p-2 text-white">
-                                            {formSuccess}
-                                        </div>
-                                    )}
+                                    <h1 className="text-left font-sans text-2xl font-extrabold tracking-tight text-gray-50">
+                                        {question?.title}
+                                    </h1>
+                                    <p className="mt-1 font-sans text-sm font-normal leading-5 text-gray-50/80">
+                                        {"(" + questionTypeString + ") " + question?.content}
+                                    </p>
+
+                                    <div className="mt-4 "></div>
                                     {question?.type == "multiple_choice" && (
                                         <div>
-                                            {choiceBank?.map((option, index) => (
-                                                <div key={index}>
+                                            {choiceBank?.map((option, optIndex) => (
+                                                <div key={optIndex} className="w-full">
                                                     <input
                                                         type={
                                                             multipleCorrect ? "checkbox" : "radio"
                                                         }
+                                                        className="peer my-auto hidden h-4 w-4 rounded-md border-gray-500/20 bg-gray-500/20 text-primary focus:ring-2 focus:ring-primary"
                                                         name="answer"
                                                         value={option?.value}
+                                                        id={"quiz-" + index + "-" + optIndex}
                                                         onChange={e => {
                                                             // While this technically works, it's not
                                                             // the best way to do it for single choice
                                                             // questions
                                                             let s = [...answerStatus]
-                                                            s[index] = e.target.checked
+                                                            s[optIndex] = e.target.checked
                                                             setAnswerStatus(s)
                                                             setFormError(null)
                                                             setAllowSubmit(s.includes(true))
                                                         }}
                                                     />
-                                                    <label>{option?.value}</label>
+                                                    <label
+                                                        className="my-auto mb-2 flex w-full cursor-pointer space-x-4 rounded-lg border-2 border-gray-500/20 px-6 py-4 font-sans text-sm font-medium text-gray-50/80 hover:border-primary/50 peer-checked:border-primary peer-checked:text-gray-50/100"
+                                                        htmlFor={"quiz-" + index + "-" + optIndex}>
+                                                        {option?.value}
+                                                    </label>
                                                 </div>
                                             ))}
                                         </div>
@@ -164,6 +184,7 @@ export default function Quiz({
                                             <input
                                                 type="text"
                                                 name="answer"
+                                                className="mb-2 w-full rounded-lg border border-gray-500/50 bg-gray-800 px-5 py-3 font-sans text-xs font-medium text-gray-50/70 outline-offset-0 focus:border-1 focus:border-primary focus:text-gray-50/100 focus:outline-none"
                                                 onChange={e => {
                                                     setFormError(null)
                                                     if (e.target.value.length > 0)
@@ -178,6 +199,7 @@ export default function Quiz({
                                             <select
                                                 name="answer"
                                                 defaultValue="default"
+                                                className="mb-2 w-full rounded-lg border border-gray-500/50 bg-gray-800 px-5 py-3 font-sans text-xs font-medium text-gray-50/70 outline-offset-0 focus:border-1 focus:border-primary focus:text-gray-50/100 focus:outline-none"
                                                 onChange={e => {
                                                     setFormError(null)
                                                     if (e.target.value != "default")
@@ -193,29 +215,40 @@ export default function Quiz({
                                             </select>
                                         </div>
                                     )}
-                                    {allowContinue ? (
-                                        <button
-                                            onClick={e => {
-                                                e.preventDefault()
-                                                setCurrentQuestion(index + 1)
-                                            }}>
-                                            {index < questions?.length - 1 ? "Next" : "Finish"}
-                                        </button>
-                                    ) : (
-                                        <button type="submit" disabled={formError || !allowSubmit}>
-                                            Submit
-                                        </button>
-                                    )}
+                                    <button
+                                        className={
+                                            "bttn bttn-square bttn-normal disabled:bttn-disabled mt-4 ml-auto text-gray-50 hover:opacity-90 " +
+                                            (formError
+                                                ? "bg-red-500"
+                                                : formSuccess
+                                                ? "bg-green-500"
+                                                : "bg-primary")
+                                        }
+                                        onClick={e => {
+                                            if (!allowContinue || formError) return
+                                            e.preventDefault()
+                                            setCurrentQuestion(index + 1)
+                                        }}
+                                        type={allowContinue ? "button" : "submit"}
+                                        disabled={!allowContinue && (formError || !allowSubmit)}>
+                                        {allowContinue
+                                            ? index < questions?.length - 1
+                                                ? "Next"
+                                                : "Finish"
+                                            : formError || "Submit"}
+                                    </button>
                                 </Form>
                             )
                         })}
                     {currentQuestion >= questions?.length && (
                         <div>
-                            <h1>Lesson Complete!</h1>
-                            <p>
+                            <h1 className="text-left font-sans text-2xl font-extrabold tracking-tight text-gray-50">
+                                Lesson Complete!
+                            </h1>
+                            <p className="font-sans text-sm font-normal leading-5 text-gray-50">
                                 You got {numCorrect} out of {questions?.length} questions correct.
                             </p>
-                            <p>
+                            <p className="font-sans text-sm font-normal leading-5 text-gray-50">
                                 You got {Math.floor((numCorrect / questions?.length) * 100)}%
                                 correct.
                             </p>
