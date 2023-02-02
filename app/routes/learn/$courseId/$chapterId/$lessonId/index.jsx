@@ -8,6 +8,8 @@ import prodBlockServer from "app/utils/prodBlock.server"
 
 import termStyles from "app/styles/xterm.css"
 import Editor from "app/components/LearnApp/Editor"
+import Quiz from "app/components/LearnApp/Quiz"
+import LearnAppNavigationBar from "app/components/LearnApp/LearnAppNavigationBar"
 
 export const links = () => [{ rel: "stylesheet", href: termStyles }]
 
@@ -66,6 +68,40 @@ export const loader = async ({ params, request }) => {
         course: { ...lessonData?.chapter?.course }, // Clone
     }
     delete metadata?.lesson?.chapter
+    delete metadata?.chapter?.course
+
+    // Load tasks/questions/etc.
+    if (metadata?.lesson?.environment?.type == "editor_interactive") {
+        let { data: tasksData, error: tasksDataQueryError } = await supabaseAdmin()
+            .from("task_conditions")
+            .select(
+                "id, task(id, lesson(id), instructions, completed_by_default, index), type, in, is, value"
+            )
+            .eq("task.lesson.id", metadata?.lesson?.id)
+        //.order("task.index", { ascending: true })
+        if (tasksDataQueryError) {
+            if (global.env.WORKER_ENV !== "production") console.log(tasksDataQueryError)
+            throw new Response("Internal Server Error", {
+                status: 500,
+                statusText: "Internal Server Error",
+            })
+        }
+        metadata.lesson.tasks = tasksData
+    } else if (metadata?.lesson?.environment?.type == "quiz") {
+        let { data: questionsData, error: questionsDataQueryError } = await supabaseAdmin()
+            .from("questions")
+            .select("id, lesson(id), index, title, content, type, config, options, value")
+            .eq("lesson.id", metadata?.lesson?.id)
+            .order("index", { ascending: true })
+        if (questionsDataQueryError) {
+            if (global.env.WORKER_ENV !== "production") console.log(questionsDataQueryError)
+            throw new Response("Internal Server Error", {
+                status: 500,
+                statusText: "Internal Server Error",
+            })
+        }
+        metadata.lesson.questions = questionsData
+    }
 
     // Load the user data and session
     let { session, data: userData, error } = await getAuthData(request)
@@ -107,8 +143,21 @@ export default function LearnApplication() {
                     </div>
                 </div>
             )}
+            {/* Navigation Bar */}
+            <LearnAppNavigationBar metadata={metadata} />
+
             {metadata?.lesson?.environment?.type == "editor_interactive" && (
                 <Editor
+                    metadata={metadata}
+                    setLoading={setLoading}
+                    params={params}
+                    session={session}
+                    userData={userData}
+                    loading={loading}
+                />
+            )}
+            {metadata?.lesson?.environment?.type == "quiz" && (
+                <Quiz
                     metadata={metadata}
                     setLoading={setLoading}
                     params={params}

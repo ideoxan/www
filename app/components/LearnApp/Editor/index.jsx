@@ -1,4 +1,3 @@
-import LearnAppNavigationBar from "app/components/LearnApp/LearnAppNavigationBar"
 import CodeEditor from "app/components/LearnApp/Editor/CodeEditor"
 import TabContainer from "app/components/LearnApp/Editor/TabContainer"
 import { marked } from "marked"
@@ -157,9 +156,6 @@ export default function Editor({
     return (
         !loading && (
             <>
-                {/* Navigation Bar */}
-                <LearnAppNavigationBar metadata={metadata} />
-
                 <main className="flex max-h-full w-full flex-grow flex-row overflow-hidden">
                     <div className="flex h-full max-h-full w-1/6 flex-row overflow-hidden">
                         {/* Activities Bar */}
