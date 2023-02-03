@@ -148,7 +148,7 @@ export default function Quiz({
                                     <div className="flex flex-row">
                                         Question {index + 1} / {questions?.length}
                                     </div>
-                                    {(quizOpts?.show_score_after || quizOpts?.show_score) && (
+                                    {quizOpts?.show_score_after && quizOpts?.show_score && (
                                         <div className="flex flex-row">
                                             Score:{" "}
                                             {Math.floor((numCorrect / questions?.length) * 100)}%
