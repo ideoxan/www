@@ -148,12 +148,15 @@ export default function Quiz({
                                     <div className="flex flex-row">
                                         Question {index + 1} / {questions?.length}
                                     </div>
-                                    {quizOpts?.show_score_after && quizOpts?.show_score && (
-                                        <div className="flex flex-row">
-                                            Score:{" "}
-                                            {Math.floor((numCorrect / questions?.length) * 100)}%
-                                        </div>
-                                    )}
+                                    {quizOpts?.notify_correctness &&
+                                        quizOpts?.show_score_after &&
+                                        quizOpts?.show_score && (
+                                            <div className="flex flex-row">
+                                                Score:{" "}
+                                                {Math.floor((numCorrect / questions?.length) * 100)}
+                                                %
+                                            </div>
+                                        )}
                                 </div>
                                 <h1 className="text-left font-sans text-2xl font-extrabold tracking-tight text-gray-50">
                                     {question?.title}
@@ -229,9 +232,9 @@ export default function Quiz({
                                 <button
                                     className={
                                         "bttn bttn-square bttn-normal disabled:bttn-disabled mt-4 ml-auto text-gray-50 hover:opacity-90 " +
-                                        (formError
+                                        (quizOpts?.notify_correctness && formError
                                             ? "bg-red-500"
-                                            : formSuccess
+                                            : quizOpts?.notify_correctness && formSuccess
                                             ? "bg-green-500"
                                             : "bg-primary")
                                     }
@@ -243,7 +246,7 @@ export default function Quiz({
                                     type={allowContinue ? "button" : "submit"}
                                     disabled={!allowContinue && (formError || !allowSubmit)}>
                                     {allowContinue
-                                        ? formError
+                                        ? formError && quizOpts?.notify_correctness
                                             ? formError
                                             : index < questions?.length - 1
                                             ? "Next"
