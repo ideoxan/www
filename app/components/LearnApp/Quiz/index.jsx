@@ -10,6 +10,7 @@ export default function Quiz({
     loading,
     ...props
 }) {
+    const quizOpts = metadata?.lesson?.environment
     const questions = metadata?.lesson?.questions
 
     const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -134,10 +135,13 @@ export default function Quiz({
                                         <div className="flex flex-row">
                                             Question {index + 1} / {questions?.length}
                                         </div>
-                                        <div className="flex flex-row">
-                                            Score:{" "}
-                                            {Math.floor((numCorrect / questions?.length) * 100)}%
-                                        </div>
+                                        {(quizOpts?.show_score_after || quizOpts?.show_score) && (
+                                            <div className="flex flex-row">
+                                                Score:{" "}
+                                                {Math.floor((numCorrect / questions?.length) * 100)}
+                                                %
+                                            </div>
+                                        )}
                                     </div>
                                     <h1 className="text-left font-sans text-2xl font-extrabold tracking-tight text-gray-50">
                                         {question?.title}
@@ -238,15 +242,25 @@ export default function Quiz({
                     {currentQuestion >= questions?.length && (
                         <div>
                             <h1 className="text-left font-sans text-2xl font-extrabold tracking-tight text-gray-50">
-                                Lesson Complete!
+                                Quiz Complete!
                             </h1>
-                            <p className="font-sans text-sm font-normal leading-5 text-gray-50">
-                                You got {numCorrect} out of {questions?.length} questions correct.
-                            </p>
-                            <p className="font-sans text-sm font-normal leading-5 text-gray-50">
-                                You got {Math.floor((numCorrect / questions?.length) * 100)}%
-                                correct.
-                            </p>
+                            {quizOpts?.show_score_after ? (
+                                <>
+                                    <p className="font-sans text-sm font-normal leading-5 text-gray-50">
+                                        You got {numCorrect} out of {questions?.length} questions
+                                        correct.
+                                    </p>
+                                    <p className="font-sans text-sm font-normal leading-5 text-gray-50">
+                                        You got {Math.floor((numCorrect / questions?.length) * 100)}
+                                        % correct.
+                                    </p>
+                                </>
+                            ) : (
+                                <p className="font-sans text-sm font-normal leading-5 text-gray-50">
+                                    Your final score has been recorded. You can continue on to the
+                                    next lesson.
+                                </p>
+                            )}
                         </div>
                     )}
                 </div>
