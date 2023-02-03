@@ -148,7 +148,7 @@ export default function Quiz({
 
                                     <div className="mt-4 "></div>
                                     {question?.type == "multiple_choice" && (
-                                        <div>
+                                        <>
                                             {choiceBank?.map((option, optIndex) => (
                                                 <div key={optIndex} className="w-full">
                                                     <input
@@ -177,43 +177,38 @@ export default function Quiz({
                                                     </label>
                                                 </div>
                                             ))}
-                                        </div>
+                                        </>
                                     )}
                                     {question?.type == "fill_in" && (
-                                        <div>
-                                            <input
-                                                type="text"
-                                                name="answer"
-                                                className="mb-2 w-full rounded-lg border border-gray-500/50 bg-gray-800 px-5 py-3 font-sans text-xs font-medium text-gray-50/70 outline-offset-0 focus:border-1 focus:border-primary focus:text-gray-50/100 focus:outline-none"
-                                                onChange={e => {
-                                                    setFormError(null)
-                                                    if (e.target.value.length > 0)
-                                                        setAllowSubmit(true)
-                                                    else setAllowSubmit(false)
-                                                }}
-                                            />
-                                        </div>
+                                        <input
+                                            type="text"
+                                            name="answer"
+                                            className="mb-2 w-full rounded-lg border border-gray-500/50 bg-gray-800 px-5 py-3 font-sans text-xs font-medium text-gray-50/70 outline-offset-0 focus:border-1 focus:border-primary focus:text-gray-50/100 focus:outline-none"
+                                            onChange={e => {
+                                                setFormError(null)
+                                                if (e.target.value.length > 0) setAllowSubmit(true)
+                                                else setAllowSubmit(false)
+                                            }}
+                                        />
                                     )}
                                     {question?.type == "dropdown" && (
-                                        <div>
-                                            <select
-                                                name="answer"
-                                                defaultValue="default"
-                                                className="mb-2 w-full rounded-lg border border-gray-500/50 bg-gray-800 px-5 py-3 font-sans text-xs font-medium text-gray-50/70 outline-offset-0 focus:border-1 focus:border-primary focus:text-gray-50/100 focus:outline-none"
-                                                onChange={e => {
-                                                    setFormError(null)
-                                                    if (e.target.value != "default")
-                                                        setAllowSubmit(true)
-                                                    else setAllowSubmit(false)
-                                                }}>
-                                                <option disabled value="default"></option>
-                                                {choiceBank?.map((option, index) => (
-                                                    <option key={index} value={option?.value}>
-                                                        {option?.value}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </div>
+                                        <select
+                                            name="answer"
+                                            defaultValue="default"
+                                            className="mb-2 w-full rounded-lg border border-gray-500/50 bg-gray-800 px-5 py-3 font-sans text-xs font-medium text-gray-50/70 outline-offset-0 focus:border-1 focus:border-primary focus:text-gray-50/100 focus:outline-none"
+                                            onChange={e => {
+                                                setFormError(null)
+                                                if (e.target.value != "default")
+                                                    setAllowSubmit(true)
+                                                else setAllowSubmit(false)
+                                            }}>
+                                            <option disabled value="default"></option>
+                                            {choiceBank?.map((option, index) => (
+                                                <option key={index} value={option?.value}>
+                                                    {option?.value}
+                                                </option>
+                                            ))}
+                                        </select>
                                     )}
                                     <button
                                         className={
