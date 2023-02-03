@@ -173,6 +173,7 @@ export default function Quiz({
                                                             setFormError(null)
                                                             setAllowSubmit(s.includes(true))
                                                         }}
+                                                        disabled={allowContinue}
                                                     />
                                                     <label
                                                         className="my-auto mb-2 flex w-full cursor-pointer space-x-4 rounded-lg border-2 border-gray-500/20 px-6 py-4 font-sans text-sm font-medium text-gray-50/80 hover:border-primary/50 peer-checked:border-primary peer-checked:text-gray-50/100"
@@ -193,6 +194,7 @@ export default function Quiz({
                                                 if (e.target.value.length > 0) setAllowSubmit(true)
                                                 else setAllowSubmit(false)
                                             }}
+                                            disabled={allowContinue}
                                         />
                                     )}
                                     {question?.type == "dropdown" && (
@@ -205,7 +207,8 @@ export default function Quiz({
                                                 if (e.target.value != "default")
                                                     setAllowSubmit(true)
                                                 else setAllowSubmit(false)
-                                            }}>
+                                            }}
+                                            disabled={allowContinue}>
                                             <option disabled value="default"></option>
                                             {choiceBank?.map((option, index) => (
                                                 <option key={index} value={option?.value}>
